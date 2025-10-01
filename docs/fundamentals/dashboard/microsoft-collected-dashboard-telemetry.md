@@ -1,25 +1,25 @@
 ---
 title: Microsoft-collected dashboard telemetry
-description: Learn about what telemetry the .NET Aspire dashboard sends and how to opt out.
+description: Learn about what telemetry the Aspire dashboard sends and how to opt out.
 ms.date: 05/08/2025
 ---
 
 # Microsoft-collected dashboard telemetry
 
-The .NET Aspire dashboard collects diagnostic data to help developers monitor and analyze their applications. Separately, when the dashboard is launched through Visual Studio or Visual Studio Code as part of a running .NET Aspire application, Microsoft collects usage data about the dashboard itself. This data helps the .NET Aspire team improve the product. Additionally, unhandled exception details from the dashboard are sent to Microsoft to assist in identifying and resolving issues.
+The Aspire dashboard collects diagnostic data to help developers monitor and analyze their applications. Separately, when the dashboard is launched through Visual Studio or Visual Studio Code as part of a running Aspire application, Microsoft collects usage data about the dashboard itself. This data helps the Aspire team improve the product. Additionally, unhandled exception details from the dashboard are sent to Microsoft to assist in identifying and resolving issues.
 
 ## Scope
 
-.NET Aspire dashboard usage telemetry is collected only when running the dashboard from Visual Studio or Visual Studio Code. Telemetry is gathered while the dashboard is open in the browser, unless you have [opted out](#how-to-opt-out) of telemetry collection.
+Aspire dashboard usage telemetry is collected only when running the dashboard from Visual Studio or Visual Studio Code. Telemetry is gathered while the dashboard is open in the browser, unless you have [opted out](#how-to-opt-out) of telemetry collection.
 
 ## How to opt-out
 
-Starting with .NET Aspire 9.3, dashboard usage telemetry is enabled by default. Dashboard usage telemetry isn't collected in early version. This feature aligns with the following IDE versions:
+Starting with Aspire 9.3, dashboard usage telemetry is enabled by default. Dashboard usage telemetry isn't collected in early version. This feature aligns with the following IDE versions:
 
 - Visual Studio: 17.14 or later.
 - C# Dev Kit: 1.18.25 or later.
 
-To opt-out of telemetry collection, set the `ASPIRE_DASHBOARD_TELEMETRY_OPTOUT` environment variable to `true`. This will apply to all users accessing the .NET Aspire dashboard:
+To opt-out of telemetry collection, set the `ASPIRE_DASHBOARD_TELEMETRY_OPTOUT` environment variable to `true`. This will apply to all users accessing the Aspire dashboard:
 
 ### [PowerShell](#tab/powershell)
 
@@ -43,13 +43,13 @@ When dashboard usage telemetry is enabled, there's a disclosure statement at the
 
 ## Data points
 
-.NET Aspire dashboard usage telemetry doesn't collect personal data, such as, IP addresses or use browser fingerprinting. It doesn't scan your code and doesn't extract source code, authorship, or deployment configuration. The data is sent securely to Microsoft using [Azure Monitor](/azure/azure-monitor/) through existing telemetry APIs in Visual Studio and Visual Studio Code.
+Aspire dashboard usage telemetry doesn't collect personal data, such as, IP addresses or use browser fingerprinting. It doesn't scan your code and doesn't extract source code, authorship, or deployment configuration. The data is sent securely to Microsoft using [Azure Monitor](/azure/azure-monitor/) through existing telemetry APIs in Visual Studio and Visual Studio Code.
 
 Protecting your privacy is important to Microsoft. If you suspect that telemetry is collecting sensitive data or the data is being insecurely or inappropriately handled, file an issue in the :::image type="icon" source="../../media/github-mark.svg" border="false"::: [GitHub dotnet/aspire](https://github.com/dotnet/aspire) repository for investigation.
 
-The .NET Aspire dashboard doesn't collect telemetry on Visual Studio versions `< 17.14` or C# Dev Kit versions `< 1.18.25`. It collects the following data:
+The Aspire dashboard doesn't collect telemetry on Visual Studio versions `< 17.14` or C# Dev Kit versions `< 1.18.25`. It collects the following data:
 
-| .NET Aspire dashboard versions | Data | Notes |
+| Aspire dashboard versions | Data | Notes |
 |--|--|--|
 | 9.3 | Page navigation history. | Includes page settings. |
 | 9.3 | Resource types being used. | Custom resource type names are not sent to Microsoft. |
@@ -64,5 +64,5 @@ The .NET Aspire dashboard doesn't collect telemetry on Visual Studio versions `<
 
 ## See also
 
-- [.NET Aspire dashboard](overview.md)
-- [.NET Aspire dashboard configuration](configuration.md)
+- [Aspire dashboard](overview.md)
+- [Aspire dashboard configuration](configuration.md)

@@ -1,19 +1,19 @@
 ---
 title: GitHub Models integration
-description: Learn how to integrate .NET Aspire with GitHub Models for AI model access and management.
+description: Learn how to integrate Aspire with GitHub Models for AI model access and management.
 ms.date: 07/25/2025
 ai-usage: ai-assisted
 ---
 
-# .NET Aspire GitHub Models integration (Preview)
+# Aspire GitHub Models integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[GitHub Models](https://docs.github.com/github-models) provides access to various AI models including OpenAI's GPT models, DeepSeek, Microsoft's Phi models, and other leading AI models, all accessible through GitHub's infrastructure. The .NET Aspire GitHub Models integration enables you to connect to GitHub Models from your .NET applications for prototyping and production scenarios.
+[GitHub Models](https://docs.github.com/github-models) provides access to various AI models including OpenAI's GPT models, DeepSeek, Microsoft's Phi models, and other leading AI models, all accessible through GitHub's infrastructure. The Aspire GitHub Models integration enables you to connect to GitHub Models from your .NET applications for prototyping and production scenarios.
 
 ## Hosting integration
 
-The .NET Aspire [GitHub Models](https://docs.github.com/github-models) hosting integration models GitHub Models resources as `GitHubModelResource`. To access these types and APIs for expressing them within your [AppHost project](../fundamentals/app-host-overview.md), install the [📦 Aspire.Hosting.GitHub.Models](https://www.nuget.org/packages/Aspire.Hosting.GitHub.Models) NuGet package:
+The Aspire [GitHub Models](https://docs.github.com/github-models) hosting integration models GitHub Models resources as `GitHubModelResource`. To access these types and APIs for expressing them within your [AppHost project](../fundamentals/app-host-overview.md), install the [📦 Aspire.Hosting.GitHub.Models](https://www.nuget.org/packages/Aspire.Hosting.GitHub.Models) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -134,7 +134,7 @@ Check the [GitHub Models documentation](https://docs.github.com/github-models) f
 
 ## Client integration
 
-To get started with the .NET Aspire GitHub Models client integration, you can use either the Azure AI Inference client or the OpenAI client, depending on your needs and model compatibility.
+To get started with the Aspire GitHub Models client integration, you can use either the Azure AI Inference client or the OpenAI client, depending on your needs and model compatibility.
 
 ### Using Azure AI Inference client
 
@@ -328,6 +328,6 @@ HTTP requests to the GitHub Models API are automatically traced when using the A
 ## See also
 
 - [GitHub Models](https://docs.github.com/github-models)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [GitHub Models API documentation](https://docs.github.com/rest/models/inference)

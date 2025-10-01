@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-To get started with the .NET Aspire PostgreSQL client integration, install the [📦 Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package in the client-consuming project, that is, the project for the application that uses the PostgreSQL client. The PostgreSQL client integration registers an [NpgsqlDataSource](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSource.html) instance that you can use to interact with PostgreSQL.
+To get started with the Aspire PostgreSQL client integration, install the [📦 Aspire.Npgsql](https://www.nuget.org/packages/Aspire.Npgsql) NuGet package in the client-consuming project, that is, the project for the application that uses the PostgreSQL client. The PostgreSQL client integration registers an [NpgsqlDataSource](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSource.html) instance that you can use to interact with PostgreSQL.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -64,7 +64,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire PostgreSQL integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
+The Aspire PostgreSQL integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -88,7 +88,7 @@ For more information, see the [ConnectionString](https://www.npgsql.org/doc/conn
 
 #### Use configuration providers
 
-The .NET Aspire PostgreSQL integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.NpgsqlSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files by using the `Aspire:Npgsql` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The Aspire PostgreSQL integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Npgsql.NpgsqlSettings> from _:::no-loc text="appsettings.json":::_ or other configuration files by using the `Aspire:Npgsql` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 The following example shows an _:::no-loc text="appsettings.json":::_ file that configures some of the available options:
 
@@ -126,7 +126,7 @@ builder.AddNpgsqlDataSource(
 
 #### Logging
 
-The .NET Aspire PostgreSQL integration uses the following log categories:
+The Aspire PostgreSQL integration uses the following log categories:
 
 - `Npgsql.Connection`
 - `Npgsql.Command`
@@ -137,13 +137,13 @@ The .NET Aspire PostgreSQL integration uses the following log categories:
 
 #### Tracing
 
-The .NET Aspire PostgreSQL integration will emit the following tracing activities using OpenTelemetry:
+The Aspire PostgreSQL integration will emit the following tracing activities using OpenTelemetry:
 
 - `Npgsql`
 
 #### Metrics
 
-The .NET Aspire PostgreSQL integration will emit the following metrics using OpenTelemetry:
+The Aspire PostgreSQL integration will emit the following metrics using OpenTelemetry:
 
 - Npgsql:
   - `ec_Npgsql_bytes_written_per_second`

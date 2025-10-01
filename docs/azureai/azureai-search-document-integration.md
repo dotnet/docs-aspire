@@ -1,19 +1,19 @@
 ---
-title: .NET Aspire Azure AI Search integration
-description: Learn how to integrate Azure AI Search with .NET Aspire.
+title: Aspire Azure AI Search integration
+description: Learn how to integrate Azure AI Search with Aspire.
 ms.date: 07/22/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure AI Search integration
+# Aspire Azure AI Search integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-The .NET Aspire Azure AI Search Documents integration enables you to connect to [Azure AI Search](/azure/search/search-what-is-azure-search) (formerly Azure Cognitive Search) services from your .NET applications. Azure AI Search is an enterprise-ready information retrieval system for your heterogeneous content that you ingest into a search index, and surface to users through queries and apps. It comes with a comprehensive set of advanced search technologies, built for high-performance applications at any scale.
+The Aspire Azure AI Search Documents integration enables you to connect to [Azure AI Search](/azure/search/search-what-is-azure-search) (formerly Azure Cognitive Search) services from your .NET applications. Azure AI Search is an enterprise-ready information retrieval system for your heterogeneous content that you ingest into a search index, and surface to users through queries and apps. It comes with a comprehensive set of advanced search technologies, built for high-performance applications at any scale.
 
 ## Hosting integration
 
-The .NET Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type. To access this type and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
+The Aspire Azure AI Search hosting integration models the Azure AI Search resource as the <xref:Aspire.Hosting.Azure.AzureSearchResource> type. To access this type and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.Search](https://www.nuget.org/packages/Aspire.Hosting.Azure.Search) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -80,7 +80,7 @@ For more information on treating Azure AI Search resources as existing resources
 
 ### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by hand; instead, the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure AI Search resource, Bicep is generated to provision the search service with appropriate defaults.
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by hand; instead, the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure AI Search resource, Bicep is generated to provision the search service with appropriate defaults.
 
 :::code language="bicep" source="../snippets/azure/AppHost/search/search.bicep":::
 
@@ -92,7 +92,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the search service partitions, replicas, and more:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the search service partitions, replicas, and more:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureSearchInfra.cs" id="configure":::
 
@@ -115,7 +115,7 @@ The Azure AI Search hosting integration doesn't currently implement any health c
 
 ## Client integration
 
-To get started with the .NET Aspire Azure AI Search Documents client integration, install the [📦 Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure AI Search Documents client.
+To get started with the Aspire Azure AI Search Documents client integration, install the [📦 Aspire.Azure.Search.Documents](https://www.nuget.org/packages/Aspire.Azure.Search.Documents) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure AI Search Documents client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -203,7 +203,7 @@ For more information, see [Keyed services in .NET](/dotnet/core/extensions/depen
 
 ### Configuration
 
-The .NET Aspire Azure AI Search Documents library provides multiple options to configure the Azure AI Search connection based on the requirements and conventions of your project. Either an `Endpoint` or a `ConnectionString` is required to be supplied.
+The Aspire Azure AI Search Documents library provides multiple options to configure the Azure AI Search connection based on the requirements and conventions of your project. Either an `Endpoint` or a `ConnectionString` is required to be supplied.
 
 #### Use a connection string
 
@@ -241,7 +241,7 @@ Alternatively, a connection string with key can be used, however; it's not the r
 
 ### Use configuration providers
 
-The .NET Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureSearchSettings` and `SearchClientOptions` from configuration by using the `Aspire:Azure:Search:Documents` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The Aspire Azure AI Search library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureSearchSettings` and `SearchClientOptions` from configuration by using the `Aspire:Azure:Search:Documents` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -261,7 +261,7 @@ For the complete Azure AI Search Documents client integration JSON schema, see [
 
 ### Use named configuration
 
-The .NET Aspire Azure AI Search library supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure AI Search library supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -314,13 +314,13 @@ builder.AddAzureSearchClient(
 
 [!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
-The .NET Aspire Azure AI Search Documents integration implements a single health check that calls the <xref:Azure.Search.Documents.Indexes.SearchIndexClient.GetServiceStatisticsAsync%2A> method on the `SearchIndexClient` to verify that the service is available.
+The Aspire Azure AI Search Documents integration implements a single health check that calls the <xref:Azure.Search.Documents.Indexes.SearchIndexClient.GetServiceStatisticsAsync%2A> method on the `SearchIndexClient` to verify that the service is available.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 ### Logging
 
-The .NET Aspire Azure AI Search Documents integration uses the following log categories:
+The Aspire Azure AI Search Documents integration uses the following log categories:
 
 - `Azure`
 - `Azure.Core`
@@ -328,11 +328,11 @@ The .NET Aspire Azure AI Search Documents integration uses the following log cat
 
 ### Tracing
 
-The .NET Aspire Azure AI Search Documents integration emits tracing activities using OpenTelemetry when interacting with the search service.
+The Aspire Azure AI Search Documents integration emits tracing activities using OpenTelemetry when interacting with the search service.
 
 ## See also
 
 - [Azure AI Search](https://azure.microsoft.com/products/ai-services/ai-search)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

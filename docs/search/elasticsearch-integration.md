@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Elasticsearch integration (Preview)
-description: Learn how to use the .NET Aspire Elasticsearch integration, which includes both hosting and client integrations.
+title: Aspire Elasticsearch integration (Preview)
+description: Learn how to use the Aspire Elasticsearch integration, which includes both hosting and client integrations.
 ms.date: 02/14/2025
 uid: search/elasticsearch-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Elasticsearch integration (Preview)
+# Aspire Elasticsearch integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Elasticsearch](https://www.elastic.co/elasticsearch) is a distributed, RESTful search and analytics engine, scalable data store, and vector database capable of addressing a growing number of use cases. The .NET Aspire Elasticsearch integration enables you to connect to existing Elasticsearch instances, or create new instances from .NET with the [`docker.io/library/elasticsearch` container image](https://hub.docker.com/_/elasticsearch).
+[Elasticsearch](https://www.elastic.co/elasticsearch) is a distributed, RESTful search and analytics engine, scalable data store, and vector database capable of addressing a growing number of use cases. The Aspire Elasticsearch integration enables you to connect to existing Elasticsearch instances, or create new instances from .NET with the [`docker.io/library/elasticsearch` container image](https://hub.docker.com/_/elasticsearch).
 
 ## Hosting integration
 
@@ -48,7 +48,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/elasticsearch` image, it creates a new Elasticsearch instance on your local machine. A reference to your Elasticsearch resource (the `elasticsearch` variable) is added to the `ExampleProject`. The Elasticsearch resource includes default credentials with a `username` of `"elastic"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a password wasn't provided.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/elasticsearch` image, it creates a new Elasticsearch instance on your local machine. A reference to your Elasticsearch resource (the `elasticsearch` variable) is added to the `ExampleProject`. The Elasticsearch resource includes default credentials with a `username` of `"elastic"` and randomly generated `password` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a password wasn't provided.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"elasticsearch"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -121,7 +121,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Elasticsearc
 
 ## Client integration
 
-To get started with the .NET Aspire Elasticsearch client integration, install the [📦 Aspire.Elastic.Clients.Elasticsearch](https://www.nuget.org/packages/Aspire.Elastic.Clients.Elasticsearch) NuGet package in the client-consuming project, that is, the project for the application that uses the Elasticsearch client. The Elasticsearch client integration registers an [ElasticsearchClient](https://github.com/elastic/elasticsearch-net) instance that you can use to interact with Elasticsearch.
+To get started with the Aspire Elasticsearch client integration, install the [📦 Aspire.Elastic.Clients.Elasticsearch](https://www.nuget.org/packages/Aspire.Elastic.Clients.Elasticsearch) NuGet package in the client-consuming project, that is, the project for the application that uses the Elasticsearch client. The Elasticsearch client integration registers an [ElasticsearchClient](https://github.com/elastic/elasticsearch-net) instance that you can use to interact with Elasticsearch.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -182,7 +182,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Elasticsearch client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
+The Aspire Elasticsearch client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -204,7 +204,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 #### Use configuration providers
 
-The .NET Aspire Elasticsearch Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Elastic.Clients.Elasticsearch.ElasticClientsElasticsearchSettings> from configuration by using the `Aspire:Elastic:Clients:Elasticsearch` key. Consider the following example _appsettings.json_ that configures some of the options:
+The Aspire Elasticsearch Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Elastic.Clients.Elasticsearch.ElasticClientsElasticsearchSettings> from configuration by using the `Aspire:Elastic:Clients:Elasticsearch` key. Consider the following example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -277,22 +277,22 @@ builder.AddElasticsearchClient(
 
 #### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Elasticsearch integration uses the configured client to perform a `PingAsync`. If the result is an HTTP 200 OK, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
+The Aspire Elasticsearch integration uses the configured client to perform a `PingAsync`. If the result is an HTTP 200 OK, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
 
 ### Observability and telemetry
 
-.NET Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
+Aspire integrations automatically set up Logging, Tracing, and Metrics configurations, which are sometimes known as *the pillars of observability*. For more information about integration observability and telemetry, see [Aspire integrations overview](../fundamentals/integrations-overview.md). Depending on the backing service, some integrations may only support some of these features. For example, some integrations support logging and tracing, but not metrics. Telemetry features can also be disabled using the techniques presented in the [Configuration](#configuration) section.
 
 #### Tracing
 
-The .NET Aspire Elasticsearch integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Elasticsearch integration will emit the following tracing activities using OpenTelemetry:
 
 - `Elastic.Transport`
 
 ## See also
 
 - [Elasticsearch .NET](https://github.com/elastic/elasticsearch-net)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

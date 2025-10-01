@@ -1,20 +1,20 @@
 ---
-title: .NET Aspire Oracle Entity Framework Core integration
-description: Learn how to use the .NET Aspire Oracle Entity Framework Core integration, which includes both hosting and client integrations.
+title: Aspire Oracle Entity Framework Core integration
+description: Learn how to use the Aspire Oracle Entity Framework Core integration, which includes both hosting and client integrations.
 ms.date: 01/21/2025
 uid: database/oracle-entity-framework-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Oracle Entity Framework Core integration
+# Aspire Oracle Entity Framework Core integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Oracle Database](https://www.oracle.com/database/technologies/) is a widely-used relational database management system owned and developed by Oracle. The .NET Aspire Oracle Entity Framework Core integration enables you to connect to existing Oracle servers or create new servers from .NET with the [container-registry.oracle.com/database/free](https://container-registry.oracle.com/ords/f?p=113:4:5999388133692:::RP,4:P4_REPOSITORY,AI_REPOSITORY,P4_REPOSITORY_NAME,AI_REPOSITORY_NAME:1863,1863,Oracle%20Database%20Free,Oracle%20Database%20Free&cs=3L7x5hgm9Co0WJN-3xZTrFJkDyCZKiS8wlK1jg7nU2yE65gVGYh4WbMLzmX59tAHoLwbwWeAz-kjraRQzB1V5TA) container image.
+[Oracle Database](https://www.oracle.com/database/technologies/) is a widely-used relational database management system owned and developed by Oracle. The Aspire Oracle Entity Framework Core integration enables you to connect to existing Oracle servers or create new servers from .NET with the [container-registry.oracle.com/database/free](https://container-registry.oracle.com/ords/f?p=113:4:5999388133692:::RP,4:P4_REPOSITORY,AI_REPOSITORY,P4_REPOSITORY_NAME,AI_REPOSITORY_NAME:1863,1863,Oracle%20Database%20Free,Oracle%20Database%20Free&cs=3L7x5hgm9Co0WJN-3xZTrFJkDyCZKiS8wlK1jg7nU2yE65gVGYh4WbMLzmX59tAHoLwbwWeAz-kjraRQzB1V5TA) container image.
 
 ## Hosting integration
 
-The .NET Aspire Oracle hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+The Aspire Oracle hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseServerResource> type and the database as the <xref:Aspire.Hosting.ApplicationModel.OracleDatabaseResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Oracle](https://www.nuget.org/packages/Aspire.Hosting.Oracle) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -55,7 +55,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The Oracle database container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `container-registry.oracle.com/database/free` image, it creates a new Oracle server on your local machine. A reference to your Oracle resource builder (the `oracle` variable) is used to add a database. The database is named `oracledb` and then added to the `ExampleProject`. The Oracle resource includes a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `container-registry.oracle.com/database/free` image, it creates a new Oracle server on your local machine. A reference to your Oracle resource builder (the `oracle` variable) is used to add a database. The database is named `oracledb` and then added to the `ExampleProject`. The Oracle resource includes a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `"oracledb"`. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -147,7 +147,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Oracle](http
 
 ## Client integration
 
-You need an Oracle database and connection string for accessing the database. To get started with the .NET Aspire Oracle client integration, install the [📦 Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package in the client-consuming project, that is, the project for the application that uses the Oracle client. The Oracle client integration registers a <xref:System.Data.Entity.DbContext> instance that you can use to interact with Oracle.
+You need an Oracle database and connection string for accessing the database. To get started with the Aspire Oracle client integration, install the [📦 Aspire.Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package in the client-consuming project, that is, the project for the application that uses the Oracle client. The Oracle client integration registers a <xref:System.Data.Entity.DbContext> instance that you can use to interact with Oracle.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -201,11 +201,11 @@ builder.Services.AddDbContext<ExampleDbContext>(options =>
 
 You have more flexibility when you create the database context in this way, for example:
 
-- You can reuse existing configuration code for the database context without rewriting it for .NET Aspire.
+- You can reuse existing configuration code for the database context without rewriting it for Aspire.
 - You can use Entity Framework Core interceptors to modify database operations.
 - You can choose not to use Entity Framework Core context pooling, which may perform better in some circumstances.
 
-If you use this method, you can enhance the database context with .NET Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireOracleEFCoreExtensions.EnrichOracleDatabaseDbContext*> method:
+If you use this method, you can enhance the database context with Aspire-style retries, health checks, logging, and telemetry features by calling the <xref:Microsoft.Extensions.Hosting.AspireOracleEFCoreExtensions.EnrichOracleDatabaseDbContext*> method:
 
 ```csharp
 builder.EnrichOracleDatabaseDbContext<ExampleDbContext>(
@@ -220,7 +220,7 @@ The `settings` parameter is an instance of the <xref:Aspire.Oracle.EntityFramewo
 
 ### Configuration
 
-The .NET Aspire Oracle Entity Framework Core integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
+The Aspire Oracle Entity Framework Core integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -246,7 +246,7 @@ For more information, see the [ODP.NET documentation](https://www.oracle.com/dat
 
 #### Use configuration providers
 
-The .NET Aspire Oracle Entity Framework Core integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Oracle:EntityFrameworkCore` key. If you have set up your configurations in the `Aspire:Oracle:EntityFrameworkCore` section you can just call the method without passing any parameter.
+The Aspire Oracle Entity Framework Core integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName> from configuration files such as _:::no-loc text="appsettings.json":::_ by using the `Aspire:Oracle:EntityFrameworkCore` key. If you have set up your configurations in the `Aspire:Oracle:EntityFrameworkCore` section you can just call the method without passing any parameter.
 
 The following is an example of an _:::no-loc text="appsettings.json":::_ that configures some of the available options:
 
@@ -299,7 +299,7 @@ Here are the configurable options with corresponding default values:
 
 [!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
-By default, the .NET Aspire Oracle Entity Framework Core integration handles the following:
+By default, the Aspire Oracle Entity Framework Core integration handles the following:
 
 - Checks if the <xref:Aspire.Oracle.EntityFrameworkCore.OracleEntityFrameworkCoreSettings.DisableHealthChecks?displayProperty=nameWithType> is `true`.
 - If so, adds the [`DbContextHealthCheck`](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/src/HealthChecks.NpgSql/NpgSqlHealthCheck.cs), which calls EF Core's <xref:Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.CanConnectAsync%2A> method. The name of the health check is the name of the `TContext` type.
@@ -308,7 +308,7 @@ By default, the .NET Aspire Oracle Entity Framework Core integration handles the
 
 #### Logging
 
-The .NET Aspire Oracle Entity Framework Core integration uses the following log categories:
+The Aspire Oracle Entity Framework Core integration uses the following log categories:
 
 - `Microsoft.EntityFrameworkCore.ChangeTracking`
 - `Microsoft.EntityFrameworkCore.Database.Command`
@@ -323,13 +323,13 @@ The .NET Aspire Oracle Entity Framework Core integration uses the following log 
 
 #### Tracing
 
-The .NET Aspire Oracle Entity Framework Core integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Oracle Entity Framework Core integration will emit the following tracing activities using OpenTelemetry:
 
 - OpenTelemetry.Instrumentation.EntityFrameworkCore
 
 #### Metrics
 
-The .NET Aspire Oracle Entity Framework Core integration currently supports the following metrics:
+The Aspire Oracle Entity Framework Core integration currently supports the following metrics:
 
 - Microsoft.EntityFrameworkCore
 
@@ -338,5 +338,5 @@ The .NET Aspire Oracle Entity Framework Core integration currently supports the 
 - [Oracle Database](https://www.oracle.com/database/)
 - [Oracle Database Documentation](https://docs.oracle.com/en/database/oracle/oracle-database/index.html)
 - [Entity Framework Core docs](/ef/core)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

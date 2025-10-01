@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - AddAzureOpenAI defaults to CognitiveServicesOpenAIUser instead of CognitiveServicesOpenAIContributor"
-description: "Learn about the breaking change in .NET Aspire 9.4 where AddAzureOpenAI defaults to a lower privilege role."
+description: "Learn about the breaking change in Aspire 9.4 where AddAzureOpenAI defaults to a lower privilege role."
 ms.date: 7/11/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3936
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3936
 
 # AddAzureOpenAI defaults to CognitiveServicesOpenAIUser instead of CognitiveServicesOpenAIContributor
 
-In .NET Aspire 9.4, the default role assigned to applications using `AddAzureOpenAI` was changed from `CognitiveServicesOpenAIContributor` to `CognitiveServicesOpenAIUser`. This change improves security by assigning a lower privilege role by default, ensuring applications only have the permissions necessary for inference tasks.
+In Aspire 9.4, the default role assigned to applications using `AddAzureOpenAI` was changed from `CognitiveServicesOpenAIContributor` to `CognitiveServicesOpenAIUser`. This change improves security by assigning a lower privilege role by default, ensuring applications only have the permissions necessary for inference tasks.
 
 ## Version introduced
 
-.NET Aspire 9.4
+Aspire 9.4
 
 ## Previous behavior
 

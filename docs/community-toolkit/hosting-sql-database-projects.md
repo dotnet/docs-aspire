@@ -1,17 +1,17 @@
 ---
 title: SQL Database Projects hosting
 author: erikej
-description: A .NET Aspire hosting integration for publishing SQL Database Projects from your AppHost.
+description: A Aspire hosting integration for publishing SQL Database Projects from your AppHost.
 ms.date: 11/12/2024
 ---
 
-# .NET Aspire SQL Database Projects hosting integration
+# Aspire SQL Database Projects hosting integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire SQL Database Projects hosting integration to publish your database schema to your SQL Server database.
+In this article, you learn how to use the Aspire SQL Database Projects hosting integration to publish your database schema to your SQL Server database.
 
 ## Prerequisites
 
@@ -19,7 +19,7 @@ This integration requires a SQL Database Project based on either [MSBuild.Sdk.Sq
 
 ## Hosting integration
 
-To get started with the .NET Aspire SQL Database Projects hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects) NuGet package in the AppHost project.
+To get started with the Aspire SQL Database Projects hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.SqlDatabaseProjects) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -40,16 +40,16 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ## Example usage
 
-Add a reference to the [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql) project you want to publish in your .NET Aspire AppHost project:
+Add a reference to the [📦 MSBuild.Sdk.SqlProj](https://www.nuget.org/packages/MSBuild.Sdk.SqlProj) or [📦 Microsoft.Build.Sql](https://www.nuget.org/packages/Microsoft.Build.Sql) project you want to publish in your Aspire AppHost project:
 
 ```dotnetcli
 dotnet add reference ../MySqlProj/MySqlProj.csproj
 ```
 
 > [!NOTE]
-> Adding this reference will currently result in warning `ASPIRE004` on the project due to how references are parsed. The .NET Aspire team is aware of this and we're working on a cleaner solution.
+> Adding this reference will currently result in warning `ASPIRE004` on the project due to how references are parsed. The Aspire team is aware of this and we're working on a cleaner solution.
 
-Add the project as a resource to your .NET Aspire AppHost:
+Add the project as a resource to your Aspire AppHost:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -61,7 +61,7 @@ builder.AddSqlProject<Projects.MySqlProj>("mysqlproj")
        .WithReference(sql);
 ```
 
-Now when you run your .NET Aspire AppHost project you see the SQL Database Project being published to the specified SQL Server.
+Now when you run your Aspire AppHost project you see the SQL Database Project being published to the specified SQL Server.
 
 ## NuGet Package support
 
@@ -149,11 +149,11 @@ The preceding code:
 
 ### Redeploy support
 
-If you make changes to your SQL Database project while the AppHost is running, you can use the `Redeploy` custom action on the .NET Aspire dashboard to redeploy your updates without having to restart the AppHost.
+If you make changes to your SQL Database project while the AppHost is running, you can use the `Redeploy` custom action on the Aspire dashboard to redeploy your updates without having to restart the AppHost.
 
 ## See also
 
 - [MSBuild.Sdk.SqlProj GitHub repository](https://github.com/rr-wfm/MSBuild.Sdk.SqlProj)
 - [Microsoft.Build.Sql GitHub repository](https://github.com/microsoft/DacFx)
 - [Get started with SQL database projects](/sql/tools/sql-database-projects/get-started)
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)

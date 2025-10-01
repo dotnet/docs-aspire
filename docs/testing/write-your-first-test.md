@@ -1,19 +1,19 @@
 ---
-title: Write your first .NET Aspire test
-description: Learn how to test your .NET Aspire solutions using the xUnit.net, NUnit, and MSTest testing frameworks.
-ms.date: 8/15/2025
+title: Write your first Aspire test
+description: Learn how to test your Aspire solutions using the xUnit.net, NUnit, and MSTest testing frameworks.
+ms.date: 10/01/2025
 zone_pivot_groups: unit-testing-framework
 ---
 
-# Write your first .NET Aspire test
+# Write your first Aspire test
 
-In this article, you learn how to create a test project, write tests, and run them for your .NET Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. .NET Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#net-aspire-templates) that you can use to test your .NET Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit.net testing frameworks and include a sample test that you can use as a starting point for your tests.
+In this article, you learn how to create a test project, write tests, and run them for your Aspire solutions. The tests in this article aren't unit tests, but rather functional or integration tests. Aspire includes several variations of [testing project templates](../fundamentals/setup-tooling.md#aspire-templates) that you can use to test your Aspire resource dependencies—and their communications. The testing project templates are available for MSTest, NUnit, and xUnit.net testing frameworks and include a sample test that you can use as a starting point for your tests.
 
-The .NET Aspire test project templates rely on the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your distributed application. The distributed application testing builder launches your AppHost project with instrumentation hooks so that you can access and manipulate the host at various stages of its lifecyle. In particular, <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> provides you access to <xref:Aspire.Hosting.IDistributedApplicationBuilder> and <xref:Aspire.Hosting.DistributedApplication> class to create and start the [AppHost](../fundamentals/app-host-overview.md).
+The Aspire test project templates rely on the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package. This package exposes the <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> class, which is used to create a test host for your distributed application. The distributed application testing builder launches your AppHost project with instrumentation hooks so that you can access and manipulate the host at various stages of its lifecyle. In particular, <xref:Aspire.Hosting.Testing.DistributedApplicationTestingBuilder> provides you access to <xref:Aspire.Hosting.IDistributedApplicationBuilder> and <xref:Aspire.Hosting.DistributedApplication> class to create and start the [AppHost](../fundamentals/app-host-overview.md).
 
 ## Create a test project
 
-The easiest way to create a .NET Aspire test project is to use the testing project template. If you're starting a new .NET Aspire project and want to include test projects, the [Visual Studio tooling supports that option](../fundamentals/setup-tooling.md#create-test-project). If you're adding a test project to an existing .NET Aspire project, you can use the `dotnet new` command to create a test project:
+The easiest way to create a Aspire test project is to use the testing project template. If you're starting a new Aspire project and want to include test projects, the [Visual Studio tooling supports that option](../fundamentals/setup-tooling.md#create-test-project). If you're adding a test project to an existing Aspire project, you can use the `dotnet new` command to create a test project:
 
 :::zone pivot="xunit"
 
@@ -41,7 +41,7 @@ For more information, see the .NET CLI [dotnet new](/dotnet/core/tools/dotnet-ne
 
 ## Explore the test project
 
-The following example test project was created as part of the **.NET Aspire Starter Application** template. If you're unfamiliar with it, see [Quickstart: Build your first .NET Aspire project](../get-started/build-your-first-aspire-app.md). The .NET Aspire test project takes a project reference dependency on the target AppHost. Consider the template project:
+The following example test project was created as part of the **Aspire Starter Application** template. If you're unfamiliar with it, see [Quickstart: Build your first Aspire project](../get-started/build-your-first-aspire-app.md). The Aspire test project takes a project reference dependency on the target AppHost. Consider the template project:
 
 :::zone pivot="xunit"
 
@@ -59,7 +59,7 @@ The following example test project was created as part of the **.NET Aspire Star
 
 :::zone-end
 
-The preceding project file is fairly standard. There's a `PackageReference` to the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package, which includes the required types to write tests for .NET Aspire projects.
+The preceding project file is fairly standard. There's a `PackageReference` to the [📦 Aspire.Hosting.Testing](https://www.nuget.org/packages/Aspire.Hosting.Testing) NuGet package, which includes the required types to write tests for Aspire projects.
 
 The template test project includes a `IntegrationTest1` class with a single test. The test verifies the following scenario:
 
@@ -100,7 +100,7 @@ The preceding code:
 
 ## Test resource environment variables
 
-To further test resources and their expressed dependencies in your .NET Aspire solution, you can assert that environment variables are injected correctly. The following example demonstrates how to test that the `webfrontend` resource has an HTTPS environment variable that resolves to the `apiservice` resource:
+To further test resources and their expressed dependencies in your Aspire solution, you can assert that environment variables are injected correctly. The following example demonstrates how to test that the `webfrontend` resource has an HTTPS environment variable that resolves to the `apiservice` resource:
 
 :::zone pivot="xunit"
 
@@ -187,7 +187,6 @@ For xUnit.net, consider using one of these logging packages:
 
 For MSTest, consider using one of these logging packages:
 
-- [📦 Extensions.Logging.MSTest](https://www.nuget.org/packages/Extensions.Logging.MSTest) - Integrates with MSTest framework.
 - [📦 Serilog.Extensions.Logging.File](https://www.nuget.org/packages/Serilog.Extensions.Logging.File) - Writes logs to files.
 - [📦 Microsoft.Extensions.Logging.Console](https://www.nuget.org/packages/Microsoft.Extensions.Logging.Console) - Outputs logs to console.
 
@@ -204,7 +203,7 @@ For NUnit, consider using one of these logging packages:
 
 ## Summary
 
-The .NET Aspire testing project template makes it easier to create test projects for .NET Aspire solutions. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
+The Aspire testing project template makes it easier to create test projects for Aspire solutions. The template project includes a sample test that you can use as a starting point for your tests. The `DistributedApplicationTestingBuilder` follows a familiar pattern to the <xref:Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactory`1> in ASP.NET Core. It allows you to create a test host for your distributed application and run tests against it.
 
 Finally, when using the `DistributedApplicationTestingBuilder` all resource logs are redirected to the `DistributedApplication` by default. The redirection of resource logs enables scenarios where you want to assert that a resource is logging correctly.
 

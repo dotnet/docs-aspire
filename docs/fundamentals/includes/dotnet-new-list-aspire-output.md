@@ -18,11 +18,11 @@ These templates matched your input: 'aspire'
 
 Template Name                      Short Name              Language  Tags
 ---------------------------------  ----------------------  --------  -------------------------------------------------------
-.NET Aspire AppHost               aspire-apphost          [C#]      Common/.NET Aspire/Cloud
-.NET Aspire Empty App              aspire                  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Service Defaults       aspire-servicedefaults  [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service
-.NET Aspire Starter App            aspire-starter          [C#]      Common/.NET Aspire/Blazor/Web/Web API/API/Service/Cloud
-.NET Aspire Test Project (MSTest)  aspire-mstest           [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
-.NET Aspire Test Project (NUnit)   aspire-nunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
-.NET Aspire Test Project (xUnit)   aspire-xunit            [C#]      Common/.NET Aspire/Cloud/Web/Web API/API/Service/Test
+Aspire AppHost               aspire-apphost          [C#]      Common/Aspire/Cloud
+Aspire Empty App              aspire                  [C#]      Common/Aspire/Cloud/Web/Web API/API/Service
+Aspire Service Defaults       aspire-servicedefaults  [C#]      Common/Aspire/Cloud/Web/Web API/API/Service
+Aspire Starter App            aspire-starter          [C#]      Common/Aspire/Blazor/Web/Web API/API/Service/Cloud
+Aspire Test Project (MSTest)  aspire-mstest           [C#]      Common/Aspire/Cloud/Web/Web API/API/Service/Test
+Aspire Test Project (NUnit)   aspire-nunit            [C#]      Common/Aspire/Cloud/Web/Web API/API/Service/Test
+Aspire Test Project (xUnit)   aspire-xunit            [C#]      Common/Aspire/Cloud/Web/Web API/API/Service/Test
 ```

@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/dotnet/docs-tools/main/WhatsNew.Infrastructure/Configuration/reposettings.schema.json",
-    "docSetProductName": ".NET Aspire",
+    "docSetProductName": "Aspire",
     "rootDirectory": "docs/",
     "docLinkSettings": {
         "linkFormat": "relative",

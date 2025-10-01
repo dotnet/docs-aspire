@@ -1,7 +1,7 @@
 ---
 title: Community Toolkit Azure Data API Builder hosting integration
 author: tommasodotNET
-description: Learn how to use the .NET Aspire Community Toolkit Azure Data API Builder hosting integration to host DAB as a container.
+description: Learn how to use the Aspire Community Toolkit Azure Data API Builder hosting integration to host DAB as a container.
 ms.date: 11/18/2024
 ms.custom: sfi-ropc-nochange
 ---
@@ -12,11 +12,11 @@ ms.custom: sfi-ropc-nochange
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire Data API Builder hosting integration to run [Data API Builder](/azure/data-api-builder/overview) as a container.
+In this article, you learn how to use the Aspire Data API Builder hosting integration to run [Data API Builder](/azure/data-api-builder/overview) as a container.
 
 ## Hosting integration
 
-To get started with the .NET Aspire Azure Data API Builder hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+To get started with the Aspire Azure Data API Builder hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -51,7 +51,7 @@ builder.AddProject<Projects.ExampleProject>()
  // After adding all resources, run the app... 
 ```
 
-When the .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-databases/data-api-builder` image, it creates a new Data API Builder instance on your local machin. A reference to the DAB resource (the `dab` variable) is added to the `ExampleProject` project.
+When the Aspire adds a container image to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-databases/data-api-builder` image, it creates a new Data API Builder instance on your local machin. A reference to the DAB resource (the `dab` variable) is added to the `ExampleProject` project.
 
 ### Configuration
 
@@ -59,7 +59,7 @@ When the .NET Aspire adds a container image to the AppHost, as shown in the prec
 |--|--|--|
 | `name` | The name of the resource is a required `string` and it's validated by the <xref: Aspire.Hosting.ApplicationModel.ResourceNameAttribute>. |
 | `configFilePaths` | The paths to the configuration or schema file(s) for Data API builder. These are optional and are available as a `params string[]`, meaning you can omit them altogether, or provide one or more path inline. When omitted, it defaults to `"./dab-config.json"`. |
-| `httpPort` | The port number for the Data API Builder container is represented as a an `int?`. By default, the port is `null`, .NET Aspire assigns a port when this isn't otherwise provided. |
+| `httpPort` | The port number for the Data API Builder container is represented as a an `int?`. By default, the port is `null`, Aspire assigns a port when this isn't otherwise provided. |
 
 ### Data API Builder container image configuration
 
@@ -120,6 +120,6 @@ var dab = builder.AddDataAPIBuilder("dab",
 
 ## See also
 
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 - [Sample DAB](https://github.com/CommunityToolkit/Aspire/tree/main/examples/data-api-builder)
 - [Further usage examples](https://github.com/CommunityToolkit/Aspire/blob/main/src/CommunityToolkit.Aspire.Hosting.Azure.DataApiBuilder/README.md#usage)

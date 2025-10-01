@@ -6,11 +6,11 @@ ms.date: 08/04/2025
 
 # Container runtime 'podman' could not be found in WSL
 
-.NET Aspire requires a container runtime to be available in the system PATH. This article describes how to resolve issues when Podman isn't found in Windows Subsystem for Linux (WSL) environments.
+Aspire requires a container runtime to be available in the system PATH. This article describes how to resolve issues when Podman isn't found in Windows Subsystem for Linux (WSL) environments.
 
 ## Symptoms
 
-When starting your .NET Aspire application, you see an error message similar to:
+When starting your Aspire application, you see an error message similar to:
 
 ```Output
 Container runtime 'podman' could not be found. The error from the container runtime check was: exec: "podman": executable file not found in $PATH
@@ -22,11 +22,11 @@ This occurs even though running `podman images` or other Podman commands work su
 
 This issue occurs in WSL environments when:
 
-- Podman is installed in a separate WSL distribution than where your .NET Aspire application is running.
+- Podman is installed in a separate WSL distribution than where your Aspire application is running.
 - You're using shell aliases instead of having the actual Podman executable in your PATH.
-- The Podman executable isn't available in the system PATH that .NET Aspire searches.
+- The Podman executable isn't available in the system PATH that Aspire searches.
 
-.NET Aspire resolves container runtimes by searching for the executable in the system PATH. Shell aliases (like those defined in `~/.bash_aliases`) aren't recognized during this process.
+Aspire resolves container runtimes by searching for the executable in the system PATH. Shell aliases (like those defined in `~/.bash_aliases`) aren't recognized during this process.
 
 ## Solution
 
@@ -34,7 +34,7 @@ Choose one of the following solutions:
 
 ### Install Podman in the current WSL distribution
 
-Install Podman directly in the WSL distribution where you're running your .NET Aspire application:
+Install Podman directly in the WSL distribution where you're running your Aspire application:
 
 ```bash
 # For Ubuntu/Debian-based distributions
@@ -81,7 +81,7 @@ podman --version
 podman ps
 ```
 
-All commands should succeed before running your .NET Aspire application.
+All commands should succeed before running your Aspire application.
 
 ## See also
 

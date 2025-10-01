@@ -1,18 +1,18 @@
 ---
-title: .NET Aspire Azure Cosmos DB integration
-description: Learn how to install and configure the .NET Aspire Azure Cosmos DB integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
+title: Aspire Azure Cosmos DB integration
+description: Learn how to install and configure the Aspire Azure Cosmos DB integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
 ms.date: 08/07/2025
 uid: dotnet/aspire/azure-cosmos-db-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure Cosmos DB integration
+# Aspire Azure Cosmos DB integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a fully managed NoSQL database service for modern app development. The .NET Aspire Azure Cosmos DB integration enables you to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
+[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a fully managed NoSQL database service for modern app development. The Aspire Azure Cosmos DB integration enables you to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
 
-If you're looking for the Entity Framework Core integration, see [.NET Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md).
+If you're looking for the Entity Framework Core integration, see [Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md).
 
 ## Hosting integration
 
@@ -26,7 +26,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.CosmosDb](ht
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Cosmos DB client integration, install the [📦 Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the client-consuming project, that is, the project for the application that uses the Cosmos DB client. The Cosmos DB client integration registers a <xref:Microsoft.Azure.Cosmos.CosmosClient> instance that you can use to interact with Cosmos DB.
+To get started with the Aspire Azure Cosmos DB client integration, install the [📦 Aspire.Microsoft.Azure.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.Azure.Cosmos) NuGet package in the client-consuming project, that is, the project for the application that uses the Cosmos DB client. The Cosmos DB client integration registers a <xref:Microsoft.Azure.Cosmos.CosmosClient> instance that you can use to interact with Cosmos DB.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -218,7 +218,7 @@ The preceding example code demonstrates how to register two databases, `customer
 
 ### Configuration
 
-The .NET Aspire Azure Cosmos DB integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+The Aspire Azure Cosmos DB integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -242,7 +242,7 @@ For more information, see the [ConnectionString documentation](/azure/cosmos-db/
 
 #### Use configuration providers
 
-The .NET Aspire Azure Cosmos DB integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings> from configuration by using the `Aspire:Microsoft:Azure:Cosmos` key. The following snippet is an example of a :::no-loc text="appsettings.json"::: file that configures some of the options:
+The Aspire Azure Cosmos DB integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Microsoft.Azure.Cosmos.MicrosoftAzureCosmosSettings> from configuration by using the `Aspire:Microsoft:Azure:Cosmos` key. The following snippet is an example of a :::no-loc text="appsettings.json"::: file that configures some of the options:
 
 ```json
 {
@@ -262,7 +262,7 @@ For the complete Cosmos DB client integration JSON schema, see [Aspire.Microsoft
 
 #### Use named configuration
 
-The .NET Aspire Azure Cosmos DB integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure Cosmos DB integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -315,13 +315,13 @@ builder.AddAzureCosmosClient(
 
 ### Client integration health checks
 
-The .NET Aspire Cosmos DB client integration currently doesn't implement health checks, though this may change in future releases.
+The Aspire Cosmos DB client integration currently doesn't implement health checks, though this may change in future releases.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 #### Logging
 
-The .NET Aspire Azure Cosmos DB integration uses the following log categories:
+The Aspire Azure Cosmos DB integration uses the following log categories:
 
 - `Azure-Cosmos-Operation-Request-Diagnostics`
 
@@ -345,7 +345,7 @@ builder.AddAzureCosmosClient(
 
 #### Tracing
 
-The .NET Aspire Azure Cosmos DB integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Azure Cosmos DB integration will emit the following tracing activities using OpenTelemetry:
 
 - `Azure.Cosmos.Operation`
 
@@ -359,13 +359,13 @@ For more information, see [Azure Cosmos DB SDK observability: Trace attributes](
 
 #### Metrics
 
-The .NET Aspire Azure Cosmos DB integration currently doesn't support metrics by default due to limitations with the Azure SDK.
+The Aspire Azure Cosmos DB integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
 - [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db)
 - [Sample repository showing parent-child relationships](https://github.com/captainsafia/aspire-child-resources)
-- [.NET Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

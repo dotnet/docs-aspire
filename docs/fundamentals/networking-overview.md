@@ -1,38 +1,38 @@
 ---
-title: .NET Aspire inner loop networking overview
-description: Learn how .NET Aspire handles networking and endpoints, and how you can use them in your app code.
+title: Aspire inner loop networking overview
+description: Learn how Aspire handles networking and endpoints, and how you can use them in your app code.
 ms.date: 07/11/2025
 ms.topic: overview
 ---
 
-# .NET Aspire inner-loop networking overview
+# Aspire inner-loop networking overview
 
-One of the advantages of developing with .NET Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Inner-loop networking is a key aspect of .NET Aspire that allows your apps to communicate with each other in your development environment. In this article, you learn how .NET Aspire handles various networking scenarios with proxies, endpoints, endpoint configurations, and launch profiles.
+One of the advantages of developing with Aspire is that it enables you to develop, test, and debug cloud-native apps locally. Inner-loop networking is a key aspect of Aspire that allows your apps to communicate with each other in your development environment. In this article, you learn how Aspire handles various networking scenarios with proxies, endpoints, endpoint configurations, and launch profiles.
 
 ## Networking in the inner loop
 
-The inner loop is the process of developing and testing your app locally before deploying it to a target environment. .NET Aspire provides several tools and features to simplify and enhance the networking experience in the inner loop, such as:
+The inner loop is the process of developing and testing your app locally before deploying it to a target environment. Aspire provides several tools and features to simplify and enhance the networking experience in the inner loop, such as:
 
 - **Launch profiles**: Launch profiles are configuration files that specify how to run your app locally. You can use launch profiles (such as the _launchSettings.json_ file) to define the endpoints, environment variables, and launch settings for your app.
-- **Kestrel configuration**: Kestrel configuration allows you to specify the endpoints that the Kestrel web server listens on. You can configure Kestrel endpoints in your app settings, and .NET Aspire automatically uses these settings to create endpoints.
+- **Kestrel configuration**: Kestrel configuration allows you to specify the endpoints that the Kestrel web server listens on. You can configure Kestrel endpoints in your app settings, and Aspire automatically uses these settings to create endpoints.
 - **Endpoints/Endpoint configurations**: Endpoints are the connections between your app and the services it depends on, such as databases, message queues, or APIs. Endpoints provide information such as the service name, host port, scheme, and environment variable. You can add endpoints to your app either implicitly (via launch profiles) or explicitly by calling <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
-- **Proxies**: .NET Aspire automatically launches a proxy for each service binding you add to your app, and assigns a port for the proxy to listen on. The proxy then forwards the requests to the port that your app listens on, which might be different from the proxy port. This way, you can avoid port conflicts and access your app and services using consistent and predictable URLs.
+- **Proxies**: Aspire automatically launches a proxy for each service binding you add to your app, and assigns a port for the proxy to listen on. The proxy then forwards the requests to the port that your app listens on, which might be different from the proxy port. This way, you can avoid port conflicts and access your app and services using consistent and predictable URLs.
 
 ## How endpoints work
 
-A service binding in .NET Aspire involves two integrations: a **service** representing an external resource your app requires (for example, a database, message queue, or API), and a **binding** that establishes a connection between your app and the service and provides necessary information.
+A service binding in Aspire involves two integrations: a **service** representing an external resource your app requires (for example, a database, message queue, or API), and a **binding** that establishes a connection between your app and the service and provides necessary information.
 
-.NET Aspire supports two service binding types: **implicit**, automatically created based on specified launch profiles defining app behavior in different environments, and **explicit**, manually created using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
+Aspire supports two service binding types: **implicit**, automatically created based on specified launch profiles defining app behavior in different environments, and **explicit**, manually created using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
 
-Upon creating a binding, whether implicit or explicit, .NET Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is a .NET Aspire implementation detail, requiring no configuration or management concern.
+Upon creating a binding, whether implicit or explicit, Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is a Aspire implementation detail, requiring no configuration or management concern.
 
-To help visualize how endpoints work, consider the .NET Aspire starter templates inner-loop networking diagram:
+To help visualize how endpoints work, consider the Aspire starter templates inner-loop networking diagram:
 
-:::image type="content" source="media/networking/networking-proxies-1x.png" lightbox="media/networking/networking-proxies.png" alt-text=".NET Aspire Starter Application template inner loop networking diagram.":::
+:::image type="content" source="media/networking/networking-proxies-1x.png" lightbox="media/networking/networking-proxies.png" alt-text="Aspire Starter Application template inner loop networking diagram.":::
 
 ## How container networks are managed
 
-When you add one or more container resources, .NET Aspire creates a dedicated container bridge network to enable service discovery between containers. This bridge network is a virtual network that lets containers communicate with each other and provides a DNS server for container-to-container service discovery using DNS names.
+When you add one or more container resources, Aspire creates a dedicated container bridge network to enable service discovery between containers. This bridge network is a virtual network that lets containers communicate with each other and provides a DNS server for container-to-container service discovery using DNS names.
 
 The network's lifetime depends on the container resources:
 
@@ -78,11 +78,11 @@ To specify the **http** and **https** launch profiles, configure the `applicatio
 > [!IMPORTANT]
 > If there's no _launchSettings.json_ (or launch profile), there are no bindings by default.
 
-For more information, see [.NET Aspire and launch profiles](launch-profiles.md).
+For more information, see [Aspire and launch profiles](launch-profiles.md).
 
 ## Kestrel configured endpoints
 
-.NET Aspire supports Kestrel endpoint configuration. For example, consider an _appsettings.json_ file for a project that defines a Kestrel endpoint with the HTTPS scheme and port 5271:
+Aspire supports Kestrel endpoint configuration. For example, consider an _appsettings.json_ file for a project that defines a Kestrel endpoint with the HTTPS scheme and port 5271:
 
 :::code language="json" source="snippets/networking/Networking.Frontend/Networking.Frontend/appsettings.Development.json" highlight="8-14":::
 
@@ -109,7 +109,7 @@ Consider the following method chain that calls <xref:Aspire.Hosting.ProjectResou
 
 The preceding code results in the following networking diagram:
 
-:::image type="content" source="media/networking/proxy-with-replicas-1x.png" lightbox="media/networking/proxy-with-replicas.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and two replicas.":::
+:::image type="content" source="media/networking/proxy-with-replicas-1x.png" lightbox="media/networking/proxy-with-replicas.png" alt-text="Aspire frontend app networking diagram with specific host port and two replicas.":::
 
 The preceding diagram depicts the following:
 
@@ -128,7 +128,7 @@ There are two ports defined:
 - A host port of 5066.
 - A random proxy port that the underlying service will be bound to.
 
-:::image type="content" source="media/networking/proxy-host-port-and-random-port-1x.png" lightbox="media/networking/proxy-host-port-and-random-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and random port.":::
+:::image type="content" source="media/networking/proxy-host-port-and-random-port-1x.png" lightbox="media/networking/proxy-host-port-and-random-port.png" alt-text="Aspire frontend app networking diagram with specific host port and random port.":::
 
 The preceding diagram depicts the following:
 
@@ -143,7 +143,7 @@ The underlying service is fed this port via `ASPNETCORE_URLS` for project resour
 
 The previous code makes the random port available in the `PORT` environment variable. The app uses this port to listen to incoming connections from the proxy. Consider the following diagram:
 
-:::image type="content" source="media/networking/proxy-with-env-var-port-1x.png" lightbox="media/networking/proxy-with-env-var-port.png" alt-text=".NET Aspire frontend app networking diagram with specific host port and environment variable port.":::
+:::image type="content" source="media/networking/proxy-with-env-var-port-1x.png" lightbox="media/networking/proxy-with-env-var-port.png" alt-text="Aspire frontend app networking diagram with specific host port and environment variable port.":::
 
 The preceding diagram depicts the following:
 
@@ -157,13 +157,13 @@ The preceding diagram depicts the following:
 
 ## Omit the host port
 
-When you omit the host port, .NET Aspire generates a random port for both host and service port. This is useful when you want to avoid port conflicts and don't care about the host or service port. Consider the following code:
+When you omit the host port, Aspire generates a random port for both host and service port. This is useful when you want to avoid port conflicts and don't care about the host or service port. Consider the following code:
 
 :::code source="snippets/networking/Networking.AppHost/Program.OmitHostPort.cs" id="omithostport":::
 
 In this scenario, both the host and service ports are random, as shown in the following diagram:
 
-:::image type="content" source="media/networking/proxy-with-random-ports-1x.png" lightbox="media/networking/proxy-with-random-ports.png" alt-text=".NET Aspire frontend app networking diagram with random host port and proxy port.":::
+:::image type="content" source="media/networking/proxy-with-random-ports-1x.png" lightbox="media/networking/proxy-with-random-ports.png" alt-text="Aspire frontend app networking diagram with random host port and proxy port.":::
 
 The preceding diagram depicts the following:
 
@@ -174,7 +174,7 @@ The preceding diagram depicts the following:
 
 ## Container ports
 
-When you add a container resource, .NET Aspire automatically assigns a random port to the container. To specify a container port, configure the container resource with the desired port:
+When you add a container resource, Aspire automatically assigns a random port to the container. To specify a container port, configure the container resource with the desired port:
 
 :::code source="snippets/networking/Networking.AppHost/Program.ContainerPort.cs" id="containerport":::
 
@@ -185,7 +185,7 @@ The preceding code:
 
 Consider the following diagram:
 
-:::image type="content" source="media/networking/proxy-with-docker-port-mapping-1x.png" alt-text=".NET Aspire frontend app networking diagram with a docker host.":::
+:::image type="content" source="media/networking/proxy-with-docker-port-mapping-1x.png" alt-text="Aspire frontend app networking diagram with a docker host.":::
 
 ## Endpoint extension methods
 
@@ -202,7 +202,7 @@ builder.Services.AddHttpClient<WeatherApiClient>(
     client => client.BaseAddress = new Uri("http://_admin.apiservice"));
 ```
 
-The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` sentinel. This is a convention to indicate that the `admin` segment is the endpoint name belonging to the `apiservice` service. For more information, see [.NET Aspire service discovery](../service-discovery/overview.md).
+The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` sentinel. This is a convention to indicate that the `admin` segment is the endpoint name belonging to the `apiservice` service. For more information, see [Aspire service discovery](../service-discovery/overview.md).
 
 ### Additional considerations
 
@@ -221,7 +221,7 @@ For more information, see the available properties of the [EndpointAnnotation pr
 
 ## Endpoint filtering
 
-All .NET Aspire project resource endpoints follow a set of default heuristics. Some endpoints are included in `ASPNETCORE_URLS` at runtime, some are published as `HTTP/HTTPS_PORTS`, and some configurations are resolved from Kestrel configuration. Regardless of the default behavior, you can filter the endpoints that are included in environment variables by using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithEndpointsInEnvironment%2A> extension method:
+All Aspire project resource endpoints follow a set of default heuristics. Some endpoints are included in `ASPNETCORE_URLS` at runtime, some are published as `HTTP/HTTPS_PORTS`, and some configurations are resolved from Kestrel configuration. Regardless of the default behavior, you can filter the endpoints that are included in environment variables by using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.WithEndpointsInEnvironment%2A> extension method:
 
 :::code source="snippets/networking/Networking.AppHost/Program.EndpointFilter.cs" id="filter":::
 

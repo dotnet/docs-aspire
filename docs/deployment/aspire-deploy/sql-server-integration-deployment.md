@@ -1,22 +1,22 @@
 ---
-title: Deploy a .NET Aspire project with a SQL Server Database to Azure
-description: Learn how to deploy a .NET Aspire app with a SQL Server Database that connects to Azure
+title: Deploy a Aspire project with a SQL Server Database to Azure
+description: Learn how to deploy a Aspire app with a SQL Server Database that connects to Azure
 ms.date: 11/08/2024
 ms.topic: how-to
 ---
 
-# Tutorial: Deploy a .NET Aspire project with a SQL Server Database to Azure
+# Tutorial: Deploy a Aspire project with a SQL Server Database to Azure
 
-In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server Database for deployment to Azure. .NET Aspire provides multiple SQL Server integration configurations that provision different database services in Azure. You'll learn how to:
+In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server Database for deployment to Azure. Aspire provides multiple SQL Server integration configurations that provision different database services in Azure. You'll learn how to:
 
 > [!div class="checklist"]
 >
-> - Create a basic ASP.NET Core app that is configured to use the .NET Aspire SQL Server integration
+> - Create a basic ASP.NET Core app that is configured to use the Aspire SQL Server integration
 > - Configure the app to provision an Azure SQL Database
 > - Configure the app to provision a containerized SQL Server database
 
 > [!NOTE]
-> This document focuses specifically on .NET Aspire configurations to provision and deploy SQL Server resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full .NET Aspire deployment process.
+> This document focuses specifically on Aspire configurations to provision and deploy SQL Server resources in Azure. Visit the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?branch=pr-en-us-532&tabs=visual-studio%2Clinux%2Cpowershell&pivots=azure-azd) tutorial to learn more about the full Aspire deployment process.
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
@@ -25,16 +25,16 @@ In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server D
 # [Visual Studio](#tab/visual-studio)
 
 1. At the top of Visual Studio, navigate to **File** > **New** > **Project**.
-1. In the dialog window, search for *Aspire* and select **.NET Aspire Starter App**. Choose **Next**.
+1. In the dialog window, search for *Aspire* and select **Aspire Starter App**. Choose **Next**.
 1. On the **Configure your new project** screen:
     - Enter a  **Solution name** of **AspireSql**.
     - Leave the rest of the values at their defaults and select **Next**.
 1. On the **Additional information** screen:
     - In the **Framework** list, verify that **.NET 9.0** is selected.
-    - In the **.NET Aspire version** list, verify that **9.1** is selected.
+    - In the **Aspire version** list, verify that **9.1** is selected.
     - Choose **Create**.
 
-Visual Studio creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
+Visual Studio creates a new ASP.NET Core solution that is structured to use Aspire. The solution consists of the following projects:
 
 - **AspireSql.ApiService**: An API project that depends on service defaults.
 - **AspireSql.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
@@ -43,13 +43,13 @@ Visual Studio creates a new ASP.NET Core solution that is structured to use .NET
 
 ## [.NET CLI](#tab/cli)
 
-In an empty directory, run the following command to create a new .NET Aspire project:
+In an empty directory, run the following command to create a new Aspire project:
 
 ```dotnetcli
 dotnet new aspire-starter --output AspireSql
 ```
 
-The .NET CLI creates a new ASP.NET Core solution that is structured to use .NET Aspire. The solution consists of the following projects:
+The .NET CLI creates a new ASP.NET Core solution that is structured to use Aspire. The solution consists of the following projects:
 
 - **AspireSql.Web**: A Blazor project that depends on service defaults.
 - **AspireSql.ApiService**: An API project that depends on service defaults.
@@ -60,14 +60,14 @@ The .NET CLI creates a new ASP.NET Core solution that is structured to use .NET 
 
 ## Configure the app for SQL Server deployment
 
-.NET Aspire provides two built-in configuration options to streamline SQL Server deployment on Azure:
+Aspire provides two built-in configuration options to streamline SQL Server deployment on Azure:
 
 - Provision a containerized SQL Server database using Azure Container Apps
 - Provision an Azure SQL Database instance
 
-### Add the .NET Aspire integration to the app
+### Add the Aspire integration to the app
 
-Add the appropriate .NET Aspire integration to the _AspireSql.AppHost_ project for your desired hosting service.
+Add the appropriate Aspire integration to the _AspireSql.AppHost_ project for your desired hosting service.
 
 # [Azure SQL Database](#tab/azure-sql)
 
@@ -113,7 +113,7 @@ The preceding code adds a SQL Server resource to your app and configures a conne
 
 ## Deploy the app
 
-The `aspire deploy` command supports .NET Aspire SQL Server integration configurations to streamline deployments. The command consumes these settings and provisions properly configured resources for you.
+The `aspire deploy` command supports Aspire SQL Server integration configurations to streamline deployments. The command consumes these settings and provisions properly configured resources for you.
 
 To deploy your app to Azure Container Apps, run the following command from the _AspireSql.AppHost_ directory:
 
@@ -128,7 +128,7 @@ When you run the `aspire deploy` command for the first time, you'll be prompted 
 1. **Select or create a resource group**: Choose an existing resource group or create a new one.
 1. **Select a location**: Choose the Azure region where you want to deploy your resources.
 
-The deployment process will provision the necessary Azure resources and deploy your .NET Aspire app.
+The deployment process will provision the necessary Azure resources and deploy your Aspire app.
 
 ## [Azure SQL Database](#tab/azure-sql)
 
@@ -148,6 +148,6 @@ The deployment process created a SQL Server app container due to the **.AppHost*
 
 ## See also
 
-- [Deploy a .NET Aspire project to Azure Container Apps](../azd/aca-deployment.md)
-- [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md)
-- [Tutorial: Deploy a .NET Aspire project using the Azure Developer CLI](../azd/aca-deployment-github-actions.md)
+- [Deploy a Aspire project to Azure Container Apps](../azd/aca-deployment.md)
+- [Deploy a Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md)
+- [Tutorial: Deploy a Aspire project using the Azure Developer CLI](../azd/aca-deployment-github-actions.md)

@@ -1,21 +1,21 @@
 ---
-title: .NET Aspire Azure SignalR Service integration
-description: Learn how to integrate Azure SignalR Service with .NET Aspire.
+title: Aspire Azure SignalR Service integration
+description: Learn how to integrate Azure SignalR Service with Aspire.
 ms.date: 08/07/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure SignalR Service integration
+# Aspire Azure SignalR Service integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
-[Azure SignalR Service](/azure/azure-signalr/signalr-overview) is a fully managed real-time messaging service that simplifies adding real-time web functionality to your applications. The .NET Aspire Azure SignalR Service integration enables you to easily provision, configure, and connect your .NET applications to Azure SignalR Service instances.
+[Azure SignalR Service](/azure/azure-signalr/signalr-overview) is a fully managed real-time messaging service that simplifies adding real-time web functionality to your applications. The Aspire Azure SignalR Service integration enables you to easily provision, configure, and connect your .NET applications to Azure SignalR Service instances.
 
-This article describes how to integrate Azure SignalR Service into your .NET Aspire applications, covering both hosting and client integration.
+This article describes how to integrate Azure SignalR Service into your Aspire applications, covering both hosting and client integration.
 
 ## Hosting integration
 
-The .NET Aspire Azure SignalR Service hosting integration models Azure SignalR resources as the following types:
+The Aspire Azure SignalR Service hosting integration models Azure SignalR resources as the following types:
 
 - <xref:Aspire.Hosting.ApplicationModel.AzureSignalRResource>: Represents an Azure SignalR Service resource, including connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.Azure.AzureSignalREmulatorResource>: Represents an emulator for Azure SignalR Service, allowing local development and testing without requiring an Azure subscription.
@@ -133,7 +133,7 @@ The _Default_ mode is the "default" configuration for Azure SignalR Service. Eac
 
 ### Provisioning-generated Bicep
 
-When you add an Azure SignalR Service resource, .NET Aspire generates provisioning infrastructure using [Bicep](/azure/azure-resource-manager/bicep/overview). The generated Bicep includes defaults for location, SKU, and role assignments:
+When you add an Azure SignalR Service resource, Aspire generates provisioning infrastructure using [Bicep](/azure/azure-resource-manager/bicep/overview). The generated Bicep includes defaults for location, SKU, and role assignments:
 
 :::code language="bicep" source="../snippets/azure/AppHost/signalr/signalr.bicep":::
 
@@ -145,7 +145,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureSignalRInfra.cs" id="configure":::
 
@@ -161,10 +161,10 @@ The preceding code:
 
 ## Hub host integration
 
-There isn't an official .NET Aspire Azure SignalR [_client integration_](../fundamentals/integrations-overview.md#client-integrations). However, there is limited support for similar experiences. In these scenarios, the Azure SignalR Service acts as a proxy between the server (where the <xref:Microsoft.AspNetCore.SignalR.Hub> or <xref:Microsoft.AspNetCore.SignalR.Hub`1> are hosted) and the client (where the SignalR client is hosted). The Azure SignalR Service routes traffic between the server and client, allowing for real-time communication.
+There isn't an official Aspire Azure SignalR [_client integration_](../fundamentals/integrations-overview.md#client-integrations). However, there is limited support for similar experiences. In these scenarios, the Azure SignalR Service acts as a proxy between the server (where the <xref:Microsoft.AspNetCore.SignalR.Hub> or <xref:Microsoft.AspNetCore.SignalR.Hub`1> are hosted) and the client (where the SignalR client is hosted). The Azure SignalR Service routes traffic between the server and client, allowing for real-time communication.
 
 > [!IMPORTANT]
-> It's important to disambiguate between .NET Aspire client integrations and the .NET SignalR client. SignalR exposes hubs—which act as a server-side concept—and SignalR clients connect to those hubs. The .NET projects that host SignalR hubs are where you integrate with .NET Aspire. The SignalR client is a separate library that connects to those hubs, in a different project.
+> It's important to disambiguate between Aspire client integrations and the .NET SignalR client. SignalR exposes hubs—which act as a server-side concept—and SignalR clients connect to those hubs. The .NET projects that host SignalR hubs are where you integrate with Aspire. The SignalR client is a separate library that connects to those hubs, in a different project.
 
 There are two packages available for, each with addressing specific scenarios such as managing the client connection to Azure SignalR Service, and hooking up to the Azure SignalR Service resource. To get started, install the [📦 Microsoft.Azure.SignalR](https://www.nuget.org/packages/Microsoft.Azure.SignalR) NuGet package in the project hosting your SignalR hub.
 
@@ -287,6 +287,6 @@ For more information, see [Use Azure SignalR Management SDK](/azure/azure-signal
 
 - [Azure SignalR Service overview](/azure/azure-signalr/signalr-overview)
 - [Scale ASP.NET Core SignalR applications with Azure SignalR Service](/azure/azure-signalr/signalr-concept-scale-aspnet-core)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

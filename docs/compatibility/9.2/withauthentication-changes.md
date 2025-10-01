@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - WithAccessKeyAuthentication and WithPasswordAuthentication create a keyvault resource in the app model"
-description: "Learn about the breaking change in .NET Aspire 9.2 where key vault resources are now created or referenced directly in the app model."
+description: "Learn about the breaking change in Aspire 9.2 where key vault resources are now created or referenced directly in the app model."
 ms.date: 3/25/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2889
@@ -8,7 +8,7 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2889
 
 # With authentication API creates keyvault resource in the app model
 
-Starting in .NET Aspire 9.2, calling any of the following methods:
+Starting in Aspire 9.2, calling any of the following methods:
 
 - <xref:Aspire.Hosting.AzureRedisExtensions.WithAccessKeyAuthentication*?displayProperty=nameWithType>
 - <xref:Aspire.Hosting.AzureCosmosExtensions.WithAccessKeyAuthentication*?displayProperty=nameWithType>
@@ -18,7 +18,7 @@ Will now create (or add references to) a key vault resource directly in the app 
 
 ## Version introduced
 
-.NET Aspire 9.2
+Aspire 9.2
 
 ## Previous behavior
 
@@ -26,7 +26,7 @@ Previously, calling `WithAccessKeyAuthentication` on CosmosDB or AzureRedis, or 
 
 ## New behavior
 
-In .NET Aspire 9.2, calling `WithAccessKeyAuthentication` or `WithPasswordAuthentication` adds an empty `keyVaultName` parameter as a known parameter in the Bicep file. The app model now directly creates the key vault resource or allows you to pass a reference to an existing AzureKeyVault resource where secrets will be stored. Key vault secret names for connection strings are now formatted as `connectionstrings--{resourcename}` to avoid conflicts with other connection strings.
+In Aspire 9.2, calling `WithAccessKeyAuthentication` or `WithPasswordAuthentication` adds an empty `keyVaultName` parameter as a known parameter in the Bicep file. The app model now directly creates the key vault resource or allows you to pass a reference to an existing AzureKeyVault resource where secrets will be stored. Key vault secret names for connection strings are now formatted as `connectionstrings--{resourcename}` to avoid conflicts with other connection strings.
 
 ## Type of breaking change
 

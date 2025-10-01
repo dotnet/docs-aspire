@@ -1,6 +1,6 @@
 ---
 title: Compiler Warning ASPIRE003
-description: Learn more about compiler Warning ASPIRE003. Project is a .NET Aspire AppHost project that requires Visual Studio version 17.10 or above to work correctly.
+description: Learn more about compiler Warning ASPIRE003. Project is a Aspire AppHost project that requires Visual Studio version 17.10 or above to work correctly.
 ms.date: 05/08/2025
 f1_keywords:
   - "ASPIRE003"
@@ -12,9 +12,9 @@ helpviewer_keywords:
 
 **Version introduced:** 8.0.0
 
-> 'Project' is a .NET Aspire AppHost project that requires Visual Studio version 17.10 or above to work correctly.
+> 'Project' is a Aspire AppHost project that requires Visual Studio version 17.10 or above to work correctly.
 
-When using Visual Studio to code your .NET Aspire project, you must have Visual Studio 2022 version 17.10 or later.
+When using Visual Studio to code your Aspire project, you must have Visual Studio 2022 version 17.10 or later.
 
 ## To correct this warning
 

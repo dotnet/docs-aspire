@@ -1,6 +1,6 @@
 ---
 title: Customize deployments with Aspire
-description: Learn how to use .NET Aspire's APIs to customize various aspects of the deployment process, including resource configuration, health probes, lifecycle events, and deployment-specific settings.
+description: Learn how to use Aspire's APIs to customize various aspects of the deployment process, including resource configuration, health probes, lifecycle events, and deployment-specific settings.
 ms.date: 09/23/2025
 ai-usage: ai-assisted
 ---
@@ -11,7 +11,7 @@ Aspire provides APIs to customize how your applications are deployed. This artic
 
 ## Prerequisites
 
-- .NET Aspire 9.5 or later
+- Aspire 9.5 or later
 - An existing Aspire project
 
 For information about creating an Aspire project, see [Build your first Aspire app](../../get-started/build-your-first-aspire-app.md).

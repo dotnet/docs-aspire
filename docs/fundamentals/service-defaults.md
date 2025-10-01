@@ -1,23 +1,23 @@
 ---
-title: .NET Aspire service defaults
-description: Learn about the .NET Aspire service defaults project.
+title: Aspire service defaults
+description: Learn about the Aspire service defaults project.
 ms.date: 04/21/2025
 ms.topic: reference
 uid: dotnet/aspire/service-defaults
 ---
 
-# .NET Aspire service defaults
+# Aspire service defaults
 
-In this article, you learn about the .NET Aspire service defaults project, a set of extension methods that:
+In this article, you learn about the Aspire service defaults project, a set of extension methods that:
 
 - Connect [telemetry](telemetry.md), [health checks](health-checks.md), [service discovery](../service-discovery/overview.md) to your app.
 - Are customizable and extensible.
 
-Cloud-native applications often require extensive configurations to ensure they work across different environments reliably and securely. .NET Aspire provides many helper methods and tools to streamline the management of configurations for OpenTelemetry, health checks, environment variables, and more.
+Cloud-native applications often require extensive configurations to ensure they work across different environments reliably and securely. Aspire provides many helper methods and tools to streamline the management of configurations for OpenTelemetry, health checks, environment variables, and more.
 
 ## Explore the service defaults project
 
-When you either [**Enlist in .NET Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new .NET Aspire project](../get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults.csproj_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _:::no-loc text="Program.cs":::_ file of your apps:
+When you either [**Enlist in Aspire orchestration**](setup-tooling.md#enlist-in-orchestration) or [create a new Aspire project](../get-started/build-your-first-aspire-app.md), the _YourAppName.ServiceDefaults.csproj_ project is added to your solution. For example, when building an API, you call the `AddServiceDefaults` method in the _:::no-loc text="Program.cs":::_ file of your apps:
 
 ```csharp
 builder.AddServiceDefaults();
@@ -33,7 +33,7 @@ The `AddServiceDefaults` method handles the following tasks:
 For more information, see [Provided extension methods](#provided-extension-methods) for details on the `AddServiceDefaults` method.
 
 > [!IMPORTANT]
-> The .NET Aspire service defaults project is specifically designed for sharing the _Extensions.cs_ file and its functionality. Don't include other shared functionality or models in this project. Use a conventional shared class library project for those purposes.
+> The Aspire service defaults project is specifically designed for sharing the _Extensions.cs_ file and its functionality. Don't include other shared functionality or models in this project. Use a conventional shared class library project for those purposes.
 
 ## Project characteristics
 
@@ -46,7 +46,7 @@ The service defaults project template imposes a `FrameworkReference` dependency 
 > [!TIP]
 > If you don't want to take a dependency on `Microsoft.AspNetCore.App`, you can create a custom service defaults project. For more information, see [Custom service defaults](#custom-service-defaults).
 
-The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The .NET Aspire tooling uses this project as a reference for other projects added to a .NET Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _:::no-loc text="Program.cs":::_ file to call the `AddServiceDefaults` method.
+The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The Aspire tooling uses this project as a reference for other projects added to a Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _:::no-loc text="Program.cs":::_ file to call the `AddServiceDefaults` method.
 
 ## Provided extension methods
 
@@ -75,13 +75,13 @@ The preceding code:
 
 ### OpenTelemetry configuration
 
-Telemetry is a critical part of any cloud-native application. .NET Aspire provides a set of opinionated defaults for OpenTelemetry, which are configured with the `ConfigureOpenTelemetry` method:
+Telemetry is a critical part of any cloud-native application. Aspire provides a set of opinionated defaults for OpenTelemetry, which are configured with the `ConfigureOpenTelemetry` method:
 
 :::code source="snippets/template/YourAppName/Extensions.cs" id="configureotel":::
 
 The `ConfigureOpenTelemetry` method:
 
-- Adds [.NET Aspire telemetry](telemetry.md) logging to include formatted messages and scopes.
+- Adds [Aspire telemetry](telemetry.md) logging to include formatted messages and scopes.
 - Adds OpenTelemetry metrics and tracing that include:
   - Runtime instrumentation metrics.
   - ASP.NET Core instrumentation metrics.
@@ -97,21 +97,21 @@ The `AddOpenTelemetryExporters` method is defined privately as follows:
 The `AddOpenTelemetryExporters` method adds OpenTelemetry exporters based on the following conditions:
 
 - If the `OTEL_EXPORTER_OTLP_ENDPOINT` environment variable is set, the OpenTelemetry exporter is added.
-- Optionally consumers of .NET Aspire service defaults can uncomment some code to enable the Prometheus exporter, or the Azure Monitor exporter.
+- Optionally consumers of Aspire service defaults can uncomment some code to enable the Prometheus exporter, or the Azure Monitor exporter.
 
-For more information, see [.NET Aspire telemetry](telemetry.md).
+For more information, see [Aspire telemetry](telemetry.md).
 
 ### Health checks configuration
 
-Health checks are used by various tools and systems to assess the readiness of your app. .NET Aspire provides a set of opinionated defaults for health checks, which are configured with the `AddDefaultHealthChecks` method:
+Health checks are used by various tools and systems to assess the readiness of your app. Aspire provides a set of opinionated defaults for health checks, which are configured with the `AddDefaultHealthChecks` method:
 
 :::code source="snippets/template/YourAppName/Extensions.cs" id="addhealthchecks":::
 
-The `AddDefaultHealthChecks` method adds a default liveness check to ensure the app is responsive. The call to <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> registers the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService>. For more information, see [.NET Aspire health checks](health-checks.md).
+The `AddDefaultHealthChecks` method adds a default liveness check to ensure the app is responsive. The call to <xref:Microsoft.Extensions.DependencyInjection.HealthCheckServiceCollectionExtensions.AddHealthChecks%2A> registers the <xref:Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckService>. For more information, see [Aspire health checks](health-checks.md).
 
 #### Web app health checks configuration
 
-To expose health checks in a web app, .NET Aspire automatically determines the type of project being referenced within the solution, and adds the appropriate call to `MapDefaultEndpoints`:
+To expose health checks in a web app, Aspire automatically determines the type of project being referenced within the solution, and adds the appropriate call to `MapDefaultEndpoints`:
 
 :::code source="snippets/template/YourAppName/Extensions.cs" id="mapdefaultendpoints":::
 
@@ -122,7 +122,7 @@ The `MapDefaultEndpoints` method:
 - Maps the liveness endpoint to `/alive` route where the health check tag contains `live`.
 
 > [!NOTE]
-> Starting with .NET Aspire 9.2, the [starter template](aspire-sdk-templates.md#solution-templates) has been updated to include a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsHealthCheck*> for ASP.NET Core projects. To keep the request trace logs cleaner during development, traces for the configured health endpoints (`/health` and `/alive`) are now excluded by default in the **Service Defaults** project template.
+> Starting with Aspire 9.2, the [starter template](aspire-sdk-templates.md#solution-templates) has been updated to include a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpsHealthCheck*> for ASP.NET Core projects. To keep the request trace logs cleaner during development, traces for the configured health endpoints (`/health` and `/alive`) are now excluded by default in the **Service Defaults** project template.
 
 ## Custom service defaults
 
@@ -239,11 +239,11 @@ This is only an example, and you can customize the `AppDefaultsExtensions` class
 
 ## Next steps
 
-This code is derived from the .NET Aspire Starter Application template and is intended as a starting point. You're free to modify this code however you deem necessary to meet your needs. It's important to know that service defaults project and its functionality are automatically applied to all project resources in a .NET Aspire solution.
+This code is derived from the Aspire Starter Application template and is intended as a starting point. You're free to modify this code however you deem necessary to meet your needs. It's important to know that service defaults project and its functionality are automatically applied to all project resources in a Aspire solution.
 
-- [Service discovery in .NET Aspire](../service-discovery/overview.md)
-- [.NET Aspire SDK](dotnet-aspire-sdk.md)
-- [.NET Aspire templates](aspire-sdk-templates.md)
-- [Health checks in .NET Aspire](health-checks.md)
-- [.NET Aspire telemetry](telemetry.md)
+- [Service discovery in Aspire](../service-discovery/overview.md)
+- [Aspire SDK](dotnet-aspire-sdk.md)
+- [Aspire templates](aspire-sdk-templates.md)
+- [Health checks in Aspire](health-checks.md)
+- [Aspire telemetry](telemetry.md)
 - [Build resilient HTTP apps: Key development patterns](/dotnet/core/resilience/http-resilience)

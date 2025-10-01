@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Cosmos DB Entity Framework Core integration
-description: Learn how to install and configure the .NET Aspire Cosmos DB Entity Framework Core integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
+title: Aspire Cosmos DB Entity Framework Core integration
+description: Learn how to install and configure the Aspire Cosmos DB Entity Framework Core integration to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
 ms.date: 04/01/2025
 uid: dotnet/aspire/azure-cosmos-db-entity-framework-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Cosmos DB Entity Framework Core integration
+# Aspire Cosmos DB Entity Framework Core integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a fully managed NoSQL database service for modern app development. The .NET Aspire Cosmos DB Entity Framework Core integration enables you to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
+[Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) is a fully managed NoSQL database service for modern app development. The Aspire Cosmos DB Entity Framework Core integration enables you to connect to existing Cosmos DB instances or create new instances from .NET with the Azure Cosmos DB emulator.
 
 ## Hosting integration
 
@@ -24,7 +24,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.CosmosDb](ht
 
 ## Client integration
 
-To get started with the .NET Aspire Microsoft Entity Framework Core Cosmos DB integration, install the [📦 Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) NuGet package in the client-consuming project, i.e., the project for the application that uses the Microsoft Entity Framework Core Cosmos DB client.
+To get started with the Aspire Microsoft Entity Framework Core Cosmos DB integration, install the [📦 Aspire.Microsoft.EntityFrameworkCore.Cosmos](https://www.nuget.org/packages/Aspire.Microsoft.EntityFrameworkCore.Cosmos) NuGet package in the client-consuming project, i.e., the project for the application that uses the Microsoft Entity Framework Core Cosmos DB client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -71,7 +71,7 @@ For more information on using Entity Framework Core with Azure Cosmos DB, see th
 
 ### Configuration
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration provides multiple options to configure the Azure Cosmos DB connection based on the requirements and conventions of your project.
+The Aspire Microsoft Entity Framework Core Cosmos DB integration provides multiple options to configure the Azure Cosmos DB connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -95,7 +95,7 @@ For more information, see the [ConnectionString documentation](/azure/cosmos-db/
 
 #### Use configuration providers
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosSettings> from configuration files such as _:::no-loc text="appsettings.json":::_. Example _:::no-loc text="appsettings.json"::: that configures some of the options:
+The Aspire Microsoft Entity Framework Core Cosmos DB integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Microsoft.EntityFrameworkCore.Cosmos.EntityFrameworkCoreCosmosSettings> from configuration files such as _:::no-loc text="appsettings.json":::_. Example _:::no-loc text="appsettings.json"::: that configures some of the options:
 
 ```json
 {
@@ -125,13 +125,13 @@ builder.AddCosmosDbContext<MyDbContext>(
 
 ### Client integration health checks
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration currently doesn't implement health checks, though this may change in future releases.
+The Aspire Microsoft Entity Framework Core Cosmos DB integration currently doesn't implement health checks, though this may change in future releases.
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 #### Logging
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration uses the following log categories:
+The Aspire Microsoft Entity Framework Core Cosmos DB integration uses the following log categories:
 
 - `Azure-Cosmos-Operation-Request-Diagnostics`
 - `Microsoft.EntityFrameworkCore.ChangeTracking`
@@ -141,14 +141,14 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration uses the f
 
 #### Tracing
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Microsoft Entity Framework Core Cosmos DB integration will emit the following tracing activities using OpenTelemetry:
 
 - `Azure.Cosmos.Operation`
 - `OpenTelemetry.Instrumentation.EntityFrameworkCore`
 
 #### Metrics
 
-The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration currently supports the following metrics:
+The Aspire Microsoft Entity Framework Core Cosmos DB integration currently supports the following metrics:
 
 - `Microsoft.EntityFrameworkCore`
   - `ec_Microsoft_EntityFrameworkCore_active_db_contexts`
@@ -165,5 +165,5 @@ The .NET Aspire Microsoft Entity Framework Core Cosmos DB integration currently 
 ## See also
 
 - [Azure Cosmos DB docs](/azure/cosmos-db/introduction)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

@@ -1,5 +1,5 @@
 ---
-title: Use the .NET Aspire dashboard with Python apps
+title: Use the Aspire dashboard with Python apps
 description: How to use the Aspire Dashboard in a Python application.
 ms.date: 10/29/2024
 ms.topic: tutorial
@@ -7,14 +7,14 @@ ms.author: aapowell
 ms.custom: sfi-image-nochange
 ---
 
-# Tutorial: Use the .NET Aspire dashboard with Python apps
+# Tutorial: Use the Aspire dashboard with Python apps
 
-The [.NET Aspire dashboard](overview.md) provides a great user experience for viewing telemetry, and is available as a standalone container image that can be used with any OpenTelemetry-enabled app. In this article, you'll learn how to:
+The [Aspire dashboard](overview.md) provides a great user experience for viewing telemetry, and is available as a standalone container image that can be used with any OpenTelemetry-enabled app. In this article, you'll learn how to:
 
 > [!div class="checklist"]
 >
-> - Start the .NET Aspire dashboard in standalone mode.
-> - Use the .NET Aspire dashboard with a Python app.
+> - Start the Aspire dashboard in standalone mode.
+> - Use the Aspire dashboard with a Python app.
 
 ## Prerequisites
 
@@ -105,7 +105,7 @@ To run the application locally:
 
 ## Adding OpenTelemetry
 
-To use the .NET Aspire dashboard with your Python app, you need to install the OpenTelemetry SDK and exporter. The OpenTelemetry SDK provides the API for instrumenting your application, and the exporter sends telemetry data to the .NET Aspire dashboard.
+To use the Aspire dashboard with your Python app, you need to install the OpenTelemetry SDK and exporter. The OpenTelemetry SDK provides the API for instrumenting your application, and the exporter sends telemetry data to the Aspire dashboard.
 
 1. Install the OpenTelemetry SDK and exporter:
 
@@ -235,4 +235,4 @@ Navigate around the Python application, and you'll see structured logs in the As
 
 ## Next steps
 
-You have successfully used the .NET Aspire dashboard with a Python application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [.NET Aspire AppHost](../../get-started/build-aspire-apps-with-python.md).
+You have successfully used the Aspire dashboard with a Python application. To learn more about the Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Python application with the [Aspire AppHost](../../get-started/build-aspire-apps-with-python.md).

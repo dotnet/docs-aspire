@@ -1,16 +1,16 @@
 ---
-title: Troubleshoot untrusted localhost certificate in .NET Aspire
-description: Explore strategies for troubleshooting issues when working with untrusted localhost certificates in .NET Aspire.
+title: Troubleshoot untrusted localhost certificate in Aspire
+description: Explore strategies for troubleshooting issues when working with untrusted localhost certificates in Aspire.
 ms.date: 10/16/2024
 ---
 
-# Troubleshoot untrusted localhost certificate in .NET Aspire
+# Troubleshoot untrusted localhost certificate in Aspire
 
-This article provides guidance on how to troubleshoot issues that you might encounter when working with untrusted localhost certificates in .NET Aspire.
+This article provides guidance on how to troubleshoot issues that you might encounter when working with untrusted localhost certificates in Aspire.
 
 ## Symptoms
 
-Several .NET Aspire templates include ASP.NET Core projects that are configured to use HTTPS by default. If this is the first time you're running the project, and you're using Visual Studio, you're prompted to install a localhost certificate.
+Several Aspire templates include ASP.NET Core projects that are configured to use HTTPS by default. If this is the first time you're running the project, and you're using Visual Studio, you're prompted to install a localhost certificate.
 
 - There are situations in which you trust/install the development certificate, but you don't close all your browser windows. In these cases, your browser might indicate that the certificate isn't trusted.
 

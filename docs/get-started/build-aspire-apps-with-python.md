@@ -1,13 +1,13 @@
 ---
-title: Orchestrate Python apps in .NET Aspire
-description: Learn how to integrate Python apps into a .NET Aspire AppHost project.
+title: Orchestrate Python apps in Aspire
+description: Learn how to integrate Python apps into a Aspire AppHost project.
 ms.date: 04/15/2025
 ms.custom: sfi-image-nochange
 ---
 
-# Orchestrate Python apps in .NET Aspire
+# Orchestrate Python apps in Aspire
 
-In this article, you learn how to use Python apps in a .NET Aspire AppHost. The sample app in this article demonstrates launching a Python application. The Python extension for .NET Aspire requires the use of virtual environments.
+In this article, you learn how to use Python apps in a Aspire AppHost. The sample app in this article demonstrates launching a Python application. The Python extension for Aspire requires the use of virtual environments.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -23,9 +23,9 @@ pip --version
 
 To download Python (including `pip`), see the [Python download page](https://www.python.org/downloads).
 
-## Create a .NET Aspire project using the template
+## Create a Aspire project using the template
 
-To get started launching a Python project in .NET Aspire, use the starter template to first create a .NET Aspire application host:
+To get started launching a Python project in Aspire, use the starter template to first create a Aspire application host:
 
 ```dotnetcli
 dotnet new aspire -o PythonSample
@@ -37,17 +37,17 @@ In the same terminal session, change directories into the newly created project:
 cd PythonSample
 ```
 
-After the template is created, launch the AppHost with the following command to ensure that the AppHost and the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
+After the template is created, launch the AppHost with the following command to ensure that the AppHost and the [Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
 
 ```dotnetcli
 dotnet run --project ./PythonSample.AppHost/PythonSample.AppHost.csproj
 ```
 
-If the .NET Aspire Dashboard doesn't open, open it with the link in the console output. At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
+If the Aspire Dashboard doesn't open, open it with the link in the console output. At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
 
 ## Prepare a Python app
 
-From your previous terminal session where you created the .NET Aspire solution, create a new directory to contain the Python source code.
+From your previous terminal session where you created the Aspire solution, create a new directory to contain the Python source code.
 
 ```console
 mkdir hello-python
@@ -136,7 +136,7 @@ After the package is installed, the project XML should have a new package refere
 
 :::code language="xml" source="snippets/PythonSample/PythonSample.AppHost/PythonSample.AppHost.csproj" highlight="15":::
 
-Replace the _AppHost.cs_ code with the following snippet. This code adds the Python project to .NET Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
+Replace the _AppHost.cs_ code with the following snippet. This code adds the Python project to Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
 
 :::code source="snippets/PythonSample/PythonSample.AppHost/AppHost.cs" highlight="6":::
 
@@ -153,11 +153,11 @@ dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj
 
 Launch the dashboard by clicking the link in the console output. The dashboard should display the Python project as a resource.
 
-:::image source="media/python-dashboard.png" lightbox="media/python-dashboard.png" alt-text=".NET Aspire dashboard: Python sample app.":::
+:::image source="media/python-dashboard.png" lightbox="media/python-dashboard.png" alt-text="Aspire dashboard: Python sample app.":::
 
 Select the **Endpoints** link to open the `hello-python` endpoint in a new browser tab. The browser should display the message "Hello, World!":
 
-:::image source="media/python-hello-world.png" lightbox="media/python-hello-world.png" alt-text=".NET Aspire dashboard: Python sample app endpoint.":::
+:::image source="media/python-hello-world.png" lightbox="media/python-hello-world.png" alt-text="Aspire dashboard: Python sample app endpoint.":::
 
 Stop the AppHost by pressing <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal.
 
@@ -188,16 +188,16 @@ dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj --launc
 ```
 
 > [!IMPORTANT]
-> The .NET Aspire AppHost must be run using HTTP instead of HTTPS. The **OpenTelemetry** library requires HTTP when running in a local dev environment.
+> The Aspire AppHost must be run using HTTP instead of HTTPS. The **OpenTelemetry** library requires HTTP when running in a local dev environment.
 
 Once the AppHost is running, navigate to the dashboard and select the **Structured** logging tab. Notice that it now contains logging events.
 
-:::image source="media/python-telemetry-in-dashboard.png" lightbox="media/python-telemetry-in-dashboard.png" alt-text=".NET Aspire dashboard: Structured logging from Python process.":::
+:::image source="media/python-telemetry-in-dashboard.png" lightbox="media/python-telemetry-in-dashboard.png" alt-text="Aspire dashboard: Structured logging from Python process.":::
 
 ## Summary
 
-While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire solution that integrates with Python. You also learned how to use the `AddPythonApp` API to host Python apps.
+While there are several considerations that are beyond the scope of this article, you learned how to build Aspire solution that integrates with Python. You also learned how to use the `AddPythonApp` API to host Python apps.
 
 ## See also
 
-- [GitHub: .NET Aspire Samples—Python hosting integration](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithPython)
+- [GitHub: Aspire Samples—Python hosting integration](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithPython)

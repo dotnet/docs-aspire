@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire MySQL database integration
-description: Learn how to use the .NET Aspire MySQL database integration, which includes both hosting and client integrations.
+title: Aspire MySQL database integration
+description: Learn how to use the Aspire MySQL database integration, which includes both hosting and client integrations.
 ms.date: 02/07/2025
 uid: storage/mysql-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire MySQL integration
+# Aspire MySQL integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[MySQL](https://www.mysql.com/) is an open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL) to manage and manipulate data. It's employed in a many different environments, from small projects to large-scale enterprise systems and it's a popular choice to host data that underpins microservices in a cloud-native application. The .NET Aspire MySQL database integration enables you to connect to existing MySQL databases or create new instances from .NET with the [`mysql` container image](https://hub.docker.com/_/mysql).
+[MySQL](https://www.mysql.com/) is an open-source Relational Database Management System (RDBMS) that uses Structured Query Language (SQL) to manage and manipulate data. It's employed in a many different environments, from small projects to large-scale enterprise systems and it's a popular choice to host data that underpins microservices in a cloud-native application. The Aspire MySQL database integration enables you to connect to existing MySQL databases or create new instances from .NET with the [`mysql` container image](https://hub.docker.com/_/mysql).
 
 ## Hosting integration
 
@@ -18,7 +18,7 @@ ms.custom: sfi-ropc-nochange
 
 ## Client integration
 
-To get started with the .NET Aspire MySQL database integration, install the [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL client. The MySQL client integration registers a `MySqlConnector.MySqlDataSource` instance that you can use to interact with the MySQL server.
+To get started with the Aspire MySQL database integration, install the [📦 Aspire.MySqlConnector](https://www.nuget.org/packages/Aspire.MySqlConnector) NuGet package in the client-consuming project, that is, the project for the application that uses the MySQL client. The MySQL client integration registers a `MySqlConnector.MySqlDataSource` instance that you can use to interact with the MySQL server.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -86,7 +86,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire MySQL database integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+The Aspire MySQL database integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -110,7 +110,7 @@ For more information on how to format this connection string, see [MySqlConnecto
 
 #### Use configuration providers
 
-The .NET Aspire MySQL database integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.MySqlConnector.MySqlConnectorSettings> from configuration by using the `Aspire:MySqlConnector` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire MySQL database integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.MySqlConnector.MySqlConnectorSettings> from configuration by using the `Aspire:MySqlConnector` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -138,9 +138,9 @@ builder.AddMySqlDataSource(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire MySQL database integration:
+The Aspire MySQL database integration:
 
 - Adds the health check when <xref:Aspire.MySqlConnector.MySqlConnectorSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which verifies that a connection can be made and commands can be run against the MySQL database.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -149,7 +149,7 @@ The .NET Aspire MySQL database integration:
 
 #### Logging
 
-The .NET Aspire MySQL integration uses the following log categories:
+The Aspire MySQL integration uses the following log categories:
 
 - `MySqlConnector.ConnectionPool`
 - `MySqlConnector.MySqlBulkCopy`
@@ -159,13 +159,13 @@ The .NET Aspire MySQL integration uses the following log categories:
 
 #### Tracing
 
-The .NET Aspire MySQL integration emits the following tracing activities using OpenTelemetry:
+The Aspire MySQL integration emits the following tracing activities using OpenTelemetry:
 
 - `MySqlConnector`
 
 #### Metrics
 
-The .NET Aspire MySQL integration will emit the following metrics using OpenTelemetry:
+The Aspire MySQL integration will emit the following metrics using OpenTelemetry:
 
 - MySqlConnector
   - `db.client.connections.create_time`
@@ -181,6 +181,6 @@ The .NET Aspire MySQL integration will emit the following metrics using OpenTele
 ## See also
 
 - [MySQL database](https://mysqlconnector.net/)
-- [.NET Aspire database containers sample](/samples/dotnet/aspire-samples/aspire-database-containers/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire database containers sample](/samples/dotnet/aspire-samples/aspire-database-containers/)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

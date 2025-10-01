@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Community Toolkit Deno hosting integration
-description: Learn about the .NET Aspire Community Toolkit Deno hosting extensions package which provides functionality to run Deno applications and tasks.
+title: Aspire Community Toolkit Deno hosting integration
+description: Learn about the Aspire Community Toolkit Deno hosting extensions package which provides functionality to run Deno applications and tasks.
 ms.date: 10/25/2024
 ---
 
-# .NET Aspire Community Toolkit Deno hosting integration
+# Aspire Community Toolkit Deno hosting integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn about the .NET Aspire Community Toolkit Deno package. The extensions package brings the following features:
+In this article, you learn about the Aspire Community Toolkit Deno package. The extensions package brings the following features:
 
 - Running [Deno](https://deno.com/) applications
 - Running Node.js applications via Deno tasks
@@ -18,7 +18,7 @@ In this article, you learn about the .NET Aspire Community Toolkit Deno package.
 
 ## Hosting integration
 
-To get started with the .NET Aspire Community Toolkit Deno extensions, install the [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno) NuGet package in the AppHost project.
+To get started with the Aspire Community Toolkit Deno extensions, install the [📦 CommunityToolkit.Aspire.Hosting.Deno](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Deno) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -90,6 +90,6 @@ builder.AddDenoTask("vite-demo", taskName: "dev")
 
 ## See also
 
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 - [Sample Deno apps](https://github.com/CommunityToolkit/Aspire/tree/main/examples/deno)
 - [Deno Docs](https://docs.deno.com/)

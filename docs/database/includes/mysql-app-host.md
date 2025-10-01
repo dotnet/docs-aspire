@@ -44,7 +44,7 @@ var myService = builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The SQL Server container is slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `mysql` image, it creates a new MySQL instance on your local machine. A reference to your MySQL resource builder (the `mysql` variable) is used to add a database. The database is named `mysqldb` and then added to the `ExampleProject`. The MySQL resource includes default credentials with a `username` of `root` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `mysql` image, it creates a new MySQL instance on your local machine. A reference to your MySQL resource builder (the `mysql` variable) is used to add a database. The database is named `mysqldb` and then added to the `ExampleProject`. The MySQL resource includes default credentials with a `username` of `root` and a random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
 
 When the AppHost runs, the password is stored in the AppHost's secret store. It's added to the `Parameters` section, for example:
 
@@ -86,9 +86,9 @@ The data volume is used to persist the MySQL server data outside the lifecycle o
 > The password is stored in the data volume. When using a data volume and if the password changes, it will not work until you delete the volume.
 
 > [!IMPORTANT]
-> Some database integrations, including the .NET Aspire MySQL integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
+> Some database integrations, including the Aspire MySQL integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
 >
-> You can resolve the problem by deploying to a Kubernetes cluster, such as Azure Kubernetes Services (AKS). For more information, see [.NET Aspire deployments](../../deployment/overview.md).
+> You can resolve the problem by deploying to a Kubernetes cluster, such as Azure Kubernetes Services (AKS). For more information, see [Aspire deployments](../../deployment/overview.md).
 
 ### Add a MySQL resource with a data bind mount
 
@@ -134,7 +134,7 @@ For more information, see [External parameters](../../fundamentals/external-para
 
 ### Add a PhpMyAdmin resource
 
-[**phpMyAdmin**](https://www.phpmyadmin.net/) is a popular web-based administration tool for MySQL. You can use it to browse and modify MySQL objects such as databases, tables, views, and indexes. To use phpMyAdmin within your .NET Aspire solution, call the <xref:Aspire.Hosting.MySqlBuilderExtensions.WithPhpMyAdmin*> method. This method adds a new container resource to the solution that hosts phpMyAdmin and connects it to the MySQL container:
+[**phpMyAdmin**](https://www.phpmyadmin.net/) is a popular web-based administration tool for MySQL. You can use it to browse and modify MySQL objects such as databases, tables, views, and indexes. To use phpMyAdmin within your Aspire solution, call the <xref:Aspire.Hosting.MySqlBuilderExtensions.WithPhpMyAdmin*> method. This method adds a new container resource to the solution that hosts phpMyAdmin and connects it to the MySQL container:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -152,7 +152,7 @@ builder.AddProject<Projects.ExampleProject>()
 
 ```
 
-When you run the solution, the .NET Aspire dashboard displays the phpMyAdmin resources with an endpoint. Select the link to the endpoint to view phpMyAdmin in a new browser tab.
+When you run the solution, the Aspire dashboard displays the phpMyAdmin resources with an endpoint. Select the link to the endpoint to view phpMyAdmin in a new browser tab.
 
 ### Hosting integration health checks
 

@@ -1,16 +1,16 @@
 ---
 title: Resource annotations
-description: Learn about annotations in .NET Aspire, how they work, and how to create custom annotations for extending resource behavior.
+description: Learn about annotations in Aspire, how they work, and how to create custom annotations for extending resource behavior.
 ms.date: 07/25/2025
 ---
 
-# Resource annotations in .NET Aspire
+# Resource annotations in Aspire
 
-Annotations are a key extensibility mechanism in .NET Aspire that allow you to attach metadata and behavior to resources. They provide a way to customize how resources are configured, deployed, and managed throughout the application lifecycle. This article explains how annotations work and how to use them effectively in your .NET Aspire applications.
+Annotations are a key extensibility mechanism in Aspire that allow you to attach metadata and behavior to resources. They provide a way to customize how resources are configured, deployed, and managed throughout the application lifecycle. This article explains how annotations work and how to use them effectively in your Aspire applications.
 
 ## What are annotations
 
-Annotations in .NET Aspire are objects that implement the <xref:Aspire.Hosting.ApplicationModel.IResourceAnnotation> interface. They're attached to resources to provide additional metadata, configuration, or behavior. Annotations are consumed by various parts of the .NET Aspire stack, including:
+Annotations in Aspire are objects that implement the <xref:Aspire.Hosting.ApplicationModel.IResourceAnnotation> interface. They're attached to resources to provide additional metadata, configuration, or behavior. Annotations are consumed by various parts of the Aspire stack, including:
 
 - The dashboard for displaying custom URLs and commands.
 - Deployment tools for generating infrastructure as code.
@@ -43,7 +43,7 @@ In this example:
 
 ## Built-in annotation types
 
-.NET Aspire includes many built-in annotation types for common scenarios. This section covers _some_ of the more commonly used annotations, but there are [_many more_](xref:Aspire.Hosting.ApplicationModel.IResourceAnnotation) available for specific use cases.
+Aspire includes many built-in annotation types for common scenarios. This section covers _some_ of the more commonly used annotations, but there are [_many more_](xref:Aspire.Hosting.ApplicationModel.IResourceAnnotation) available for specific use cases.
 
 ### `EndpointAnnotation`
 
@@ -125,7 +125,7 @@ For more information about publishing and deploying Aspire apps, see [publishing
 
 ## Creating custom annotations
 
-Custom annotations in .NET Aspire are designed to capture resource-specific metadata and behavior that can be leveraged throughout the application lifecycle. They're commonly used by:
+Custom annotations in Aspire are designed to capture resource-specific metadata and behavior that can be leveraged throughout the application lifecycle. They're commonly used by:
 
 - **Extension methods** to infer user intent and configure resource behavior.
 - **Deployment tools** to generate deployment-specific configuration.
@@ -142,7 +142,7 @@ Start by creating a class that implements `IResourceAnnotation`. Focus on captur
 
 ### 2. Create extension methods
 
-Create fluent extension methods that follow .NET Aspire's builder pattern. These methods should make it easy for AppHost authors to configure your annotation:
+Create fluent extension methods that follow Aspire's builder pattern. These methods should make it easy for AppHost authors to configure your annotation:
 
 :::code source="snippets/annotations-overview/Program.cs" id="ServiceMetricsExtensions":::
 
@@ -212,7 +212,7 @@ public sealed class DbAnnotation : IResourceAnnotation
 
 ### Follow the builder pattern
 
-Create fluent extension methods that follow .NET Aspire's builder pattern:
+Create fluent extension methods that follow Aspire's builder pattern:
 
 ```csharp
 var resource = builder.AddMyResource("name")
@@ -263,4 +263,4 @@ public sealed class ConfigAnnotation : IResourceAnnotation
 - Learn about [custom resource commands](custom-resource-commands.md)
 - Explore [custom resource URLs](custom-resource-urls.md)
 - See [create custom hosting integrations](../extensibility/custom-hosting-integration.md)
-- Review the [.NET Aspire app model API reference](/dotnet/api/aspire.hosting.applicationmodel)
+- Review the [Aspire app model API reference](/dotnet/api/aspire.hosting.applicationmodel)

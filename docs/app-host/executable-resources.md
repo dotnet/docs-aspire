@@ -1,13 +1,13 @@
 ---
-title: Host external executables in .NET Aspire
-description: Learn how to use ExecutableResource and AddExecutable to host external executable applications in your .NET Aspire app host.
+title: Host external executables in Aspire
+description: Learn how to use ExecutableResource and AddExecutable to host external executable applications in your Aspire app host.
 ms.date: 08/11/2025
 ai-usage: ai-assisted
 ---
 
-# Host external executables in .NET Aspire
+# Host external executables in Aspire
 
-In .NET Aspire, you can host external executable applications alongside your projects using the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method. This capability is useful when you need to integrate executable applications or tools into your distributed application, such as Node.js applications, Python scripts, or specialized CLI tools.
+In Aspire, you can host external executable applications alongside your projects using the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> method. This capability is useful when you need to integrate executable applications or tools into your distributed application, such as Node.js applications, Python scripts, or specialized CLI tools.
 
 ## When to use executable resources
 
@@ -159,7 +159,7 @@ var app = builder.AddExecutable(
     .PublishAsDockerfile();
 ```
 
-When you call `PublishAsDockerfile()`, .NET Aspire generates a Dockerfile during the publish process. You can customize this by providing your own Dockerfile:
+When you call `PublishAsDockerfile()`, Aspire generates a Dockerfile during the publish process. You can customize this by providing your own Dockerfile:
 
 ### Custom Dockerfile for publishing
 
@@ -199,5 +199,5 @@ When working with executable resources:
 
 - [App host overview](../fundamentals/app-host-overview.md)
 - [Add Dockerfiles to the app model](withdockerfile.md)
-- [Node.js apps in .NET Aspire](../get-started/build-aspire-apps-with-nodejs.md)
-- [Python apps in .NET Aspire](../get-started/build-aspire-apps-with-python.md)
+- [Node.js apps in Aspire](../get-started/build-aspire-apps-with-nodejs.md)
+- [Python apps in Aspire](../get-started/build-aspire-apps-with-python.md)

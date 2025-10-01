@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - KeyVault default role assignment changing from KeyVaultAdministrator to KeyVaultSecretsUser"
-description: "Learn about the breaking change in .NET Aspire 9.2 where the default role for Azure KeyVault applications changes to KeyVaultSecretsUser."
+description: "Learn about the breaking change in Aspire 9.2 where the default role for Azure KeyVault applications changes to KeyVaultSecretsUser."
 ms.date: 03/27/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2899
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2899
 
 # KeyVault default role assignment changing from KeyVaultAdministrator to KeyVaultSecretsUser
 
-In .NET Aspire 9.2, the default role assigned to applications referencing Azure KeyVault has changed from <xref:Azure.Provisioning.KeyVault.KeyVaultBuiltInRole.KeyVaultAdministrator> to <xref:Azure.Provisioning.KeyVault.KeyVaultBuiltInRole.KeyVaultSecretsUser>. This change enhances security by limiting default privileges to only reading secrets. Applications requiring higher privileges must explicitly configure them.
+In Aspire 9.2, the default role assigned to applications referencing Azure KeyVault has changed from <xref:Azure.Provisioning.KeyVault.KeyVaultBuiltInRole.KeyVaultAdministrator> to <xref:Azure.Provisioning.KeyVault.KeyVaultBuiltInRole.KeyVaultSecretsUser>. This change enhances security by limiting default privileges to only reading secrets. Applications requiring higher privileges must explicitly configure them.
 
 ## Version introduced
 
-.NET Aspire 9.2
+Aspire 9.2
 
 ## Previous behavior
 

@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - WithCommand obsolete and new overload with CommandOptions"
-description: "Learn about the breaking change in .NET Aspire 9.2 where the WithCommand method overload with optional parameters is marked obsolete."
+description: "Learn about the breaking change in Aspire 9.2 where the WithCommand method overload with optional parameters is marked obsolete."
 ms.date: 3/25/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2888
@@ -12,7 +12,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithCommand*> method overload
 
 ## Version introduced
 
-.NET Aspire 9.2
+Aspire 9.2
 
 ## Previous behavior
 

@@ -1,16 +1,16 @@
 ---
 title: Node.js hosting extensions
-description: Learn about the .NET Aspire Community Toolkit Node.js hosting extensions package which provides extra functionality to the .NET Aspire NodeJS hosting package.
+description: Learn about the Aspire Community Toolkit Node.js hosting extensions package which provides extra functionality to the Aspire NodeJS hosting package.
 ms.date: 10/11/2024
 ---
 
-# .NET Aspire Community Toolkit Node.js hosting extensions
+# Aspire Community Toolkit Node.js hosting extensions
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn about the .NET Aspire Community Toolkit Node.js hosting extensions package which provides extra functionality to the .NET Aspire [NodeJS hosting package](https://nuget.org/packages/Aspire.Hosting.NodeJS). The extensions package brings the following features:
+In this article, you learn about the Aspire Community Toolkit Node.js hosting extensions package which provides extra functionality to the Aspire [NodeJS hosting package](https://nuget.org/packages/Aspire.Hosting.NodeJS). The extensions package brings the following features:
 
 - Running [Vite](https://vitejs.dev/) applications
 - Running Node.js applications using [Yarn](https://yarnpkg.com/) and [pnpm](https://pnpm.io/)
@@ -18,7 +18,7 @@ In this article, you learn about the .NET Aspire Community Toolkit Node.js hosti
 
 ## Hosting integration
 
-To get started with the .NET Aspire Community Toolkit Node.js hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.NodeJS.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions) NuGet package in the AppHost project.
+To get started with the Aspire Community Toolkit Node.js hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.NodeJS.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.NodeJS.Extensions) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -90,6 +90,6 @@ When using the `WithNpmPackageInstallation`, `WithYarnPackageInstallation` or `W
 
 ## See also
 
-- [Orchestrate Node.js apps in .NET Aspire](../get-started/build-aspire-apps-with-nodejs.md)
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Orchestrate Node.js apps in Aspire](../get-started/build-aspire-apps-with-nodejs.md)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 - [Sample Node.js apps](https://github.com/CommunityToolkit/Aspire/tree/main/examples/nodejs-ext)

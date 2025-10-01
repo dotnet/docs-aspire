@@ -1,20 +1,20 @@
 ---
-title: .NET Aspire Keycloak integration (Preview)
-description: Learn how to use the .NET Aspire Keycloak integration, which includes both hosting and client integrations.
+title: Aspire Keycloak integration (Preview)
+description: Learn how to use the Aspire Keycloak integration, which includes both hosting and client integrations.
 ms.date: 07/16/2025
 uid: authentication/keycloak-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Keycloak integration (Preview)
+# Aspire Keycloak integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Keycloak](https://www.keycloak.org/) is an open-source Identity and Access Management solution aimed at modern applications and services. The .NET Aspire Keycloak integration enables you to connect to existing Keycloak instances or create new instances from .NET with the [`quay.io/keycloak/keycloak` container image](https://quay.io/repository/keycloak/keycloak).
+[Keycloak](https://www.keycloak.org/) is an open-source Identity and Access Management solution aimed at modern applications and services. The Aspire Keycloak integration enables you to connect to existing Keycloak instances or create new instances from .NET with the [`quay.io/keycloak/keycloak` container image](https://quay.io/repository/keycloak/keycloak).
 
 ## Hosting integration
 
-The .NET Aspire Keycloak hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.KeycloakResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+The Aspire Keycloak hosting integration models the server as the <xref:Aspire.Hosting.ApplicationModel.KeycloakResource> type. To access these types and APIs, add the [📦 Aspire.Hosting.Keycloak](https://www.nuget.org/packages/Aspire.Hosting.Keycloak) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -58,7 +58,7 @@ builder.AddProject<Projects.Keycloak_Web>("webfrontend")
 > [!TIP]
 > For local development use a stable port for the Keycloak resource (`8080` in the preceding example). It can be any port, but it should be stable to avoid issues with browser cookies that will persist OIDC tokens (which include the authority URL, with port) beyond the lifetime of the _AppHost_.
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `quay.io/keycloak/keycloak` image, it creates a new Keycloak instance on your local machine. The Keycloak resource includes default credentials:
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `quay.io/keycloak/keycloak` image, it creates a new Keycloak instance on your local machine. The Keycloak resource includes default credentials:
 
 - `KEYCLOAK_ADMIN`: A value of `admin`.
 - `KEYCLOAK_ADMIN_PASSWORD`: Random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
@@ -181,7 +181,7 @@ The Keycloak hosting integration doesn't currently support a health checks, nor 
 
 ## Client integration
 
-To get started with the .NET Aspire Keycloak client integration, install the [📦 Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) NuGet package in the client-consuming project, that is, the project for the application that uses the Keycloak client. The Keycloak client integration registers JwtBearer and OpenId Connect authentication handlers in the DI container for connecting to a Keycloak.
+To get started with the Aspire Keycloak client integration, install the [📦 Aspire.Keycloak.Authentication](https://www.nuget.org/packages/Aspire.Keycloak.Authentication) NuGet package in the client-consuming project, that is, the project for the application that uses the Keycloak client. The Keycloak client integration registers JwtBearer and OpenId Connect authentication handlers in the DI container for connecting to a Keycloak.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -223,7 +223,7 @@ builder.Services.AddAuthentication()
 You can set many other options via the `Action<JwtBearerOptions> configureOptions` delegate.
 
 > [!WARNING]
-> When using `RequireHttpsMetadata = true` (the default), the JWT Bearer authentication requires the Authority URL to use HTTPS. However, .NET Aspire service discovery uses the `https+http://` scheme, which doesn't satisfy this requirement. For production scenarios where HTTPS metadata validation is required, you need to explicitly configure the Authority URL. See [Production considerations](#production-considerations) for more information.
+> When using `RequireHttpsMetadata = true` (the default), the JWT Bearer authentication requires the Authority URL to use HTTPS. However, Aspire service discovery uses the `https+http://` scheme, which doesn't satisfy this requirement. For production scenarios where HTTPS metadata validation is required, you need to explicitly configure the Authority URL. See [Production considerations](#production-considerations) for more information.
 
 #### JWT bearer authentication example
 
@@ -241,7 +241,7 @@ The preceding ASP.NET Core Minimal API `Program` class demonstrates:
 - Adds authorization services to the DI container with the <xref:Microsoft.Extensions.DependencyInjection.PolicyServiceCollectionExtensions.AddAuthorizationBuilder*> API.
 - Calls the <xref:Microsoft.AspNetCore.Builder.AuthorizationEndpointConventionBuilderExtensions.RequireAuthorization*> API to require authorization on the `/weatherforecast` endpoint.
 
-For a complete working sample, see [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
+For a complete working sample, see [Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
 
 ### Add OpenId Connect authentication
 
@@ -303,7 +303,7 @@ To help visualize the auth flow, consider the following sequence diagram:
 
 :::image type="content" source="media/auth-flow-diagram.png" lightbox="media/auth-flow-diagram.png" alt-text="Authentication flow diagram—demonstrating a user request for an access token, Keycloak returning a JWT, and the token being forward to the API.":::
 
-For a complete working sample, see [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
+For a complete working sample, see [Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak).
 
 ## Production considerations
 
@@ -311,7 +311,7 @@ When deploying Keycloak authentication to production environments, there are sev
 
 ### HTTPS metadata requirements
 
-By default, JWT Bearer authentication in ASP.NET Core has `RequireHttpsMetadata = true`, which requires that the Authority URL uses HTTPS. However, .NET Aspire service discovery uses the `https+http://` scheme for local development, which doesn't satisfy this requirement.
+By default, JWT Bearer authentication in ASP.NET Core has `RequireHttpsMetadata = true`, which requires that the Authority URL uses HTTPS. However, Aspire service discovery uses the `https+http://` scheme for local development, which doesn't satisfy this requirement.
 
 For production scenarios, you have two options:
 
@@ -386,6 +386,6 @@ This approach allows you to configure the exact production URLs without relying 
 ## See also
 
 - [Keycloak](https://www.keycloak.org/)
-- [.NET Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire playground: Keycloak integration](https://github.com/dotnet/aspire/tree/01ed51919f8df692ececce51048a140615dc759d/playground/keycloak)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

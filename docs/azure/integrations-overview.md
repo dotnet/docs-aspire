@@ -1,27 +1,27 @@
 ---
 title: Azure integrations overview
-description: Overview of the Azure integrations available in the .NET Aspire.
+description: Overview of the Azure integrations available in the Aspire.
 ms.date: 07/22/2025
 uid: dotnet/aspire/integrations/azure-overview
 ---
 
-# .NET Aspire Azure integrations overview
+# Aspire Azure integrations overview
 
-[Azure](/azure) is the most popular cloud platform for building and deploying [.NET applications](/dotnet/azure). The [Azure SDK for .NET](/dotnet/azure/sdk/azure-sdk-for-dotnet) allows for easy management and use of Azure services. .NET Aspire provides a set of integrations with Azure services, where you're free to add new resources or connect to existing ones. This article details some common aspects of all Azure integrations in .NET Aspire and aims to help you understand how to use them.
+[Azure](/azure) is the most popular cloud platform for building and deploying [.NET applications](/dotnet/azure). The [Azure SDK for .NET](/dotnet/azure/sdk/azure-sdk-for-dotnet) allows for easy management and use of Azure services. Aspire provides a set of integrations with Azure services, where you're free to add new resources or connect to existing ones. This article details some common aspects of all Azure integrations in Aspire and aims to help you understand how to use them.
 
 ## Add Azure resources
 
-All .NET Aspire Azure hosting integrations expose Azure resources and by convention are added using `AddAzure*` APIs. When you add these resources to your .NET Aspire AppHost, they represent an Azure service. The `AddAzure*` API returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is the type of Azure resource. These `IResourceBuilder<T>` (builder) interfaces provide a fluent API that allows you to configure the underlying Azure resource within the [app model](xref:dotnet/aspire/app-host#terminology). There are APIs for adding new Azure resources, marking resources as existing, and configuring how the resources behave in various execution contexts.
+All Aspire Azure hosting integrations expose Azure resources and by convention are added using `AddAzure*` APIs. When you add these resources to your Aspire AppHost, they represent an Azure service. The `AddAzure*` API returns an <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> where `T` is the type of Azure resource. These `IResourceBuilder<T>` (builder) interfaces provide a fluent API that allows you to configure the underlying Azure resource within the [app model](xref:dotnet/aspire/app-host#terminology). There are APIs for adding new Azure resources, marking resources as existing, and configuring how the resources behave in various execution contexts.
 
 ### Typical developer experience
 
-When your .NET Aspire AppHost contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. This allows you as the developer to debug against them locally in the context of your AppHost.
+When your Aspire AppHost contains Azure resources, and you run it locally (typical developer <kbd>F5</kbd> or `dotnet run` experience), the [Azure resources are provisioned](local-provisioning.md) in your Azure subscription. This allows you as the developer to debug against them locally in the context of your AppHost.
 
-.NET Aspire aims to minimize costs by defaulting to _Basic_ or _Standard_ [Stock Keeping Unit (SKU)](/partner-center/developer/product-resources#sku) for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](customize-azure-resources.md#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
+Aspire aims to minimize costs by defaulting to _Basic_ or _Standard_ [Stock Keeping Unit (SKU)](/partner-center/developer/product-resources#sku) for its Azure integrations. While these sensible defaults are provided, you can [customize the Azure resources](customize-azure-resources.md#azureprovisioning-customization) to suit your needs. Additionally, some integrations support [emulators](#local-emulators) or [containers](#local-containers), which are useful for local development, testing, and debugging. By default, when you run your app locally, the Azure resources use the actual Azure service. However, you can configure them to use local emulators or containers, avoiding costs associated with the actual Azure service during local development.
 
 ### Local emulators
 
-Some Azure services can be emulated to run locally. Currently, .NET Aspire supports the following Azure emulators:
+Some Azure services can be emulated to run locally. Currently, Aspire supports the following Azure emulators:
 
 | Hosting integration | Description |
 |--|--|
@@ -42,7 +42,7 @@ To have your Azure resources use the local emulators, chain a call the `RunAsEmu
 
 Some Azure resources can be substituted locally using open-source or on-premises containers. To substitute an Azure resource locally in a container, chain a call to the `RunAsContainer` method on the Azure resource builder. This method configures the Azure resource to use a containerized version of the service for local development and testing, rather than the actual Azure service.
 
-Currently, .NET Aspire supports the following Azure services as containers:
+Currently, Aspire supports the following Azure services as containers:
 
 | Hosting integration | Details |
 |--|--|
@@ -55,9 +55,9 @@ Currently, .NET Aspire supports the following Azure services as containers:
 
 ### Understand Azure integration APIs
 
-.NET Aspire's strength lies in its ability to provide an amazing developer inner-loop. The Azure integrations are no different. They provide a set of common APIs and patterns that are shared across all Azure resources. These APIs and patterns are designed to make it easy to work with Azure resources in a consistent manner.
+Aspire's strength lies in its ability to provide an amazing developer inner-loop. The Azure integrations are no different. They provide a set of common APIs and patterns that are shared across all Azure resources. These APIs and patterns are designed to make it easy to work with Azure resources in a consistent manner.
 
-In the preceding containers section, you saw how to run Azure services locally in containers. If you're familiar with .NET Aspire, you might wonder how calling `AddAzureRedis("redis").RunAsContainer()` to get a local `docker.io/library/redis` container differs from `AddRedis("redis")`—as they both result in the same local container.
+In the preceding containers section, you saw how to run Azure services locally in containers. If you're familiar with Aspire, you might wonder how calling `AddAzureRedis("redis").RunAsContainer()` to get a local `docker.io/library/redis` container differs from `AddRedis("redis")`—as they both result in the same local container.
 
 The answer is that there's no difference when running locally. However, when they're published you get different resources:
 
@@ -75,7 +75,7 @@ The same is true for SQL and PostgreSQL services:
 | [AddAzureSqlServer("sql").RunAsContainer()](xref:Aspire.Hosting.AzureSqlExtensions.RunAsContainer*) | Local SQL Server container | Azure SQL Server |
 | [AddSqlServer("sql")](xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*) | Local SQL Server container | Azure Container App with SQL Server image |
 
-For more information on the difference between run and publish modes, see [.NET Aspire AppHost: Execution context](xref:dotnet/aspire/app-host#execution-context).
+For more information on the difference between run and publish modes, see [Aspire AppHost: Execution context](xref:dotnet/aspire/app-host#execution-context).
 
 ### APIs for expressing Azure resources in different modes
 
@@ -107,11 +107,11 @@ You can query whether a resource is marked as an existing resource, by calling t
 
 ## Use existing Azure resources
 
-.NET Aspire provides support for referencing existing Azure resources. You mark an existing resource through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
+Aspire provides support for referencing existing Azure resources. You mark an existing resource through the `PublishAsExisting`, `RunAsExisting`, and `AsExisting` APIs. These APIs allow developers to reference already-deployed Azure resources, configure them, and generate appropriate deployment manifests using Bicep templates.
 
 [!INCLUDE [azure-configuration](includes/azure-configuration.md)]
 
-Existing resources referenced with these APIs can be enhanced with [role assignments](role-assignments.md) and other customizations that are available with .NET Aspire's [infrastructure as code capabilities](customize-azure-resources.md). These APIs are limited to Azure resources that can be deployed with Bicep templates.
+Existing resources referenced with these APIs can be enhanced with [role assignments](role-assignments.md) and other customizations that are available with Aspire's [infrastructure as code capabilities](customize-azure-resources.md). These APIs are limited to Azure resources that can be deployed with Bicep templates.
 
 ### Configure existing Azure resources for run mode
 
@@ -184,7 +184,7 @@ After the AppHost is executed in publish mode, the generated manifest file will 
 }
 ```
 
-For more information on the manifest file, see [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
+For more information on the manifest file, see [Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
 
 Additionally, the generated Bicep template includes the `existingResourceName` parameter, which can be used to reference the existing Azure resource. Consider the following generated Bicep template:
 
@@ -223,7 +223,7 @@ output serviceBusEndpoint string = messaging.properties.serviceBusEndpoint
 For more information on the generated Bicep templates, see [Customize Azure resources](customize-azure-resources.md) and [consider other publishing APIs](#publish-as-azure-container-app).
 
 > [!WARNING]
-> When interacting with existing resources that require authentication, ensure the authentication strategy that you're configuring in the .NET Aspire application model aligns with the authentication strategy allowed by the existing resource. For example, it's not possible to use managed identity against an existing Azure PostgreSQL resource that isn't configured to allow managed identity. Similarly, if an existing Azure Redis resource disabled access keys, it's not possible to use access key authentication.
+> When interacting with existing resources that require authentication, ensure the authentication strategy that you're configuring in the Aspire application model aligns with the authentication strategy allowed by the existing resource. For example, it's not possible to use managed identity against an existing Azure PostgreSQL resource that isn't configured to allow managed identity. Similarly, if an existing Azure Redis resource disabled access keys, it's not possible to use access key authentication.
 
 ### Configure existing Azure resources in all modes
 
@@ -253,7 +253,7 @@ The preceding code:
 
 ## Add existing Azure resources with connection strings
 
-.NET Aspire provides the ability to [connect to existing resources](../fundamentals/app-host-overview.md#reference-existing-resources), including Azure resources. Expressing connection strings is useful when you have existing Azure resources that you want to use in your .NET Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used with the AppHost's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
+Aspire provides the ability to [connect to existing resources](../fundamentals/app-host-overview.md#reference-existing-resources), including Azure resources. Expressing connection strings is useful when you have existing Azure resources that you want to use in your Aspire app. The <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> API is used with the AppHost's [execution context](../fundamentals/app-host-overview.md#execution-context) to conditionally add a connection string to the app model.
 
 [!INCLUDE [connection-strings-alert](../includes/connection-strings-alert.md)]
 
@@ -286,7 +286,7 @@ Unlike existing resources modeled with [the first-class `AsExisting` API](#use-e
 
 ## Publish as Azure Container App
 
-.NET Aspire allows you to publish primitive resources as [Azure Container Apps](/azure/container-apps/overview), a serverless platform that reduces infrastructure management. Supported resource types include:
+Aspire allows you to publish primitive resources as [Azure Container Apps](/azure/container-apps/overview), a serverless platform that reduces infrastructure management. Supported resource types include:
 
 - <xref:Aspire.Hosting.ApplicationModel.ContainerResource>: Represents a specified container.
 - <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>: Represents a specified executable process.
@@ -328,10 +328,10 @@ The preceding code:
 To configure the Azure Container App environment, see [Configure Azure Container Apps environments](configure-aca-environments.md). For information about publishing resources as Azure Container App Jobs, see [Azure Container App Jobs](container-app-jobs.md). For more information, see <xref:Azure.Provisioning.AppContainers.ContainerApp> and <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.AsProvisioningParameter*>.
 
 > [!TIP]
-> If you're working with Azure Container Apps, you might also be interested in the [.NET Aspire Azure Container Registry integration](container-registry-integration.md).
+> If you're working with Azure Container Apps, you might also be interested in the [Aspire Azure Container Registry integration](container-registry-integration.md).
 
 ## Publishing
 
-When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. .NET Aspire outputs a [publishing manifest](../deployment/manifest-format.md), that's also a vital part of the publishing process. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources.
+When you publish your app, the Azure provisioning generated Bicep is used by the Azure Developer CLI to create the Azure resources in your Azure subscription. Aspire outputs a [publishing manifest](../deployment/manifest-format.md), that's also a vital part of the publishing process. The Azure Developer CLI is a command-line tool that provides a set of commands to manage Azure resources.
 
-For more information on publishing and deployment, see [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).
+For more information on publishing and deployment, see [Deploy a Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md).

@@ -1,14 +1,14 @@
 ---
 title: Enable browser telemetry
-description: Learn how to enable browser telemetry in the .NET Aspire dashboard.
+description: Learn how to enable browser telemetry in the Aspire dashboard.
 ms.date: 04/15/2025
 ---
 
 # Enable browser telemetry
 
-The .NET Aspire dashboard can be configured to receive telemetry sent from browser apps. This feature is useful for monitoring client-side performance and user interactions. Browser telemetry requires additional dashboard configuration and that the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) is added to the browser apps.
+The Aspire dashboard can be configured to receive telemetry sent from browser apps. This feature is useful for monitoring client-side performance and user interactions. Browser telemetry requires additional dashboard configuration and that the [JavaScript OTEL SDK](https://opentelemetry.io/docs/languages/js/getting-started/browser/) is added to the browser apps.
 
-This article discusses how to enable browser telemetry in the .NET Aspire dashboard.
+This article discusses how to enable browser telemetry in the Aspire dashboard.
 
 ## Dashboard configuration
 
@@ -19,7 +19,7 @@ Browser telemetry requires the dashboard to enable these features:
 
 ### OTLP configuration
 
-The .NET Aspire dashboard receives telemetry through OTLP endpoints. [HTTP OTLP endpoints](https://opentelemetry.io/docs/specs/otlp/#otlphttp) and gRPC OTLP endpoints are supported by the dashboard. Browser apps must use HTTP OLTP to send telemetry to the dashboard because browser apps don't support gRPC.
+The Aspire dashboard receives telemetry through OTLP endpoints. [HTTP OTLP endpoints](https://opentelemetry.io/docs/specs/otlp/#otlphttp) and gRPC OTLP endpoints are supported by the dashboard. Browser apps must use HTTP OLTP to send telemetry to the dashboard because browser apps don't support gRPC.
 
 To configure the gPRC or HTTP endpoints, specify the following environment variables:
 
@@ -40,7 +40,7 @@ The preceding launch settings JSON file configures all profiles to include the `
 
 #### Configure OTLP HTTP with standalone dashboard
 
-If the dashboard is used standalone, without the rest of .NET Aspire, the OTLP HTTP endpoint is enabled by default on port `18890`. However, the port must be mapped when the dashboard container is started:
+If the dashboard is used standalone, without the rest of Aspire, the OTLP HTTP endpoint is enabled by default on port `18890`. However, the port must be mapped when the dashboard container is started:
 
 ### [Bash](#tab/bash)
 
@@ -70,9 +70,9 @@ The preceding command runs the dashboard container and maps gRPC OTLP to port `4
 
 ### CORS configuration
 
-By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the .NET Aspire dashboard removes the restriction.
+By default, browser apps are restricted from making cross domain API calls. This impacts sending telemetry to the dashboard because the dashboard and the browser app are always on different domains. Configuring CORS in the Aspire dashboard removes the restriction.
 
-If the dashboard and your app are started by the AppHost, no CORS configuration is required. .NET Aspire automatically configures the dashboard to allow all resource origins.
+If the dashboard and your app are started by the AppHost, no CORS configuration is required. Aspire automatically configures the dashboard to allow all resource origins.
 
 If the dashboard is used standlone then CORS must be configured manually. The domain used to view the browser app must be configured as an allowed origin by specifing the `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS` environment variable when the dashboard container is started:
 
@@ -106,7 +106,7 @@ The preceding command runs the dashboard container and configures `https://local
 
 Multiple origins can be allowed with a comma separated value. Or all origins can be allowed with the `*` wildcard. For example, `DASHBOARD__OTLP__CORS__ALLOWEDORIGINS=*`.
 
-For more information, see [.NET Aspire dashboard configuration: OTLP CORS](configuration.md#otlp-cors).
+For more information, see [Aspire dashboard configuration: OTLP CORS](configuration.md#otlp-cors).
 
 ### OTLP endpoint security
 
@@ -165,6 +165,6 @@ For the complete working example of how to configure the JavaScript OTEL SDK to 
 
 ## See also
 
-- [.NET Aspire dashboard configuration](configuration.md)
-- [Standalone .NET Aspire dashboard](standalone.md)
+- [Aspire dashboard configuration](configuration.md)
+- [Standalone Aspire dashboard](standalone.md)
 - [Browser telemetry sample](https://github.com/dotnet/aspire/tree/main/playground/BrowserTelemetry)

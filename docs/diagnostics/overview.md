@@ -1,19 +1,19 @@
 ---
-title: .NET Aspire diagnostics overview
-description: Learn about the diagnostics tools and features available in .NET Aspire.
+title: Aspire diagnostics overview
+description: Learn about the diagnostics tools and features available in Aspire.
 ms.topic: overview
 ms.date: 07/22/2025
 ---
 
-# .NET Aspire diagnostics list
+# Aspire diagnostics list
 
-The following table lists the possible MSBuild and .NET Analyzer warnings and errors you might encounter with .NET Aspire:
+The following table lists the possible MSBuild and .NET Analyzer warnings and errors you might encounter with Aspire:
 
 | Diagnostic ID | Type | Description |
 |--|--|--|
 | [`ASPIRE001`](aspire001.md) | Warning | <span id="ASPIRE001"></span> The code language isn't fully supported by Aspire, some code generation targets will not run. |
 | [`ASPIRE002`](aspire002.md) | Warning | <span id="ASPIRE002"></span> Project is an Aspire AppHost project but necessary dependencies aren't present. Are you missing an Aspire.Hosting.AppHost PackageReference? |
-| [`ASPIRE003`](aspire003.md) | Warning | <span id="ASPIRE003"></span> 'Project' is a .NET Aspire AppHost project that requires Visual Studio version 17.10 or above to work correctly. |
+| [`ASPIRE003`](aspire003.md) | Warning | <span id="ASPIRE003"></span> 'Project' is a Aspire AppHost project that requires Visual Studio version 17.10 or above to work correctly. |
 | [`ASPIRE004`](aspire004.md) | Warning | <span id="ASPIRE004"></span> 'Project' is referenced by an Aspire Host project, but it is not an executable. |
 | [`ASPIRE006`](aspire006.md) | (Experimental) Error | <span id="ASPIRE006"></span> Application model items must have valid names. |
 | [`ASPIRE007`](aspire007.md) | Error | <span id="ASPIRE007"></span> 'Project' requires a reference to "Aspire.AppHost.Sdk" with version "9.0.0" or greater to work correctly. |

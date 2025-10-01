@@ -1,17 +1,17 @@
 ---
 title: Changes to `Azure.Hosting` APIs
-description: "This document outlines the breaking changes in the Azure Hosting APIs for .NET Aspire 9.0 GA."
+description: "This document outlines the breaking changes in the Azure Hosting APIs for Aspire 9.0 GA."
 ms.date: 10/28/2024
 ai-usage: ai-assisted
 ---
 
 # Changes to `Azure.Hosting` APIs
 
-This document outlines the breaking changes in the `Azure.Hosting` APIs for .NET Aspire 9.0 GA. The changes include the removal of experimental callbacks, renaming of several classes and methods, and a holistic review of the Azure Hosting APIs.
+This document outlines the breaking changes in the `Azure.Hosting` APIs for Aspire 9.0 GA. The changes include the removal of experimental callbacks, renaming of several classes and methods, and a holistic review of the Azure Hosting APIs.
 
 ## Version introduced
 
-.NET Aspire 9.0 GA
+Aspire 9.0 GA
 
 ## Previous behavior
 

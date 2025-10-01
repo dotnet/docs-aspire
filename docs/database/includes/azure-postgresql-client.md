@@ -3,7 +3,7 @@ ms.topic: include
 ms.custom: sfi-ropc-nochange
 ---
 
-To get started with the .NET Aspire Azure PostgreSQL client integration, install the [📦 Aspire.Azure.Npgsql](https://www.nuget.org/packages/Aspire.Azure.Npgsql) NuGet package in the client-consuming project, that is, the project for the application that uses the PostgreSQL client. The PostgreSQL client integration registers an [NpgsqlDataSource](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSource.html) instance that you can use to interact with PostgreSQL.
+To get started with the Aspire Azure PostgreSQL client integration, install the [📦 Aspire.Azure.Npgsql](https://www.nuget.org/packages/Aspire.Azure.Npgsql) NuGet package in the client-consuming project, that is, the project for the application that uses the PostgreSQL client. The PostgreSQL client integration registers an [NpgsqlDataSource](https://www.npgsql.org/doc/api/Npgsql.NpgsqlDataSource.html) instance that you can use to interact with PostgreSQL.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -66,7 +66,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 #### Configuration
 
-The .NET Aspire Azure Npgsql integration provides multiple options to configure the database connection based on the requirements and conventions of your project.
+The Aspire Azure Npgsql integration provides multiple options to configure the database connection based on the requirements and conventions of your project.
 
 ##### Use a connection string
 
@@ -93,7 +93,7 @@ For more information on how to configure the connection string, see the [Npgsql 
 
 ##### Use configuration providers
 
-The .NET Aspire Azure Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Azure.Npgsql.AzureNpgsqlSettings> from configuration using the `Aspire:Azure:Npgsql` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
+The Aspire Azure Npgsql integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Azure.Npgsql.AzureNpgsqlSettings> from configuration using the `Aspire:Azure:Npgsql` key. For example, consider the following _appsettings.json_ file that configures some of the available options:
 
 ```json
 {
@@ -127,7 +127,7 @@ Use the <xref:Aspire.Azure.Npgsql.AzureNpgsqlSettings.Credential?displayProperty
 
 #### Logging
 
-The .NET Aspire PostgreSQL integration uses the following log categories:
+The Aspire PostgreSQL integration uses the following log categories:
 
 - `Npgsql.Connection`
 - `Npgsql.Command`
@@ -138,13 +138,13 @@ The .NET Aspire PostgreSQL integration uses the following log categories:
 
 #### Tracing
 
-The .NET Aspire PostgreSQL integration will emit the following tracing activities using OpenTelemetry:
+The Aspire PostgreSQL integration will emit the following tracing activities using OpenTelemetry:
 
 - `Npgsql`
 
 #### Metrics
 
-The .NET Aspire PostgreSQL integration will emit the following metrics using OpenTelemetry:
+The Aspire PostgreSQL integration will emit the following metrics using OpenTelemetry:
 
 - Npgsql:
   - `ec_Npgsql_bytes_written_per_second`

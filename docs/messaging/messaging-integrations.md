@@ -1,6 +1,6 @@
 ---
-title: Use .NET Aspire messaging integrations in ASP.NET Core
-description: Learn how to connect an ASP.NET Core app to messaging services using .NET Aspire integrations.
+title: Use Aspire messaging integrations in ASP.NET Core
+description: Learn how to connect an ASP.NET Core app to messaging services using Aspire integrations.
 ms.date: 03/20/2025
 ms.topic: tutorial
 zone_pivot_groups: dev-environment
@@ -9,15 +9,15 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Tutorial: Use .NET Aspire messaging integrations in ASP.NET Core
+# Tutorial: Use Aspire messaging integrations in ASP.NET Core
 
-Cloud-native apps often require scalable messaging solutions that provide capabilities such as messaging queues and topics and subscriptions. .NET Aspire integrations simplify the process of connecting to various messaging providers, such as Azure Service Bus. In this tutorial, you'll create an ASP.NET Core app that uses .NET Aspire integrations to connect to Azure Service Bus to create a notification system. Submitted messages will be sent to a Service Bus topic for consumption by subscribers. You'll learn how to:
+Cloud-native apps often require scalable messaging solutions that provide capabilities such as messaging queues and topics and subscriptions. Aspire integrations simplify the process of connecting to various messaging providers, such as Azure Service Bus. In this tutorial, you'll create an ASP.NET Core app that uses Aspire integrations to connect to Azure Service Bus to create a notification system. Submitted messages will be sent to a Service Bus topic for consumption by subscribers. You'll learn how to:
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is set up to use .NET Aspire integrations
-> - Add an .NET Aspire integration to connect to Azure Service Bus
-> - Configure and use .NET Aspire integration features to send and receive data
+> - Create a basic .NET app that is set up to use Aspire integrations
+> - Add an Aspire integration to connect to Azure Service Bus
+> - Configure and use Aspire integration features to send and receive data
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -66,7 +66,7 @@ Retrieve the connection string for your Service Bus namespace from the **Shared 
 
 ## Create the sample solution
 
-To create a new .NET Aspire Starter Application, you can use either Visual Studio, Visual Studio Code, or the .NET CLI.
+To create a new Aspire Starter Application, you can use either Visual Studio, Visual Studio Code, or the .NET CLI.
 
 :::zone pivot="visual-studio"
 
@@ -95,7 +95,7 @@ Next, add a Worker Service project to the solution to retrieve and process messa
 1. For the **Project name**, enter *AspireSample.WorkerService* and select **Next**.
 1. On the **Additional information** screen:
     - Make sure **.NET 9.0** is selected.
-    - Make sure **Enlist in .NET Aspire orchestration** is checked and select **Create**.
+    - Make sure **Enlist in Aspire orchestration** is checked and select **Create**.
 
 Visual Studio adds the project to your solution and updates the _:::no-loc text="AppHost.cs":::_ file of the `AspireSample.AppHost` project with a new line of code:
 
@@ -221,9 +221,9 @@ The completed solution structure should resemble the following, assuming the top
      └─── AspireSample.sln
 ```
 
-## Add the .NET Aspire integration to the API
+## Add the Aspire integration to the API
 
-Add the [.NET Aspire Azure Service Bus](azure-service-bus-integration.md) integration to your **AspireSample.ApiService** app:
+Add the [Aspire Azure Service Bus](azure-service-bus-integration.md) integration to your **AspireSample.ApiService** app:
 
 :::zone pivot="visual-studio"
 
@@ -352,9 +352,9 @@ app.MapDefaultEndpoints();
 app.Run();
 ```
 
-## Add the .NET Aspire integration to the Worker Service
+## Add the Aspire integration to the Worker Service
 
-Add the [.NET Aspire Azure Service Bus](azure-service-bus-integration.md) integration to your **AspireSample.WorkerService** project. Follow the same steps as you did before when you added the [Aspire.Azure.Messaging.ServiceBus](https://nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package to the **AspireSample.ApiService** project. Once it's been added, you can configure the worker service to process messages from the Service Bus topic.
+Add the [Aspire Azure Service Bus](azure-service-bus-integration.md) integration to your **AspireSample.WorkerService** project. Follow the same steps as you did before when you added the [Aspire.Azure.Messaging.ServiceBus](https://nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package to the **AspireSample.ApiService** project. Once it's been added, you can configure the worker service to process messages from the Service Bus topic.
 
 In the _:::no-loc text="Program.cs":::_ file of the **AspireSample.WorkerService** project, replace the existing code with the following:
 
@@ -483,17 +483,17 @@ The sample app is now ready for testing. Verify that the data submitted to the A
 
 :::zone pivot="visual-studio"
 
-1. Launch the .NET Aspire project by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+1. Launch the Aspire project by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The Aspire dashboard app should open in the browser.
 
 :::zone-end
 :::zone pivot="vscode"
 
-1. Launch the .NET Aspire project by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The .NET Aspire dashboard app should open in the browser.
+1. Launch the Aspire project by selecting the **Start** debugging button, or by pressing <kbd>F5</kbd>. The Aspire dashboard app should open in the browser.
 
 :::zone-end
 :::zone pivot="dotnet-cli"
 
-1. Launch the .NET Aspire project by running `dotnet run --project AspireSample.AppHost`. The .NET Aspire dashboard app should open in the browser.
+1. Launch the Aspire project by running `dotnet run --project AspireSample.AppHost`. The Aspire dashboard app should open in the browser.
 
 :::zone-end
 
@@ -501,7 +501,7 @@ The sample app is now ready for testing. Verify that the data submitted to the A
 <!-- We need to continue from the previous shared step from a different pivot. -->
 
 2. On the resources page, in the **apiservice** row, find the link in the **Endpoints** that opens the `weatherforecast` endpoint. Note the HTTPS port number.
-3. On the .NET Aspire dashboard, navigate to the logs for the **aspiresample-workerservice** project.
+3. On the Aspire dashboard, navigate to the logs for the **aspiresample-workerservice** project.
 4. In a terminal window, use the `curl` command to send a test message to the API:
 
     ```bash

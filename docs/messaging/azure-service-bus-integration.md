@@ -1,19 +1,19 @@
 ---
-title: .NET Aspire Azure Service Bus integration
-description: Learn how to install and configure the .NET Aspire Azure Service Bus integration to connect to Azure Service Bus instances from .NET applications.
+title: Aspire Azure Service Bus integration
+description: Learn how to install and configure the Aspire Azure Service Bus integration to connect to Azure Service Bus instances from .NET applications.
 ms.date: 07/22/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure Service Bus integration
+# Aspire Azure Service Bus integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Service Bus](https://azure.microsoft.com/services/service-bus/) is a fully managed enterprise message broker with message queues and publish-subscribe topics. The .NET Aspire Azure Service Bus integration enables you to connect to Azure Service Bus instances from .NET applications.
+[Azure Service Bus](https://azure.microsoft.com/services/service-bus/) is a fully managed enterprise message broker with message queues and publish-subscribe topics. The Aspire Azure Service Bus integration enables you to connect to Azure Service Bus instances from .NET applications.
 
 ## Hosting integration
 
-The .NET Aspire [Azure Service Bus](https://azure.microsoft.com/services/service-bus/) hosting integration models the various Service Bus resources as the following types:
+The Aspire [Azure Service Bus](https://azure.microsoft.com/services/service-bus/) hosting integration models the various Service Bus resources as the following types:
 
 - <xref:Aspire.Hosting.Azure.AzureServiceBusResource>: Represents an Azure Service Bus resource.
 - <xref:Aspire.Hosting.Azure.AzureServiceBusQueueResource>: Represents an Azure Service Bus queue resource.
@@ -163,7 +163,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your Service Bus resources to run locally using an emulator. The emulator in this case is the [Azure Service Bus Emulator](/azure/service-bus-messaging/overview-emulator). The Azure Service Bus Emulator provides a free local environment for testing your Azure Service Bus apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-messaging/servicebus-emulator` image (and the companion `mcr.microsoft.com/azure-sql-edge` image), it creates and starts the container when the AppHost starts. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+When you call `RunAsEmulator`, it configures your Service Bus resources to run locally using an emulator. The emulator in this case is the [Azure Service Bus Emulator](/azure/service-bus-messaging/overview-emulator). The Azure Service Bus Emulator provides a free local environment for testing your Azure Service Bus apps and it's a perfect companion to the Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to Aspire as a container. When you add a container to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-messaging/servicebus-emulator` image (and the companion `mcr.microsoft.com/azure-sql-edge` image), it creates and starts the container when the AppHost starts. For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Service Bus emulator container
 
@@ -171,7 +171,7 @@ There are various configurations available for container resources, for example,
 
 ##### Configure Service Bus emulator container host port
 
-By default, the Service Bus emulator container when configured by .NET Aspire, exposes the following endpoints:
+By default, the Service Bus emulator container when configured by Aspire, exposes the following endpoints:
 
 | Endpoint | Image | Container port | Host port |
 |--|--|--|--|
@@ -244,7 +244,7 @@ The preceding code retrieves the `UserConfig` node from the default configuratio
 
 ### Provisioning-generated Bicep
 
-If you're new to Bicep, it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Service Bus resource, the following Bicep is generated:
+If you're new to Bicep, it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Service Bus resource, the following Bicep is generated:
 
 :::code language="bicep" source="../snippets/azure/AppHost/service-bus/service-bus.bicep":::
 
@@ -256,7 +256,7 @@ In addition to the Service Bus namespace, it also provisions an Azure role-based
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the sku, location, and more. The following example demonstrates how to customize the Azure Service Bus resource:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the sku, location, and more. The following example demonstrates how to customize the Azure Service Bus resource:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureServiceBusInfra.cs" id="configure":::
 
@@ -279,7 +279,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.AzureService
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Service Bus client integration, install the [📦 Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package in the client-consuming project, that is, the project for the application that uses the Service Bus client. The Service Bus client integration registers a <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance that you can use to interact with Service Bus.
+To get started with the Aspire Azure Service Bus client integration, install the [📦 Aspire.Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Aspire.Azure.Messaging.ServiceBus) NuGet package in the client-consuming project, that is, the project for the application that uses the Service Bus client. The Service Bus client integration registers a <xref:Azure.Messaging.ServiceBus.ServiceBusClient> instance that you can use to interact with Service Bus.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -379,7 +379,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Azure Service Bus integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+The Aspire Azure Service Bus integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -403,7 +403,7 @@ For more information on how to format this connection string, see the Connection
 
 #### Use configuration providers
 
-The .NET Aspire Azure Service Bus integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings> from configuration by using the `Aspire:Azure:Messaging:ServiceBus` key. The following snippet is an example of a :::no-loc text="appsettings.json"::: file that configures some of the options:
+The Aspire Azure Service Bus integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings> from configuration by using the `Aspire:Azure:Messaging:ServiceBus` key. The following snippet is an example of a :::no-loc text="appsettings.json"::: file that configures some of the options:
 
 ```json
 {
@@ -424,7 +424,7 @@ For the complete Service Bus client integration JSON schema, see [Aspire.Azure.M
 
 #### Use named configuration
 
-The .NET Aspire Azure Service Bus integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure Service Bus integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -477,9 +477,9 @@ builder.AddAzureServiceBusClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable health checks for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable health checks for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Azure Service Bus integration:
+The Aspire Azure Service Bus integration:
 
 - Adds the health check when <xref:Aspire.Azure.Messaging.ServiceBus.AzureMessagingServiceBusSettings.DisableTracing?displayProperty=nameWithType> is `false`, which attempts to connect to the Service Bus.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -488,7 +488,7 @@ The .NET Aspire Azure Service Bus integration:
 
 #### Logging
 
-The .NET Aspire Azure Service Bus integration uses the following log categories:
+The Aspire Azure Service Bus integration uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
@@ -514,7 +514,7 @@ builder.AddAzureServiceBusClient(
 
 #### Tracing
 
-The .NET Aspire Azure Service Bus integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Azure Service Bus integration will emit the following tracing activities using OpenTelemetry:
 
 - `Message`
 - `ServiceBusSender.Send`
@@ -547,11 +547,11 @@ For more information, see [Azure Service Bus: Distributed tracing and correlatio
 
 #### Metrics
 
-The .NET Aspire Azure Service Bus integration currently doesn't support metrics by default due to limitations with the Azure SDK.
+The Aspire Azure Service Bus integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
 - [Azure Service Bus](https://azure.microsoft.com/services/service-bus)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

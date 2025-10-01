@@ -1,19 +1,19 @@
 ---
-title: .NET Aspire Azure Event Hubs integration
-description: This article describes the .NET Aspire Azure Event Hubs integration features and capabilities.
+title: Aspire Azure Event Hubs integration
+description: This article describes the Aspire Azure Event Hubs integration features and capabilities.
 ms.date: 07/22/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure Event Hubs integration
+# Aspire Azure Event Hubs integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Event Hubs](/azure/event-hubs/event-hubs-about) is a native data-streaming service in the cloud that can stream millions of events per second, with low latency, from any source to any destination. The .NET Aspire Azure Event Hubs integration enables you to connect to Azure Event Hubs instances from your .NET applications.
+[Azure Event Hubs](/azure/event-hubs/event-hubs-about) is a native data-streaming service in the cloud that can stream millions of events per second, with low latency, from any source to any destination. The Aspire Azure Event Hubs integration enables you to connect to Azure Event Hubs instances from your .NET applications.
 
 ## Hosting integration
 
-The .NET Aspire [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs) hosting integration models the various Event Hub resources as the following types:
+The Aspire [Azure Event Hubs](https://azure.microsoft.com/products/event-hubs) hosting integration models the various Event Hub resources as the following types:
 
 - <xref:Aspire.Hosting.Azure.AzureEventHubsResource>: Represents a top-level Azure Event Hubs resource, used for representing collections of hubs and the connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.Azure.AzureEventHubResource>: Represents a single Event Hub resource.
@@ -107,7 +107,7 @@ When you call `AddConsumerGroup`, it configures your `messages` Event Hub resour
 
 ### Add Azure Event Hubs emulator resource
 
-The .NET Aspire Azure Event Hubs hosting integration supports running the Event Hubs resource as an emulator locally, based on the `mcr.microsoft.com/azure-messaging/eventhubs-emulator/latest` container image. This is beneficial for situations where you want to run the Event Hubs resource locally for development and testing purposes, avoiding the need to provision an Azure resource or connect to an existing Azure Event Hubs server.
+The Aspire Azure Event Hubs hosting integration supports running the Event Hubs resource as an emulator locally, based on the `mcr.microsoft.com/azure-messaging/eventhubs-emulator/latest` container image. This is beneficial for situations where you want to run the Event Hubs resource locally for development and testing purposes, avoiding the need to provision an Azure resource or connect to an existing Azure Event Hubs server.
 
 To run the Event Hubs resource as an emulator, call the <xref:Aspire.Hosting.AzureEventHubsExtensions.RunAsEmulator*> method:
 
@@ -133,7 +133,7 @@ There are various configurations available for container resources, for example,
 
 ##### Configure Event Hubs emulator container host port
 
-By default, the Event Hubs emulator container when configured by .NET Aspire, exposes the following endpoints:
+By default, the Event Hubs emulator container when configured by Aspire, exposes the following endpoints:
 
 | Endpoint | Image | Container port | Host port |
 |--|--|--|--|
@@ -266,7 +266,7 @@ The preceding code retrieves the `UserConfig` node from the default configuratio
 
 ### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Event Hubs resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Event Hubs resource, the following Bicep is generated:
 
 :::code language="bicep" source="../snippets/azure/AppHost/event-hubs/event-hubs.bicep":::
 
@@ -278,7 +278,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureEventHubsInfra.cs" id="configure":::
 
@@ -302,7 +302,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Azure.Messag
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Event Hubs client integration, install the [📦 Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package in the client-consuming project, that is, the project for the application that uses the Event Hubs client.
+To get started with the Aspire Azure Event Hubs client integration, install the [📦 Aspire.Azure.Messaging.EventHubs](https://www.nuget.org/packages/Aspire.Azure.Messaging.EventHubs) NuGet package in the client-consuming project, that is, the project for the application that uses the Event Hubs client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -323,7 +323,7 @@ dotnet add package Aspire.Azure.Messaging.EventHubs
 
 The following Event Hub clients are supported by the library, along with their corresponding options and settings classes:
 
-| Azure client type | Azure options class | .NET Aspire settings class |
+| Azure client type | Azure options class | Aspire settings class |
 |--|--|--|
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubProducerClient> | <xref:Azure.Messaging.EventHubs.Producer.EventHubProducerClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsProducerSettings> |
 | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClient> | <xref:Azure.Messaging.EventHubs.Producer.EventHubBufferedProducerClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsBufferedProducerSettings> |
@@ -331,7 +331,7 @@ The following Event Hub clients are supported by the library, along with their c
 | <xref:Azure.Messaging.EventHubs.EventProcessorClient> | <xref:Azure.Messaging.EventHubs.EventProcessorClientOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsProcessorSettings> |
 | [PartitionReceiver Class](/dotnet/api/microsoft.azure.eventhubs.partitionreceiver) | <xref:Azure.Messaging.EventHubs.Primitives.PartitionReceiverOptions> | <xref:Aspire.Azure.Messaging.EventHubs.AzureMessagingEventHubsPartitionReceiverSettings> |
 
-The client types are from the Azure SDK for .NET, as are the corresponding options classes. The settings classes are provided by the .NET Aspire. The settings classes are used to configure the client instances.
+The client types are from the Azure SDK for .NET, as are the corresponding options classes. The settings classes are provided by the Aspire. The settings classes are used to configure the client instances.
 
 ### Add an Event Hubs producer client
 
@@ -413,7 +413,7 @@ All of the aforementioned APIs include optional parameters to configure the clie
 
 ### Configuration
 
-The .NET Aspire Azure Event Hubs library provides multiple options to configure the Azure Event Hubs connection based on the requirements and conventions of your project. Either a `FullyQualifiedNamespace` or a `ConnectionString` is a required to be supplied.
+The Aspire Azure Event Hubs library provides multiple options to configure the Azure Event Hubs connection based on the requirements and conventions of your project. Either a `FullyQualifiedNamespace` or a `ConnectionString` is a required to be supplied.
 
 #### Use a connection string
 
@@ -456,7 +456,7 @@ Alternatively, use a connection string:
 
 ### Use configuration providers
 
-The .NET Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureMessagingEventHubsSettings` and the associated Options, e.g. `EventProcessorClientOptions`, from configuration by using the `Aspire:Azure:Messaging:EventHubs:` key prefix, followed by the name of the specific client in use. For example, consider the _:::no-loc text="appsettings.json":::_ that configures some of the options for an `EventProcessorClient`:
+The Aspire Azure Event Hubs library supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `AzureMessagingEventHubsSettings` and the associated Options, e.g. `EventProcessorClientOptions`, from configuration by using the `Aspire:Azure:Messaging:EventHubs:` key prefix, followed by the name of the specific client in use. For example, consider the _:::no-loc text="appsettings.json":::_ that configures some of the options for an `EventProcessorClient`:
 
 ```json
 {
@@ -481,7 +481,7 @@ For the complete Azure Event Hubs client integration JSON schema, see [Aspire.Az
 
 ### Use named configuration
 
-The .NET Aspire Azure Event Hubs library supports named configuration, which allows you to configure multiple instances of the same client type with different settings. The named configuration uses the connection name as a key under the specific client configuration section.
+The Aspire Azure Event Hubs library supports named configuration, which allows you to configure multiple instances of the same client type with different settings. The named configuration uses the connection name as a key under the specific client configuration section.
 
 ```json
 {
@@ -532,24 +532,24 @@ builder.AddAzureEventProcessorClient(
 
 ### Logging
 
-The .NET Aspire Azure Event Hubs integration uses the following log categories:
+The Aspire Azure Event Hubs integration uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
 
 ### Tracing
 
-The .NET Aspire Azure Event Hubs integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Azure Event Hubs integration will emit the following tracing activities using OpenTelemetry:
 
 - `Azure.Messaging.EventHubs.*`
 
 ### Metrics
 
-The .NET Aspire Azure Event Hubs integration currently doesn't support metrics by default due to limitations with the Azure SDK for .NET. If that changes in the future, this section will be updated to reflect those changes.
+The Aspire Azure Event Hubs integration currently doesn't support metrics by default due to limitations with the Azure SDK for .NET. If that changes in the future, this section will be updated to reflect those changes.
 
 ## See also
 
 - [Azure Event Hubs](/azure/event-hubs/)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

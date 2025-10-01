@@ -1,13 +1,13 @@
 ---
-title: .NET Aspire service discovery
-description: Understand essential service discovery concepts in .NET Aspire.
+title: Aspire service discovery
+description: Understand essential service discovery concepts in Aspire.
 ms.date: 07/17/2025
 ms.topic: quickstart
 ---
 
-# .NET Aspire service discovery
+# Aspire service discovery
 
-In this article, you learn how service discovery works within a .NET Aspire project. .NET Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the .NET Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](/dotnet/core/extensions/service-discovery).
+In this article, you learn how service discovery works within a Aspire project. Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](/dotnet/core/extensions/service-discovery).
 
 ## Implicit service discovery by reference
 
@@ -24,7 +24,7 @@ var frontend = builder.AddProject<Projects.MyFrontend>("frontend")
                       .WithReference(catalog);
 ```
 
-In the preceding example, the _frontend_ project references the _catalog_ project and the _basket_ project. The two <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> calls instruct the .NET Aspire project to pass service discovery information for the referenced projects (_catalog_, and _basket_) into the _frontend_ project.
+In the preceding example, the _frontend_ project references the _catalog_ project and the _basket_ project. The two <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> calls instruct the Aspire project to pass service discovery information for the referenced projects (_catalog_, and _basket_) into the _frontend_ project.
 
 ## Named endpoints
 
@@ -60,7 +60,7 @@ In the preceding JSON:
 - The default endpoint, when resolving `https://basket` is `10.2.3.4:8080`.
 - The "dashboard" endpoint, resolved via `https://_dashboard.basket` is `10.2.3.4:9999`.
 
-### Named endpoints in .NET Aspire
+### Named endpoints in Aspire
 
 ```csharp
 var basket = builder.AddProject<Projects.BasketService>("basket")

@@ -1,17 +1,17 @@
 ---
-title: Eventing in .NET Aspire
-description: Learn how to use the .NET eventing features with .NET Aspire.
+title: Eventing in Aspire
+description: Learn how to use the .NET eventing features with Aspire.
 ms.date: 08/07/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# Eventing in .NET Aspire
+# Eventing in Aspire
 
-In .NET Aspire, eventing allows you to publish and subscribe to events during various [AppHost life cycles](xref:dotnet/aspire/app-host#apphost-life-cycles). Eventing is more flexible than life cycle events. Both let you run arbitrary code during event callbacks, but eventing offers finer control of event timing, publishing, and provides supports for custom events.
+In Aspire, eventing allows you to publish and subscribe to events during various [AppHost life cycles](xref:dotnet/aspire/app-host#apphost-life-cycles). Eventing is more flexible than life cycle events. Both let you run arbitrary code during event callbacks, but eventing offers finer control of event timing, publishing, and provides supports for custom events.
 
-The eventing mechanisms in .NET Aspire are part of the [📦 Aspire.Hosting](https://www.nuget.org/packages/Aspire.Hosting) NuGet package. This package provides a set of interfaces and classes in the <xref:Aspire.Hosting.Eventing> namespace that you use to publish and subscribe to events in your .NET Aspire AppHost project. Eventing is scoped to the AppHost itself and the resources within.
+The eventing mechanisms in Aspire are part of the [📦 Aspire.Hosting](https://www.nuget.org/packages/Aspire.Hosting) NuGet package. This package provides a set of interfaces and classes in the <xref:Aspire.Hosting.Eventing> namespace that you use to publish and subscribe to events in your Aspire AppHost project. Eventing is scoped to the AppHost itself and the resources within.
 
-In this article, you learn how to use the eventing features in .NET Aspire.
+In this article, you learn how to use the eventing features in Aspire.
 
 ## AppHost eventing
 
@@ -31,7 +31,7 @@ To subscribe to the built-in AppHost events, use the eventing API. After you hav
 
 The preceding code is based on the starter template with the addition of the calls to the `Subscribe` API. The `Subscribe<T>` API returns a <xref:Aspire.Hosting.Eventing.DistributedApplicationEventSubscription> instance that you can use to unsubscribe from the event. It's common to discard the returned subscriptions, as you don't usually need to unsubscribe from events as the entire app is torn down when the AppHost is shut down.
 
-When the AppHost is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
+When the AppHost is run, by the time the Aspire dashboard is displayed, you should see the following log output in the console:
 
 :::code language="Plaintext" source="snippets/AspireApp/AspireApp.AppHost/Console.txt" highlight="2,10,12,14,16,22":::
 
@@ -61,7 +61,7 @@ The preceding code subscribes to the `InitializeResourceEvent`, `ResourceReadyEv
 - `OnBeforeResourceStarted`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.BeforeResourceStartedEvent> event.
 - `OnResourceReady`: Subscribes to the <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent> event.
 
-When the AppHost is run, by the time the .NET Aspire dashboard is displayed, you should see the following log output in the console:
+When the AppHost is run, by the time the Aspire dashboard is displayed, you should see the following log output in the console:
 
 :::code language="Plaintext" source="snippets/AspireApp/AspireApp.ResourceAppHost/Console.txt" highlight="8,10,12,14,20":::
 
@@ -92,7 +92,7 @@ The default behavior is `EventDispatchBehavior.BlockingSequential`. To override 
 
 Eventing offers the most flexibility. However, this section explains the alternative: life cycle events.
 
-The .NET Aspire AppHost exposes several life cycles that you can hook into by implementing the <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook> interface. The following lifecycle methods are available:
+The Aspire AppHost exposes several life cycles that you can hook into by implementing the <xref:Aspire.Hosting.Lifecycle.IDistributedApplicationLifecycleHook> interface. The following lifecycle methods are available:
 
 | Order | Method | Description |
 |--|--|--|
@@ -120,5 +120,5 @@ The preferred way to hook into the AppHost life cycle is to use the eventing API
 
 ## See also
 
-- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
-- [Orchestrate resources in .NET Aspire](../fundamentals/orchestrate-resources.md)
+- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Orchestrate resources in Aspire](../fundamentals/orchestrate-resources.md)

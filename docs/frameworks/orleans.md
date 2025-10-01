@@ -1,15 +1,15 @@
 ---
-title: .NET Aspire Orleans integration
-description: Learn how to use the .NET Aspire Orleans hosting integration, which can configure and orchestrate Orleans from a .NET Aspire AppHost project.
+title: Aspire Orleans integration
+description: Learn how to use the Aspire Orleans hosting integration, which can configure and orchestrate Orleans from a Aspire AppHost project.
 ms.date: 11/05/2024
 uid: frameworks/orleans
 ---
 
-# .NET Aspire Orleans integration
+# Aspire Orleans integration
 
-[Orleans](https://github.com/dotnet/orleans) has built-in support for .NET Aspire. .NET Aspire's application model lets you describe the services, databases, and other resources and infrastructure in your app and how they relate to each other. Orleans provides a straightforward way to build distributed applications that are elastically scalable and fault-tolerant. You can use .NET Aspire to configure and orchestrate Orleans and its dependencies, such as by providing Orleans with cluster membership and storage.
+[Orleans](https://github.com/dotnet/orleans) has built-in support for Aspire. Aspire's application model lets you describe the services, databases, and other resources and infrastructure in your app and how they relate to each other. Orleans provides a straightforward way to build distributed applications that are elastically scalable and fault-tolerant. You can use Aspire to configure and orchestrate Orleans and its dependencies, such as by providing Orleans with cluster membership and storage.
 
-Orleans is represented as a resource in .NET Aspire. Unlike other integrations, the Orleans integration doesn't create a container and doesn't require a separate client integration package. Instead you complete the Orleans configuration in the .NET Aspire AppHost project.
+Orleans is represented as a resource in Aspire. Unlike other integrations, the Orleans integration doesn't create a container and doesn't require a separate client integration package. Instead you complete the Orleans configuration in the Aspire AppHost project.
 
 > [!NOTE]
 > This integration requires Orleans version 8.1.0 or later.
@@ -43,9 +43,9 @@ In your AppHost project, call <xref:Aspire.Hosting.OrleansServiceExtensions.AddO
 
 ### Use Azure storage for clustering tables and grain storage
 
-In an Orleans app, the fundamental building block is a **grain**. Grains can have durable states. You must store the durable state for a grain somewhere. In a .NET Aspire application, **Azure Blob Storage** is one possible location.
+In an Orleans app, the fundamental building block is a **grain**. Grains can have durable states. You must store the durable state for a grain somewhere. In a Aspire application, **Azure Blob Storage** is one possible location.
 
-Orleans hosts register themselves in a database and use that database to find each other and form a cluster. They store which servers are members of which silos in a database table. You can use either relational or NoSQL databases to store this information. In a .NET Aspire application, a popular choice to store this table is **Azure Table Storage**.
+Orleans hosts register themselves in a database and use that database to find each other and form a cluster. They store which servers are members of which silos in a database table. You can use either relational or NoSQL databases to store this information. In a Aspire application, a popular choice to store this table is **Azure Table Storage**.
 
 To configure Orleans with clustering and grain storage in Azure, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the AppHost project:
 
@@ -72,13 +72,13 @@ The preceding code tells Orleans that any service referencing it must also refer
 
 ### Add an Orleans server project in the AppHost
 
-Now you can add a new project, enrolled in .NET Aspire orchestration, to your solution as an Orleans server. It will take part in the Orleans cluster as a silo with constituent grains. Reference the Orleans resource from your server project using `WithReference(orleans)`. When you reference the Orleans resource from your service, those resources are also referenced:
+Now you can add a new project, enrolled in Aspire orchestration, to your solution as an Orleans server. It will take part in the Orleans cluster as a silo with constituent grains. Reference the Orleans resource from your server project using `WithReference(orleans)`. When you reference the Orleans resource from your service, those resources are also referenced:
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/AppHost.cs" range="16-22":::
 
 ### Add an Orleans client project in the AppHost
 
-Orleans clients communicate with grains hosted on Orleans servers. In a .NET Aspire app, for example, you might have a front-end Web site that calls grains in an Orleans cluster. Reference the Orleans resource from your Orleans client using `WithReference(orleans.AsClient())`.
+Orleans clients communicate with grains hosted on Orleans servers. In a Aspire app, for example, you might have a front-end Web site that calls grains in an Orleans cluster. Reference the Orleans resource from your Orleans client using `WithReference(orleans.AsClient())`.
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/AppHost.cs" range="24-29":::
 
@@ -168,7 +168,7 @@ The following code is a complete example of an Orleans client project. It calls 
 
 ## Enabling OpenTelemetry
 
-By convention, .NET Aspire solutions include a project for defining default configuration and behavior for your service. This project is called the _service defaults_ project and templates create it with a name ending in _ServiceDefaults_. To configure Orleans for OpenTelemetry in .NET Aspire, apply configuration to your service defaults project following the [Orleans observability](/dotnet/orleans/host/monitoring/) guide.
+By convention, Aspire solutions include a project for defining default configuration and behavior for your service. This project is called the _service defaults_ project and templates create it with a name ending in _ServiceDefaults_. To configure Orleans for OpenTelemetry in Aspire, apply configuration to your service defaults project following the [Orleans observability](/dotnet/orleans/host/monitoring/) guide.
 
 Modify the `ConfigureOpenTelemetry` method to add the Orleans _meters_ and _tracing_ instruments. The following code snippet shows the modified _Extensions.cs_ file from a service defaults project that includes metrics and traces from Orleans.
 

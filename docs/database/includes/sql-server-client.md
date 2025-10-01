@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-To get started with the .NET Aspire SQL Server client integration, install the [📦 Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package in the client-consuming project, that is, the project for the application that uses the SQL Server client. The SQL Server client integration registers a <xref:System.Data.SqlClient.SqlConnection> instance that you can use to interact with SQL Server.
+To get started with the Aspire SQL Server client integration, install the [📦 Aspire.Microsoft.Data.SqlClient](https://www.nuget.org/packages/Aspire.Microsoft.Data.SqlClient) NuGet package in the client-consuming project, that is, the project for the application that uses the SQL Server client. The SQL Server client integration registers a <xref:System.Data.SqlClient.SqlConnection> instance that you can use to interact with SQL Server.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -68,7 +68,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire SQL Server integration provides multiple options to configure the connection based on the requirements and conventions of your project.
+The Aspire SQL Server integration provides multiple options to configure the connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -92,7 +92,7 @@ For more information on how to format this connection string, see the [Connectio
 
 #### Use configuration providers
 
-The .NET Aspire SQL Server integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Microsoft.Data.SqlClient.MicrosoftDataSqlClientSettings> from configuration by using the `Aspire:Microsoft:Data:SqlClient` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire SQL Server integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Microsoft.Data.SqlClient.MicrosoftDataSqlClientSettings> from configuration by using the `Aspire:Microsoft:Data:SqlClient` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -124,9 +124,9 @@ builder.AddSqlServerClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../../fundamentals/integrations-overview.md).
 
-The .NET Aspire SQL Server integration:
+The Aspire SQL Server integration:
 
 - Adds the health check when <xref:Aspire.Microsoft.Data.SqlClient.MicrosoftDataSqlClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the SQL Server.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -135,17 +135,17 @@ The .NET Aspire SQL Server integration:
 
 #### Logging
 
-The .NET Aspire SQL Server integration currently doesn't enable logging by default due to limitations of the <xref:Microsoft.Data.SqlClient>.
+The Aspire SQL Server integration currently doesn't enable logging by default due to limitations of the <xref:Microsoft.Data.SqlClient>.
 
 #### Tracing
 
-The .NET Aspire SQL Server integration emits the following tracing activities using OpenTelemetry:
+The Aspire SQL Server integration emits the following tracing activities using OpenTelemetry:
 
 - `OpenTelemetry.Instrumentation.SqlClient`
 
 #### Metrics
 
-The .NET Aspire SQL Server integration will emit the following metrics using OpenTelemetry:
+The Aspire SQL Server integration will emit the following metrics using OpenTelemetry:
 
 - Microsoft.Data.SqlClient.EventSource
   - `active-hard-connections`

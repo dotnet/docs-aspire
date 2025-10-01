@@ -14,11 +14,11 @@ helpviewer_keywords:
 
 > 'Project' is referenced by an Aspire Host project, but it is not an executable. Did you mean to set IsAspireProjectResource="false"?
 
-The project being referenced byt the .NET Aspire AppHost isn't an executable, but is being treated like one for the purposes of orchestration.
+The project being referenced byt the Aspire AppHost isn't an executable, but is being treated like one for the purposes of orchestration.
 
 ## To correct this warning
 
-Either change the build type of the project to an executable, or add the `IsAspireProjectResource="false"` setting to the project reference in your .NET Aspire AppHost project file, as demonstrated in the following snippet:
+Either change the build type of the project to an executable, or add the `IsAspireProjectResource="false"` setting to the project reference in your Aspire AppHost project file, as demonstrated in the following snippet:
 
 ```xml
 <ItemGroup>

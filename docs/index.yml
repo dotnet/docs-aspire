@@ -1,14 +1,14 @@
 ### YamlMime:Hub
 
-title: .NET Aspire documentation
+title: Aspire documentation
 # Limit summary to 400 characters
-summary: .NET Aspire provides tools, templates, and packages for building observable, production-ready distributed apps. Build with a code-first app model, develop locally with unified tooling, and deploy anywhere—cloud, Kubernetes, or your servers.
+summary: Aspire provides tools, templates, and packages for building observable, production-ready distributed apps. Build with a code-first app model, develop locally with unified tooling, and deploy anywhere—cloud, Kubernetes, or your servers.
 brand: dotnet
 
 metadata:
-  title: .NET Aspire documentation
+  title: Aspire documentation
   # Limit description to 165 characters
-  description: .NET Aspire provides tools, templates, and packages for building observable, production-ready distributed apps with unified development.
+  description: Aspire provides tools, templates, and packages for building observable, production-ready distributed apps with unified development.
   ms.topic: hub-page
   ms.service: dotnet-aspire
   ms.date: 08/08/2025
@@ -16,71 +16,71 @@ metadata:
 highlightedContent:
   items:
   - itemType: overview
-    title: .NET Aspire overview
+    title: Aspire overview
     url: get-started/aspire-overview.md
   - itemType: quickstart
-    title: Build your first .NET Aspire solution
+    title: Build your first Aspire solution
     url: get-started/build-your-first-aspire-app.md
   - itemType: concept
     title: AppHost orchestration
     url: fundamentals/app-host-overview.md
   - itemType: concept
-    title: .NET Aspire integrations
+    title: Aspire integrations
     url: fundamentals/integrations-overview.md
   - itemType: concept
     title: Service discovery
     url: service-discovery/overview.md
   - itemType: deploy
-    title: Deploy a .NET Aspire projects
+    title: Deploy a Aspire projects
     url: deployment/overview.md
   - itemType: overview
-    title: .NET Aspire dashboard
+    title: Aspire dashboard
     url: fundamentals/dashboard/overview.md
   - itemType: whats-new
-    title: What's new in .NET Aspire
+    title: What's new in Aspire
     url: whats-new/index.yml
 
 conceptualContent:
   # itemType: architecture | concept | deploy | download | get-started | how-to-guide | training | overview | quickstart | reference | sample | tutorial | video | whats-new
-  summary: Explore various aspects of .NET Aspire, including getting started, storage, database, messaging, caching, frameworks, deployment, and troubleshooting.
+  summary: Explore various aspects of Aspire, including getting started, storage, database, messaging, caching, frameworks, deployment, and troubleshooting.
   items:
   - title: Get Started
     links:
     - itemType: concept
-      text: .NET Aspire overview
+      text: Aspire overview
       url: get-started/aspire-overview.md
     - itemType: quickstart
-      text: Build your first .NET Aspire solution
+      text: Build your first Aspire solution
       url: get-started/build-your-first-aspire-app.md
     - itemType: sample
-      text: Add a Node.js app to a .NET Aspire project
+      text: Add a Node.js app to a Aspire project
       url: get-started/build-aspire-apps-with-nodejs.md
     - itemType: how-to-guide
-      text: .NET Aspire setup and tooling
+      text: Aspire setup and tooling
       url: fundamentals/setup-tooling.md
     - itemType: concept
-      text: .NET Aspire service discovery
+      text: Aspire service discovery
       url: service-discovery/overview.md
     - itemType: concept
-      text: .NET Aspire and launch profiles
+      text: Aspire and launch profiles
       url: fundamentals/launch-profiles.md
     - itemType: reference
-      text: .NET Aspire service defaults
+      text: Aspire service defaults
       url: fundamentals/service-defaults.md
     - itemType: reference
-      text: .NET Aspire dashboard
+      text: Aspire dashboard
       url: fundamentals/dashboard/overview.md
     - itemType: reference
-      text: .NET Aspire dashboard and GitHub Copilot
+      text: Aspire dashboard and GitHub Copilot
       url: fundamentals/dashboard/copilot.md
     - itemType: overview
-      text: .NET Aspire local networking
+      text: Aspire local networking
       url: fundamentals/networking-overview.md
 
   - title: Storage integrations
     links:
     - itemType: tutorial
-      text: Connect to storage with .NET Aspire
+      text: Connect to storage with Aspire
       url: storage/azure-storage-integrations.md
     - itemType: how-to-guide
       text: Azure Blob Storage
@@ -131,7 +131,7 @@ conceptualContent:
   - title: Messaging integrations
     links:
     - itemType: tutorial
-      text: Implement Messaging with .NET Aspire
+      text: Implement Messaging with Aspire
       url: messaging/messaging-integrations.md
     - itemType: overview
       text: Azure Event Hubs
@@ -155,7 +155,7 @@ conceptualContent:
   - title: Caching integrations
     links:
     - itemType: tutorial
-      text: Improve app caching with .NET Aspire
+      text: Improve app caching with Aspire
       url: caching/caching-integrations.md
     - itemType: overview
       text: Stack Exchange Redis caching overview
@@ -173,13 +173,13 @@ conceptualContent:
   - title: Framework integrations
     links:
     - itemType: overview
-      text: Use Orleans with .NET Aspire
+      text: Use Orleans with Aspire
       url: frameworks/orleans.md
     - itemType: sample
       text: Orleans voting sample
       url: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
     - itemType: overview
-      text: Use Dapr with .NET Aspire
+      text: Use Dapr with Aspire
       url: community-toolkit/dapr.md
     - itemType: sample
       text: Dapr integration sample
@@ -200,7 +200,7 @@ conceptualContent:
       text: Integrate with Application Insights
       url: deployment/azure/application-insights.md
     - itemType: reference
-      text: .NET Aspire deployment manifest format
+      text: Aspire deployment manifest format
       url: deployment/manifest-format.md
 
   - title: Troubleshooting
@@ -225,34 +225,34 @@ conceptualContent:
       text: Ask questions on Discord
       url: https://aka.ms/aspire/discord
     - itemType: reference
-      text: Stack Overflow — .NET Aspire
+      text: Stack Overflow — Aspire
       url: https://stackoverflow.com/questions/tagged/dotnet-aspire
 
   - title: Training
     links:
     - itemType: training
-      text: Introduction to .NET Aspire
+      text: Introduction to Aspire
       url: /training/modules/introduction-dotnet-aspire
     - itemType: training
-      text: Create a .NET Aspire project
+      text: Create a Aspire project
       url: /training/modules/create-aspire-applications
     - itemType: training
-      text: Use telemetry in a .NET Aspire project
+      text: Use telemetry in a Aspire project
       url: /training/modules/use-telemetry-dotnet-aspire
     - itemType: training
-      text: Use databases in a .NET Aspire project
+      text: Use databases in a Aspire project
       url: /training/modules/use-databases-dotnet-aspire-app/
     - itemType: training
-      text: Improve performance with a cache in a .NET Aspire project
+      text: Improve performance with a cache in a Aspire project
       url: /training/modules/improve-performance-cache-aspire/
     - itemType: training
-      text: Send messages with RabbitMQ in a .NET Aspire project
+      text: Send messages with RabbitMQ in a Aspire project
       url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
 
 additionalContent:
   sections:
   - title: .NET extensions
-    summary: Learn about .NET extensions, including logging, dependency injection, configuration, and more. All of which are fundamental in .NET Aspire.
+    summary: Learn about .NET extensions, including logging, dependency injection, configuration, and more. All of which are fundamental in Aspire.
     items:
     - title: Fundamentals
       links:
@@ -298,7 +298,7 @@ additionalContent:
       links:
       - text: .NET documentation
         url: /dotnet
-      - text: .NET Aspire samples browser
+      - text: Aspire samples browser
         url: /samples/browse/?expanded=dotnet&terms=aspire
       - text: ASP.NET documentation
         url: /aspnet
@@ -308,7 +308,7 @@ additionalContent:
         url: /dotnet/csharp
       - text: .NET Discord
         url: https://aka.ms/aspire/discord
-      - text: Official .NET Aspire Collection
+      - text: Official Aspire Collection
         url: /collections/2203hjxnnrop11
     - title: Webcasts and shows
       links:
@@ -322,13 +322,13 @@ additionalContent:
         url: https://dotnet.microsoft.com/live/on-dotnet-live
       - text: .NET Community Standup
         url: https://dotnet.microsoft.com/platform/community/standup
-      - text: Welcome to .NET Aspire
+      - text: Welcome to Aspire
         url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oUfIayQMrRqaSL55Rkck-GD
     - title: Open source
       links:
-      - text: .NET Aspire
+      - text: Aspire
         url: https://github.com/dotnet/aspire
-      - text: .NET Aspire samples
+      - text: Aspire samples
         url: https://github.com/dotnet/aspire-samples
       - text: .NET samples
         url: https://github.com/dotnet/samples
@@ -348,16 +348,16 @@ additionalContent:
         url: https://dotnetfoundation.org
       - text: We Are .NET
         url: https://www.wearedotnet.io
-      - text: .NET Aspire YouTube playlist
+      - text: Aspire YouTube playlist
         url: https://www.youtube.com/playlist?list=PLdo4fOcmZ0oWTWWbWXqhn2w8NM3sQ_qDz
-      - text: .NET Aspire on YouTube
+      - text: Aspire on YouTube
         url: https://www.youtube.com/results?search_query=.NET+Aspire
 
   - title: API and language reference
     summary: Search the .NET API and language reference documentation.
     items:
-    - title: ".NET Aspire API reference"
-      summary: API reference documentation for .NET Aspire
+    - title: "Aspire API reference"
+      summary: API reference documentation for Aspire
       url: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
     - title: ".NET API reference"
       summary: API reference documentation for .NET
@@ -366,4 +366,4 @@ additionalContent:
       summary: API reference documentation for ASP.NET Core
       url: /dotnet/api?view=aspnetcore-9.0&preserve-view=true
 
-  footer: "Are you interested in contributing to the .NET Aspire docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute). Interested in the official support policy, see [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)."
+  footer: "Are you interested in contributing to the Aspire docs? For more information, see our [contributor guide](/contribute/dotnet/dotnet-contribute). Interested in the official support policy, see [Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)."

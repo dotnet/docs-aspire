@@ -1,11 +1,11 @@
 ---
-title: API removal in .NET Aspire
+title: API removal in Aspire
 titleSuffix: ""
 description: Learn about .NET's policy for obsoleting and removing APIs.
 ms.date: 10/24/2024
 ---
 
-# API removal in .NET Aspire
+# API removal in Aspire
 
 .NET takes compatibility with existing code seriously, and rarely removes a public API that has been released. Removals are made only when there are no other reasonable alternatives. Where such breaking changes can't be avoided, mitigations are publicized in advance using the following means:
 
@@ -17,4 +17,4 @@ In most cases, an API that shipped in a long-term support (LTS) release is obsol
 
 ## See also
 
-- [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)
+- [Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)

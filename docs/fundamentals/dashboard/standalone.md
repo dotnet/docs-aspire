@@ -1,19 +1,19 @@
 ---
-title: Standalone .NET Aspire dashboard
-description: How to use the .NET Aspire dashboard standalone.
+title: Standalone Aspire dashboard
+description: How to use the Aspire dashboard standalone.
 ms.date: 04/15/2025
 ms.topic: reference
 ms.custom: sfi-image-nochange
 ---
 
-# Standalone .NET Aspire dashboard
+# Standalone Aspire dashboard
 
-The [.NET Aspire dashboard](overview.md) provides a great UI for viewing telemetry. The dashboard:
+The [Aspire dashboard](overview.md) provides a great UI for viewing telemetry. The dashboard:
 
 - Ships as a container image that can be used with any OpenTelemetry enabled app.
-- Can be used standalone, without the rest of .NET Aspire.
+- Can be used standalone, without the rest of Aspire.
 
-:::image type="content" source="media/standalone/standalone-mode.png" lightbox="media/standalone/standalone-mode.png" alt-text="A screenshot of the .NET Aspire dashboard running in standalone mode.":::
+:::image type="content" source="media/standalone/standalone-mode.png" lightbox="media/standalone/standalone-mode.png" alt-text="A screenshot of the Aspire dashboard running in standalone mode.":::
 
 ## Start the dashboard
 
@@ -54,7 +54,7 @@ Data displayed in the dashboard can be sensitive. By default, the dashboard is s
 
 When the dashboard is run from a standalone container, the login token is printed to the container logs. The logs are displayed in the Docker Desktop user interface on the **Logs** tab for the **aspire-dashboard** container:
 
-:::image type="content" source="media/standalone/aspire-dashboard-container-log.png" lightbox="media/standalone/aspire-dashboard-container-log.png" alt-text="Screenshot of the .NET Aspire dashboard container logs.":::
+:::image type="content" source="media/standalone/aspire-dashboard-container-log.png" lightbox="media/standalone/aspire-dashboard-container-log.png" alt-text="Screenshot of the Aspire dashboard container logs.":::
 
 After copying the highlighted token into the login page, select the *Login* button.
 
@@ -104,7 +104,7 @@ Although there is no restriction on where the dashboard is run, the dashboard is
 
 ### Unavailable features when standalone
 
-The dashboard has functionality for viewing .NET Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
+The dashboard has functionality for viewing Aspire resources. The dashboard resource features are disabled when it is run in standalone mode. To enable the resources UI, [add configuration for a resource service](configuration.md#resources).
 
 [GitHub Copilot functionality](copilot.md) isn't available in the standalone dashboard. Copilot uses a connection to your IDE to communicate with GitHub Copilot and that connection isn't available when the dashboard is in standalone mode.
 
@@ -132,9 +132,9 @@ To configure applications:
 
 ## Sample
 
-For a sample of using the standalone dashboard, see the [Standalone .NET Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
+For a sample of using the standalone dashboard, see the [Standalone Aspire dashboard sample app](/samples/dotnet/aspire-samples/aspire-standalone-dashboard).
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Configure the .NET Aspire dashboard](configuration.md)
+> [Configure the Aspire dashboard](configuration.md)

@@ -14,7 +14,7 @@ helpviewer_keywords:
 
 > `AddPythonApp` is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-.NET Aspire provides a way to add Python executables or applications to the .NET Aspire AppHost with the `AddPythonApp` extension. Since the shape of this API is expected to change in the future, it's experimental.
+Aspire provides a way to add Python executables or applications to the Aspire AppHost with the `AddPythonApp` extension. Since the shape of this API is expected to change in the future, it's experimental.
 
 ## Example
 

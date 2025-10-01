@@ -1,6 +1,6 @@
 ## Initialize the template
 
-1. Open a new terminal window and `cd` into the directory of your .NET Aspire solution.
+1. Open a new terminal window and `cd` into the directory of your Aspire solution.
 
 1. Execute the `azd init` command to initialize your project with `azd`, which will inspect the local directory structure and determine the type of app.
 
@@ -19,7 +19,7 @@
       Create a minimal project
     ```
 
-1. After scanning the directory, `azd` prompts you to confirm that it found the correct .NET Aspire _AppHost_ project. Select the **Confirm and continue initializing my app** option.
+1. After scanning the directory, `azd` prompts you to confirm that it found the correct Aspire _AppHost_ project. Select the **Confirm and continue initializing my app** option.
 
     ```Output
     Detected services:
@@ -48,6 +48,6 @@
 
 `azd` generates a number of files and places them into the working directory. These files are:
 
-- _azure.yaml_: Describes the services of the app, such as .NET Aspire AppHost project, and maps them to Azure resources.
+- _azure.yaml_: Describes the services of the app, such as Aspire AppHost project, and maps them to Azure resources.
 - _.azure/config.json_: Configuration file that informs `azd` what the current active environment is.
 - _.azure/aspireazddev/.env_: Contains environment specific overrides.

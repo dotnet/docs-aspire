@@ -14,13 +14,13 @@ helpviewer_keywords:
 
 > `ConfigureCustomDomain` is for evaluation purposes only and is subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-.NET Aspire 9.0 introduces the ability to customize container app resources using any of the following extension methods:
+Aspire 9.0 introduces the ability to customize container app resources using any of the following extension methods:
 
 - `Aspire.Hosting.AzureContainerAppProjectExtensions.PublishAsAzureContainerApp`
 - `Aspire.Hosting.AzureContainerAppContainerExtensions.PublishAsAzureContainerApp`
 - `Aspire.Hosting.AzureContainerAppExecutableExtensions.PublishAsAzureContainerApp`
 
-When you use one of these methods, the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain` method to configure a custom domain within the .NET Aspire AppHost.
+When you use one of these methods, the Azure Developer CLI (`azd`) can no longer preserve custom domains. Instead use the `Aspire.Hosting.ContainerAppExtensions.ConfigureCustomDomain` method to configure a custom domain within the Aspire AppHost.
 
 However, `app.ConfigureCustomDomain` is an experimental API and you must suppress it to use it.
 

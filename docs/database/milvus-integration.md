@@ -1,12 +1,12 @@
 ---
-title: .NET Aspire Milvus database integration
-description: Learn how to use the .NET Aspire Milvus database integration, which includes both hosting and client integrations.
+title: Aspire Milvus database integration
+description: Learn how to use the Aspire Milvus database integration, which includes both hosting and client integrations.
 ms.date: 02/14/2025
 uid: database/milvus-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Milvus database integration
+# Aspire Milvus database integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 Vector data encodes information as mathematical vectors, which are arrays of numbers or coordinates. Machine learning and AI systems often use vectors to represent unstructured objects like images, text, audio, or video. Each dimension in the vector describes a specific characteristic of the object. By comparing them, systems can classify, search, and identify clusters of objects.
 
-In this article, you learn how to use the .NET Aspire Milvus database integration. The .NET Aspire Milvus database integration enables you to connect to existing Milvus databases or create new instances with the [`milvusdb/milvus` container image](https://hub.docker.com/r/milvusdb/milvus).
+In this article, you learn how to use the Aspire Milvus database integration. The Aspire Milvus database integration enables you to connect to existing Milvus databases or create new instances with the [`milvusdb/milvus` container image](https://hub.docker.com/r/milvusdb/milvus).
 
 ## Hosting integration
 
@@ -59,7 +59,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The Milvus container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `milvusdb/milvus` image, it creates a new Milvus instance on your local machine. A reference to your Milvus resource builder (the `milvus` variable) is used to add a database. The database is named `milvusdb` and then added to the `ExampleProject`.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `milvusdb/milvus` image, it creates a new Milvus instance on your local machine. A reference to your Milvus resource builder (the `milvus` variable) is used to add a database. The database is named `milvusdb` and then added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `milvusdb`.
 
@@ -139,7 +139,7 @@ Data bind mounts rely on the host machine's filesystem to persist the Milvus dat
 
 [Attu](https://zilliz.com/attu) is a graphical user interface (GUI) and management tool designed to interact with Milvus and its databases. It includes rich visualization features that can help you investigate and understand your vector data.
 
-If you want to use Attu to manage Milvus in your .NET Aspire solution, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithAttu*> extension method on your Milvus resource. The method creates a container from the [`zilliz/attu` image](https://hub.docker.com/r/zilliz/attu):
+If you want to use Attu to manage Milvus in your Aspire solution, call the <xref:Aspire.Hosting.MilvusBuilderExtensions.WithAttu*> extension method on your Milvus resource. The method creates a container from the [`zilliz/attu` image](https://hub.docker.com/r/zilliz/attu):
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -157,11 +157,11 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When you debug the .NET Aspire solution, you'll see an Attu container listed in the solution's resources. Select the resource's endpoint to open the GUI and start managing databases.
+When you debug the Aspire solution, you'll see an Attu container listed in the solution's resources. Select the resource's endpoint to open the GUI and start managing databases.
 
 ## Client integration (Preview)
 
-To get started with the .NET Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a [Milvus.Client.MilvusClient](https://github.com/milvus-io/milvus-sdk-csharp) instance that you can use to interact with Milvus databases.
+To get started with the Aspire Milvus client integration, install the [📦 Aspire.Milvus.Client](https://www.nuget.org/packages/Aspire.Milvus.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Milvus database client. The Milvus client integration registers a [Milvus.Client.MilvusClient](https://github.com/milvus-io/milvus-sdk-csharp) instance that you can use to interact with Milvus databases.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -227,10 +227,10 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Milvus client integration provides multiple options to configure the connection to Milvus based on the requirements and conventions of your project.
+The Aspire Milvus client integration provides multiple options to configure the connection to Milvus based on the requirements and conventions of your project.
 
 > [!TIP]
-> The default use is `root` and the default password is `Milvus`. To configure a different password in the Milvus container, see [Handling credentials and passing other parameters for the Milvus resource](#handling-credentials-and-passing-other-parameters-for-the-milvus-resource). Use the following techniques to configure consuming client apps in your .NET Aspire solution with the same password or other settings.
+> The default use is `root` and the default password is `Milvus`. To configure a different password in the Milvus container, see [Handling credentials and passing other parameters for the Milvus resource](#handling-credentials-and-passing-other-parameters-for-the-milvus-resource). Use the following techniques to configure consuming client apps in your Aspire solution with the same password or other settings.
 
 #### Use a connection string
 
@@ -254,7 +254,7 @@ By default the `MilvusClient` uses the gRPC API endpoint.
 
 #### Use configuration providers
 
-The .NET Aspire Milvus client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Milvus.Client.MilvusClientSettings> from configuration by using the `Aspire:Milvus:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The Aspire Milvus client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Milvus.Client.MilvusClientSettings> from configuration by using the `Aspire:Milvus:Client` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -285,9 +285,9 @@ builder.AddMilvusClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Milvus database integration:
+The Aspire Milvus database integration:
 
 - Adds the health check when <xref:Aspire.Milvus.Client.MilvusClientSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Milvus server.
 - Uses the configured client to perform a `HealthAsync`. If the result _is healthy_, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
@@ -296,22 +296,22 @@ The .NET Aspire Milvus database integration:
 
 #### Logging
 
-The .NET Aspire Milvus database integration uses standard .NET logging, and you'll see log entries from the following category:
+The Aspire Milvus database integration uses standard .NET logging, and you'll see log entries from the following category:
 
 - `Milvus.Client`
 
 #### Tracing
 
-The .NET Aspire Milvus database integration doesn't currently emit tracing activities because they are not supported by the `Milvus.Client` library.
+The Aspire Milvus database integration doesn't currently emit tracing activities because they are not supported by the `Milvus.Client` library.
 
 #### Metrics
 
-The .NET Aspire Milvus database integration doesn't currently emit metrics because they are not supported by the `Milvus.Client` library.
+The Aspire Milvus database integration doesn't currently emit metrics because they are not supported by the `Milvus.Client` library.
 
 ## See also
 
 - [Milvus](https://milvus.io/)
 - [Milvus GitHub repo](https://github.com/milvus-io/milvus)
 - [Milvus .NET SDK](https://github.com/milvus-io/milvus-sdk-csharp)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

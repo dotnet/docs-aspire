@@ -1,18 +1,18 @@
 ---
 title: Rust hosting
 author: Alirexaa
-description: Learn how to use the .NET Aspire Rust hosting integration to host Rust applications.
+description: Learn how to use the Aspire Rust hosting integration to host Rust applications.
 ms.date: 11/15/2024
 ---
 
-# .NET Aspire Rust hosting
+# Aspire Rust hosting
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
 [Rust](https://www.rust-lang.org/) is a general-purpose programming language emphasizing performance, type safety, and concurrency. It enforces memory safety, meaning that all references point to valid memory.
-The .NET Aspire Rust hosting integration allows you to host Rust applications in your .NET Aspire AppHost project, and provide it to other resources in your application.
+The Aspire Rust hosting integration allows you to host Rust applications in your Aspire AppHost project, and provide it to other resources in your application.
 
 ## Hosting integration
 
@@ -65,6 +65,6 @@ The Rust application can be added as a reference to other resources in the AppHo
 
 ## See also
 
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
 - [Sample Rust app](https://github.com/CommunityToolkit/Aspire/tree/main/examples/rust)
 - [Install Rust](https://www.rust-lang.org/tools/install)

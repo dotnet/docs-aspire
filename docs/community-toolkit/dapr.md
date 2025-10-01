@@ -1,25 +1,25 @@
 ---
 title: NET Aspire Dapr integration
-description: Learn how to use the .NET Aspire Dapr integration, which can configure and orchestrate Dapr from a .NET Aspire AppHost project.
+description: Learn how to use the Aspire Dapr integration, which can configure and orchestrate Dapr from a Aspire AppHost project.
 ms.date: 05/12/2025
 uid: frameworks/dapr
 ---
 
-# .NET Aspire Dapr integration
+# Aspire Dapr integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-[Distributed Application Runtime (Dapr)](https://docs.dapr.io/) offers developer APIs that serve as a conduit for interacting with other services and dependencies and abstract the application from the specifics of those services and dependencies. Dapr and .NET Aspire can work together to improve your local development experience. By using Dapr with .NET Aspire, you can focus on writing and implementing .NET-based distributed applications instead of local on-boarding.
+[Distributed Application Runtime (Dapr)](https://docs.dapr.io/) offers developer APIs that serve as a conduit for interacting with other services and dependencies and abstract the application from the specifics of those services and dependencies. Dapr and Aspire can work together to improve your local development experience. By using Dapr with Aspire, you can focus on writing and implementing .NET-based distributed applications instead of local on-boarding.
 
-In this guide, you'll learn how to take advantage of Dapr's abstraction and .NET Aspire's opinionated configuration of cloud technologies to build simple, portable, resilient, and secured microservices at scale.
+In this guide, you'll learn how to take advantage of Dapr's abstraction and Aspire's opinionated configuration of cloud technologies to build simple, portable, resilient, and secured microservices at scale.
 
-## Comparing .NET Aspire and Dapr
+## Comparing Aspire and Dapr
 
-At first sight Dapr and .NET Aspire may look like they have overlapping functionality, and they do. However, they take different approaches. .NET Aspire is opinionated on how to build distributed applications on a cloud platform and focuses on improving the local development experience. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform both during development and in production. It relies on sidecars to provide abstractions for things like configuration, secret management, and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
+At first sight Dapr and Aspire may look like they have overlapping functionality, and they do. However, they take different approaches. Aspire is opinionated on how to build distributed applications on a cloud platform and focuses on improving the local development experience. Dapr is a runtime that abstracts away the common complexities of the underlying cloud platform both during development and in production. It relies on sidecars to provide abstractions for things like configuration, secret management, and messaging. The underlying technology can be easily switched out through configuration files, while your code does not need to change.
 
-| Aspect | .NET Aspire | Dapr |
+| Aspect | Aspire | Dapr |
 | --- | --- | --- |
 | Purpose | Designed to make it easier to develop cloud-native solutions on local development computers. | Designed to make it easier to develop and run distributed apps with common APIs that can be easily swapped. |
 | APIs | Developers must call resource APIs using their specific SDKs | Developers call APIs in the Dapr sidecar, which forwards the call to the correct API. It's easy to swap resource APIs without changing code in your microservices. |
@@ -28,22 +28,22 @@ At first sight Dapr and .NET Aspire may look like they have overlapping function
 | Deployment | There are deployment tools for Azure and Kubernetes. | Doesn't include deployment tools. Apps are usually deployed with Continuous Integration/Continuous Development (CI/CD) systems. |
 | Dashboard | Provides a comprehensive view of the resources and their telemetry and supports listening on any OTEL supported resource. | Limited to Dapr resources only. |
 
-.NET Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
+Aspire makes setting up and debugging Dapr applications easier by providing a straightforward API to configure Dapr sidecars, and by exposing the sidecars as resources in the dashboard.
 
-### Explore Dapr components with .NET Aspire
+### Explore Dapr components with Aspire
 
-Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use Dapr with .NET Aspire you can easily explore and configure these components. Don't confuse these components with .NET Aspire integrations. For example, consider the following:
+Dapr provides many [built-in components](https://docs.dapr.io/concepts/components-concept), and when you use Dapr with Aspire you can easily explore and configure these components. Don't confuse these components with Aspire integrations. For example, consider the following:
 
-- [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call `AddDaprStateStore` to add a configured state store to your .NET Aspire project.
-- [Dapr—Pub Sub](https://docs.dapr.io/concepts/components-concept/#pubsub-brokers): Call `AddDaprPubSub` to add a configured pub sub to your .NET Aspire project.
-- Dapr—Components: Call `AddDaprComponent` to add a configured integration to your .NET Aspire project.
+- [Dapr—State stores](https://docs.dapr.io/concepts/components-concept/#state-stores): Call `AddDaprStateStore` to add a configured state store to your Aspire project.
+- [Dapr—Pub Sub](https://docs.dapr.io/concepts/components-concept/#pubsub-brokers): Call `AddDaprPubSub` to add a configured pub sub to your Aspire project.
+- Dapr—Components: Call `AddDaprComponent` to add a configured integration to your Aspire project.
 
 ## Install Dapr
 
 This integration requires Dapr version 1.13 or later. To install Dapr, see [Install the Dapr CLI](https://docs.dapr.io/getting-started/install-dapr-cli/). After installing the Dapr CLI, run the `dapr init`, as described in [Initialize Dapr in your local environment](https://docs.dapr.io/getting-started/install-dapr-selfhost/).
 
 > [!IMPORTANT]
-> If you attempt to run the .NET Aspire solution without the Dapr CLI, you'll receive the following error:
+> If you attempt to run the Aspire solution without the Dapr CLI, you'll receive the following error:
 >
 > ```plaintext
 > Unable to locate the Dapr CLI.
@@ -51,7 +51,7 @@ This integration requires Dapr version 1.13 or later. To install Dapr, see [Inst
 
 ## Hosting integration
 
-In your .NET Aspire solution, to integrate Dapr and access its types and APIs, add the [📦 CommunityToolkit.Aspire.Hosting.Dapr](https://www.nuget.org/packages/CommunityToolkit.Aspire.Hosting.Dapr) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+In your Aspire solution, to integrate Dapr and access its types and APIs, add the [📦 CommunityToolkit.Aspire.Hosting.Dapr](https://www.nuget.org/packages/CommunityToolkit.Aspire.Hosting.Dapr) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -70,11 +70,11 @@ dotnet add package CommunityToolkit.Aspire.Hosting.Dapr
 
 For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package) or [Manage package dependencies in .NET applications](/dotnet/core/tools/dependencies).
 
-### Add Dapr sidecar to .NET Aspire resources
+### Add Dapr sidecar to Aspire resources
 
 Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/). The Dapr sidecar runs alongside your app as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your app.
 
-To add a sidecar to a .NET Aspire resource, call the `WithDaprSidecar` method on it. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
+To add a sidecar to a Aspire resource, call the `WithDaprSidecar` method on it. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/AppHost.cs" range="1-7"  highlight="7":::
 
@@ -86,20 +86,20 @@ The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar opt
 
 ### Complete Dapr AppHost example
 
-Putting everything together, consider the following example of a .NET Aspire AppHost project that includes:
+Putting everything together, consider the following example of a Aspire AppHost project that includes:
 
 - A backend API service that declares a Dapr sidecar with defaults.
 - A web frontend project that declares a Dapr sidecar with specific options, such as explict ports.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/AppHost.cs":::
 
-When you start the .NET Aspire solution, the dashboard shows the Dapr sidecar as a resource, with its status and logs.
+When you start the Aspire solution, the dashboard shows the Dapr sidecar as a resource, with its status and logs.
 
-:::image type="content" source="media/aspire-dashboard-dapr-sidecar-resources.png" lightbox="media/aspire-dashboard-dapr-sidecar-resources.png" alt-text=".NET Aspire dashboard showing Dapr sidecar resources":::
+:::image type="content" source="media/aspire-dashboard-dapr-sidecar-resources.png" lightbox="media/aspire-dashboard-dapr-sidecar-resources.png" alt-text="Aspire dashboard showing Dapr sidecar resources":::
 
-## Use Dapr sidecars in consuming .NET Aspire projects
+## Use Dapr sidecars in consuming Aspire projects
 
-To use Dapr APIs from .NET Aspire resources, you can use the [📦 Dapr.AspNetCore/](https://www.nuget.org/packages/Dapr.AspNetCore/) NuGet package. The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
+To use Dapr APIs from Aspire resources, you can use the [📦 Dapr.AspNetCore/](https://www.nuget.org/packages/Dapr.AspNetCore/) NuGet package. The Dapr SDK provides a set of APIs to interact with Dapr sidecars.
 
 > [!NOTE]
 > Use the `Dapr.AspNetCore` library for the Dapr integration with ASP.NET (DI integration, registration of subscriptions, etc.). Non-ASP.NET apps (such as console apps) can just use the [📦 Dapr.Client](https://www.nuget.org/packages/Dapr.Client) to make calls through the Dapr sidecar.
@@ -158,6 +158,6 @@ When the Dapr SDK is used, the Dapr sidecar is called over HTTP. The Dapr sideca
 - [Dapr](https://dapr.io/)
 - [Dapr documentation](https://docs.dapr.io/)
 - [Dapr GitHub repo](https://github.com/dapr/dapr)
-- [.NET Aspire Dapr sample app](https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire Dapr sample app](https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

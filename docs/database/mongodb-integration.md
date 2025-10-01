@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire MongoDB database integration
-description: Learn how to use the .NET Aspire MongoDB database integration, which includes both hosting and client integrations.
+title: Aspire MongoDB database integration
+description: Learn how to use the Aspire MongoDB database integration, which includes both hosting and client integrations.
 ms.date: 02/19/2025
 uid: database/mongodb-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire MongoDB database integration
+# Aspire MongoDB database integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[MongoDB](https://www.mongodb.com) is a NoSQL database that provides high performance, high availability, and easy scalability. The .NET Aspire MongoDB integration enables you to connect to existing MongoDB instances (including [MongoDB Atlas](https://mdb.link/atlas)) or create new instances from .NET with the [`docker.io/library/mongo` container image](https://hub.docker.com/_/mongo)
+[MongoDB](https://www.mongodb.com) is a NoSQL database that provides high performance, high availability, and easy scalability. The Aspire MongoDB integration enables you to connect to existing MongoDB instances (including [MongoDB Atlas](https://mdb.link/atlas)) or create new instances from .NET with the [`docker.io/library/mongo` container image](https://hub.docker.com/_/mongo)
 
 ## Hosting integration
 
@@ -55,7 +55,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The MongoDB container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/mongo` image, it creates a new MongoDB instance on your local machine. A reference to your MongoDB server resource builder (the `mongo` variable) is used to add a database. The database is named `mongodb` and then added to the `ExampleProject`. The MongoDB server resource includes default credentials:
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/library/mongo` image, it creates a new MongoDB instance on your local machine. A reference to your MongoDB server resource builder (the `mongo` variable) is used to add a database. The database is named `mongodb` and then added to the `ExampleProject`. The MongoDB server resource includes default credentials:
 
 - `MONGO_INITDB_ROOT_USERNAME`: A value of `admin`.
 - `MONGO_INITDB_ROOT_PASSWORD`: Random `password` generated using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method.
@@ -100,9 +100,9 @@ The data volume is used to persist the MongoDB server data outside the lifecycle
 > The password is stored in the data volume. When using a data volume and if the password changes, it will not work until you delete the volume.
 
 > [!IMPORTANT]
-> Some database integrations, including the .NET Aspire MongoDB integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
+> Some database integrations, including the Aspire MongoDB integration, can't successfully use data volumes after deployment to Azure Container Apps (ACA). This is because ACA uses Server Message Block (SMB) to connect containers to data volumes, and some systems can't use this connection. In the Aspire Dashboard, a database affected by this issue has a status of **Activating** or **Activation Failed** but is never listed as **Running**.
 >
-> You can resolve the problem by deploying to a Kubernetes cluster, such as Azure Kubernetes Services (AKS). For more information, see [.NET Aspire deployments](../deployment/overview.md).
+> You can resolve the problem by deploying to a Kubernetes cluster, such as Azure Kubernetes Services (AKS). For more information, see [Aspire deployments](../deployment/overview.md).
 
 ### Add MongoDB server resource with data bind mount
 
@@ -210,7 +210,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.MongoDb](htt
 
 ## Client integration
 
-To get started with the .NET Aspire MongoDB client integration, install the [📦 Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package in the client-consuming project, that is, the project for the application that uses the MongoDB client. The MongoDB client integration registers a [IMongoClient](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoClient.html) instance that you can use to interact with the MongoDB server resource. If your AppHost adds MongoDB database resources, the [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoDatabase.html) instance is also registered.
+To get started with the Aspire MongoDB client integration, install the [📦 Aspire.MongoDB.Driver](https://www.nuget.org/packages/Aspire.MongoDB.Driver) NuGet package in the client-consuming project, that is, the project for the application that uses the MongoDB client. The MongoDB client integration registers a [IMongoClient](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoClient.html) instance that you can use to interact with the MongoDB server resource. If your AppHost adds MongoDB database resources, the [IMongoDatabase](https://mongodb.github.io/mongo-csharp-driver/3.0.0/api/MongoDB.Driver/MongoDB.Driver.IMongoDatabase.html) instance is also registered.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -228,7 +228,7 @@ dotnet add package Aspire.MongoDB.Driver
 ---
 
 > [!IMPORTANT]
-> The `Aspire.MongoDB.Driver` NuGet package depends on the `MongoDB.Driver` NuGet package. With the release of version 3.0.0 of `MongoDB.Driver`, a binary breaking change was introduced. To address this, a new client integration package, `Aspire.MongoDB.Driver.v3`, was created. The original `Aspire.MongoDB.Driver` package continues to reference `MongoDB.Driver` version 2.30.0, ensuring compatibility with previous versions of the RabbitMQ client integration. The new `Aspire.MongoDB.Driver.v3` package references `MongoDB.Driver` version 3.0.0. In a future version of .NET Aspire, the `Aspire.MongoDB.Driver` will be updated to version `3.x` and the `Aspire.MongoDB.Driver.v3` package will be deprecated. For more information, see [Upgrade to version 3.0](https://www.mongodb.com/docs/drivers/csharp/v3.0/upgrade/v3/).
+> The `Aspire.MongoDB.Driver` NuGet package depends on the `MongoDB.Driver` NuGet package. With the release of version 3.0.0 of `MongoDB.Driver`, a binary breaking change was introduced. To address this, a new client integration package, `Aspire.MongoDB.Driver.v3`, was created. The original `Aspire.MongoDB.Driver` package continues to reference `MongoDB.Driver` version 2.30.0, ensuring compatibility with previous versions of the RabbitMQ client integration. The new `Aspire.MongoDB.Driver.v3` package references `MongoDB.Driver` version 3.0.0. In a future version of Aspire, the `Aspire.MongoDB.Driver` will be updated to version `3.x` and the `Aspire.MongoDB.Driver.v3` package will be deprecated. For more information, see [Upgrade to version 3.0](https://www.mongodb.com/docs/drivers/csharp/v3.0/upgrade/v3/).
 
 ### Add MongoDB client
 
@@ -279,7 +279,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire MongoDB database integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
+The Aspire MongoDB database integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -313,7 +313,7 @@ For more information on how to format this connection string, see [MongoDB: Conn
 
 #### Use configuration providers
 
-The .NET Aspire MongoDB integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.MongoDB.Driver.MongoDBSettings> from configuration by using the `Aspire:MongoDB:Driver` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire MongoDB integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.MongoDB.Driver.MongoDBSettings> from configuration by using the `Aspire:MongoDB:Driver` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -332,7 +332,7 @@ The .NET Aspire MongoDB integration supports <xref:Microsoft.Extensions.Configur
 
 #### Use named configuration
 
-The .NET Aspire MongoDB integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire MongoDB integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -386,7 +386,7 @@ Here are the configurable options with corresponding default values:
 
 [!INCLUDE [client-integration-health-checks](../includes/client-integration-health-checks.md)]
 
-By default, the .NET Aspire MongoDB client integration handles the following scenarios:
+By default, the Aspire MongoDB client integration handles the following scenarios:
 
 - Adds a health check when enabled that verifies that a connection can be made commands can be run against the MongoDB database within a certain amount of time.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic
@@ -395,22 +395,22 @@ By default, the .NET Aspire MongoDB client integration handles the following sce
 
 #### Logging
 
-The .NET Aspire MongoDB database integration uses standard .NET logging, and you see log entries from the following categories:
+The Aspire MongoDB database integration uses standard .NET logging, and you see log entries from the following categories:
 
 - `MongoDB[.*]`: Any log entries from the MongoDB namespace.
 
 #### Tracing
 
-The .NET Aspire MongoDB database integration emits the following Tracing activities using OpenTelemetry:
+The Aspire MongoDB database integration emits the following Tracing activities using OpenTelemetry:
 
 - `MongoDB.Driver.Core.Extensions.DiagnosticSources`
 
 ### Metrics
 
-The .NET Aspire MongoDB database integration doesn't currently expose any OpenTelemetry metrics.
+The Aspire MongoDB database integration doesn't currently expose any OpenTelemetry metrics.
 
 ## See also
 
 - [MongoDB database](https://www.mongodb.com/docs/drivers/csharp/current/quick-start)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

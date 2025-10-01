@@ -1,19 +1,19 @@
 ---
-title: .NET Aspire Azure OpenAI integration (Preview)
-description: Learn how to use the .NET Aspire Azure OpenAI integration.
+title: Aspire Azure OpenAI integration (Preview)
+description: Learn how to use the Aspire Azure OpenAI integration.
 ms.date: 07/22/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure OpenAI integration (Preview)
+# Aspire Azure OpenAI integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure OpenAI Service](https://azure.microsoft.com/products/ai-services/openai-service) provides access to OpenAI's powerful language and embedding models with the security and enterprise promise of Azure. The .NET Aspire Azure OpenAI integration enables you to connect to Azure OpenAI Service or OpenAI's API from your .NET applications.
+[Azure OpenAI Service](https://azure.microsoft.com/products/ai-services/openai-service) provides access to OpenAI's powerful language and embedding models with the security and enterprise promise of Azure. The Aspire Azure OpenAI integration enables you to connect to Azure OpenAI Service or OpenAI's API from your .NET applications.
 
 ## Hosting integration
 
-The .NET Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>. To access these types and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
+The Aspire [Azure OpenAI](/azure/ai-services/openai/) hosting integration models Azure OpenAI resources as <xref:Aspire.Hosting.ApplicationModel.AzureOpenAIResource>. To access these types and APIs for expressing them within your [AppHost](xref:dotnet/aspire/app-host) project, install the [📦 Aspire.Hosting.Azure.CognitiveServices](https://www.nuget.org/packages/Aspire.Hosting.Azure.CognitiveServices) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -106,7 +106,7 @@ For more information on treating Azure OpenAI resources as existing resources, s
 
 ### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure OpenAI resource with standard defaults.
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure OpenAI resource with standard defaults.
 
 :::code language="bicep" source="../snippets/azure/AppHost/openai/openai.bicep":::
 
@@ -118,7 +118,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureOpenAIInfra.cs" id="configure":::
 
@@ -133,7 +133,7 @@ The preceding code:
 
 ## Client integration
 
-To get started with the .NET Aspire Azure OpenAI client integration, install the [📦 Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure OpenAI client.
+To get started with the Aspire Azure OpenAI client integration, install the [📦 Aspire.Azure.AI.OpenAI](https://www.nuget.org/packages/Aspire.Azure.AI.OpenAI) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure OpenAI client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -214,7 +214,7 @@ For more information on the `IChatClient` and its corresponding library, see [Ar
 
 ### Configure Azure OpenAI client settings
 
-The .NET Aspire Azure OpenAI library provides a set of settings to configure the Azure OpenAI client. The  `AddAzureOpenAIClient` method exposes an optional `configureSettings` parameter of type `Action<AzureOpenAISettings>?`. To configure settings inline, consider the following example:
+The Aspire Azure OpenAI library provides a set of settings to configure the Azure OpenAI client. The  `AddAzureOpenAIClient` method exposes an optional `configureSettings` parameter of type `Action<AzureOpenAISettings>?`. To configure settings inline, consider the following example:
 
 ```csharp
 builder.AddAzureOpenAIClient(
@@ -315,7 +315,7 @@ This method follows the same rules as detailed in the [Add Azure OpenAI client f
 
 ### Configuration
 
-The .NET Aspire Azure OpenAI library provides multiple options to configure the Azure OpenAI connection based on the requirements and conventions of your project. Either a `Endpoint` or a `ConnectionString` is required to be supplied.
+The Aspire Azure OpenAI library provides multiple options to configure the Azure OpenAI connection based on the requirements and conventions of your project. Either a `Endpoint` or a `ConnectionString` is required to be supplied.
 
 #### Use a connection string
 
@@ -357,7 +357,7 @@ In order to connect to the non-Azure OpenAI service, drop the `Endpoint` propert
 
 #### Use configuration providers
 
-The .NET Aspire Azure OpenAI integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureOpenAISettings` from configuration by using the `Aspire:Azure:AI:OpenAI` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The Aspire Azure OpenAI integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `AzureOpenAISettings` from configuration by using the `Aspire:Azure:AI:OpenAI` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -378,7 +378,7 @@ For the complete Azure OpenAI client integration JSON schema, see [Aspire.Azure.
 
 #### Use named configuration
 
-The .NET Aspire Azure OpenAI integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure OpenAI integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -433,7 +433,7 @@ builder.AddAzureOpenAIClient(
 
 ### Logging
 
-The .NET Aspire Azure OpenAI integration uses the following log categories:
+The Aspire Azure OpenAI integration uses the following log categories:
 
 - `Azure`
 - `Azure.Core`
@@ -441,7 +441,7 @@ The .NET Aspire Azure OpenAI integration uses the following log categories:
 
 ### Tracing
 
-The .NET Aspire Azure OpenAI integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Azure OpenAI integration will emit the following tracing activities using OpenTelemetry:
 
 - `Experimental.Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI to record AI operations
 
@@ -499,6 +499,6 @@ However, you'll need to enable experimental telemetry support in the OpenAI libr
 ## See also
 
 - [Azure OpenAI](https://azure.microsoft.com/products/ai-services/openai-service/)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire Azure integrations overview](../azure/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire Azure integrations overview](../azure/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

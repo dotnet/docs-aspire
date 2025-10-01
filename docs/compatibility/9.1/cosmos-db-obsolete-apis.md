@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2428
 
 # Cosmos DB hosting integration obsolete API and default managed identity support
 
-In .NET Aspire 9.1, the `AddDatabase()` method is obsolete and replaced by `AddCosmosDatabase()`. Additionally, `AddAzureCosmosDB()` now uses Managed Identity by default during provisioning instead of creating a Key Vault instance with a random access key.
+In Aspire 9.1, the `AddDatabase()` method is obsolete and replaced by `AddCosmosDatabase()`. Additionally, `AddAzureCosmosDB()` now uses Managed Identity by default during provisioning instead of creating a Key Vault instance with a random access key.
 
 ## Version introduced
 
-.NET Aspire 9.1
+Aspire 9.1
 
 ## Previous behavior
 

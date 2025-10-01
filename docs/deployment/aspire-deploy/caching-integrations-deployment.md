@@ -1,13 +1,13 @@
 ---
-title: Deploy a .NET Aspire project that connects to Redis Cache to Azure
-description: Learn how to deploy a .NET Aspire project that connects to Redis Cache to Azure
+title: Deploy a Aspire project that connects to Redis Cache to Azure
+description: Learn how to deploy a Aspire project that connects to Redis Cache to Azure
 ms.date: 09/30/2025
 ms.topic: how-to
 ---
 
-# Tutorial: Deploy a .NET Aspire project with a Redis Cache to Azure
+# Tutorial: Deploy a Aspire project with a Redis Cache to Azure
 
-In this tutorial, you learn to configure a .NET Aspire project with a Redis Cache for deployment to Azure. .NET Aspire provides multiple caching integration configurations that provision different Redis services in Azure. You'll learn how to:
+In this tutorial, you learn to configure a Aspire project with a Redis Cache for deployment to Azure. Aspire provides multiple caching integration configurations that provision different Redis services in Azure. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -15,24 +15,24 @@ In this tutorial, you learn to configure a .NET Aspire project with a Redis Cach
 > - Configure the app to provision a containerized Redis Cache
 
 > [!NOTE]
-> This document focuses specifically on .NET Aspire configurations to provision and deploy Redis Cache resources in Azure. For more information and to learn more about the full .NET Aspire deployment process, see the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-azd) tutorial.
+> This document focuses specifically on Aspire configurations to provision and deploy Redis Cache resources in Azure. For more information and to learn more about the full Aspire deployment process, see the [Azure Container Apps deployment](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-azd) tutorial.
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
 ## Create the sample solution
 
-Follow the [Tutorial: Implement caching with .NET Aspire integrations](../../caching/caching-integrations.md) to create the sample project.
+Follow the [Tutorial: Implement caching with Aspire integrations](../../caching/caching-integrations.md) to create the sample project.
 
 ## Configure the app for Redis cache deployment
 
-.NET Aspire provides two built-in configuration options to streamline Redis Cache deployment on Azure:
+Aspire provides two built-in configuration options to streamline Redis Cache deployment on Azure:
 
 - Provision a containerized Redis Cache using Azure Container Apps
 - Provision an Azure Cache for Redis instance
 
-### Add the .NET Aspire integration to the app
+### Add the Aspire integration to the app
 
-Add the appropriate .NET Aspire integration to the _AspireRedis.AppHost_ project for your desired hosting service.
+Add the appropriate Aspire integration to the _AspireRedis.AppHost_ project for your desired hosting service.
 
 # [Azure Cache for Redis](#tab/azure-redis)
 
@@ -108,10 +108,10 @@ The preceding code adds a Redis Container resource to your app and configures a 
 
 ## Deploy the app
 
-The `aspire deploy` command supports .NET Aspire Redis integration configurations to streamline deployments. The command consumes these settings and provisions properly configured resources for you.
+The `aspire deploy` command supports Aspire Redis integration configurations to streamline deployments. The command consumes these settings and provisions properly configured resources for you.
 
 > [!NOTE]
-> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-bicep) to provision and deploy .NET Aspire project resources. These options require more manual steps, but provide more granular control over your deployments. .NET Aspire projects can also connect to an existing Redis instance through manual configurations.
+> You can also use the [Azure CLI](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-cli) or [Bicep](/dotnet/aspire/deployment/azure/aca-deployment?pivots=azure-bicep) to provision and deploy Aspire project resources. These options require more manual steps, but provide more granular control over your deployments. Aspire projects can also connect to an existing Redis instance through manual configurations.
 
 To deploy your app to Azure Container Apps, run the following command from the _AspireRedis.AppHost_ directory:
 
@@ -126,7 +126,7 @@ When you run the `aspire deploy` command for the first time, you'll be prompted 
 1. **Select or create a resource group**: Choose an existing resource group or create a new one.
 1. **Select a location**: Choose the Azure region where you want to deploy your resources.
 
-The deployment process will provision the necessary Azure resources and deploy your .NET Aspire app. The process may take a few minutes to complete.
+The deployment process will provision the necessary Azure resources and deploy your Aspire app. The process may take a few minutes to complete.
 
 When the deployment finishes, the command output will provide information about the deployed resources that you can view in the Azure portal.
 
@@ -148,6 +148,6 @@ The deployment process created a Redis app container due to the **.AppHost** con
 
 ## See also
 
-- [.NET Aspire deployment via Azure Container Apps](../azd/aca-deployment.md)
-- [.NET Aspire Azure Container Apps deployment deep dive](../azd/aca-deployment-azd-in-depth.md)
-- [Deploy a .NET Aspire project using GitHub Actions](../azd/aca-deployment-github-actions.md)
+- [Aspire deployment via Azure Container Apps](../azd/aca-deployment.md)
+- [Aspire Azure Container Apps deployment deep dive](../azd/aca-deployment-azd-in-depth.md)
+- [Deploy a Aspire project using GitHub Actions](../azd/aca-deployment-github-actions.md)
