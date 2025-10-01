@@ -2,6 +2,8 @@
 @using AspirePostgreSQLEFCore.Data
 @using AspirePostgreSQLEFCore.Data.Models
 @using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Components.Forms
+@using Microsoft.AspNetCore.Components.Web
 @inject TicketContext DbContext
 @inject ILogger<Home> Logger
 
@@ -19,19 +21,19 @@
             
             <div class="mb-3">
                 <label for="title" class="form-label">Title:</label>
-                <InputText id="title" @bind-Value="newTicket.Title" class="form-control" />
+                <InputText id="title" @bind-value="newTicket.Title" class="form-control" />
                 <ValidationMessage For="@(() => newTicket.Title)" />
             </div>
             
             <div class="mb-3">
                 <label for="description" class="form-label">Description:</label>
-                <InputTextArea id="description" @bind-Value="newTicket.Description" class="form-control" rows="4" />
+                <InputTextArea id="description" @bind-value="newTicket.Description" class="form-control" rows="4" />
                 <ValidationMessage For="@(() => newTicket.Description)" />
             </div>
             
             <div class="mb-3">
                 <label for="priority" class="form-label">Priority:</label>
-                <InputSelect id="priority" @bind-Value="newTicket.Priority" class="form-select">
+                <InputSelect id="priority" @bind-value="newTicket.Priority" class="form-select">
                     <option value="Low">Low</option>
                     <option value="Medium">Medium</option>
                     <option value="High">High</option>

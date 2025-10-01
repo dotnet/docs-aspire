@@ -1,4 +1,6 @@
 using AspirePostgreSQLEFCore.Data;
+using AspirePostgreSQLEFCore.MigrationService;
+using Microsoft.Extensions.Hosting;
 
 var builder = Host.CreateApplicationBuilder(args);
 

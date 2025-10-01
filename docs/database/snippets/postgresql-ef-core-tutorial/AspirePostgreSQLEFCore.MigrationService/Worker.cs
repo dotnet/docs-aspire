@@ -3,7 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace AspirePostgreSQLEFCore.MigrationService;
 
-public class Worker(IServiceProvider serviceProvider, IHostApplicationLifetime hostApplicationLifetime, ILogger<Worker> logger) : BackgroundService
+public class Worker(
+    IServiceProvider serviceProvider,
+    IHostApplicationLifetime hostApplicationLifetime,
+    ILogger<Worker> logger) : BackgroundService
 {
     public const string ActivitySourceName = "Migrations";
 
