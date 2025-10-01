@@ -243,6 +243,9 @@ if (app.Environment.IsDevelopment())
 
 ---
 
+> [!NOTE]
+> `UseSeeding` is called from the `EnsureCreated` method, and `UseAsyncSeeding` is called from the `EnsureCreatedAsync` method. When using this feature, it's recommended to implement both `UseSeeding` and `UseAsyncSeeding` methods using similar logic, even if the code using EF is asynchronous. EF Core tooling currently relies on the synchronous version of the method and will not seed the database correctly if the `UseSeeding` method isn't implemented.
+
 The `UseSeeding` and `UseAsyncSeeding` methods provide several advantages over manual seeding approaches:
 
 - **Integrated lifecycle**: Seeding is automatically triggered when the database is created or when migrations are applied.
