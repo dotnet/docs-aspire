@@ -187,6 +187,14 @@ Azure integrations configure applications to use Azure resources. These hosting 
 
 For more information, see [GitHub: Aspire.Hosting.AWS library](https://github.com/aws/integrations-on-dotnet-aspire-for-aws/tree/main/src/Aspire.Hosting.AWS).
 
+### Kubernetes hosting integrations
+
+<!-- markdownlint-disable MD033 MD045 -->
+| Integration docs and NuGet packages | Description |
+|--|--|
+| - **Learn more**: [📄 Kubernetes hosting](../deployment/kubernetes-integration.md) <br/> - **Hosting**: [📦 Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes)<br>- **Client**: N/A | A library for generating Kubernetes deployment manifests from your .NET Aspire application model. |
+<!-- markdownlint-enable MD033 MD045 -->
+
 ### Community Toolkit integrations
 
 > [!NOTE]
