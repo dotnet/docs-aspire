@@ -12,25 +12,7 @@ ai-usage: ai-generated
 > [!IMPORTANT]
 > The Aspire Azure App Service integration is currently in preview and is subject to change.
 
-[Azure App Service](/azure/app-service) is a fully managed platform for building, deploying, and scaling web apps. The Aspire integration allows you to provision or reference an existing Azure App Service environment and seamlessly publish your container, executable, and project resources as Azure App Service websites.
-
-## Overview
-
-Aspire apps often run locally during development but require scalable, production-ready hosting environments for staging and production. The Azure App Service integration provides the following capabilities:
-
-- Provision or reference an existing Azure App Service environment (App Service Plan).
-- Publish projects, containers, and executables as Azure App Service websites.
-- Automatic provisioning of Azure Container Registry for container-based deployments.
-- Grant fine-grained role assignments to other Azure resources.
-
-## Supported scenarios
-
-The Azure App Service integration supports the following scenarios:
-
-- **Provisioning a new environment**: Automatically create a new Azure App Service environment (App Service Plan) for your app.
-- **Publishing compute resources**: Publish projects, containers, and executables as Azure App Service websites.
-- **Container integration**: Automatically provision and configure Azure Container Registry for container-based deployments.
-- **Role assignments**: Assign specific roles to enable services to access Azure resources.
+[Azure App Service](/azure/app-service) is a fully managed platform for building, deploying, and scaling web apps. Aspire apps often run locally during development but require scalable, production-ready hosting environments for staging and production. The Aspire integration allows you to provision or reference an existing Azure App Service environment (App Service Plan) and seamlessly publish your container, executable, and project resources as Azure App Service websites. When you add an App Service environment, the integration automatically provisions an Azure Container Registry for container-based deployments and grants fine-grained role assignments to enable secure access between Azure resources.
 
 ## Hosting integration
 
