@@ -36,7 +36,7 @@ dotnet add package CommunityToolkit.Aspire.Microsoft.EntityFrameworkCore.Sqlite
 
 ### Add Sqlite client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `Microsoft.Extensions.Hosting.AspireEFSqliteExtensions.AddSqliteDbContext` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register your <xref:System.Data.Entity.DbContext> subclass for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddSqliteDbContext` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register your <xref:System.Data.Entity.DbContext> subclass for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
 builder.AddSqliteDbContext<YourDbContext>(connectionName: "sqlite");
