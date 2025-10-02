@@ -1,21 +1,21 @@
 ---
-title: Custom HTTP commands in .NET Aspire
-description: Learn how to create custom HTTP commands in .NET Aspire.
+title: Custom HTTP commands in Aspire
+description: Learn how to create custom HTTP commands in Aspire.
 ms.date: 09/23/2025
 ms.topic: how-to
 ---
 
-# Custom HTTP commands in .NET Aspire
+# Custom HTTP commands in Aspire
 
-In .NET Aspire, you can add custom HTTP commands to resources using the `WithHttpCommand` API. This API extends existing functionality, where you provide [custom commands on resources](custom-resource-commands.md). This feature enables a command on a resource that sends an HTTP request to a specified endpoint and path. This is useful for scenarios such as triggering database migrations, clearing caches, or performing custom actions on resources through HTTP requests.
+In Aspire, you can add custom HTTP commands to resources using the `WithHttpCommand` API. This API extends existing functionality, where you provide [custom commands on resources](custom-resource-commands.md). This feature enables a command on a resource that sends an HTTP request to a specified endpoint and path. This is useful for scenarios such as triggering database migrations, clearing caches, or performing custom actions on resources through HTTP requests.
 
-To implement custom HTTP commands, you define a command on a resource and a corresponding HTTP endpoint that handles the request. This article provides an overview of how to create and configure custom HTTP commands in .NET Aspire.
+To implement custom HTTP commands, you define a command on a resource and a corresponding HTTP endpoint that handles the request. This article provides an overview of how to create and configure custom HTTP commands in Aspire.
 
 ## HTTP command APIs
 
 The available APIs provide extensive capabilities with numerous parameters to customize the HTTP command. To add an HTTP command to a resource, use the `WithHttpCommand` extension method on the resource builder. There are two overloads available:
 
-The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpCommand*> API provides two overloads to add custom HTTP commands to resources in .NET Aspire. These APIs are designed to offer flexibility and cater to different use cases when defining HTTP commands.
+The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpCommand*> API provides two overloads to add custom HTTP commands to resources in Aspire. These APIs are designed to offer flexibility and cater to different use cases when defining HTTP commands.
 
 1. **Overload with `endpointName`:**
 
@@ -27,7 +27,7 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpCommand*> API provide
 
 Both overloads allow you to customize the HTTP command extensively, providing an <xref:Aspire.Hosting.ApplicationModel.HttpCommandOptions> subclass of the <xref:Aspire.Hosting.ApplicationModel.CommandOptions> type, including specifying the HTTP method, configure the request, handling the response, and define UI-related properties like display name, description, and icons. The choice between the two depends on whether the endpoint is static or dynamic in your use case.
 
-These APIs are designed to integrate seamlessly with the .NET Aspire ecosystem, enabling developers to extend resource functionality with minimal effort while maintaining control over the behavior and presentation of the commands.
+These APIs are designed to integrate seamlessly with the Aspire ecosystem, enabling developers to extend resource functionality with minimal effort while maintaining control over the behavior and presentation of the commands.
 
 ## Considerations when registering HTTP commands
 
@@ -80,22 +80,22 @@ The preceding code:
 
 The sample AppHost and corresponding ASP.NET Core minimal API projects demonstrate both sides of the HTTP command implementation. When you run the AppHost, the dashboard's **Resources** page displays the custom HTTP command as a button. When you specify that the command should be highlighted (`isHighlighted: true`), the button appears on the **Actions** column of the **Resources** page. This allows users to easily trigger the command from the dashboard, as shown in the following screenshot:
 
-:::image type="content" source="media/custom-http-command-highlighted.png" lightbox="media/custom-http-command-highlighted.png" alt-text=".NET Aspire dashboard: Resources page showing a highlighted custom HTTP command.":::
+:::image type="content" source="media/custom-http-command-highlighted.png" lightbox="media/custom-http-command-highlighted.png" alt-text="Aspire dashboard: Resources page showing a highlighted custom HTTP command.":::
 
 If you're to omit the `isHighlighted` parameter, or set it to `false`, the command appears nested under the horizontal ellipsis menu (three dots) in the **Actions** column of the **Resources** page. This allows users to access the command without cluttering the UI with too many buttons. The following screenshot shows the same command appearing in the ellipsis menu:
 
-:::image type="content" source="media/custom-http-command.png" lightbox="media/custom-http-command.png" alt-text=".NET Aspire dashboard: Resources page showing a custom HTTP command in the ellipsis menu.":::
+:::image type="content" source="media/custom-http-command.png" lightbox="media/custom-http-command.png" alt-text="Aspire dashboard: Resources page showing a custom HTTP command in the ellipsis menu.":::
 
 When the user selects the button, the command is executed, and the HTTP request is sent to the specified endpoint. The dashboard provides feedback on the command's execution status, allowing users to monitor the results. When it's starting, a toast notification appears:
 
-:::image type="content" source="media/custom-http-command-starting.png" lightbox="media/custom-http-command-starting.png" alt-text=".NET Aspire dashboard: Toast notification showing the custom HTTP command is starting.":::
+:::image type="content" source="media/custom-http-command-starting.png" lightbox="media/custom-http-command-starting.png" alt-text="Aspire dashboard: Toast notification showing the custom HTTP command is starting.":::
 
 When the command completes, the dashboard updates the status and provides feedback on whether it was successful or failed. The following screenshot shows a successful execution of the command:
 
-:::image type="content" source="media/custom-http-command-succeeded.png" lightbox="media/custom-http-command-succeeded.png" alt-text=".NET Aspire dashboard: Toast notification showing the custom HTTP command succeeded.":::
+:::image type="content" source="media/custom-http-command-succeeded.png" lightbox="media/custom-http-command-succeeded.png" alt-text="Aspire dashboard: Toast notification showing the custom HTTP command succeeded.":::
 
 ## See also
 
-- [.NET Aspire orchestration overview](app-host-overview.md)
-- [Custom resource commands in .NET Aspire](custom-resource-commands.md)
-- [.NET Aspire GitHub repository: Playground sample](https://github.com/dotnet/aspire/tree/4fdfdbf57d35265913a3bbac38b92d98ed255a5d/playground/TestShop)
+- [Aspire orchestration overview](app-host-overview.md)
+- [Custom resource commands in Aspire](custom-resource-commands.md)
+- [Aspire GitHub repository: Playground sample](https://github.com/dotnet/aspire/tree/4fdfdbf57d35265913a3bbac38b92d98ed255a5d/playground/TestShop)

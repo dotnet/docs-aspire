@@ -7,9 +7,9 @@ uid: dotnet/aspire/local-azure-provisioning
 
 # Local Azure provisioning
 
-.NET Aspire simplifies local cloud-native app development with its compelling AppHost model. This model allows you to run your app locally with the same configuration and services as in Azure. In this article, you learn how to provision Azure resources from your local development environment through the [.NET Aspire AppHost](xref:dotnet/aspire/app-host).
+Aspire simplifies local cloud-native app development with its compelling AppHost model. This model allows you to run your app locally with the same configuration and services as in Azure. In this article, you learn how to provision Azure resources from your local development environment through the [Aspire AppHost](xref:dotnet/aspire/app-host).
 
-The .NET Aspire dashboard provides an [interactive experience](../extensibility/interaction-service.md) for configuring Azure resources, automatically prompting you for required settings when they're missing. This streamlined approach eliminates the need for manual configuration file editing in most scenarios.
+The Aspire dashboard provides an [interactive experience](../extensibility/interaction-service.md) for configuring Azure resources, automatically prompting you for required settings when they're missing. This streamlined approach eliminates the need for manual configuration file editing in most scenarios.
 
 > [!NOTE]
 > To be clear, resources are provisioned in Azure, but the provisioning process is initiated from your local development environment. To optimize your local development experience, consider using emulator or containers when available. For more information, see [Typical developer experience](integrations-overview.md#typical-developer-experience).
@@ -18,11 +18,11 @@ The .NET Aspire dashboard provides an [interactive experience](../extensibility/
 
 This article assumes that you have an Azure account and subscription. If you don't have an Azure account, you can create a free one at [Azure Free Account](https://azure.microsoft.com/free/). For provisioning functionality to work correctly, you need to be authenticated with Azure. Ensure that you have the [Azure CLI](/cli/azure/install-azure-cli) installed.
 
-When you run your AppHost with Azure resources, the .NET Aspire dashboard automatically prompts you for any missing configuration values, making the setup process straightforward and interactive.
+When you run your AppHost with Azure resources, the Aspire dashboard automatically prompts you for any missing configuration values, making the setup process straightforward and interactive.
 
 ## AppHost provisioning APIs
 
-The AppHost provides a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your AppHost, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+The AppHost provides a set of APIs to express Azure resources. These APIs are available as extension methods in Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your AppHost, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
 When the AppHost starts, the following provisioning logic is executed:
 
@@ -60,28 +60,28 @@ var cosmos = builder.AddAzureCosmosDB("cosmos")
 
 The <xref:Aspire.Hosting.AzureCosmosExtensions.RunAsEmulator*> API configures an Azure Cosmos DB resource to be emulated using the Azure Cosmos DB emulator with the NoSQL API.
 
-### .NET Aspire Azure hosting integrations
+### Aspire Azure hosting integrations
 
-If you're using Azure resources in your AppHost, you're using one or more of the [.NET Aspire Azure hosting integrations](integrations-overview.md). These hosting libraries provide extension methods to the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface to add Azure resources to your AppHost.
+If you're using Azure resources in your AppHost, you're using one or more of the [Aspire Azure hosting integrations](integrations-overview.md). These hosting libraries provide extension methods to the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface to add Azure resources to your AppHost.
 
 ## Configuration
 
 When utilizing Azure resources in your local development environment, you need to provide the necessary configuration values. You can provide these values in two ways:
 
-- **Interactive prompting** (recommended): Let the .NET Aspire dashboard prompt you for the required values.
+- **Interactive prompting** (recommended): Let the Aspire dashboard prompt you for the required values.
 - **Manual configuration**: Specify the values directly in your configuration files.
 
 ### Interactive configuration prompting
 
-When you run your AppHost and it requires Azure resources, the .NET Aspire dashboard automatically prompts you for any missing Azure configuration values. This interactive approach simplifies the setup process and eliminates the need to manually configure settings files.
+When you run your AppHost and it requires Azure resources, the Aspire dashboard automatically prompts you for any missing Azure configuration values. This interactive approach simplifies the setup process and eliminates the need to manually configure settings files.
 
 When the AppHost detects missing Azure configuration, the dashboard displays a message bar with an **Enter values** button:
 
-:::image type="content" source="media/azure-missing-config-prompt.png" lightbox="media/azure-missing-config-prompt.png" alt-text=".NET Aspire dashboard: Azure configuration prompt message bar.":::
+:::image type="content" source="media/azure-missing-config-prompt.png" lightbox="media/azure-missing-config-prompt.png" alt-text="Aspire dashboard: Azure configuration prompt message bar.":::
 
 Clicking **Enter values** opens a dialog where you can provide the required Azure settings:
 
-:::image type="content" source="media/azure-config-dialog.png" lightbox="media/azure-config-dialog.png" alt-text=".NET Aspire dashboard: Azure configuration dialog.":::
+:::image type="content" source="media/azure-config-dialog.png" lightbox="media/azure-config-dialog.png" alt-text="Aspire dashboard: Azure configuration dialog.":::
 
 The configuration values you need to provide are:
 
@@ -120,7 +120,7 @@ Once you configure the necessary values—either through interactive prompting o
 
 ### Azure provisioning credential store
 
-The .NET Aspire AppHost uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store might be needed for multitenant provisioning scenarios.
+The Aspire AppHost uses a credential store for Azure resource authentication and authorization. Depending on your subscription, the correct credential store might be needed for multitenant provisioning scenarios.
 
 With the [📦 Aspire.Hosting.Azure](https://nuget.org/packages/Aspire.Hosting.Azure) NuGet package installed, and if your AppHost depends on Azure resources, the default Azure credential store relies on the <xref:Azure.Identity.DefaultAzureCredential>. To change this behavior, you can set the credential store value in the _:::no-loc text="appsettings.json":::_ file, as shown in the following example:
 
@@ -147,7 +147,7 @@ As with all [configuration-based settings](/dotnet/core/extensions/configuration
 
 In Visual Studio, you can use Connected Services to configure the default Azure provisioning settings. Select the AppHost project, right-click on the **Connected Services** node, and select **Azure Resource Provisioning Settings**:
 
-:::image type="content" loc-scope="visual-studio" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: .NET Aspire AppHost project, Connected Services context menu.":::
+:::image type="content" loc-scope="visual-studio" source="media/azure-resource-provisioning-settings.png" lightbox="media/azure-resource-provisioning-settings.png" alt-text="Visual Studio 2022: Aspire AppHost project, Connected Services context menu.":::
 
 This opens a dialog where you can configure the Azure provisioning settings, as shown in the following screenshot:
 
@@ -155,19 +155,19 @@ This opens a dialog where you can configure the Azure provisioning settings, as 
 
 ### Configuration prompts and error handling
 
-When the `Azure` configuration section is missing, has missing values, or is invalid, the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) provides interactive prompts to help you configure the required values. The dashboard displays a message bar prompting you to **Enter values** for the missing configuration.
+When the `Azure` configuration section is missing, has missing values, or is invalid, the [Aspire dashboard](../fundamentals/dashboard/overview.md) provides interactive prompts to help you configure the required values. The dashboard displays a message bar prompting you to **Enter values** for the missing configuration.
 
 If you dismiss the prompt or there are validation errors, the dashboard provides detailed error information. For example, consider an AppHost that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
 
-:::image type="content" source="media/resources-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Missing subscription configuration.":::
+:::image type="content" source="media/resources-kv-missing-subscription.png" alt-text="Aspire dashboard: Missing subscription configuration.":::
 
 Additionally, the **Console logs** display this information as well, consider the following screenshot:
 
-:::image type="content" source="media/console-logs-kv-missing-subscription.png" lightbox="media/console-logs-kv-missing-subscription.png" alt-text=".NET Aspire dashboard: Console logs, missing subscription configuration.":::
+:::image type="content" source="media/console-logs-kv-missing-subscription.png" lightbox="media/console-logs-kv-missing-subscription.png" alt-text="Aspire dashboard: Console logs, missing subscription configuration.":::
 
 ## Known limitations
 
-After provisioning Azure resources in this way, you must manually clean up the resources in the Azure portal as .NET Aspire doesn't provide a built-in mechanism to delete Azure resources. The easiest way to achieve this is by deleting the configured resource group. This can be done in the [Azure portal](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal#delete-resource-group) or by using the Azure CLI:
+After provisioning Azure resources in this way, you must manually clean up the resources in the Azure portal as Aspire doesn't provide a built-in mechanism to delete Azure resources. The easiest way to achieve this is by deleting the configured resource group. This can be done in the [Azure portal](/azure/azure-resource-manager/management/delete-resource-group?tabs=azure-portal#delete-resource-group) or by using the Azure CLI:
 
 ```azurecli
 az group delete --name <ResourceGroupName>

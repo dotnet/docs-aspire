@@ -6,12 +6,12 @@ ms.date: 09/30/2025
 
 # Add Dockerfiles to your .NET app model
 
-With .NET Aspire it's possible to specify a _Dockerfile_ to build when the [AppHost](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension methods.
+With Aspire it's possible to specify a _Dockerfile_ to build when the [AppHost](../fundamentals/app-host-overview.md) is started using either the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension methods.
 
 These two methods serve different purposes:
 
 - **<xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A>**: Creates a new container resource from an existing Dockerfile. Use this when you want to add a custom containerized service to your app model.
-- **<xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A>**: Customizes an existing container resource (like a database or cache) to use a different Dockerfile. Use this when you want to modify the default container image for a .NET Aspire component.
+- **<xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A>**: Customizes an existing container resource (like a database or cache) to use a different Dockerfile. Use this when you want to modify the default container image for a Aspire component.
 
 Both methods expect an existing Dockerfile in the specified context path—neither method creates a Dockerfile for you.
 
@@ -23,11 +23,11 @@ Choose the appropriate method based on your scenario:
 
 - You want to add a custom containerized service to your app model.
 - You have an existing Dockerfile for a custom application or service.
-- You need to create a new container resource that isn't provided by .NET Aspire components.
+- You need to create a new container resource that isn't provided by Aspire components.
 
 **Use <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> when:**
 
-- You want to customize an existing .NET Aspire component (like PostgreSQL, Redis, etc.).
+- You want to customize an existing Aspire component (like PostgreSQL, Redis, etc.).
 - You need to replace the default container image with a custom one.
 - You want to maintain the strongly typed resource builder and its extension methods.
 - You have specific requirements that the default container image doesn't meet.
@@ -61,9 +61,9 @@ var container = builder.ExecutionContext.IsRunMode
 
 ## Customize existing container resources
 
-When using <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> the return value is an `IResourceBuilder<ContainerResource>`. .NET Aspire includes many custom resource types that are derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>.
+When using <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A> the return value is an `IResourceBuilder<ContainerResource>`. Aspire includes many custom resource types that are derived from <xref:Aspire.Hosting.ApplicationModel.ContainerResource>.
 
-Using the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension method it's possible to take an existing .NET Aspire component (like PostgreSQL, Redis, or SQL Server) and replace its default container image with a custom one built from your own Dockerfile. This allows you to continue using the strongly typed resource types and their specific extension methods while customizing the underlying container.
+Using the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A> extension method it's possible to take an existing Aspire component (like PostgreSQL, Redis, or SQL Server) and replace its default container image with a custom one built from your own Dockerfile. This allows you to continue using the strongly typed resource types and their specific extension methods while customizing the underlying container.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

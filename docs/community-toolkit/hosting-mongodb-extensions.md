@@ -1,16 +1,16 @@
 ---
 title: MongoDB hosting extensions
-description: Learn how to use the .NET Aspire MongoDB extensions package which provides extra functionality to the .NET Aspire MongoDB hosting package.
+description: Learn how to use the Aspire MongoDB extensions package which provides extra functionality to the Aspire MongoDB hosting package.
 ms.date: 03/04/2025
 ---
 
-# .NET Aspire Community Toolkit MongoDB hosting extensions
+# Aspire Community Toolkit MongoDB hosting extensions
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn about the .NET Aspire Community Toolkit MongoDB hosting extensions package which provides extra functionality to the .NET Aspire [MongoDB hosting package](https://nuget.org/packages/Aspire.Hosting.MongoDB).
+In this article, you learn about the Aspire Community Toolkit MongoDB hosting extensions package which provides extra functionality to the Aspire [MongoDB hosting package](https://nuget.org/packages/Aspire.Hosting.MongoDB).
 
 This package provides the following features:
 
@@ -18,7 +18,7 @@ This package provides the following features:
 
 ## Hosting integration
 
-To get started with the .NET Aspire Community Toolkit MongoDB hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.MongoDB.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MongoDB.Extensions) NuGet package in the AppHost project.
+To get started with the Aspire Community Toolkit MongoDB hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.MongoDB.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MongoDB.Extensions) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -46,4 +46,4 @@ var MongoDB = builder.AddMongoDB("MongoDB")
     .WithDbGate();
 ```
 
-This will add a new resource to the AppHost which will be available from the .NET Aspire dashboard.
+This will add a new resource to the AppHost which will be available from the Aspire dashboard.

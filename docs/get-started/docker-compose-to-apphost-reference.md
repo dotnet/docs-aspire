@@ -1,18 +1,18 @@
 ---
-title: Docker Compose to .NET Aspire AppHost API reference
-description: Quick reference for converting Docker Compose YAML syntax to .NET Aspire C# API calls.
+title: Docker Compose to Aspire AppHost API reference
+description: Quick reference for converting Docker Compose YAML syntax to Aspire C# API calls.
 ms.date: 06/26/2025
 ms.topic: reference
 ai-usage: ai-generated
 ---
 
-# Docker Compose to .NET Aspire AppHost API reference
+# Docker Compose to Aspire AppHost API reference
 
-This reference provides systematic mappings from Docker Compose YAML syntax to equivalent .NET Aspire C# API calls. Use these tables as a quick reference when converting your existing Docker Compose files to .NET Aspire application host configurations. Each section covers a specific aspect of container orchestration, from basic service definitions to advanced networking and resource management.
+This reference provides systematic mappings from Docker Compose YAML syntax to equivalent Aspire C# API calls. Use these tables as a quick reference when converting your existing Docker Compose files to Aspire application host configurations. Each section covers a specific aspect of container orchestration, from basic service definitions to advanced networking and resource management.
 
 ## Service definitions
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `services:` | `var builder = DistributedApplication.CreateBuilder(args)` | Root application builder used for adding and representing resources. |
 | `service_name:` | `builder.Add*("service_name")` | Service name becomes resource name. |
@@ -24,7 +24,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Images and builds
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `image: nginx:latest` | `builder.AddContainer("name", "nginx:latest")` | Direct image reference. |
 | `build: .` | `builder.AddDockerfile("name", ".")` | Build from Dockerfile. |
@@ -40,7 +40,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## .NET projects
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `build: ./MyApi` (for .NET) | `builder.AddProject<Projects.MyApi>("myapi")` | Direct .NET project reference. |
 
@@ -51,7 +51,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Port mappings
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `ports: ["8080:80"]` | `.WithHttpEndpoint(port: 8080, targetPort: 80)` | HTTP endpoint mapping. Ports are optional; dynamic ports are used if omitted. |
 | `ports: ["443:443"]` | `.WithHttpsEndpoint(port: 443, targetPort: 443)` | HTTPS endpoint mapping. Ports are optional; dynamic ports are used if omitted. |
@@ -66,7 +66,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Environment variables
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `environment: KEY=value` | `.WithEnvironment("KEY", "value")` | Static environment variable. |
 | `environment: KEY=${HOST_VAR}` | `.WithEnvironment(context => context.EnvironmentVariables["KEY"] = hostVar)` | Environment variable with callback context. |
@@ -79,7 +79,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Volumes and storage
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `volumes: ["data:/app/data"]` | `.WithVolume("data", "/app/data")` | Named volume. |
 | `volumes: ["./host:/container"]` | `.WithBindMount("./host", "/container")` | Bind mount. |
@@ -93,7 +93,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Dependencies and ordering
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `depends_on: [db]` | `.WithReference(db)` | Service dependency with connection. |
 | `depends_on: db: condition: service_started` | `.WaitFor(db)` | Wait for service start. |
@@ -108,22 +108,22 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Networks
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
-| `networks: [backend]` | Automatic | .NET Aspire handles networking automatically. |
+| `networks: [backend]` | Automatic | Aspire handles networking automatically. |
 | Custom networks | Not needed | Service discovery handles inter-service communication. |
 
 **Related links:**
 
 - [Docker Compose networks reference](https://docs.docker.com/compose/compose-file/05-services/#networks)
-- [.NET Aspire service discovery](../service-discovery/overview.md)
+- [Aspire service discovery](../service-discovery/overview.md)
 
 ## Resource limits
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
-| `deploy.resources.limits.memory: 512m` | Not supported | Resource limits aren't supported in .NET Aspire. |
-| `deploy.resources.limits.cpus: 0.5` | Not supported | Resource limits aren't supported in .NET Aspire. |
+| `deploy.resources.limits.memory: 512m` | Not supported | Resource limits aren't supported in Aspire. |
+| `deploy.resources.limits.cpus: 0.5` | Not supported | Resource limits aren't supported in Aspire. |
 
 **Related links:**
 
@@ -131,22 +131,22 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Health checks
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
-| `healthcheck.test: ["CMD", "curl", "http://localhost/health"]` | Built-in for integrations. | .NET Aspire integrations include health checks. |
+| `healthcheck.test: ["CMD", "curl", "http://localhost/health"]` | Built-in for integrations. | Aspire integrations include health checks. |
 | `healthcheck.interval: 30s` | Configurable in integration. | Health check configuration varies by resource type. |
 
 **Related links:**
 
 - [Docker Compose healthcheck reference](https://docs.docker.com/compose/compose-file/05-services/#healthcheck)
-- [.NET Aspire health checks](../fundamentals/health-checks.md)
+- [Aspire health checks](../fundamentals/health-checks.md)
 
 ## Restart policies
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
-| `restart: unless-stopped` | Not supported | Restart policies aren't supported in .NET Aspire. |
-| `restart: always` | Not supported | Restart policies aren't supported in .NET Aspire. |
+| `restart: unless-stopped` | Not supported | Restart policies aren't supported in Aspire. |
+| `restart: always` | Not supported | Restart policies aren't supported in Aspire. |
 | `restart: no` | Default | No restart policy. |
 
 **Related links:**
@@ -155,19 +155,19 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## Logging
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
-| `logging.driver: json-file` | Built-in | .NET Aspire provides integrated logging. |
-| `logging.options.max-size: 10m` | Dashboard configuration | Managed through .NET Aspire dashboard. |
+| `logging.driver: json-file` | Built-in | Aspire provides integrated logging. |
+| `logging.options.max-size: 10m` | Dashboard configuration | Managed through Aspire dashboard. |
 
 **Related links:**
 
 - [Docker Compose logging reference](https://docs.docker.com/compose/compose-file/05-services/#logging)
-- [.NET Aspire telemetry](../fundamentals/telemetry.md)
+- [Aspire telemetry](../fundamentals/telemetry.md)
 
 ## Database services
 
-| Docker Compose | .NET Aspire | Notes |
+| Docker Compose | Aspire | Notes |
 |----------------|-------------|-------|
 | `image: postgres:15` | `builder.AddPostgres("name")` | PostgreSQL with automatic configuration. |
 | `image: mysql:8` | `builder.AddMySql("name")` | MySQL with automatic configuration. |
@@ -184,6 +184,6 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 ## See also
 
-- [Migrate from Docker Compose to .NET Aspire](migrate-from-docker-compose.md)
-- [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Migrate from Docker Compose to Aspire](migrate-from-docker-compose.md)
+- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)

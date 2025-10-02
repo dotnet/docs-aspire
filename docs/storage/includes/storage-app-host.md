@@ -3,7 +3,7 @@ ms.topic: include
 ms.custom: sfi-ropc-nochange
 ---
 
-The .NET Aspire [Azure Storage](/azure/storage/) hosting integration models the various storage resources as the following types:
+The Aspire [Azure Storage](/azure/storage/) hosting integration models the various storage resources as the following types:
 
 - <xref:Aspire.Hosting.Azure.AzureStorageResource>: Represents an Azure Storage resource.
 - <xref:Aspire.Hosting.Azure.AzureStorageEmulatorResource>: Represents an Azure Storage emulator resource (Azurite).
@@ -93,7 +93,7 @@ var storage = builder.AddAzureStorage("storage")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the .NET Aspire Azure hosting integration. Azurite isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates and starts the container when the AppHost starts. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+When you call `RunAsEmulator`, it configures your storage resources to run locally using an emulator. The emulator in this case is [Azurite](/azure/storage/common/storage-use-azurite). The Azurite open-source emulator provides a free local environment for testing your Azure Blob, Queue Storage, and Table Storage apps and it's a perfect companion to the Aspire Azure hosting integration. Azurite isn't installed, instead, it's accessible to Aspire as a container. When you add a container to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/azure-storage/azurite` image, it creates and starts the container when the AppHost starts. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Azurite container
 
@@ -101,7 +101,7 @@ There are various configurations available to container resources, for example, 
 
 ##### Configure Azurite container ports
 
-By default, the Azurite container when configured by .NET Aspire, exposes the following endpoints:
+By default, the Azurite container when configured by Aspire, exposes the following endpoints:
 
 | Endpoint | Container port | Host port |
 |----------|----------------|-----------|
@@ -191,14 +191,14 @@ Data bind mounts rely on the host machine's filesystem to persist the Azurite da
 
 ### Connect to storage resources
 
-When the .NET Aspire AppHost runs, the storage resources can be accessed by external tools, such as the [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/). If your storage resource is running locally using Azurite, it will automatically be picked up by the Azure Storage Explorer.
+When the Aspire AppHost runs, the storage resources can be accessed by external tools, such as the [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/). If your storage resource is running locally using Azurite, it will automatically be picked up by the Azure Storage Explorer.
 
 > [!NOTE]
 > The Azure Storage Explorer discovers Azurite storage resources assuming the default ports are used. If you've [configured the Azurite container to use different ports](#configure-azurite-container-ports), you'll need to configure the Azure Storage Explorer to connect to the correct ports.
 
 To connect to the storage resource from Azure Storage Explorer, follow these steps:
 
-1. Run the .NET Aspire AppHost.
+1. Run the Aspire AppHost.
 1. Open the Azure Storage Explorer.
 1. View the **Explorer** pane.
 1. Select the **Refresh all** link to refresh the list of storage accounts.

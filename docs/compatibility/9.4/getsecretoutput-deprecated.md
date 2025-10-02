@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - BicepSecretOutputReference and GetSecretOutput are now obsolete"
-description: "Learn about the breaking change in .NET Aspire 9.4 where BicepSecretOutputReference, GetSecretOutput, and related automatic Key Vault logic are deprecated."
+description: "Learn about the breaking change in Aspire 9.4 where BicepSecretOutputReference, GetSecretOutput, and related automatic Key Vault logic are deprecated."
 ms.date: 07/08/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3670
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3670
 
 # BicepSecretOutputReference and GetSecretOutput are now obsolete
 
-In .NET Aspire 9.4, the `BicepSecretOutputReference` type, the `GetSecretOutput(...)` helper method, and the overload of `WithEnvironment` that accepted a `BicepSecretOutputReference` are now obsolete. Automatic Key Vault generation and secret wiring logic were removed. Projects that relied on these APIs for automatic secret management must migrate to explicit Key Vault resource modeling and secret references.
+In Aspire 9.4, the `BicepSecretOutputReference` type, the `GetSecretOutput(...)` helper method, and the overload of `WithEnvironment` that accepted a `BicepSecretOutputReference` are now obsolete. Automatic Key Vault generation and secret wiring logic were removed. Projects that relied on these APIs for automatic secret management must migrate to explicit Key Vault resource modeling and secret references.
 
 ## Version introduced
 
-.NET Aspire 9.4
+Aspire 9.4
 
 ## Previous behavior
 

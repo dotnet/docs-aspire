@@ -2,7 +2,7 @@
 ms.topic: include
 ---
 
-The .NET Aspire [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) hosting integration models the various Cosmos DB resources as the following types:
+The Aspire [Azure Cosmos DB](https://azure.microsoft.com/services/cosmos-db/) hosting integration models the various Cosmos DB resources as the following types:
 
 - <xref:Aspire.Hosting.AzureCosmosDBResource>: Represents an Azure Cosmos DB resource.
 - <xref:Aspire.Hosting.Azure.AzureCosmosDBContainerResource>: Represents an Azure Cosmos DB container resource.
@@ -73,7 +73,7 @@ For more information on treating Azure Cosmos DB resources as existing resources
 
 ### Add Azure Cosmos DB database and container resources
 
-.NET Aspire models parent child relationships between Azure Cosmos DB resources. For example, an Azure Cosmos DB account (<xref:Aspire.Hosting.AzureCosmosDBResource>) can have multiple databases (<xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>), and each database can have multiple containers (<xref:Aspire.Hosting.Azure.AzureCosmosDBContainerResource>). When you add a database or container resource, you do so on a parent resource.
+Aspire models parent child relationships between Azure Cosmos DB resources. For example, an Azure Cosmos DB account (<xref:Aspire.Hosting.AzureCosmosDBResource>) can have multiple databases (<xref:Aspire.Hosting.Azure.AzureCosmosDBDatabaseResource>), and each database can have multiple containers (<xref:Aspire.Hosting.Azure.AzureCosmosDBContainerResource>). When you add a database or container resource, you do so on a parent resource.
 
 To add an Azure Cosmos DB database resource, call the <xref:Aspire.Hosting.AzureCosmosExtensions.AddCosmosDatabase*> method on an `IResourceBuilder<AzureCosmosDBResource>` instance:
 
@@ -149,7 +149,7 @@ var cosmos = builder.AddAzureCosmosDB("cosmos-db")
 // After adding all resources, run the app...
 ```
 
-When you call `RunAsEmulator`, it configures your Cosmos DB resources to run locally using an emulator. The emulator in this case is the [Azure Cosmos DB Emulator](/azure/cosmos-db/local-emulator). The Azure Cosmos DB Emulator provides a free local environment for testing your Azure Cosmos DB apps and it's a perfect companion to the .NET Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to .NET Aspire as a container. When you add a container to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/cosmosdb/emulator` image, it creates and starts the container when the AppHost starts. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
+When you call `RunAsEmulator`, it configures your Cosmos DB resources to run locally using an emulator. The emulator in this case is the [Azure Cosmos DB Emulator](/azure/cosmos-db/local-emulator). The Azure Cosmos DB Emulator provides a free local environment for testing your Azure Cosmos DB apps and it's a perfect companion to the Aspire Azure hosting integration. The emulator isn't installed, instead, it's accessible to Aspire as a container. When you add a container to the AppHost, as shown in the preceding example with the `mcr.microsoft.com/cosmosdb/emulator` image, it creates and starts the container when the AppHost starts. For more information, see [Container resource lifecycle](../../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
 #### Configure Cosmos DB emulator container
 
@@ -157,7 +157,7 @@ There are various configurations available to container resources, for example, 
 
 ##### Configure Cosmos DB emulator container gateway port
 
-By default, the Cosmos DB emulator container when configured by .NET Aspire, exposes the following endpoints:
+By default, the Cosmos DB emulator container when configured by Aspire, exposes the following endpoints:
 
 | Endpoint | Container port | Host port |
 |----------|----------------|-----------|
@@ -263,7 +263,7 @@ The preceding code configures the Linux-based preview Cosmos DB emulator contain
 
 ### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Cosmos DB resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Cosmos DB resource, the following Bicep is generated:
 
 :::code language="bicep" source="../../snippets/azure/AppHost/cosmos/cosmos.bicep":::
 
@@ -275,7 +275,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
 
 :::code language="csharp" source="../../snippets/azure/AppHost/Program.ConfigureCosmosInfra.cs" id="configure":::
 

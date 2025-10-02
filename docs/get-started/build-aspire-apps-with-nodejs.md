@@ -1,13 +1,13 @@
 ---
-title: Orchestrate Node.js apps in .NET Aspire
-description: Learn how to integrate Node.js and npm apps into a .NET Aspire AppHost project.
+title: Orchestrate Node.js apps in Aspire
+description: Learn how to integrate Node.js and npm apps into a Aspire AppHost project.
 ms.date: 05/27/2025
 ms.custom: sfi-image-nochange
 ---
 
-# Orchestrate Node.js apps in .NET Aspire
+# Orchestrate Node.js apps in Aspire
 
-In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a .NET Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following .NET Aspire APIs exist to support these scenarios—and they're part of the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package:
+In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following Aspire APIs exist to support these scenarios—and they're part of the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package:
 
 - [Node.js](https://nodejs.org/): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A>.
 - [`npm` apps](https://docs.npmjs.com/cli/using-npm/scripts): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>.
@@ -15,10 +15,10 @@ In this article, you learn how to use Node.js and Node Package Manager (`npm`) a
 The difference between these two APIs is that the former is used to host Node.js apps, while the latter is used to host apps that execute from a _package.json_ file's `scripts` section—and the corresponding `npm run <script-name>` command.
 
 > [!TIP]
-> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and there are details available on the [Code Samples: .NET Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page.
+> The sample source code for this article is available on [GitHub](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithJavaScript), and there are details available on the [Code Samples: Aspire with Angular, React and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue) page.
 
 > [!IMPORTANT]
-> While this article is focused on Single-Page App (SPA) frontend bits, there's an additional Node.js sample available on the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page, that demonstrates how to use Node.js as a server app with [express](https://expressjs.com/).
+> While this article is focused on Single-Page App (SPA) frontend bits, there's an additional Node.js sample available on the [Code Samples: Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page, that demonstrates how to use Node.js as a server app with [express](https://expressjs.com/).
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -51,10 +51,10 @@ cd samples/AspireWithJavaScript
 From this directory, there are six child directories described in the following list:
 
 - **AspireJavaScript.Angular**: An Angular app that consumes the weather forecast API and displays the data in a table.
-- **AspireJavaScript.AppHost**: A .NET Aspire project that orchestrates the other apps in this sample. For more information, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+- **AspireJavaScript.AppHost**: A Aspire project that orchestrates the other apps in this sample. For more information, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).
 - **AspireJavaScript.MinimalApi**: An HTTP API that returns randomly generated weather forecast data.
 - **AspireJavaScript.React**: A React app that consumes the weather forecast API and displays the data in a table.
-- **AspireJavaScript.ServiceDefaults**: The default shared project for .NET Aspire projects. For more information, see [.NET Aspire service defaults](../fundamentals/service-defaults.md).
+- **AspireJavaScript.ServiceDefaults**: The default shared project for Aspire projects. For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
 - **AspireJavaScript.Vue**: A Vue app that consumes the weather forecast API and displays the data in a table.
 
 ## Install client dependencies
@@ -104,11 +104,11 @@ To run the sample app, call the [dotnet run](/dotnet/core/tools/dotnet-run) comm
 dotnet run --project ./AspireJavaScript.AppHost/AspireJavaScript.AppHost.csproj
 ```
 
-The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) launches in your default browser, and each client app endpoint displays under the **Endpoints** column of the **Resources** page. The following image depicts the dashboard for this sample app:
+The [Aspire dashboard](../fundamentals/dashboard/overview.md) launches in your default browser, and each client app endpoint displays under the **Endpoints** column of the **Resources** page. The following image depicts the dashboard for this sample app:
 
-:::image type="content" source="media/aspire-dashboard-with-nodejs.png" lightbox="media/aspire-dashboard-with-nodejs.png" alt-text=".NET Aspire dashboard with multiple JavaScript client apps.":::
+:::image type="content" source="media/aspire-dashboard-with-nodejs.png" lightbox="media/aspire-dashboard-with-nodejs.png" alt-text="Aspire dashboard with multiple JavaScript client apps.":::
 
-The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. Each client app consumes this service to display the weather forecast data. You can view each client app by navigating to the corresponding endpoint in the .NET Aspire dashboard. Their screenshots and the modifications made from the template starting point are detailed in the following sections.
+The `weatherapi` service endpoint resolves to a Swagger UI page that documents the HTTP API. Each client app consumes this service to display the weather forecast data. You can view each client app by navigating to the corresponding endpoint in the Aspire dashboard. Their screenshots and the modifications made from the template starting point are detailed in the following sections.
 
 In the same terminal session that you used to run the app, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to stop the app.
 
@@ -131,7 +131,7 @@ The preceding code:
   - Each client app is configured to run on a different container port, and uses the `PORT` environment variable to determine the port.
   - All client apps also rely on a _Dockerfile_ to build their container image and are configured to express themselves in the publishing manifest as a container from the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerFile*> API.
 
-For more information on inner-loop networking, see [.NET Aspire inner-loop networking overview](../fundamentals/networking-overview.md). For more information on deploying apps, see [.NET Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
+For more information on inner-loop networking, see [Aspire inner-loop networking overview](../fundamentals/networking-overview.md). For more information on deploying apps, see [Aspire manifest format for deployment tool builders](../deployment/manifest-format.md).
 
 When the AppHost orchestrates the launch of each client app, it uses the `npm run start` command. This command is defined in the `scripts` section of the _package.json_ file for each client app. The `start` script is used to start the client app on the specified port. Each client app relies on a proxy to request the "weatherapi" service.
 
@@ -147,7 +147,7 @@ There are several key modifications from the original Angular template. The firs
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
 
-The .NET Aspire AppHost sets the `services__weatherapi__http__0` environment variable, which is used to resolve the "weatherapi" service endpoint. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
+The Aspire AppHost sets the `services__weatherapi__http__0` environment variable, which is used to resolve the "weatherapi" service endpoint. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
 
 Then include the proxy file to in the _angular.json_ file.
 Update the `serve` target to include the `proxyConfig` option, referencing to the created _proxy.conf.js_ file.
@@ -175,7 +175,7 @@ Finally, the Angular client app needs to call the `/api/WeatherForecast` endpoin
 
 ### Angular app running
 
-To visualize the Angular client app, navigate to the "angular" endpoint in the .NET Aspire dashboard. The following image depicts the Angular client app:
+To visualize the Angular client app, navigate to the "angular" endpoint in the Aspire dashboard. The following image depicts the Angular client app:
 
 :::image type="content" source="media/angular-app.png" lightbox="media/angular-app.png" alt-text="Angular client app with fake forecast weather data displayed as a table.":::
 
@@ -203,7 +203,7 @@ The final updates are to the following files:
 
 ### React app running
 
-To visualize the React client app, navigate to the "react" endpoint in the .NET Aspire dashboard. The following image depicts the React client app:
+To visualize the React client app, navigate to the "react" endpoint in the Aspire dashboard. The following image depicts the React client app:
 
 :::image type="content" source="media/react-app.png" lightbox="media/react-app.png" alt-text="React client app with fake forecast weather data displayed as a table.":::
 
@@ -217,13 +217,13 @@ As the `TheWelcome` integration is `mounted`, it calls the `/api/weatherforecast
 
 :::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/vite.config.ts":::
 
-Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `services__weatherapi__http__0` environment variable, which is set by the .NET Aspire AppHost.
+Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `services__weatherapi__http__0` environment variable, which is set by the Aspire AppHost.
 
 The final update from the template is made to the _TheWelcome.vue_ file. This file calls the `/api/WeatherForecast` endpoint to retrieve the weather forecast data, and displays the data in a table. It includes [CSS, HTML, and TypeScript updates](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue).
 
 ### Vue app running
 
-To visualize the Vue client app, navigate to the "vue" endpoint in the .NET Aspire dashboard. The following image depicts the Vue client app:
+To visualize the Vue client app, navigate to the "vue" endpoint in the Aspire dashboard. The following image depicts the Vue client app:
 
 :::image type="content" source="media/vue-app.png" lightbox="media/vue-app.png" alt-text="Vue client app with fake forecast weather data displayed as a table.":::
 
@@ -239,26 +239,26 @@ The client apps are currently configured to run as true SPA apps, and aren't con
 
 ## Node.js server app considerations
 
-While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The .NET Aspire AppHost requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`. These APIs are useful for adding existing JavaScript apps to the .NET Aspire AppHost.
+While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The Aspire AppHost requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`. These APIs are useful for adding existing JavaScript apps to the Aspire AppHost.
 
-When configuring secrets and passing environment variables to JavaScript-based apps, whether they are client or server apps, use parameters. For more information, see [.NET Aspire: External parameters—secrets](../fundamentals/external-parameters.md#secret-values).
+When configuring secrets and passing environment variables to JavaScript-based apps, whether they are client or server apps, use parameters. For more information, see [Aspire: External parameters—secrets](../fundamentals/external-parameters.md#secret-values).
 
 ### Use the OpenTelemetry JavaScript SDK
 
 To export OpenTelemetry logs, traces, and metrics from a Node.js server app, you use the [OpenTelemetry JavaScript SDK](https://opentelemetry.io/docs/languages/js/).
 
-For a complete example of a Node.js server app using the OpenTelemetry JavaScript SDK, you can refer to the [Code Samples: .NET Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page. Consider the sample's _instrumentation.js_ file, which demonstrates how to configure the OpenTelemetry JavaScript SDK to export logs, traces, and metrics:
+For a complete example of a Node.js server app using the OpenTelemetry JavaScript SDK, you can refer to the [Code Samples: Aspire Node.js sample](/samples/dotnet/aspire-samples/aspire-nodejs) page. Consider the sample's _instrumentation.js_ file, which demonstrates how to configure the OpenTelemetry JavaScript SDK to export logs, traces, and metrics:
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithNode/NodeFrontend/instrumentation.js":::
 
 > [!TIP]
-> To configure the .NET Aspire dashboard OTEL CORS settings, see the [.NET Aspire dashboard OTEL CORS settings](../fundamentals/dashboard/configuration.md#otlp-cors) page.
+> To configure the Aspire dashboard OTEL CORS settings, see the [Aspire dashboard OTEL CORS settings](../fundamentals/dashboard/configuration.md#otlp-cors) page.
 
 ## Summary
 
-While there are several considerations that are beyond the scope of this article, you learned how to build .NET Aspire projects that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.
+While there are several considerations that are beyond the scope of this article, you learned how to build Aspire projects that use Node.js and Node Package Manager (`npm`). You also learned how to use the <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A> APIs to host Node.js apps and apps that execute from a _package.json_ file, respectively. Finally, you learned how to use the `npm` CLI to create Angular, React, and Vue client apps, and how to configure them to run on different ports.
 
 ## See also
 
-- [Code Samples: .NET Aspire with Angular, React, and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue)
-- [Code Samples: .NET Aspire Node.js App](/samples/dotnet/aspire-samples/aspire-nodejs)
+- [Code Samples: Aspire with Angular, React, and Vue](/samples/dotnet/aspire-samples/aspire-angular-react-vue)
+- [Code Samples: Aspire Node.js App](/samples/dotnet/aspire-samples/aspire-nodejs)

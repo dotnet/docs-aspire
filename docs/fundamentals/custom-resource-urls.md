@@ -1,17 +1,17 @@
 ---
 title: Define custom resource URLs
-description: Learn how to create custom URLs for .NET Aspire resources.
+description: Learn how to create custom URLs for Aspire resources.
 ms.date: 05/06/2025
 ms.topic: how-to
 ---
 
 # Define custom resource URLs
 
-In .NET Aspire, resources that expose endpoints only configure host and port, which aren't known until run time. If you need to access a specific path on one of these endpoints—especially from the [dashboard](dashboard/overview.md)—you can define custom resource URLs. You can also add custom URLs that aren't tied to any endpoint. All custom URLs are only available in "run" mode, since they're meant for dashboard use. This article demonstrates how to define custom URLs.
+In Aspire, resources that expose endpoints only configure host and port, which aren't known until run time. If you need to access a specific path on one of these endpoints—especially from the [dashboard](dashboard/overview.md)—you can define custom resource URLs. You can also add custom URLs that aren't tied to any endpoint. All custom URLs are only available in "run" mode, since they're meant for dashboard use. This article demonstrates how to define custom URLs.
 
 ## Default endpoint behavior
 
-By default, .NET Aspire project resources rely on existing configurations such as Kestrel or launch profiles to determine the host and port of a resource for a configured endpoint—and the endpoints are always displayed on the dashboard.
+By default, Aspire project resources rely on existing configurations such as Kestrel or launch profiles to determine the host and port of a resource for a configured endpoint—and the endpoints are always displayed on the dashboard.
 
 Likewise, you can explicitly expose endpoints using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint*> API. This API allows you to specify the host and port for a resource, which is then used to create the default URL for that resource. The default URL is typically in the format `<scheme>://<host>:<port>`. To omit the host port, use one of the following methods:
 
@@ -39,7 +39,7 @@ Use the appropriate `WithUrl` overload, `WithUrls`, or `WithUrlForEndpoint` APIs
 
 The preceding code assigns a project reference to the `api` variable, which is then used to create a custom URL for the `Admin Portal` route. The `WithUrl` method takes a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and a display name as parameters. The resulting URL is available in the dashboard as shown in the following screenshot:
 
-:::image type="content" source="dashboard/media/custom-urls/custom-url-admin-portal.png" alt-text=".NET Aspire dashboard custom Admin Portal URL." lightbox="dashboard/media/custom-urls/custom-url-admin-portal.png":::
+:::image type="content" source="dashboard/media/custom-urls/custom-url-admin-portal.png" alt-text="Aspire dashboard custom Admin Portal URL." lightbox="dashboard/media/custom-urls/custom-url-admin-portal.png":::
 
 ### Customize endpoint URL
 
@@ -55,7 +55,7 @@ The preceding example assumes that the `api` project resource has an `https` end
 
 When the resource is started, the URL is available in the dashboard as shown in the following screenshot:
 
-:::image type="content" source="dashboard/media/custom-urls/custom-url-scalar-https.png" alt-text=".NET Aspire dashboard with custom Scalar URL." lightbox="dashboard/media/custom-urls/custom-url-scalar-https.png":::
+:::image type="content" source="dashboard/media/custom-urls/custom-url-scalar-https.png" alt-text="Aspire dashboard with custom Scalar URL." lightbox="dashboard/media/custom-urls/custom-url-scalar-https.png":::
 
 Alternatively, you could use the overload that accepts a `Func<EndpointReference, ResourceUrlAnnotation>` as a callback. This allows you to specify deep-links on target <xref:Aspire.Hosting.ApplicationModel.EndpointReference> instances.
 
@@ -67,7 +67,7 @@ To customize multiple URLs for a resource, use the <xref:Aspire.Hosting.Resource
 
 The preceding code iterates through the URLs defined for the `api` project resource and assigns a display text with scheme. The resulting URLs are available in the dashboard as shown in the following screenshot:
 
-:::image type="content" source="dashboard/media/custom-urls/custom-url-ordered.png" alt-text=".NET Aspire dashboard custom ordered and named URLs.":::
+:::image type="content" source="dashboard/media/custom-urls/custom-url-ordered.png" alt-text="Aspire dashboard custom ordered and named URLs.":::
 
 > [!TIP]
 > The <xref:Aspire.Hosting.ApplicationModel.ResourceUrlsCallbackContext> exposes an extension method that enables you to easily access the underlying resource named endpoints. Call the `GetEndpoint` API on a context instance to achieve this.
@@ -78,5 +78,5 @@ URL customization callbacks run during the application model lifecycle, specific
 
 ## See also
 
-- [.NET Aspire dashboard overview](dashboard/overview.md)
-- [.NET Aspire AppHost](app-host-overview.md)
+- [Aspire dashboard overview](dashboard/overview.md)
+- [Aspire AppHost](app-host-overview.md)

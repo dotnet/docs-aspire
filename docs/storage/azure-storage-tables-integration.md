@@ -1,15 +1,15 @@
 ---
-title: .NET Aspire Azure Data Tables integration
-description: Learn how to use the .NET Aspire Azure Data Tables integration, which includes both hosting and client integrations.
+title: Aspire Azure Data Tables integration
+description: Learn how to use the Aspire Azure Data Tables integration, which includes both hosting and client integrations.
 ms.date: 04/08/2025
 uid: storage/azure-data-tables-integration
 ---
 
-# .NET Aspire Azure Data Tables integration
+# Aspire Azure Data Tables integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Table Storage](https://azure.microsoft.com/services/storage/tables/) is a service for storing structured NoSQL data. The .NET Aspire Azure Data Tables integration enables you to connect to existing Azure Table Storage instances or create new instances from .NET applications.
+[Azure Table Storage](https://azure.microsoft.com/services/storage/tables/) is a service for storing structured NoSQL data. The Aspire Azure Data Tables integration enables you to connect to existing Azure Table Storage instances or create new instances from .NET applications.
 
 ## Hosting integration
 
@@ -48,7 +48,7 @@ The preceding code:
 
 ## Client integration
 
-To get started with the .NET Aspire Azure Data Tables client integration, install the [📦 Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Data Tables client. The Azure Data Tables client integration registers a <xref:Azure.Data.Tables.TableServiceClient> instance that you can use to interact with Azure Table Storage.
+To get started with the Aspire Azure Data Tables client integration, install the [📦 Aspire.Azure.Data.Tables](https://www.nuget.org/packages/Aspire.Azure.Data.Tables) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure Data Tables client. The Azure Data Tables client integration registers a <xref:Azure.Data.Tables.TableServiceClient> instance that you can use to interact with Azure Table Storage.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -84,11 +84,11 @@ public class ExampleService(TableServiceClient client)
 
 ### Configuration
 
-The .NET Aspire Azure Table Storage integration provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.
+The Aspire Azure Table Storage integration provides multiple options to configure the `TableServiceClient` based on the requirements and conventions of your project.
 
 #### Use configuration providers
 
-The .NET Aspire Azure Table Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> and <xref:Azure.Data.Tables.TableClientOptions> from configuration by using the `Aspire:Azure:Data:Tables` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
+The Aspire Azure Table Storage integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings> and <xref:Azure.Data.Tables.TableClientOptions> from configuration by using the `Aspire:Azure:Data:Tables` key. The following snippet is an example of a _:::no-loc text="appsettings.json":::_ file that configures some of the options:
 
 ```json
 {
@@ -113,7 +113,7 @@ For the complete Azure Data Tables client integration JSON schema, see [Aspire.A
 
 #### Use named configuration
 
-The .NET Aspire Azure Table Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure Table Storage integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -173,9 +173,9 @@ builder.AddAzureTableClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
-The .NET Aspire Azure Data Tables integration:
+The Aspire Azure Data Tables integration:
 
 - Adds the health check when <xref:Aspire.Azure.Data.Tables.AzureDataTablesSettings.DisableHealthChecks?displayProperty=nameWithType> is `false`, which attempts to connect to the Azure Table Storage.
 - Integrates with the `/health` HTTP endpoint, which specifies all registered health checks must pass for app to be considered ready to accept traffic.
@@ -184,23 +184,23 @@ The .NET Aspire Azure Data Tables integration:
 
 ### Logging
 
-The .NET Aspire Azure Data Tables integration uses the following log categories:
+The Aspire Azure Data Tables integration uses the following log categories:
 
 - `Azure.Core`
 - `Azure.Identity`
 
 ### Tracing
 
-The .NET Aspire Azure Data Tables integration emits the following tracing activities using OpenTelemetry:
+The Aspire Azure Data Tables integration emits the following tracing activities using OpenTelemetry:
 
 - `Azure.Data.Tables.TableServiceClient`
 
 ### Metrics
 
-The .NET Aspire Azure Data Tables integration currently doesn't support metrics by default due to limitations with the Azure SDK.
+The Aspire Azure Data Tables integration currently doesn't support metrics by default due to limitations with the Azure SDK.
 
 ## See also
 
 - [Azure Table Storage docs](/azure/storage/tables/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

@@ -1,17 +1,17 @@
 ---
 title: "Better Azure resource name scheme"
-description: This document outlines the breaking changes introduced in .NET Aspire 9.0 GA regarding the Azure resource naming scheme.
+description: This document outlines the breaking changes introduced in Aspire 9.0 GA regarding the Azure resource naming scheme.
 ms.date: 10/28/2024
 ai-usage: ai-assisted
 ---
 
 # Better Azure resource name scheme
 
-In .NET Aspire 9.0 GA, the Azure resource naming scheme has been updated to a more robust and flexible system. This change addresses issues with the previous naming scheme, which caused problems such as name truncation and invalid deployments.
+In Aspire 9.0 GA, the Azure resource naming scheme has been updated to a more robust and flexible system. This change addresses issues with the previous naming scheme, which caused problems such as name truncation and invalid deployments.
 
 ## Version introduced
 
-.NET Aspire 9.0 GA
+Aspire 9.0 GA
 
 ## Previous behavior
 

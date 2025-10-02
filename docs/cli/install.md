@@ -1,18 +1,18 @@
 ---
-title: Install .NET Aspire CLI
-description: Learn how to install .NET Aspire CLI, which is a .NET global tool. Use the .NET Aspire CLI to create, run, and manage .NET Aspire projects.
+title: Install Aspire CLI
+description: Learn how to install Aspire CLI, which is a .NET global tool. Use the Aspire CLI to create, run, and manage Aspire projects.
 author: adegeo
 ms.author: adegeo
 ms.topic: install-set-up-deploy
 ms.date: 08/29/2025
 
-#customer intent: As a developer, I want to install the .NET Aspire CLI so that I can create, run, and manage .NET Aspire projects.
+#customer intent: As a developer, I want to install the Aspire CLI so that I can create, run, and manage Aspire projects.
 
 ---
 
-# Install .NET Aspire CLI
+# Install Aspire CLI
 
-This article teaches you how to install the Aspire CLI, which is a CLI tool used to manage your .NET Aspire projects.
+This article teaches you how to install the Aspire CLI, which is a CLI tool used to manage your Aspire projects.
 
 ## Prerequisites
 

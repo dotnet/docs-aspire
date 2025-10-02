@@ -18,7 +18,7 @@ This diagnostic warning is reported when using a code language other than C#.
 
 ## To correct this warning
 
-In your .NET Aspire project, use C#.
+In your Aspire project, use C#.
 
 ## Suppress the warning
 

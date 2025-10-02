@@ -14,7 +14,7 @@ helpviewer_keywords:
 
 > The Aspire workload that this project depends on is now deprecated.
 
-This error appears when a project uses a version of .NET Aspire that relies on the SDK workload, which is now deprecated. The error guides you to migrate your project to a supported version of .NET Aspire that uses the SDK approach instead of the workload.
+This error appears when a project uses a version of Aspire that relies on the SDK workload, which is now deprecated. The error guides you to migrate your project to a supported version of Aspire that uses the SDK approach instead of the workload.
 
 ## Example
 
@@ -39,11 +39,11 @@ The following AppHost project file uses the deprecated Aspire workload:
 </Project>
 ```
 
-For more information on the Aspire SDK, see [.NET Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
+For more information on the Aspire SDK, see [Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
 
 ## To correct this error
 
-Follow the migration guide at <https://aka.ms/aspire/update-to-sdk> to upgrade your project to a supported version of .NET Aspire that uses the SDK approach.
+Follow the migration guide at <https://aka.ms/aspire/update-to-sdk> to upgrade your project to a supported version of Aspire that uses the SDK approach.
 
 The migration typically involves:
 
@@ -54,7 +54,7 @@ The migration typically involves:
 ## Suppress the error
 
 > [!WARNING]
-> Suppressing this error isn't recommended, as it leaves your project depending on an unsupported version of .NET Aspire.
+> Suppressing this error isn't recommended, as it leaves your project depending on an unsupported version of Aspire.
 
 If you need to temporarily suppress this error, add the following property to your project file:
 

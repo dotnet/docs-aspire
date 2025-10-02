@@ -1,6 +1,6 @@
 ---
 title: Configure Azure Container Apps environments
-description: Learn how to configure Azure Container Apps environments in .NET Aspire.
+description: Learn how to configure Azure Container Apps environments in Aspire.
 ms.topic: how-to
 ms.date: 09/25/2025
 ---
@@ -15,11 +15,11 @@ It's easy to [publish resources as Azure Container Apps (ACA)](integrations-over
 
 These APIs automatically create a default ACA environment when you publish your app. While this default setup works well for most scenarios, you might need to customize the ACA environment to meet specific requirements. To achieve this, use the `AddAzureContainerAppEnvironment` method.
 
-The [.NET Aspire AppHost](../fundamentals/app-host-overview.md) simplifies infrastructure provisioning by generating code to create Azure resources for your applications. This approach enables you to model and configure deployment-related aspects directly in C#, reducing the need to rely on tools like Bicep. These aspects include configuring ACA environments, which provide a serverless platform for running containerized applications.
+The [Aspire AppHost](../fundamentals/app-host-overview.md) simplifies infrastructure provisioning by generating code to create Azure resources for your applications. This approach enables you to model and configure deployment-related aspects directly in C#, reducing the need to rely on tools like Bicep. These aspects include configuring ACA environments, which provide a serverless platform for running containerized applications.
 
 By using the <xref:Azure.Provisioning> APIs (explained in [Customize Azure resources](customize-azure-resources.md)), you can configure and customize ACA environments along with related resources, such as container registries and file share volumes. Any available deployment setting can be configured. For more information on the available settings, see [Microsoft.App managedEnvironments](/azure/templates/microsoft.app/managedenvironments).
 
-This article guides you through the process of tailoring ACA environments for your .NET Aspire solutions.
+This article guides you through the process of tailoring ACA environments for your Aspire solutions.
 
 ## Add an ACA environment
 
@@ -40,7 +40,7 @@ This module configures:
 - An Azure Container Registry (ACR) for the ACA environment.
 - A Log Analytics workspace for the ACA environment.
 - An Azure Container Apps environment.
-- The [.NET Aspire dashboard](../fundamentals/dashboard/overview.md) for the ACA environment.
+- The [Aspire dashboard](../fundamentals/dashboard/overview.md) for the ACA environment.
 - A role assignment for the user principal ID to the ACA environment.
 - Various outputs for the ACA environment.
 
@@ -65,21 +65,9 @@ Calling this API ensures your existing Azure resources remain consistent and pre
 
 ## Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
-```csharp
-var builder = DistributionApplicationBuilder.Create(args);
-
-var acaEnv = builder.AddAzureContainerAppEnvironment(Config.ContainEnvironmentName);
-
-acaEnv.ConfigureInfrastructure(config =>
-{
-    var resources = config.GetProvisionableResources();
-    var containerEnvironment = resources.OfType<ContainerAppManagedEnvironment>().FirstOrDefault();
-
-    containerEnvironment.Tags.Add("ExampleKey", "Example value");
-});
-```
+:::code language="csharp" source="snippets/aca/AspireAca.AppHost/AspireApp.AppHost/ProgramCustomized.cs":::
 
 The preceding code:
 
@@ -87,9 +75,14 @@ The preceding code:
   - The `infra` parameter is an instance of the <xref:Aspire.Hosting.Azure.AzureResourceInfrastructure> type.
   - The provisionable resources are retrieved by calling the <xref:Azure.Provisioning.Infrastructure.GetProvisionableResources> method.
   - The single <xref:Azure.Provisioning.AppContainers.ContainerAppManagedEnvironment> resource is retrieved.
-  - A tag is added to the Azure Container Apps environment resource with a key of `ExampleKey` and a value of `Example value`.
+  - The environment name is set to a custom value instead of using the auto-generated name.
+  - The location is explicitly set to "East US".
+  - Multiple tags are added for environment metadata and organization.
+
+> [!NOTE]
+> You can configure many other properties of the Container Apps environment using this approach. For a complete list of available configuration options, see the [Microsoft.App managedEnvironments template reference](/azure/templates/microsoft.app/managedenvironments).
 
 ## See also
 
-- [.NET Aspire Azure integrations overview](integrations-overview.md)
+- [Aspire Azure integrations overview](integrations-overview.md)
 - [Azure Container Apps overview](/azure/container-apps/overview)

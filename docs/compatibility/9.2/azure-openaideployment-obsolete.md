@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - AzureOpenAIDeployment obsolete"
-description: "Learn about the breaking change in .NET Aspire 9.2 where Azure OpenAI deployments are now modeled as .NET Aspire child resources."
+description: "Learn about the breaking change in Aspire 9.2 where Azure OpenAI deployments are now modeled as Aspire child resources."
 ms.date: 4/15/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3059
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3059
 
 # AzureOpenAIDeployment obsolete
 
-In .NET Aspire 9.2, Azure OpenAI deployments are modeled as .NET Aspire child resources instead of simple objects. This change aligns with the design of other [hosting integrations](../../fundamentals/integrations-overview.md#hosting-integrations) and enables referencing deployments using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*>. As a result, the previous APIs for adding deployments are now obsolete.
+In Aspire 9.2, Azure OpenAI deployments are modeled as Aspire child resources instead of simple objects. This change aligns with the design of other [hosting integrations](../../fundamentals/integrations-overview.md#hosting-integrations) and enables referencing deployments using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*>. As a result, the previous APIs for adding deployments are now obsolete.
 
 ## Version introduced
 
-.NET Aspire 9.2
+Aspire 9.2
 
 ## Previous behavior
 
@@ -29,7 +29,7 @@ openAI.AddDeployment(new AzureOpenAIDeployment("chat", "gpt-4o-mini", "2024-07-1
 
 ## New behavior
 
-Deployments are modeled as .NET Aspire child resources and are added using the new overloads. For example, consider the following code:
+Deployments are modeled as Aspire child resources and are added using the new overloads. For example, consider the following code:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

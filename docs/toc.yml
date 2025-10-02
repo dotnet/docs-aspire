@@ -307,6 +307,9 @@ items:
   - name: Dev tunnels
     displayName: dev tunnels,tunnels,development,secure sharing
     href: extensibility/dev-tunnels-integration.md
+  - name: Docker
+    displayName: docker,docker compose,deployment
+    href: deployment/docker-integration.md
   - name: Elasticsearch
     displayName: elasticsearch,search
     href: search/elasticsearch-integration.md
@@ -347,6 +350,9 @@ items:
   - name: Keycloak (Preview)
     displayName: security,openid connect,single sign-on,sso,identity,federation,account management
     href: authentication/keycloak-integration.md
+  - name: Kubernetes
+    displayName: kubernetes,k8s,hosting,deployment,manifests
+    href: deployment/kubernetes-integration.md
   - name: Milvus
     displayName: milvus,database
     href: database/milvus-integration.md

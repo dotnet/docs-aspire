@@ -74,8 +74,8 @@
       "open_source_feedback_productLogoLightUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "open_source_feedback_productLogoDarkUrl": "https://learn.microsoft.com/media/logos/logo_net.svg",
       "open_source_feedback_issueUrl": "https://github.com/dotnet/docs-aspire/issues/new?template=z-customer-feedback.yml",
-      "open_source_feedback_productName": ".NET Aspire",
-      "open_source_feedback_productDescription": "The .NET Aspire documentation is open source and we love community feedback. Please provide feedback by posting an issue on GitHub, or product feedback here:",
+      "open_source_feedback_productName": "Aspire",
+      "open_source_feedback_productDescription": "The Aspire documentation is open source and we love community feedback. Please provide feedback by posting an issue on GitHub, or product feedback here:",
       "social_image_url": "/dotnet/media/dotnet-aspire-logo.png",
       "permissioned-type": "public",
       "dev_langs": [
@@ -86,7 +86,7 @@
       ],
       "searchScope": [
         ".NET",
-        ".NET Aspire"
+        "Aspire"
       ],
       "zone_pivot_group_filename": "aspire/zones/zone-pivot-groups.json",
       "show_latex": true,
@@ -115,11 +115,11 @@
         "docs/azureai/**/*.md": "ce-skilling-ai-copilot"
       },
       "titleSuffix": {
-        "docs/**/**.md": ".NET Aspire"
+        "docs/**/**.md": "Aspire"
       },
       "no-loc": {
         "**/**.md": [
-          ".NET Aspire",
+          "Aspire",
           ".NET",
           "Angular",
           "Apache Kafka",

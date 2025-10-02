@@ -1,6 +1,6 @@
 ---
 title: Azure Container App Jobs
-description: Learn how to use Azure Container App Jobs in .NET Aspire to run containerized tasks that execute for a finite duration.
+description: Learn how to use Azure Container App Jobs in Aspire to run containerized tasks that execute for a finite duration.
 ms.date: 09/22/2025
 ms.topic: how-to
 ---
@@ -9,17 +9,17 @@ ms.topic: how-to
 
 Azure Container Apps jobs enable you to run containerized tasks that execute for a finite duration and exit. You can use jobs to perform tasks such as data processing, machine learning, or any scenario where on-demand processing is required. Unlike traditional Azure Container Apps that run continuously, Container App Jobs are designed for batch processing, scheduled tasks, and event-driven workloads.
 
-.NET Aspire provides support for Azure Container App Jobs through the `PublishAsAzureContainerAppJob` extension method, allowing you to deploy your .NET projects, containers, and executables as jobs in Azure Container Apps.
+Aspire provides support for Azure Container App Jobs through the `PublishAsAzureContainerAppJob` extension method, allowing you to deploy your .NET projects, containers, and executables as jobs in Azure Container Apps.
 
 ## Prerequisites
 
 - Azure subscription.
-- .NET Aspire project.
+- Aspire project.
 - Understanding of [Azure Container Apps Jobs](/azure/container-apps/jobs).
 
 ## Supported resource types
 
-.NET Aspire allows you to publish the following resource types as Azure Container App Jobs:
+Aspire allows you to publish the following resource types as Azure Container App Jobs:
 
 - <xref:Aspire.Hosting.ApplicationModel.ContainerResource>: Represents a specified container.
 - <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>: Represents a specified executable process.  
@@ -182,11 +182,11 @@ builder.AddExecutable("data-script", "python", ".", "process_data.py")
 ## Experimental feature notice
 
 > [!IMPORTANT]
-> Azure Container App Jobs support in .NET Aspire is an experimental feature. The APIs are subject to change in future releases. You might encounter the diagnostic `ASPIREAZURE002` when using these features. For more information, see [ASPIREAZURE002](../diagnostics/aspireazure002.md).
+> Azure Container App Jobs support in Aspire is an experimental feature. The APIs are subject to change in future releases. You might encounter the diagnostic `ASPIREAZURE002` when using these features. For more information, see [ASPIREAZURE002](../diagnostics/aspireazure002.md).
 
 ## Related content
 
 - [Configure Azure Container Apps environments](configure-aca-environments.md).
 - [Azure Container Apps Jobs documentation](/azure/container-apps/jobs).
-- [Deploy a .NET Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
+- [Deploy a Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 - [Customize Azure resources](customize-azure-resources.md).

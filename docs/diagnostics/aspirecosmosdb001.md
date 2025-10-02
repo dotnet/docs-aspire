@@ -20,7 +20,7 @@ helpviewer_keywords:
 
 Both `RunAsPreviewEmulator` and `WithDataExplorer` are considered experimental APIs.
 
-.NET Aspire provides a way to use the Cosmos DB Linux-based (preview) emulator and data explorer. These APIs are considered experimental and are expected to change in the future.
+Aspire provides a way to use the Cosmos DB Linux-based (preview) emulator and data explorer. These APIs are considered experimental and are expected to change in the future.
 
 ## Example
 

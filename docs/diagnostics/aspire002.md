@@ -14,8 +14,8 @@ helpviewer_keywords:
 
 > 'Project' is an Aspire AppHost project but necessary dependencies aren't present. Are you missing an Aspire.Hosting.AppHost PackageReference?
 
-This diagnostic warning is reported when your project is missing reference to the .NET Aspire AppHost.
+This diagnostic warning is reported when your project is missing reference to the Aspire AppHost.
 
 ## To correct this warning
 
-Add reference to the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. For more information about the AppHost, see [.NET Aspire orchestration overview](../fundamentals/app-host-overview.md).
+Add reference to the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. For more information about the AppHost, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).

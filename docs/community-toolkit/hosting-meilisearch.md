@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire Community Toolkit Meilisearch integration
-description: Learn how to use the .NET Aspire Meilisearch hosting and client integration to run the Meilisearch container and accessing it via the Meilisearch client.
+title: Aspire Community Toolkit Meilisearch integration
+description: Learn how to use the Aspire Meilisearch hosting and client integration to run the Meilisearch container and accessing it via the Meilisearch client.
 ms.date: 10/24/2024
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Community Toolkit Meilisearch integration
+# Aspire Community Toolkit Meilisearch integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire Meilisearch hosting integration to run [Meilisearch](https://meilisearch.com) container and accessing it via the [Meilisearch](https://github.com/meilisearch/meilisearch-dotnet) client.
+In this article, you learn how to use the Aspire Meilisearch hosting integration to run [Meilisearch](https://meilisearch.com) container and accessing it via the [Meilisearch](https://github.com/meilisearch/meilisearch-dotnet) client.
 
 ## Hosting integration
 
@@ -49,7 +49,7 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/getmeili/meilisearch` image, it creates a new Meilisearch instance on your local machine. A reference to your Meilisearch resource (the `meilisearch` variable) is added to the `ExampleProject`. The Meilisearch resource includes a randomly generated `master key` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a master key wasn't provided.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/getmeili/meilisearch` image, it creates a new Meilisearch instance on your local machine. A reference to your Meilisearch resource (the `meilisearch` variable) is added to the `ExampleProject`. The Meilisearch resource includes a randomly generated `master key` using the <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.CreateDefaultPasswordParameter*> method when a master key wasn't provided.
 
 For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -112,7 +112,7 @@ For more information on providing parameters, see [External parameters](../funda
 
 ## Client integration
 
-To get started with the .NET Aspire Meilisearch client integration, install the [📦 CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) NuGet package in the client-consuming project, that is, the project for the application that uses the Meilisearch client.
+To get started with the Aspire Meilisearch client integration, install the [📦 CommunityToolkit.Aspire.Meilisearch](https://nuget.org/packages/CommunityToolkit.Aspire.Meilisearch) NuGet package in the client-consuming project, that is, the project for the application that uses the Meilisearch client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -173,7 +173,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Meilisearch client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
+The Aspire Meilisearch client integration provides multiple options to configure the server connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -195,7 +195,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 #### Use configuration providers
 
-The .NET Aspire Meilisearch Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `CommunityToolkit.Aspire.Meilisearch.MeilisearchClientSettings` from configuration by using the `Aspire:Meilisearch:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
+The Aspire Meilisearch Client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `CommunityToolkit.Aspire.Meilisearch.MeilisearchClientSettings` from configuration by using the `Aspire:Meilisearch:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -222,10 +222,10 @@ builder.AddMeilisearchClient(
 
 #### Client integration health checks
 
-The .NET Aspire Meilisearch integration uses the configured client to perform a `IsHealthyAsync`. If the result is `true`, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
+The Aspire Meilisearch integration uses the configured client to perform a `IsHealthyAsync`. If the result is `true`, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
 
 ## See also
 
 - [Meilisearch](https://meilisearch.com)
 - [Meilisearch Client](https://github.com/meilisearch/meilisearch-dotnet)
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)

@@ -1,20 +1,20 @@
 ---
-title: .NET Aspire Azure Web PubSub integration
-description: This article describes the .NET Aspire Azure Web PubSub integration features and capabilities.
+title: Aspire Azure Web PubSub integration
+description: This article describes the Aspire Azure Web PubSub integration features and capabilities.
 ms.topic: how-to
 ms.date: 07/22/2025
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Azure Web PubSub integration
+# Aspire Azure Web PubSub integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure Web PubSub](/azure/azure-web-pubsub/) is a fully managed real-time messaging service that enables you to build real-time web applications using WebSockets and publish-subscribe patterns. The .NET Aspire Azure Web PubSub integration enables you to connect to Azure Web PubSub instances from your .NET applications.
+[Azure Web PubSub](/azure/azure-web-pubsub/) is a fully managed real-time messaging service that enables you to build real-time web applications using WebSockets and publish-subscribe patterns. The Aspire Azure Web PubSub integration enables you to connect to Azure Web PubSub instances from your .NET applications.
 
 ## Hosting integration
 
-The .NET Aspire [Azure Web PubSub](https://azure.microsoft.com/products/web-pubsub) hosting integration models the Web PubSub resources as the following types:
+The Aspire [Azure Web PubSub](https://azure.microsoft.com/products/web-pubsub) hosting integration models the Web PubSub resources as the following types:
 
 - <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubResource>: Represents an Azure Web PubSub resource, including connection information to the underlying Azure resource.
 - <xref:Aspire.Hosting.ApplicationModel.AzureWebPubSubHubResource>: Represents a Web PubSub hub settings resource, which contains the settings for a hub. For example, you can specify if the hub allows anonymous connections or add event handlers to the hub.
@@ -122,7 +122,7 @@ For more information on treating Azure Web PubSub resources as existing resource
 
 ### Provisioning-generated Bicep
 
-When you publish your app, .NET Aspire provisioning APIs generate Bicep alongside the manifest file. Bicep is a domain-specific language for defining Azure resources. For more information, see [Bicep Overview](/azure/azure-resource-manager/bicep/overview).
+When you publish your app, Aspire provisioning APIs generate Bicep alongside the manifest file. Bicep is a domain-specific language for defining Azure resources. For more information, see [Bicep Overview](/azure/azure-resource-manager/bicep/overview).
 
 When you add an Azure Web PubSub resource, the following Bicep is generated:
 
@@ -136,7 +136,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This type enables the customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API. For example, you can configure the `kind`, `consistencyPolicy`, `locations`, and more. The following example demonstrates how to customize the Azure Cosmos DB resource:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureWebPubSubInfra.cs" id="configure":::
 
@@ -153,7 +153,7 @@ There are many more configuration options available to customize the Web PubSub 
 
 ## Client integration
 
-The .NET Aspire Azure Web PubSub client integration is used to connect to an Azure Web PubSub service using the <xref:Azure.Messaging.WebPubSub.WebPubSubServiceClient>. To get started with the .NET Aspire Azure Web PubSub service client integration, install the [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the application.
+The Aspire Azure Web PubSub client integration is used to connect to an Azure Web PubSub service using the <xref:Azure.Messaging.WebPubSub.WebPubSubServiceClient>. To get started with the Aspire Azure Web PubSub service client integration, install the [📦 Aspire.Azure.Messaging.WebPubSub](https://www.nuget.org/packages/Aspire.Azure.Messaging.WebPubSub) NuGet package in the application.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -174,7 +174,7 @@ dotnet add package Aspire.Azure.Messaging.WebPubSub
 
 The following Web PubSub client types are supported by the library:
 
-| Azure client type | Azure options class | .NET Aspire settings class |
+| Azure client type | Azure options class | Aspire settings class |
 |--|--|--|
 | <xref:Azure.Messaging.WebPubSub.WebPubSubServiceClient> | <xref:Azure.Messaging.WebPubSub.WebPubSubServiceClientOptions> | <xref:Aspire.Azure.Messaging.WebPubSub.AzureMessagingWebPubSubSettings> |
 
@@ -237,7 +237,7 @@ For more information, see [Keyed services in .NET](/dotnet/core/extensions/depen
 
 ### Configuration
 
-The .NET Aspire Azure Web PubSub library provides multiple options to configure the Azure Web PubSub connection based on the requirements and conventions of your project. Either an `Endpoint` or a `ConnectionString` must be supplied.
+The Aspire Azure Web PubSub library provides multiple options to configure the Azure Web PubSub connection based on the requirements and conventions of your project. Either an `Endpoint` or a `ConnectionString` must be supplied.
 
 #### Use a connection string
 
@@ -294,7 +294,7 @@ For the complete Azure OpenAI client integration JSON schema, see [Aspire.Azure.
 
 #### Use named configuration
 
-The .NET Aspire Azure Web PubSub integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
+The Aspire Azure Web PubSub integration supports named configuration, which allows you to configure multiple instances of the same resource type with different settings. The named configuration uses the connection name as a key under the main configuration section.
 
 ```json
 {
@@ -340,7 +340,7 @@ builder.AddAzureWebPubSubServiceClient(
 
 #### Logging
 
-The .NET Aspire Azure Web PubSub integration uses the following log categories:
+The Aspire Azure Web PubSub integration uses the following log categories:
 
 - `Azure`
 - `Azure.Core`
@@ -349,16 +349,16 @@ The .NET Aspire Azure Web PubSub integration uses the following log categories:
 
 #### Tracing
 
-The .NET Aspire Azure Web PubSub integration will emit the following tracing activities using OpenTelemetry:
+The Aspire Azure Web PubSub integration will emit the following tracing activities using OpenTelemetry:
 
 - `Azure.Messaging.WebPubSub.*`
 
 #### Metrics
 
-The .NET Aspire Azure Web PubSub integration currently doesn't support metrics by default due to limitations with the Azure SDK for .NET. If that changes in the future, this section will be updated to reflect those changes.
+The Aspire Azure Web PubSub integration currently doesn't support metrics by default due to limitations with the Azure SDK for .NET. If that changes in the future, this section will be updated to reflect those changes.
 
 ## See also
 
 - [Azure Web PubSub](/azure/azure-web-pubsub/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

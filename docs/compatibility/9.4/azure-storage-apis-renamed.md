@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Azure Storage APIs renamed and refactored"
-description: "Learn about the breaking changes in .NET Aspire 9.4 where Azure Storage APIs were renamed and refactored for clarity and consistency."
+description: "Learn about the breaking changes in Aspire 9.4 where Azure Storage APIs were renamed and refactored for clarity and consistency."
 ms.date: 07/08/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3930
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3930
 
 # Azure Storage APIs renamed and refactored
 
-In .NET Aspire 9.4, several Azure Storage APIs were renamed and refactored for clarity and consistency. These changes affect how you add and configure Azure Blob, Queue, and Table storage resources and clients in your Aspire applications. The new API names better align with Azure resource naming and reduce confusion.
+In Aspire 9.4, several Azure Storage APIs were renamed and refactored for clarity and consistency. These changes affect how you add and configure Azure Blob, Queue, and Table storage resources and clients in your Aspire applications. The new API names better align with Azure resource naming and reduce confusion.
 
 ## Version introduced
 
-.NET Aspire 9.4
+Aspire 9.4
 
 ## Previous behavior
 
@@ -93,7 +93,7 @@ The new API names provide consistency with Azure client libraries and resource g
 
 1. Update your code to use the new method names for adding and configuring Azure Storage resources and clients.
 1. Replace any obsolete method calls with their new equivalents as shown in the examples above.
-1. Recompile your application to ensure compatibility with .NET Aspire 9.4.
+1. Recompile your application to ensure compatibility with Aspire 9.4.
 
 ## Affected APIs
 

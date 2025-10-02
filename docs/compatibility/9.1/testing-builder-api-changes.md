@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2616
 
 # IDistributedApplicationTestingBuilder API changes
 
-In .NET Aspire 9.1, <xref:Aspire.Hosting.Testing.IDistributedApplicationTestingBuilder> was changed to inherit from <xref:Aspire.Hosting.IDistributedApplicationBuilder>, <xref:System.IAsyncDisposable>, and <xref:System.IDisposable>. This change affects binary compatibility and requires recompilation of existing binaries.
+In Aspire 9.1, <xref:Aspire.Hosting.Testing.IDistributedApplicationTestingBuilder> was changed to inherit from <xref:Aspire.Hosting.IDistributedApplicationBuilder>, <xref:System.IAsyncDisposable>, and <xref:System.IDisposable>. This change affects binary compatibility and requires recompilation of existing binaries.
 
 ## Version introduced
 
-.NET Aspire 9.1
+Aspire 9.1
 
 ## Previous behavior
 

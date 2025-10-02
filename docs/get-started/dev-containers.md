@@ -1,18 +1,18 @@
 ---
 title: Dev Containers in Visual Studio Code
-description: Learn how to use .NET Aspire with Dev Containers in Visual Studio Code.
+description: Learn how to use Aspire with Dev Containers in Visual Studio Code.
 ms.date: 02/25/2025
 ---
 
-# .NET Aspire and Visual Studio Code Dev Containers
+# Aspire and Visual Studio Code Dev Containers
 
-The [Dev Containers Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) provides a way for development teams to develop within a containerized environment where all dependencies are preconfigured. With .NET Aspire 9.1, there's added logic to better support working with .NET Aspire within a Dev Container environment by automatically configuring port forwarding.
+The [Dev Containers Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) provides a way for development teams to develop within a containerized environment where all dependencies are preconfigured. With Aspire 9.1, there's added logic to better support working with Aspire within a Dev Container environment by automatically configuring port forwarding.
 
-Before .NET Aspire 9.1, it possible to use .NET Aspire within a Dev Container, however more manual configuration was required.
+Before Aspire 9.1, it possible to use Aspire within a Dev Container, however more manual configuration was required.
 
 ## Dev Containers vs. GitHub Codespaces
 
-Using Dev Containers in Visual Studio Code is similar to using GitHub Codespaces. With the release of .NET Aspire 9.1, support for both Dev Containers in Visual Studio Code and GitHub Codespaces was enhanced. Although the experiences are similar, there are some differences. For more information on using .NET Aspire with GitHub Codespaces, see [.NET Aspire and GitHub Codespaces](github-codespaces.md).
+Using Dev Containers in Visual Studio Code is similar to using GitHub Codespaces. With the release of Aspire 9.1, support for both Dev Containers in Visual Studio Code and GitHub Codespaces was enhanced. Although the experiences are similar, there are some differences. For more information on using Aspire with GitHub Codespaces, see [Aspire and GitHub Codespaces](github-codespaces.md).
 
 ## Quick start using template repository
 
@@ -38,7 +38,7 @@ To configure Dev Containers in Visual Studio Code, use the _.devcontainer/devcon
 
     :::image source="media/devcontainer-build-completed.png" lightbox="media/devcontainer-build-completed.png" alt-text="Dev Container build completed.":::
 
-1. Open a new terminal window in Visual Studio Code (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\`</kbd>) and create a new .NET Aspire project using the `dotnet` command-line.
+1. Open a new terminal window in Visual Studio Code (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>\`</kbd>) and create a new Aspire project using the `dotnet` command-line.
 
     ```dotnetcli
     dotnet new aspire-starter -n HelloAspire
@@ -50,44 +50,44 @@ To configure Dev Containers in Visual Studio Code, use the _.devcontainer/devcon
 
     :::image source="media/vscode-run-button.png" lightbox="media/vscode-run-button.png" alt-text="Run button in editor.":::
 
-    Visual Studio Code builds and starts the .NET Aspire AppHost and automatically opens the .NET Aspire Dashboard. Because the endpoints hosted in the container are using a self-signed certificate the first time, you access an endpoint for a specific Dev Container you're presented with a certificate error.
+    Visual Studio Code builds and starts the Aspire AppHost and automatically opens the Aspire Dashboard. Because the endpoints hosted in the container are using a self-signed certificate the first time, you access an endpoint for a specific Dev Container you're presented with a certificate error.
 
     :::image source="media/browser-certificate-error.png" lightbox="media/browser-certificate-error.png" alt-text="Browser certificate error.":::
 
     The certificate error is expected. Once you've confirmed that the URL being requested corresponds to the dashboard in the Dev Container you can ignore this warning.
 
-    :::image source="media/aspire-dashboard-in-devcontainer.png" lightbox="media/aspire-dashboard-in-devcontainer.png" alt-text=".NET Aspire dashboard running in Dev Container.":::
+    :::image source="media/aspire-dashboard-in-devcontainer.png" lightbox="media/aspire-dashboard-in-devcontainer.png" alt-text="Aspire dashboard running in Dev Container.":::
 
-    .NET Aspire automatically configures forwarded ports so that when you select on the endpoints in the .NET Aspire dashboard they're tunneled to processes and nested containers within the Dev Container.
+    Aspire automatically configures forwarded ports so that when you select on the endpoints in the Aspire dashboard they're tunneled to processes and nested containers within the Dev Container.
 
 1. Commit changes to the GitHub repository
 
-    After successfully creating the .NET Aspire project and verifying that it launches and you can access the dashboard, it's a good idea to commit the changes to the repository.
+    After successfully creating the Aspire project and verifying that it launches and you can access the dashboard, it's a good idea to commit the changes to the repository.
 
 ## Manually configuring _devcontainer.json_
 
-The preceding walkthrough demonstrates the streamlined process of creating a Dev Container using the .NET Aspire Dev Container template. If you already have an existing repository and wish to utilize Dev Container functionality with .NET Aspire, add a _devcontainer.json_ file to the _.devcontainer_ folder within your repository:
+The preceding walkthrough demonstrates the streamlined process of creating a Dev Container using the Aspire Dev Container template. If you already have an existing repository and wish to utilize Dev Container functionality with Aspire, add a _devcontainer.json_ file to the _.devcontainer_ folder within your repository:
 
 ```Directory
 └───📂 .devcontainer
      └─── devcontainer.json
 ```
 
-The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for .NET Aspire. The following JSON represents the latest version of the _.devcontainer/devcontainer.json_ file from the template:
+The [template repository](https://github.com/dotnet/aspire-devcontainer) contains a copy of the _devcontainer.json_ file that you can use as a starting point, which should be sufficient for Aspire. The following JSON represents the latest version of the _.devcontainer/devcontainer.json_ file from the template:
 
 :::code language="json" source="~/aspire-devcontainer/.devcontainer/devcontainer.json":::
 
 ## Dev Container scenarios
 
-The basic .NET Aspire Dev Container template works well for simple scenarios, but you might need additional configuration depending on your specific requirements. The following sections provide examples for various common scenarios.
+The basic Aspire Dev Container template works well for simple scenarios, but you might need additional configuration depending on your specific requirements. The following sections provide examples for various common scenarios.
 
 ### Stateless .NET apps only
 
-For simple .NET Aspire projects that only use .NET project resources without external containers or complex orchestration, you can use a minimal Dev Container configuration:
+For simple Aspire projects that only use .NET project resources without external containers or complex orchestration, you can use a minimal Dev Container configuration:
 
 ```json
 {
-  "name": ".NET Aspire - Simple",
+  "name": "Aspire - Simple",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
   "onCreateCommand": "dotnet new install Aspire.ProjectTemplates --force",
   "postStartCommand": "dotnet dev-certs https --trust",
@@ -101,15 +101,15 @@ For simple .NET Aspire projects that only use .NET project resources without ext
 }
 ```
 
-This minimal configuration is suitable for .NET Aspire apps that orchestrate only .NET services without external dependencies.
+This minimal configuration is suitable for Aspire apps that orchestrate only .NET services without external dependencies.
 
 ### Adding Node.js resources
 
-If your .NET Aspire app includes Node.js resources, add the Node.js feature to your Dev Container:
+If your Aspire app includes Node.js resources, add the Node.js feature to your Dev Container:
 
 ```json
 {
-  "name": ".NET Aspire with Node.js",
+  "name": "Aspire with Node.js",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {
@@ -133,11 +133,11 @@ This configuration provides both .NET and Node.js development capabilities withi
 
 ### Container orchestration with Docker-in-Docker
 
-When your .NET Aspire app orchestrates container resources, you need Docker-in-Docker (DinD) support. Here's a basic configuration:
+When your Aspire app orchestrates container resources, you need Docker-in-Docker (DinD) support. Here's a basic configuration:
 
 ```json
 {
-  "name": ".NET Aspire with Containers",
+  "name": "Aspire with Containers",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -170,7 +170,7 @@ If you encounter networking issues between containers or need IPv6 support, you 
 
 ```json
 {
-  "name": ".NET Aspire with Advanced Networking",
+  "name": "Aspire with Advanced Networking",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -215,13 +215,13 @@ If you encounter networking issues between containers or need IPv6 support, you 
 
 ### Dapr integration examples
 
-For .NET Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container. For more information, see [.NET Aspire Dapr integration](../community-toolkit/dapr.md).
+For Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container. For more information, see [Aspire Dapr integration](../community-toolkit/dapr.md).
 
 #### Basic Dapr setup
 
 ```json
 {
-  "name": ".NET Aspire with Dapr",
+  "name": "Aspire with Dapr",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -248,7 +248,7 @@ For more complex Dapr scenarios that use external backends (Redis, PostgreSQL), 
 
 ```json
 {
-  "name": ".NET Aspire with Dapr and Backends",
+  "name": "Aspire with Dapr and Backends",
   "image": "mcr.microsoft.com/devcontainers/dotnet:9.0-bookworm",
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:2": {
@@ -280,7 +280,7 @@ For more complex Dapr scenarios that use external backends (Redis, PostgreSQL), 
 
 ## Common considerations
 
-When using Dev Containers with .NET Aspire, keep the following considerations in mind:
+When using Dev Containers with Aspire, keep the following considerations in mind:
 
 **Resource requirements**
 
@@ -291,7 +291,7 @@ When using Dev Containers with .NET Aspire, keep the following considerations in
 **Networking**
 
 - IPv6 configuration may be required for container-to-container communication.
-- Port forwarding is automatically handled by .NET Aspire 9.1 and later versions.
+- Port forwarding is automatically handled by Aspire 9.1 and later versions.
 - External service connectivity depends on your container runtime configuration.
 
 **Performance**
@@ -308,7 +308,7 @@ When using Dev Containers with .NET Aspire, keep the following considerations in
 
 ## See also
 
-- [.NET Aspire and GitHub Codespaces](github-codespaces.md)
-- [.NET Aspire Dapr integration](../community-toolkit/dapr.md)
+- [Aspire and GitHub Codespaces](github-codespaces.md)
+- [Aspire Dapr integration](../community-toolkit/dapr.md)
 - [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
 - [Dev Containers specification](https://containers.dev/implementors/spec/)

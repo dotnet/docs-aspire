@@ -5,7 +5,7 @@ ms.date: 08/07/2025
 uid: dotnet/aspire/orchestrate-resources
 ---
 
-# Orchestrate resources in .NET Aspire
+# Orchestrate resources in Aspire
 
 In this article, you learn how to customize the behavior of resources further by writing code in the AppHost project. In Aspire, a **resource** is a dependent part of a cloud-native application. Resource types include:
 

@@ -1,13 +1,13 @@
 ---
-title: .NET Aspire MailPit hosting integration
-description: Learn how to use the .NET Aspire MailPit hosting integration to add MailPit containers to your distributed application.
+title: Aspire MailPit hosting integration
+description: Learn how to use the Aspire MailPit hosting integration to add MailPit containers to your distributed application.
 ms.date: 08/22/2025
 ai-usage: ai-generated
 ---
 
-# .NET Aspire MailPit hosting integration
+# Aspire MailPit hosting integration
 
-In this article, you learn how to use the .NET Aspire MailPit hosting integration. The `CommunityToolkit.Aspire.Hosting.MailPit` library is used to register [MailPit](https://mailpit.axllent.org/) containers in your distributed application.
+In this article, you learn how to use the Aspire MailPit hosting integration. The `CommunityToolkit.Aspire.Hosting.MailPit` library is used to register [MailPit](https://mailpit.axllent.org/) containers in your distributed application.
 
 MailPit is a mail testing tool that provides a fake SMTP server for development and testing. It provides a web interface where you can view and manage captured emails, making it ideal for testing email functionality in your applications.
 
@@ -118,5 +118,5 @@ This example uses the [MailKit](https://nuget.org/packages/MailKit) library to s
 ## See also
 
 - [MailPit documentation](https://mailpit.axllent.org/)
-- [.NET Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [.NET Aspire Community Toolkit overview](overview.md)
+- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire Community Toolkit overview](overview.md)

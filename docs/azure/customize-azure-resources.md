@@ -1,21 +1,21 @@
 ---
 title: Customize Azure resources
-description: Describes how to customize your Azure infrastructure using code in .NET Aspire solutions.
+description: Describes how to customize your Azure infrastructure using code in Aspire solutions.
 ms.date: 07/22/2025
 uid: dotnet/aspire/integrations/customize-azure-resources
 ---
 
 # Customize Azure resources
 
-If you're using Azure to host resources for a .NET Aspire solution, you have granular control over those resources. You can either let .NET Aspire configure them if the default properties suit your needs, or override defaults to control their behavior. Let's examine how you can customize your Azure infrastructure from .NET Aspire code.
+If you're using Azure to host resources for a Aspire solution, you have granular control over those resources. You can either let Aspire configure them if the default properties suit your needs, or override defaults to control their behavior. Let's examine how you can customize your Azure infrastructure from Aspire code.
 
 The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of service-specific [Azure provisioning packages](https://www.nuget.org/packages?q=owner%3A+azure-sdk+description%3A+declarative+resource+provisioning&sortby=relevance). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET. Their APIs enable you to write object-oriented infrastructure in C#, resulting in Bicep. [Bicep is a domain-specific language (DSL)](/azure/azure-resource-manager/bicep/overview) for deploying Azure resources declaratively.
 
 <!-- TODO: Add link from here to the Azure docs when they're written. -->
 
-While it's possible to provision Azure resources manually, .NET Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in .NET Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your AppHost, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
+While it's possible to provision Azure resources manually, Aspire simplifies the process by providing a set of APIs to express Azure resources. These APIs are available as extension methods in Aspire Azure hosting libraries, extending the <xref:Aspire.Hosting.IDistributedApplicationBuilder> interface. When you add Azure resources to your AppHost, they add the appropriate provisioning functionality implicitly. In other words, you don't need to call any provisioning APIs directly.
 
-Since .NET Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. Bicep files are generated that define the Azure resources you need. The generated Bicep files are output alongside the manifest file when you publish your app.
+Since Aspire models Azure resources within Azure hosting integrations, the Azure SDK is used to provision these resources. Bicep files are generated that define the Azure resources you need. The generated Bicep files are output alongside the manifest file when you publish your app.
 
 There are several ways to influence the generated Bicep files:
 
@@ -36,11 +36,11 @@ To avoid conflating terms and to help disambiguate "provisioning," it's importan
 
 - **_`Azure.Provisioning`:_**
 
-  `Azure.Provisioning` refers to the NuGet package, and is a set of libraries that lets you use C# to generate Bicep. The Azure hosting integrations in .NET Aspire use these libraries under the covers to generate Bicep files that define the Azure resources you need. For more information, see [`Azure.Provisioning` customization](#azureprovisioning-customization).
+  `Azure.Provisioning` refers to the NuGet package, and is a set of libraries that lets you use C# to generate Bicep. The Azure hosting integrations in Aspire use these libraries under the covers to generate Bicep files that define the Azure resources you need. For more information, see [`Azure.Provisioning` customization](#azureprovisioning-customization).
 
 ## `Azure.Provisioning` customization
 
-All .NET Aspire Azure hosting integrations expose various Azure resources, and they're all subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type—which itself inherits the <xref:Aspire.Hosting.Azure.AzureBicepResource>. This enables extensions that are generically type-constrained to this type, allowing for a fluent API to customize the infrastructure to your liking. While .NET Aspire provides defaults, you're free to influence the generated Bicep using these APIs.
+All Aspire Azure hosting integrations expose various Azure resources, and they're all subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type—which itself inherits the <xref:Aspire.Hosting.Azure.AzureBicepResource>. This enables extensions that are generically type-constrained to this type, allowing for a fluent API to customize the infrastructure to your liking. While Aspire provides defaults, you're free to influence the generated Bicep using these APIs.
 
 ### Configure infrastructure
 
@@ -64,7 +64,7 @@ This exemplifies flowing an [external parameter](../fundamentals/external-parame
 
 ### Add Azure infrastructure
 
-Not all Azure services are exposed as .NET Aspire integrations. While they might be at a later time, you can still provision services that are available in `Azure.Provisioning.*` libraries. Imagine a scenario where you have worker service that's responsible for managing an Azure Container Registry. Now imagine that an AppHost project takes a dependency on the [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry) NuGet package.
+Not all Azure services are exposed as Aspire integrations. While they might be at a later time, you can still provision services that are available in `Azure.Provisioning.*` libraries. Imagine a scenario where you have worker service that's responsible for managing an Azure Container Registry. Now imagine that an AppHost project takes a dependency on the [📦 Azure.Provisioning.ContainerRegistry](https://www.nuget.org/packages/Azure.Provisioning.ContainerRegistry) NuGet package.
 
 You can use the `AddAzureInfrastructure` API to add the Azure Container Registry infrastructure to your AppHost:
 
@@ -81,7 +81,7 @@ The preceding code:
 - Adds a project named `worker` to the builder.
 - Chains a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*> to set the `ACR_REGISTRY_NAME` environment variable in the project to the value of the `registryName` output.
 
-The functionality demonstrates how to add Azure infrastructure to your AppHost project, even if the Azure service isn't directly exposed as a .NET Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
+The functionality demonstrates how to add Azure infrastructure to your AppHost project, even if the Azure service isn't directly exposed as a Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
 
 Consider the resulting Bicep file:
 
@@ -108,12 +108,12 @@ Having created that class, add it to the configuration options using code like t
 
 When you're targeting Azure as your desired cloud provider, you can use Bicep to define your infrastructure as code. It aims to drastically simplify the authoring experience with a cleaner syntax and better support for modularity and code reuse.
 
-While .NET Aspire provides a set of prebuilt Bicep templates, there might be times when you either want to customize the templates or create your own. This section explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
+While Aspire provides a set of prebuilt Bicep templates, there might be times when you either want to customize the templates or create your own. This section explains the concepts and corresponding APIs that you can use to customize the Bicep templates.
 
 > [!IMPORTANT]
-> This section isn't intended to teach you Bicep, but rather to provide guidance on how to create custom Bicep templates for use with .NET Aspire.
+> This section isn't intended to teach you Bicep, but rather to provide guidance on how to create custom Bicep templates for use with Aspire.
 
-As part of the [Azure deployment story for .NET Aspire](../deployment/overview.md), the Azure Developer CLI (`azd`) provides an understanding of your .NET Aspire project and the ability to deploy it to Azure. The `azd` CLI uses the Bicep templates to deploy the application to Azure.
+As part of the [Azure deployment story for Aspire](../deployment/overview.md), the Azure Developer CLI (`azd`) provides an understanding of your Aspire project and the ability to deploy it to Azure. The `azd` CLI uses the Bicep templates to deploy the application to Azure.
 
 ### Install `Aspire.Hosting.Azure` package
 
@@ -179,7 +179,7 @@ In this example, the Bicep template is defined as an inline `string` and added t
 
 ### Pass parameters to Bicep templates
 
-[Bicep supports accepting parameters](/azure/azure-resource-manager/bicep/parameters), which can be used to customize the behavior of the template. To pass parameters to a Bicep template from .NET Aspire, chain calls to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method as shown in the following example:
+[Bicep supports accepting parameters](/azure/azure-resource-manager/bicep/parameters), which can be used to customize the behavior of the template. To pass parameters to a Bicep template from Aspire, chain calls to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method as shown in the following example:
 
 :::code language="csharp" source="snippets/bicep/AppHost.Bicep/Program.PassParameter.cs" id="addparameter":::
 
@@ -195,7 +195,7 @@ For more information, see [External parameters](../fundamentals/external-paramet
 
 #### Well-known parameters
 
-.NET Aspire provides a set of well-known parameters that can be passed to Bicep templates. These parameters are used to provide information about the application and the environment to the Bicep templates. The following well-known parameters are available:
+Aspire provides a set of well-known parameters that can be passed to Bicep templates. These parameters are used to provide information about the application and the environment to the Bicep templates. The following well-known parameters are available:
 
 | Field | Description | Value |
 |--|--|--|
@@ -206,7 +206,7 @@ For more information, see [External parameters](../fundamentals/external-paramet
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalName?displayProperty=nameWithType> | The principal name of the current user or managed identity. | `"principalName"` |
 | <xref:Aspire.Hosting.Azure.AzureBicepResource.KnownParameters.PrincipalType?displayProperty=nameWithType> | The principal type of the current user or managed identity. Either `User` or `ServicePrincipal`. | `"principalType"` |
 
-To use a well-known parameter, pass the parameter name to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method, such as `WithParameter(AzureBicepResource.KnownParameters.KeyVaultName)`. You don't pass values for well-known parameters, as .NET Aspire resolves them on your behalf.
+To use a well-known parameter, pass the parameter name to the <xref:Aspire.Hosting.AzureBicepResourceExtensions.WithParameter%2A> method, such as `WithParameter(AzureBicepResource.KnownParameters.KeyVaultName)`. You don't pass values for well-known parameters, as Aspire resolves them on your behalf.
 
 Consider an example where you want to set up an Azure Event Grid webhook. You might define the Bicep template as follows:
 
@@ -253,7 +253,7 @@ For more information, see [Bicep outputs](/azure/azure-resource-manager/bicep/ou
 
 ## Get secret outputs from Bicep references
 
-It's important to [avoid outputs for secrets](/azure/azure-resource-manager/bicep/scenarios-secrets#avoid-outputs-for-secrets) when working with Bicep. If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as such. This can be achieved by storing the secret in Azure Key Vault and referencing it in the Bicep template. .NET Aspire's Azure integration provides a pattern for securely storing outputs from the Bicep template by allows resources to use the `keyVaultName` parameter to store secrets in Azure Key Vault.
+It's important to [avoid outputs for secrets](/azure/azure-resource-manager/bicep/scenarios-secrets#avoid-outputs-for-secrets) when working with Bicep. If an output is considered a _secret_, meaning it shouldn't be exposed in logs or other places, you can treat it as such. This can be achieved by storing the secret in Azure Key Vault and referencing it in the Bicep template. Aspire's Azure integration provides a pattern for securely storing outputs from the Bicep template by allows resources to use the `keyVaultName` parameter to store secrets in Azure Key Vault.
 
 Consider the following Bicep template as an example the helps to demonstrate this concept of securing secret outputs:
 
@@ -265,7 +265,7 @@ The preceding Bicep template expects a `keyVaultName` parameter, among several o
 
 In the preceding code snippet, the `cosmos` Bicep template is added as a reference to the `builder`. The `connectionString` secret output is retrieved from the Bicep template and stored in a variable. The secret output is then passed as an environment variable (`ConnectionStrings__cosmos`) to the `api` project. This environment variable is used to connect to the Cosmos DB instance.
 
-When this resource is deployed, the underlying deployment mechanism will automatically [Reference secrets from Azure Key Vault](/azure/container-apps/manage-secrets?tabs=azure-portal#reference-secret-from-key-vault). To guarantee secret isolation, .NET Aspire creates a Key Vault per source.
+When this resource is deployed, the underlying deployment mechanism will automatically [Reference secrets from Azure Key Vault](/azure/container-apps/manage-secrets?tabs=azure-portal#reference-secret-from-key-vault). To guarantee secret isolation, Aspire creates a Key Vault per source.
 
 > [!NOTE]
 > In _local provisioning_ mode, the secret is extracted from Key Vault and set it in an environment variable. For more information, see [Local Azure provisioning](local-provisioning.md).

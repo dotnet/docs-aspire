@@ -1,17 +1,17 @@
 ---
 title: "Ollama integration updates"
-description: Updates and breaking changes for Ollama integration in .NET Aspire 9.0 GA.
+description: Updates and breaking changes for Ollama integration in Aspire 9.0 GA.
 ms.date: 11/4/2024
 ai-usage: ai-assisted
 ---
 
 # Ollama integration updates
 
-The .NET Aspire Community Toolkit 9.0 release of the Ollama integrations introduces significant changes. These updates enhance functionality and better integrate with the .NET Aspire API design.
+The Aspire Community Toolkit 9.0 release of the Ollama integrations introduces significant changes. These updates enhance functionality and better integrate with the Aspire API design.
 
 ## Version introduced
 
-.NET Aspire Community Toolkit 9.0 GA
+Aspire Community Toolkit 9.0 GA
 
 ## Previous behavior
 
@@ -51,11 +51,11 @@ This change is a [binary incompatible](../categories.md#binary-compatibility) an
 
 ## Reason for change
 
-The changes aim to make the library more functional and better integrated with the .NET Aspire API design.
+The changes aim to make the library more functional and better integrated with the Aspire API design.
 
 ## Recommended action
 
-[Upgrade to .NET Aspire 9.0](../../get-started/upgrade-to-aspire-9.md).
+[Upgrade to Aspire 9.0](../../get-started/upgrade-to-aspire-9.md).
 
 ## Affected APIs
 

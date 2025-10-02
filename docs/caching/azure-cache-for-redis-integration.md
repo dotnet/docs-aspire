@@ -1,10 +1,10 @@
 ---
 title: Azure Cache for Redis integration
-description: Learn how to integrate Azure Cache for Redis with the .NET Aspire stack.
+description: Learn how to integrate Azure Cache for Redis with the Aspire stack.
 ms.date: 02/05/2025
 ---
 
-# .NET Aspire Azure Cache for Redis&reg;<sup>**[*](#registered)**</sup> integration
+# Aspire Azure Cache for Redis&reg;<sup>**[*](#registered)**</sup> integration
 
 <a name="heading"></a>
 
@@ -12,7 +12,7 @@ ms.date: 02/05/2025
 
 [!INCLUDE [azure-redis-intro](includes/azure-redis-intro.md)]
 
-The .NET Aspire Azure Cache for Redis integration enables you to connect to existing Azure Cache for Redis instances, or create new instances, or run as a container locally from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
+The Aspire Azure Cache for Redis integration enables you to connect to existing Azure Cache for Redis instances, or create new instances, or run as a container locally from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 ## Hosting integration
 
@@ -70,7 +70,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+The Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -112,7 +112,7 @@ builder.AddRedisClient(
 
 - [Azure Cache for Redis docs](/azure/azure-cache-for-redis/)
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]

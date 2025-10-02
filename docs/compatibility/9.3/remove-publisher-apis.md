@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Removal of DockerComposePublisher, KubernetesPublisher, and AzurePublisher"
-description: "Learn about the breaking change in .NET Aspire 9.3 where publisher APIs were removed in favor of new resource types."
+description: "Learn about the breaking change in Aspire 9.3 where publisher APIs were removed in favor of new resource types."
 ms.date: 08/07/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3373
@@ -8,15 +8,15 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3373
 
 # Removal of DockerComposePublisher, KubernetesPublisher, and AzurePublisher
 
-In .NET Aspire 9.3, the `AddDockerComposePublisher`, `AddKubernetesPublisher`, and `AddAzurePublisher` APIs were removed. These APIs are now replaced with new resource types that provide a more composable experience.
+In Aspire 9.3, the `AddDockerComposePublisher`, `AddKubernetesPublisher`, and `AddAzurePublisher` APIs were removed. These APIs are now replaced with new resource types that provide a more composable experience.
 
 ## Version introduced
 
-.NET Aspire 9.3
+Aspire 9.3
 
 ## Previous behavior
 
-In .NET Aspire 9.2, the publisher API was introduced in preview, allowing the use of the following publishers:
+In Aspire 9.2, the publisher API was introduced in preview, allowing the use of the following publishers:
 
 - DockerCompose
 - Kubernetes
@@ -32,7 +32,7 @@ Multiple publishers could be added, and the `aspire publish` CLI command allowed
 
 ## New behavior
 
-In .NET Aspire 9.3, the publishers are now replaced with new resource types:
+In Aspire 9.3, the publishers are now replaced with new resource types:
 
 - <xref:Aspire.Hosting.Docker.DockerComposeEnvironmentResource>
 - <xref:Aspire.Hosting.Kubernetes.KubernetesEnvironmentResource>

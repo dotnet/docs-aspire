@@ -1,28 +1,28 @@
 ---
-title: Connect a .NET Aspire microservice to an existing database
-description: Learn how to configure a .NET Aspire solution with a connection to an existing database that isn't hosted in a .NET Aspire container.
+title: Connect a Aspire microservice to an existing database
+description: Learn how to configure a Aspire solution with a connection to an existing database that isn't hosted in a Aspire container.
 ms.date: 03/13/2025
 ms.topic: tutorial
 uid: database/connect-to-existing-database
 zone_pivot_groups: entity-framework-client-integration
 ---
 
-# Tutorial: Connect a .NET Aspire microservice to an existing database
+# Tutorial: Connect a Aspire microservice to an existing database
 
-.NET Aspire is designed to make it easy and quick to develop cloud-native solutions. It uses containers to host the services, such as databases, that underpin each microservice. However, if you want your microservice to query a database that already exists, you must connect your microservice to it instead of creating a database container whenever you run the solution.
+Aspire is designed to make it easy and quick to develop cloud-native solutions. It uses containers to host the services, such as databases, that underpin each microservice. However, if you want your microservice to query a database that already exists, you must connect your microservice to it instead of creating a database container whenever you run the solution.
 
-In this tutorial, you create a .NET Aspire solution with an API that connects to an existing database. You'll learn how to:
+In this tutorial, you create a Aspire solution with an API that connects to an existing database. You'll learn how to:
 
 > [!div class="checklist"]
 >
 > - Create an API microservice that interacts with a database.
-> - Configure the .NET Aspire AppHost project with a connection string for the existing database.
+> - Configure the Aspire AppHost project with a connection string for the existing database.
 > - Pass the connection string to the API and use it to connect to the database.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
 > [!IMPORTANT]
-> This tutorial assumes you have .NET Aspire version 9.3 or a higher version installed. For information about upgrading from earlier versions, see [Upgrade to .NET Aspire 9](../get-started/upgrade-to-aspire-9.md).
+> This tutorial assumes you have Aspire version 9.3 or a higher version installed. For information about upgrading from earlier versions, see [Upgrade to Aspire 9](../get-started/upgrade-to-aspire-9.md).
 
 :::zone pivot="sql-server-ef"
 
@@ -50,14 +50,14 @@ In this tutorial, you create a .NET Aspire solution with an API that connects to
 :::zone-end
 
 > [!TIP]
-> In this tutorial, you use .NET Aspire EF Core integrations to access the database. Other database integrations, which don't use EF Core, can use the same approach to connect to an existing database.
+> In this tutorial, you use Aspire EF Core integrations to access the database. Other database integrations, which don't use EF Core, can use the same approach to connect to an existing database.
 
-## Create a new .NET Aspire solution
+## Create a new Aspire solution
 
-Let's start by creating a new solution with the .NET Aspire Starter template.
+Let's start by creating a new solution with the Aspire Starter template.
 
 1. In Visual Studio, select **File** > **New** > **Project**.
-1. In the **Create a new project** dialog window, search for *.NET Aspire*, select **.NET Aspire Starter App**, and then select **Next**.
+1. In the **Create a new project** dialog window, search for *Aspire*, select **Aspire Starter App**, and then select **Next**.
 1. In the **Configure your new project** page:
 
     - Enter a **Solution name** of **AspireExistingDB**.
@@ -66,10 +66,10 @@ Let's start by creating a new solution with the .NET Aspire Starter template.
 1. In the **Additional information** page:
 
     - Make sure that **.NET 9.0** is selected.
-    - In the .NET Aspire version drop-down list, select 9.3 or a higher version number.
+    - In the Aspire version drop-down list, select 9.3 or a higher version number.
     - Leave the other values at their defaults and then select **Create**.
 
-Visual Studio creates a new .NET Aspire solution with an API and a web front end. The solution consists of the following projects:
+Visual Studio creates a new Aspire solution with an API and a web front end. The solution consists of the following projects:
 
 - **AspireExistingDB.ApiService**: A web API project that returns weather forecasts.
 - **AspireExistingDB.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the startup project.
@@ -174,7 +174,7 @@ You'll use the Scalar UI to test the _AspireExistingDB.ApiService_ project. Let'
 
 :::zone pivot="sql-server-ef"
 
-Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> method to initiate a container that runs the SQL Server instance. You pass that resource to other projects in your solution that need access to the database.
+Usually, when you create a cloud-native solution with Aspire, you call the <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddSqlServer*> method to initiate a container that runs the SQL Server instance. You pass that resource to other projects in your solution that need access to the database.
 
 In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
@@ -218,7 +218,7 @@ Let's implement that configuration:
 :::zone-end
 :::zone pivot="postgresql-ef"
 
-Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> method to initiate a container that runs the PostgreSQL instance. You pass that resource to other projects in your solution that need access to the database.
+Usually, when you create a cloud-native solution with Aspire, you call the <xref:Aspire.Hosting.PostgresBuilderExtensions.AddPostgres*> method to initiate a container that runs the PostgreSQL instance. You pass that resource to other projects in your solution that need access to the database.
 
 In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
@@ -262,7 +262,7 @@ Let's implement that configuration:
 :::zone-end
 :::zone pivot="oracle-ef"
 
-Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> method to initiate a container that runs the Oracle Database instance. You pass that resource to other projects in your solution that need access to the database.
+Usually, when you create a cloud-native solution with Aspire, you call the <xref:Aspire.Hosting.OracleDatabaseBuilderExtensions.AddOracle*> method to initiate a container that runs the Oracle Database instance. You pass that resource to other projects in your solution that need access to the database.
 
 In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
@@ -306,7 +306,7 @@ Let's implement that configuration:
 :::zone-end
 :::zone pivot="mysql-ef"
 
-Usually, when you create a cloud-native solution with .NET Aspire, you call the <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> method to initiate a container that runs the MySQL instance. You pass that resource to other projects in your solution that need access to the database.
+Usually, when you create a cloud-native solution with Aspire, you call the <xref:Aspire.Hosting.MySqlBuilderExtensions.AddMySql*> method to initiate a container that runs the MySQL instance. You pass that resource to other projects in your solution that need access to the database.
 
 In this case, however, you want to work with an existing database outside of any container. There are three differences in the AppHost project:
 
@@ -444,11 +444,11 @@ The preceding code:
 - If it is, it retrieves the `WeatherDbContext` service from the DI container and calls `Database.EnsureCreated()` to create the database if it doesn't already exist.
 
 > [!NOTE]
-> Note that `EnsureCreated()` is not suitable for production environments, and it only creates the database as defined in the context. It doesn't apply any migrations. For more information on Entity Framework Core migrations in .NET Aspire, see [Apply Entity Framework Core migrations in .NET Aspire](ef-core-migrations.md).
+> Note that `EnsureCreated()` is not suitable for production environments, and it only creates the database as defined in the context. It doesn't apply any migrations. For more information on Entity Framework Core migrations in Aspire, see [Apply Entity Framework Core migrations in Aspire](ef-core-migrations.md).
 
 ## Add code to query weather forecasts from the database
 
-In the .NET Aspire starter solution template, the API creates five random weather forecasts and returns them when another project requests them. Let's replace that with code that queries the database:
+In the Aspire starter solution template, the API creates five random weather forecasts and returns them when another project requests them. Let's replace that with code that queries the database:
 
 1. In Visual Studio, in the _AspireExistingDB.ApiService_ project, open the _Program.cs_ file.
 1. At the top of the file, add the following lines of code:
@@ -543,7 +543,7 @@ Let's connect to the SQL Server instance and check the databases that exist.
 
 Now, let's test the solution:
 
-1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your Aspire project dashboard in the browser.
 1. In the navigation on the left, select **Console**.
 1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
 
@@ -552,10 +552,10 @@ Now, let's test the solution:
 1. Switch to SQL Server Management Studio. In the **Object Explorer**, right-click **Databases** and then select **Refresh**.
 1. Expand the new **WeatherForecasts** database and then expand **Tables**. Notice the new **dbo.Forecasts** table.
 1. Right-click the **dbo.Forecasts** table and then select **Select Top 1000 Rows**. The query runs but returns no results because the table is empty.
-1. In the .NET Aspire dashboard, in the navigation on the left, select **Resources**.
+1. In the Aspire dashboard, in the navigation on the left, select **Resources**.
 1. Select one of the endpoints for the **apiservice** resource.
 
-    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the .NET Aspire dashboard.":::
+    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the Aspire dashboard.":::
 
 1. In the browser window, append **/scalar** to the web address and then press <kbd>Enter</kbd>.
 1. In the navigation on the left, expand **Setters** and then select **/weatherforecast POST**.
@@ -584,7 +584,7 @@ Let's connect to PostgreSQL and check the databases that exist.
 
 Now, let's test the solution:
 
-1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your Aspire project dashboard in the browser.
 1. In the navigation on the left, select **Console**.
 1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
 
@@ -599,10 +599,10 @@ Now, let's test the solution:
 
     The query runs but returns no results because the table is empty.
 
-1. In the .NET Aspire dashboard, in the navigation on the left, select **Resources**.
+1. In the Aspire dashboard, in the navigation on the left, select **Resources**.
 1. Select one of the endpoints for the **apiservice** resource.
 
-    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the .NET Aspire dashboard.":::
+    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the Aspire dashboard.":::
 
 1. In the browser window, append **/scalar** to the web address and then press <kbd>Enter</kbd>.
 1. In the navigation on the left, expand **Setters** and then select **/weatherforecast POST**.
@@ -640,7 +640,7 @@ Let's connect to Oracle Database and check the databases that exist.
 
 Now, let's test the solution:
 
-1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your Aspire project dashboard in the browser.
 1. In the navigation on the left, select **Console**.
 1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
 
@@ -655,10 +655,10 @@ Now, let's test the solution:
 
     The query runs but returns no results because the table is empty.
 
-1. In the .NET Aspire dashboard, in the navigation on the left, select **Resources**.
+1. In the Aspire dashboard, in the navigation on the left, select **Resources**.
 1. Select one of the endpoints for the **apiservice** resource.
 
-    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the .NET Aspire dashboard.":::
+    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the Aspire dashboard.":::
 
 1. In the browser window, append **/scalar** to the web address and then press <kbd>Enter</kbd>.
 1. In the navigation on the left, expand **Setters** and then select **/weatherforecast POST**.
@@ -701,7 +701,7 @@ Let's connect to MySQL and check the databases that exist.
 
 Now, let's test the solution:
 
-1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your .NET Aspire project dashboard in the browser.
+1. In Visual Studio, select the run button (or press <kbd>F5</kbd>) to launch your Aspire project dashboard in the browser.
 1. In the navigation on the left, select **Console**.
 1. In the **Resource** drop down list, select **apiservice**. Notice the `CREATE TABLE` SQL command, which has created the **Forecasts** table in the **WeatherForecasts** database.
 
@@ -722,10 +722,10 @@ Now, let's test the solution:
 
     The query runs but returns no results because the table is empty.
 
-1. In the .NET Aspire dashboard, in the navigation on the left, select **Resources**.
+1. In the Aspire dashboard, in the navigation on the left, select **Resources**.
 1. Select one of the endpoints for the **apiservice** resource.
 
-    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the .NET Aspire dashboard.":::
+    :::image type="content" source="media/connect-to-existing-database/dashboard-select-api-endpoint.png" lightbox="media/connect-to-existing-database/dashboard-select-api-endpoint.png" alt-text="A screenshot showing how to connect to the API from the Aspire dashboard.":::
 
 1. In the browser window, append **/scalar** to the web address and then press <kbd>Enter</kbd>.
 1. In the navigation on the left, expand **Setters** and then select **/weatherforecast POST**.
@@ -748,6 +748,6 @@ Now, let's test the solution:
 
 ## See also
 
-- [.NET Aspire SQL Server Entity Framework Core integration](/dotnet/aspire/database/sql-server-entity-framework-integration)
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](/dotnet/aspire/database/sql-server-integrations)
+- [Aspire SQL Server Entity Framework Core integration](/dotnet/aspire/database/sql-server-entity-framework-integration)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](/dotnet/aspire/database/sql-server-integrations)
 - [Use openAPI documents](/aspnet/core/fundamentals/openapi/using-openapi-documents)

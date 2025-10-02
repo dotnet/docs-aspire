@@ -33,14 +33,14 @@ The dependent resource can access the injected connection string by calling the 
 
 ### Connect to storage resources
 
-When the .NET Aspire AppHost runs, the storage resources can be accessed by external tools, such as the [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/). If your storage resource is running locally using Azurite, it will automatically be picked up by the Azure Storage Explorer.
+When the Aspire AppHost runs, the storage resources can be accessed by external tools, such as the [Azure Storage Explorer](https://azure.microsoft.com/features/storage-explorer/). If your storage resource is running locally using Azurite, it will automatically be picked up by the Azure Storage Explorer.
 
 > [!NOTE]
 > The Azure Storage Explorer discovers Azurite storage resources assuming the default ports are used. If you've [configured the Azurite container to use different ports](#configure-azurite-container-ports), you'll need to configure the Azure Storage Explorer to connect to the correct ports.
 
 To connect to the storage resource from Azure Storage Explorer, follow these steps:
 
-1. Run the .NET Aspire AppHost.
+1. Run the Aspire AppHost.
 1. Open the Azure Storage Explorer.
 1. View the **Explorer** pane.
 1. Select the **Refresh all** link to refresh the list of storage accounts.

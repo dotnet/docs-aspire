@@ -13,7 +13,7 @@ ms.topic: conceptual
 - [Source compatibility](#source-compatibility)
 - [Design-time compatibility](#design-time-compatibility)
 - [Backwards compatibility](#backwards-compatibility)
-- [Forward compatibility](#forward-compatibility) (not a goal of .NET Aspire)
+- [Forward compatibility](#forward-compatibility) (not a goal of Aspire)
 
 ## Behavioral change
 
@@ -55,8 +55,8 @@ Forward compatibility refers to the ability of an existing consumer of an API to
 
 Maintaining forward compatibility virtually precludes any changes or additions from version to version, since those changes prevent a consumer that targets a later version from running under an earlier version. Developers expect that a consumer that relies on a newer API may not function correctly against the older API.
 
-Maintaining forward compatibility is not a goal of .NET Aspire.
+Maintaining forward compatibility is not a goal of Aspire.
 
 ## See also
 
-- [.NET Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)
+- [Aspire Support Policy](https://dotnet.microsoft.com/platform/support/policy/aspire)

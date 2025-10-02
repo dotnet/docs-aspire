@@ -1,12 +1,12 @@
 ---
-title: .NET Aspire Redis integration
-description: Learn how to use the .NET Aspire Redis integration, which includes both hosting and client integrations.
+title: Aspire Redis integration
+description: Learn how to use the Aspire Redis integration, which includes both hosting and client integrations.
 ms.date: 02/05/2025
 zone_pivot_groups: resp-host
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration
+# Aspire Redis&reg;<sup>**[*](#registered)**</sup> integration
 
 <a name="heading"></a>
 
@@ -14,17 +14,17 @@ ms.custom: sfi-ropc-nochange
 
 :::zone pivot="redis"
 
-[Redis](https://redis.io/) is the world's fastest data platform for caching, vector search, and NoSQL databases. The .NET Aspire Redis integration enables you to connect to existing Redis instances, or create new instances from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
+[Redis](https://redis.io/) is the world's fastest data platform for caching, vector search, and NoSQL databases. The Aspire Redis integration enables you to connect to existing Redis instances, or create new instances from .NET with the [`docker.io/library/redis` container image](https://hub.docker.com/_/redis/).
 
 :::zone-end
 :::zone pivot="garnet"
 
-[Garnet](https://microsoft.github.io/garnet/) is a a high-performance cache-store from Microsoft Research and complies with the [Redis serialization protocol](stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). The .NET Aspire Redis integration enables you to connect to existing Garnet instances, or create new instances from .NET with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
+[Garnet](https://microsoft.github.io/garnet/) is a a high-performance cache-store from Microsoft Research and complies with the [Redis serialization protocol](stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). The Aspire Redis integration enables you to connect to existing Garnet instances, or create new instances from .NET with the [`ghcr.io/microsoft/garnet` container image](https://github.com/microsoft/garnet/pkgs/container/garnet).
 
 :::zone-end
 :::zone pivot="valkey"
 
-[Valkey](https://valkey.io/) is a Redis fork and complies with the [Redis serialization protocol](stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). It's a high-performance key/value datastore that supports a variety of workloads such as caching, message queues, and can act as a primary database. The .NET Aspire Redis integration enables you to connect to existing Valkey instances, or create new instances from .NET with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
+[Valkey](https://valkey.io/) is a Redis fork and complies with the [Redis serialization protocol](stackexchange-redis-caching-overview.md#redis-serialization-protocol-resp) (RESP). It's a high-performance key/value datastore that supports a variety of workloads such as caching, message queues, and can act as a primary database. The Aspire Redis integration enables you to connect to existing Valkey instances, or create new instances from .NET with the [`docker.io/valkey/valkey` container image](https://hub.docker.com/r/valkey/valkey/).
 
 :::zone-end
 
@@ -197,7 +197,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
+The Aspire Stack Exchange Redis client integration provides multiple options to configure the Redis connection based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -260,7 +260,7 @@ builder.AddRedisClient(
 ## See also
 
 - [Stack Exchange Redis docs](https://stackexchange.github.io/StackExchange.Redis/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 
 [!INCLUDE [redis-trademark](includes/redis-trademark.md)]

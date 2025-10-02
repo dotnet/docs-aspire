@@ -1,18 +1,18 @@
 ---
-title: Use the .NET Aspire dashboard with Node.js apps
+title: Use the Aspire dashboard with Node.js apps
 description: How to use the Aspire Dashboard in a Node.js application.
 ms.date: 07/17/2025
 ms.topic: tutorial
 ---
 
-# Tutorial: Use the .NET Aspire dashboard with Node.js apps
+# Tutorial: Use the Aspire dashboard with Node.js apps
 
-The [.NET Aspire dashboard](overview.md) provides a great user experience for viewing telemetry, and is available as a standalone container image that can be used with any OpenTelemetry-enabled app. In this article, you'll learn how to:
+The [Aspire dashboard](overview.md) provides a great user experience for viewing telemetry, and is available as a standalone container image that can be used with any OpenTelemetry-enabled app. In this article, you'll learn how to:
 
 > [!div class="checklist"]
 >
-> - Start the .NET Aspire dashboard in standalone mode.
-> - Use the .NET Aspire dashboard with a Node.js app.
+> - Start the Aspire dashboard in standalone mode.
+> - Use the Aspire dashboard with a Node.js app.
 
 ## Prerequisites
 
@@ -94,7 +94,7 @@ To create a new Express.js application:
 
 ## Adding OpenTelemetry
 
-To use the .NET Aspire dashboard with your Node.js app, you need to install the OpenTelemetry SDK and exporter. The OpenTelemetry SDK provides the API for instrumenting your application, and the exporter sends telemetry data to the .NET Aspire dashboard.
+To use the Aspire dashboard with your Node.js app, you need to install the OpenTelemetry SDK and exporter. The OpenTelemetry SDK provides the API for instrumenting your application, and the exporter sends telemetry data to the Aspire dashboard.
 
 1. Create a new file called *tracing.js* to configure OpenTelemetry:
 
@@ -174,7 +174,7 @@ After starting both the dashboard and your Node.js application, you can view tel
     curl http://localhost:3000/api/weather
     ```
 
-1. Navigate to the .NET Aspire dashboard at <http://localhost:18888> and explore the different sections:
+1. Navigate to the Aspire dashboard at <http://localhost:18888> and explore the different sections:
 
 ### Traces
 
@@ -194,6 +194,6 @@ You can enhance your application with custom spans, logs, and metrics:
 
 ## Next steps
 
-You have successfully used the .NET Aspire dashboard with a Node.js application. To learn more about the .NET Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Node.js application with the [.NET Aspire AppHost](../../get-started/build-aspire-apps-with-nodejs.md).
+You have successfully used the Aspire dashboard with a Node.js application. To learn more about the Aspire dashboard, see the [Aspire dashboard overview](overview.md) and how to orchestrate a Node.js application with the [Aspire AppHost](../../get-started/build-aspire-apps-with-nodejs.md).
 
 To learn more about OpenTelemetry instrumentation for Node.js applications, see the [OpenTelemetry JavaScript documentation](https://opentelemetry.io/docs/languages/js/).

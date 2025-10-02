@@ -1,21 +1,21 @@
 ---
 title: Azure Container Registry integration (Preview)
-description: Learn how to integrate Azure Container Registry with .NET Aspire for secure container image management.
+description: Learn how to integrate Azure Container Registry with Aspire for secure container image management.
 ms.date: 05/09/2025
 ---
 
-# .NET Aspire Azure Container Registry integration (Preview)
+# Aspire Azure Container Registry integration (Preview)
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 > [!IMPORTANT]
-> The .NET Aspire Azure Container Registry integration is currently in preview and is subject to change.
+> The Aspire Azure Container Registry integration is currently in preview and is subject to change.
 
-[Azure Container Registry (ACR)](/azure/container-registry) is a managed Docker container registry service that simplifies the storage, management, and deployment of container images. The .NET Aspire integration allows you to provision or reference an existing Azure Container Registry and seamlessly integrate it with your app's compute environments.
+[Azure Container Registry (ACR)](/azure/container-registry) is a managed Docker container registry service that simplifies the storage, management, and deployment of container images. The Aspire integration allows you to provision or reference an existing Azure Container Registry and seamlessly integrate it with your app's compute environments.
 
 ## Overview
 
-.NET Aspire apps often build and run container images locally but require secure registries for staging and production environments. The Azure Container Registry integration provides the following capabilities:
+Aspire apps often build and run container images locally but require secure registries for staging and production environments. The Azure Container Registry integration provides the following capabilities:
 
 - Provision or reference an existing Azure Container Registry.
 - Attach the registry to any compute-environment resource (for example, Azure Container Apps, Docker, Kubernetes) to ensure proper credential flow.
@@ -32,7 +32,7 @@ The Azure Container Registry integration supports the following scenarios:
 
 ## Hosting integration
 
-The Azure Container Registry integration is part of the .NET Aspire hosting model. It allows you to define and manage your app's resources in a declarative manner. The integration is available in the [📦 Aspire.Hosting.Azure.ContainerRegistry](https://www.nuget.org/packages/Aspire.Hosting.Azure.ContainerRegistry) NuGet package.
+The Azure Container Registry integration is part of the Aspire hosting model. It allows you to define and manage your app's resources in a declarative manner. The integration is available in the [📦 Aspire.Hosting.Azure.ContainerRegistry](https://www.nuget.org/packages/Aspire.Hosting.Azure.ContainerRegistry) NuGet package.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -98,7 +98,7 @@ builder.AddProject("api", "../Api/Api.csproj")
 
 ### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Container Registry resource, the following Bicep is generated:
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep is output alongside the manifest file. When you add an Azure Container Registry resource, the following Bicep is generated:
 
 :::code language="bicep" source="snippets/acr/AspireAcr.AppHost/AspireAcr.AppHost/my-acr.module.bicep":::
 
@@ -111,4 +111,4 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 ## See also
 
 - [Azure Container Registry documentation](/azure/container-registry)
-- [.NET Aspire Azure integrations overview](integrations-overview.md)
+- [Aspire Azure integrations overview](integrations-overview.md)

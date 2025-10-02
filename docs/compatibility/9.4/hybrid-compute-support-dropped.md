@@ -1,6 +1,6 @@
 ---
 title: "Breaking change - Hybrid compute mode between azd and Aspire apps dropped"
-description: "Learn about the breaking change in .NET Aspire 9.4 where hybrid compute mode support between azd and .NET Aspire apps was dropped."
+description: "Learn about the breaking change in Aspire 9.4 where hybrid compute mode support between azd and Aspire apps was dropped."
 ms.date: 07/22/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/3669
@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3669
 
 # Hybrid compute mode between azd and Aspire apps dropped
 
-.NET Aspire 9.4 removes hybrid compute mode. In this mode, Azure Developer CLI (azd) creates the Azure Container Apps Environment, and .NET Aspire generates the individual Container App Bicep modules. Projects that rely on azd-owned environments must now model an `AzureContainerAppEnvironmentResource` inside the .NET Aspire application.
+Aspire 9.4 removes hybrid compute mode. In this mode, Azure Developer CLI (azd) creates the Azure Container Apps Environment, and Aspire generates the individual Container App Bicep modules. Projects that rely on azd-owned environments must now model an `AzureContainerAppEnvironmentResource` inside the Aspire application.
 
 ## Version introduced
 
-.NET Aspire 9.4
+Aspire 9.4
 
 ## Previous behavior
 
@@ -28,7 +28,7 @@ The `PublishAsAzureContainerApp()` method would automatically handle the connect
 
 ## New behavior
 
-You must now explicitly add an Azure Container Apps Environment resource to your .NET Aspire application:
+You must now explicitly add an Azure Container Apps Environment resource to your Aspire application:
 
 ```csharp
 builder.AddAzureContainerAppEnvironment("env");   // Required to target ACA
@@ -47,11 +47,11 @@ This is a [behavioral change](../categories.md#behavioral-change).
 The hybrid path created hidden coupling and ambiguity:
 
 - Known-parameter substitution (Key Vault names, volume storage accounts, etc.) couldn't be resolved reliably when multiple compute environments existed.
-- The change aligns .NET Aspire with the "compute-environment-as-resource" design and simplifies infrastructure generation logic.
+- The change aligns Aspire with the "compute-environment-as-resource" design and simplifies infrastructure generation logic.
 
 ## Recommended action
 
-Add an environment resource to your .NET Aspire application using the `AddAzureContainerAppEnvironment` method:
+Add an environment resource to your Aspire application using the `AddAzureContainerAppEnvironment` method:
 
 ```csharp
 builder.AddAzureContainerAppEnvironment("env");

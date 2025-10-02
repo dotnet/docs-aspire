@@ -1,6 +1,6 @@
 ---
-title: Use .NET Aspire with Application Insights
-description: Learn how to send .NET Aspire telemetry to Application Insights.
+title: Use Aspire with Application Insights
+description: Learn how to send Aspire telemetry to Application Insights.
 ms.date: 09/23/2025
 ms.topic: how-to
 ms.custom:
@@ -8,9 +8,9 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Use Application Insights for .NET Aspire telemetry
+# Use Application Insights for Aspire telemetry
 
-Azure Application Insights, a feature of Azure Monitor, excels in Application Performance Management (APM) for live web applications. .NET Aspire projects are designed to use OpenTelemetry for application telemetry. OpenTelemetry supports an extension model to support sending data to different APMs. .NET Aspire uses OTLP by default for telemetry export, which is used by the dashboard during development. Azure Monitor doesn't (yet) support OTLP, so the applications need to be modified to use the Azure Monitor exporter, and configured with the connection string.
+Azure Application Insights, a feature of Azure Monitor, excels in Application Performance Management (APM) for live web applications. Aspire projects are designed to use OpenTelemetry for application telemetry. OpenTelemetry supports an extension model to support sending data to different APMs. Aspire uses OTLP by default for telemetry export, which is used by the dashboard during development. Azure Monitor doesn't (yet) support OTLP, so the applications need to be modified to use the Azure Monitor exporter, and configured with the connection string.
 
 To use Application insights, you specify its configuration in the AppHost project *and* use the [Azure Monitor distro in the service defaults project](#use-the-azure-monitor-distro).
 
@@ -50,7 +50,7 @@ For detailed guidance on each approach, see:
 
 ## Choosing how Application Insights is provisioned
 
-.NET Aspire has the capability to provision cloud resources as part of cloud deployment, including Application Insights. In your .NET Aspire project, you can decide if you want .NET Aspire to provision an Application Insights resource when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the AppHost project.
+Aspire has the capability to provision cloud resources as part of cloud deployment, including Application Insights. In your Aspire project, you can decide if you want Aspire to provision an Application Insights resource when deploying to Azure. You can also select to use an existing Application Insights resource by providing its connection string. The connection information is managed by the resource configuration in the AppHost project.
 
 ### Provisioning Application insights during Azure deployment
 
@@ -79,7 +79,7 @@ builder.AddProject<Projects.Web>("webfrontend")
 builder.Build().Run();
 ```
 
-Follow the steps in [Deploy a .NET Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. `azd` will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
+Follow the steps in [Deploy a Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md) to deploy the application to Azure Container Apps. `azd` will create an Application Insights resource as part of the same resource group, and configure the connection string for each container.
 
 ### Manual provisioning of Application Insights resource
 
@@ -108,7 +108,7 @@ builder.Build().Run();
 
 #### Resource usage during development
 
-When running the .NET Aspire project locally, the preceding code reads the connection string from configuration. As this is a secret, you should store the value in [app secrets](/aspnet/core/security/app-secrets). Right click on the AppHost project and choose **Manage Secrets** from the context menu to open the secrets file for the AppHost project. In the file add the key and your specific connection string, the example below is for illustration purposes.
+When running the Aspire project locally, the preceding code reads the connection string from configuration. As this is a secret, you should store the value in [app secrets](/aspnet/core/security/app-secrets). Right click on the AppHost project and choose **Manage Secrets** from the context menu to open the secrets file for the AppHost project. In the file add the key and your specific connection string, the example below is for illustration purposes.
 
 ```json
 {
@@ -153,7 +153,7 @@ builder.Build().Run();
 
 To make exporting to Azure Monitor simpler, this example uses the Azure Monitor Exporter Repo. This is a wrapper package around the Azure Monitor OpenTelemetry Exporter package that makes it easier to export to Azure Monitor with a set of common defaults.
 
-Add the following package to the `ServiceDefaults` project, so that it will be included in each of the .NET Aspire services. For more information, see [.NET Aspire service defaults](../../fundamentals/service-defaults.md).
+Add the following package to the `ServiceDefaults` project, so that it will be included in each of the Aspire services. For more information, see [Aspire service defaults](../../fundamentals/service-defaults.md).
 
 ``` xml
 <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" 

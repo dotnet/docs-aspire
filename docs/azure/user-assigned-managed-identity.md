@@ -1,12 +1,12 @@
 ---
 title: User-assigned managed identities
-description: Learn how to use user-assigned managed identities in your .NET Aspire applications to securely access Azure resources.
+description: Learn how to use user-assigned managed identities in your Aspire applications to securely access Azure resources.
 ms.date: 05/08/2025
 ---
 
-# User-assigned managed identities in .NET Aspire
+# User-assigned managed identities in Aspire
 
-In this article, you learn how to add or reference user-assigned managed identities (UMIs). You can add UMIs in your .NET Aspire applications to securely access Azure resources. A UMI is a standalone Azure resource that you can assign to one or more service resources. UMIs give you more control over identity management and resource access.
+In this article, you learn how to add or reference user-assigned managed identities (UMIs). You can add UMIs in your Aspire applications to securely access Azure resources. A UMI is a standalone Azure resource that you can assign to one or more service resources. UMIs give you more control over identity management and resource access.
 
 ## Add a user-assigned managed identity
 
@@ -26,7 +26,7 @@ The preceding code creates a new managed identity named "custom-umi" that you ca
 
 ## Reference an existing managed identity
 
-If you already have a managed identity, you can reference it using the <xref:Aspire.Hosting.ExistingAzureResourceExtensions.PublishAsExisting*> method. This is useful when you want to use an identity that was created outside of your .NET Aspire project.
+If you already have a managed identity, you can reference it using the <xref:Aspire.Hosting.ExistingAzureResourceExtensions.PublishAsExisting*> method. This is useful when you want to use an identity that was created outside of your Aspire project.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -68,4 +68,4 @@ In this example, you give the Reader role to the managed identity for the Key Va
 - [Azure managed identities overview](/azure/active-directory/managed-identities-azure-resources/overview)
 - [Azure Key Vault](/azure/key-vault/general/basic-concepts)
 - [Manage Azure role assignments](role-assignments.md)
-- [.NET Aspire Azure integrations overview](integrations-overview.md)
+- [Aspire Azure integrations overview](integrations-overview.md)

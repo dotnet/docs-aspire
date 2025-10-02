@@ -1,17 +1,17 @@
 ---
-title: .NET Aspire Community Toolkit RavenDB integration
+title: Aspire Community Toolkit RavenDB integration
 author: shiranshalom
-description: Learn how to use the .NET Aspire RavenDB hosting and client integrations to run a RavenDB container and access it via the RavenDB client.
-ms.date: 5/27/2025
+description: Learn how to use the Aspire RavenDB hosting and client integrations to run a RavenDB container and access it via the RavenDB client.
+ms.date: 10/01/2025
 ---
 
-# .NET Aspire Community Toolkit RavenDB integration
+# Aspire Community Toolkit RavenDB integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-[RavenDB](https://ravendb.net/) is a high-performance, open-source NoSQL database designed for fast, efficient, and scalable data storage. It supports advanced features like ACID transactions, distributed data replication, and time-series data management, making it an excellent choice for modern application development. The .NET Aspire RavenDB integration enables you to connect to existing RavenDB instances or create new instances from .NET using the [docker.io/library/ravendb container image](https://hub.docker.com/r/ravendb/ravendb).
+[RavenDB](https://ravendb.net/) is a high-performance, open-source NoSQL database designed for fast, efficient, and scalable data storage. It supports advanced features like ACID transactions, distributed data replication, and time-series data management, making it an excellent choice for modern application development. The Aspire RavenDB integration enables you to connect to existing RavenDB instances or create new instances from .NET using the [docker.io/library/ravendb container image](https://hub.docker.com/r/ravendb/ravendb).
 
 ## Hosting integration
 
@@ -36,7 +36,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add RavenDB server resource and database resource
 
-To set up RavenDB in your AppHost project, call one of the `AddRavenDB` extension methods on the `builder` instance to add a RavenDB server resource, then call `AddDatabase` on the server resource to add a database. Here’s an example:
+To set up RavenDB in your AppHost project, call one of the `AddRavenDB` extension methods on the `builder` instance to add a RavenDB server resource, then call `AddDatabase` on the server resource to add a database. Here's an example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -52,9 +52,9 @@ builder.AddProject<Projects.ExampleProject>()
 ```
 
 > [!IMPORTANT]
-> A valid RavenDB license is required.  If you don’t have one yet, you can request a free Community license [here](https://ravendb.net/license/request/community).
+> A valid RavenDB license is required.  If you don't have one yet, you can request a free Community license [here](https://ravendb.net/license/request/community).
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/ravendb/ravendb` image, it creates a new RavenDB instance on your local machine. A reference to your RavenDB database resource (the `ravendb` variable) is added to the `ExampleProject`.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `docker.io/ravendb/ravendb` image, it creates a new RavenDB instance on your local machine. A reference to your RavenDB database resource (the `ravendb` variable) is added to the `ExampleProject`.
 
 For more information, see [Container resource lifecycle](../fundamentals/orchestrate-resources.md#container-resource-lifecycle).
 
@@ -96,8 +96,8 @@ Data bind mounts rely on the host machine's filesystem to persist the RavenDB da
 
 ### Add secured RavenDB server resource  
 
-To create a new secured RavenDB instance using settings from a pre-configured _settings.json_ file or a self-signed certificate, use the `RavenDBServerSettings.Secured` method or `RavenDBServerSettings.SecuredWithLetsEncrypt` for Let’s Encrypt configurations. These methods allow you to specify the domain URL, certificate details, and additional server settings.
-Here’s an example of how to add a secured RavenDB server resource using Let's Encrypt:
+To create a new secured RavenDB instance using settings from a pre-configured _settings.json_ file or a self-signed certificate, use the `RavenDBServerSettings.Secured` method or `RavenDBServerSettings.SecuredWithLetsEncrypt` for Let's Encrypt configurations. These methods allow you to specify the domain URL, certificate details, and additional server settings.
+Here's an example of how to add a secured RavenDB server resource using Let's Encrypt:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -126,7 +126,7 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.RavenDB](htt
 
 ## Client integration
 
-To get started with the .NET Aspire RavenDB client integration, install the [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RavenDB client. The RavenDB client integration registers an [IDocumentStore](https://ravendb.net/docs/article-page/6.2/csharp/client-api/what-is-a-document-store) instance, which serves as the entry point for interacting with the RavenDB server resource or an existing RavenDB instance. If your AppHost includes RavenDB database resources, the associated [IDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) and [IAsyncDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) instances are also registered for dependency injection.
+To get started with the Aspire RavenDB client integration, install the [📦 CommunityToolkit.Aspire.RavenDB.Client](https://nuget.org/packages/CommunityToolkit.Aspire.RavenDB.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the RavenDB client. The RavenDB client integration registers an [IDocumentStore](https://ravendb.net/docs/article-page/6.2/csharp/client-api/what-is-a-document-store) instance, which serves as the entry point for interacting with the RavenDB server resource or an existing RavenDB instance. If your AppHost includes RavenDB database resources, the associated [IDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) and [IAsyncDocumentSession](https://ravendb.net/docs/article-page/6.2/csharp/client-api/session/what-is-a-session-and-how-does-it-work) instances are also registered for dependency injection.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -168,7 +168,7 @@ public class ExampleService(IDocumentStore client)
 The `AddRavenDBClient` method provides overloads that accept a `RavenDBClientSettings` object. This allows you to use the client integration independently of the hosting integration.
 The `RavenDBClientSettings` class contains the parameters needed to establish a connection. More details about the available configuration options can be found in the [Configuration options](#configuration-options) section below.
 
-Here’s an example:
+Here's an example:
 
 ```csharp
 var settings = new RavenDBClientSettings
@@ -216,7 +216,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire RavenDB Client integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
+The Aspire RavenDB Client integration provides multiple configuration approaches and options to meet the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -238,7 +238,7 @@ The connection string will be retrieved from the `ConnectionStrings` configurati
 
 #### Use configuration providers
 
-The .NET Aspire RavenDB integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `RavenDBClientSettings` from the configuration using the `Aspire:RavenDB:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
+The Aspire RavenDB integration supports <xref:Microsoft.Extensions.Configuration>. It loads the `RavenDBClientSettings` from the configuration using the `Aspire:RavenDB:Client` key. Consider the following example _appsettings.json_ that configures some of the options:
 
 ```json
 {
@@ -271,7 +271,7 @@ builder.AddRavenDBClient(connectionName: "ravendb", configureSettings:
 
 ### Configuration options
 
-The .NET Aspire RavenDB client integration provides flexible configuration options through the `RavenDBClientSettings` class, enabling you to tailor the connection to your project's requirements. Here are the key properties:
+The Aspire RavenDB client integration provides flexible configuration options through the `RavenDBClientSettings` class, enabling you to tailor the connection to your project's requirements. Here are the key properties:
 
 | Name                  | Description                                                                           |
 |-----------------------|---------------------------------------------------------------------------------------|
@@ -288,11 +288,11 @@ The .NET Aspire RavenDB client integration provides flexible configuration optio
 
 #### Client integration health checks
 
-The .NET Aspire RavenDB client integration uses the configured client to perform a `IsHealthyAsync`. If the result is `true`, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
+The Aspire RavenDB client integration uses the configured client to perform a `IsHealthyAsync`. If the result is `true`, the health check is considered healthy, otherwise it's unhealthy. Likewise, if there's an exception, the health check is considered unhealthy with the error propagating through the health check failure.
 
 ## See also
 
 - [RavenDB](https://ravendb.net/)
-- [Running in a Docker Container](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container)
+- [RavenDB Dockerfile guide](https://docs.ravendb.net/6.2/start/containers/dockerfile/guide/)
 - [RavenDB Code](https://github.com/ravendb/ravendb)
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)

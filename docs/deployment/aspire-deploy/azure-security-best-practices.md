@@ -1,17 +1,17 @@
 ---
-title: Azure security best practices for .NET Aspire deployments
-description: Learn about the default security posture of .NET Aspire deployments to Azure Container Apps and additional steps to enhance security.
+title: Azure security best practices for Aspire deployments
+description: Learn about the default security posture of Aspire deployments to Azure Container Apps and additional steps to enhance security.
 ms.date: 09/23/2025
 uid: deployment/azure/azure-security-best-practices
 ---
 
-# Azure security best practices for .NET Aspire deployments
+# Azure security best practices for Aspire deployments
 
-When you deploy .NET Aspire applications to Azure using the Aspire CLI or Azure Developer CLI (`azd`), the platform provides several security features by default. This article explains the default security posture and provides guidance on additional steps you can take to enhance the security of your applications.
+When you deploy Aspire applications to Azure using the Aspire CLI or Azure Developer CLI (`azd`), the platform provides several security features by default. This article explains the default security posture and provides guidance on additional steps you can take to enhance the security of your applications.
 
 > [!div class="checklist"]
 >
-> - Understand the default security configuration for .NET Aspire deployments
+> - Understand the default security configuration for Aspire deployments
 > - Learn about built-in security features in Azure Container Apps
 > - Implement additional security hardening measures
 > - Configure secure communication between services
@@ -19,11 +19,11 @@ When you deploy .NET Aspire applications to Azure using the Aspire CLI or Azure 
 
 ## Default security posture
 
-When you deploy a .NET Aspire application to Azure Container Apps using `azd`, several security measures are automatically configured:
+When you deploy a Aspire application to Azure Container Apps using `azd`, several security measures are automatically configured:
 
 ### Container-level security
 
-**Secure base images**: .NET Aspire generates container images using secure Microsoft-maintained base images that are regularly updated with security patches.
+**Secure base images**: Aspire generates container images using secure Microsoft-maintained base images that are regularly updated with security patches.
 
 **Non-root execution**: Containers run with non-root user permissions by default, reducing the attack surface.
 
@@ -51,7 +51,7 @@ When you deploy a .NET Aspire application to Azure Container Apps using `azd`, s
 
 ## Additional security hardening
 
-While .NET Aspire provides good security defaults, you can implement additional measures for enhanced protection:
+While Aspire provides good security defaults, you can implement additional measures for enhanced protection:
 
 ### Enable Azure Key Vault integration
 
@@ -68,7 +68,7 @@ builder.AddProject<Projects.ApiService>()
        .WithReference(keyVault);
 ```
 
-For more information, see [.NET Aspire Azure Key Vault integration](../../security/azure-security-key-vault-integration.md).
+For more information, see [Aspire Azure Key Vault integration](../../security/azure-security-key-vault-integration.md).
 
 ### Configure user-assigned managed identities
 
@@ -101,7 +101,7 @@ builder.AddProject<Projects.ApiService>()
        .WithReference(appInsights);
 ```
 
-For more information, see [Use .NET Aspire with Application Insights](application-insights.md).
+For more information, see [Use Aspire with Application Insights](application-insights.md).
 
 **Azure Monitor**: Configure alerts for suspicious activities and resource consumption anomalies.
 
@@ -111,7 +111,7 @@ For comprehensive guidance on Azure security, see [Azure security best practices
 
 ## Next steps
 
-- [Deploy a .NET Aspire project to Azure Container Apps](../azd/aca-deployment.md)
-- [Customize .NET Aspire Azure deployments](customize-deployments.md)
-- [.NET Aspire Azure Key Vault integration](../../security/azure-security-key-vault-integration.md)
+- [Deploy a Aspire project to Azure Container Apps](../azd/aca-deployment.md)
+- [Customize Aspire Azure deployments](customize-deployments.md)
+- [Aspire Azure Key Vault integration](../../security/azure-security-key-vault-integration.md)
 - [User-assigned managed identity](../../azure/user-assigned-managed-identity.md)

@@ -1,17 +1,17 @@
 ---
 title: MySql hosting extensions
-description: Learn how to use the .NET Aspire MySql extensions package which provides extra functionality to the .NET Aspire MySql hosting package.
+description: Learn how to use the Aspire MySql extensions package which provides extra functionality to the Aspire MySql hosting package.
 ms.date: 05/28/2025
 author: Alirexaa
 ---
 
-# .NET Aspire Community Toolkit MySql hosting extensions
+# Aspire Community Toolkit MySql hosting extensions
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn about the .NET Aspire Community Toolkit MySql hosting extensions package which provides extra functionality to the .NET Aspire [MySql hosting package](https://nuget.org/packages/Aspire.Hosting.MySql).
+In this article, you learn about the Aspire Community Toolkit MySql hosting extensions package which provides extra functionality to the Aspire [MySql hosting package](https://nuget.org/packages/Aspire.Hosting.MySql).
 
 This package provides the following features:
 
@@ -20,7 +20,7 @@ This package provides the following features:
 
 ## Hosting integration
 
-To get started with the .NET Aspire Community Toolkit MySql hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.MySql.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MySql.Extensions) NuGet package in the AppHost project.
+To get started with the Aspire Community Toolkit MySql hosting extensions, install the [📦 CommunityToolkit.Aspire.Hosting.MySql.Extensions](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.MySql.Extensions) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -55,4 +55,4 @@ var mysql = builder.AddMySql("mysql")
     .WithAdminer();
 ```
 
-This will add a new resource to the AppHost which will be available from the .NET Aspire dashboard.
+This will add a new resource to the AppHost which will be available from the Aspire dashboard.

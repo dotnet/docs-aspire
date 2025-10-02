@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire health checks
-description: Explore .NET Aspire health checks
+title: Aspire health checks
+description: Explore Aspire health checks
 ms.date: 09/24/2024
 ms.topic: quickstart
 uid: dotnet/aspire/health-checks
 ---
 
-# Health checks in .NET Aspire
+# Health checks in Aspire
 
 Health checks provide availability and state information about an app. Health checks are often exposed as HTTP endpoints, but can also be used internally by the app to write logs or perform other tasks based on the current health. Health checks are typically used in combination with an external monitoring service or container orchestrator to check the status of an app.
 
-In .NET Aspire, health checks operate in two main contexts:
+In Aspire, health checks operate in two main contexts:
 
 - **AppHost resource health checks** - Run in the AppHost project to determine resource readiness for orchestration and dependency management. These checks control when dependent resources start and are displayed in the Aspire dashboard.
 - **Application health check endpoints** - Run within individual applications and services to expose `/health` and `/alive` endpoints for monitoring and load balancing decisions.
@@ -21,9 +21,9 @@ The data reported by health checks can be used for various scenarios:
 - Verify that underlying dependencies are available, such as a database or cache, and return an appropriate status message.
 - Trigger alerts or notifications when an app isn't responding as expected.
 
-## .NET Aspire health check endpoints
+## Aspire health check endpoints
 
-.NET Aspire exposes two default health check HTTP endpoints in **Development** environments when the `AddServiceDefaults` and `MapDefaultEndpoints` methods are called from the _:::no-loc text="Program.cs":::_ file:
+Aspire exposes two default health check HTTP endpoints in **Development** environments when the `AddServiceDefaults` and `MapDefaultEndpoints` methods are called from the _:::no-loc text="Program.cs":::_ file:
 
 - The `/health` endpoint indicates if the app is running normally where it's ready to receive requests. All health checks must pass for app to be considered ready to accept traffic after starting.
 
@@ -88,7 +88,7 @@ For more information, see [Request timeouts middleware in ASP.NET Core](/aspnet/
 
 ## Integration health checks
 
-.NET Aspire integrations can also register additional health checks for your app. These health checks contribute to the returned status of the `/health` and `/alive` endpoints. For example, the .NET Aspire PostgreSQL integration automatically adds a health check to verify the following conditions:
+Aspire integrations can also register additional health checks for your app. These health checks contribute to the returned status of the `/health` and `/alive` endpoints. For example, the Aspire PostgreSQL integration automatically adds a health check to verify the following conditions:
 
 - A database connection could be established
 - A database query could be executed successfully
@@ -97,7 +97,7 @@ If either of these operations fail, the corresponding health check also fails.
 
 ### Configure health checks
 
-You can disable health checks for a given integration using one of the available configuration options. .NET Aspire integrations support [Microsoft.Extensions.Configurations](/dotnet/api/microsoft.extensions.configuration) to apply settings through config files such as _:::no-loc text="appsettings.json":::_:
+You can disable health checks for a given integration using one of the available configuration options. Aspire integrations support [Microsoft.Extensions.Configurations](/dotnet/api/microsoft.extensions.configuration) to apply settings through config files such as _:::no-loc text="appsettings.json":::_:
 
 ```json
 {

@@ -1,17 +1,17 @@
 ---
 title: Java/Spring hosting
 author: justinyoo
-description: A .NET Aspire hosting integration for hosting Java/Spring applications using either the Java runtime or a container.
+description: A Aspire hosting integration for hosting Java/Spring applications using either the Java runtime or a container.
 ms.date: 06/25/2025
 ---
 
-# .NET Aspire Java/Spring hosting integration
+# Aspire Java/Spring hosting integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-In this article, you learn how to use the .NET Aspire Java/Spring hosting integration to host Java/Spring applications using either the Java runtime or a container.
+In this article, you learn how to use the Aspire Java/Spring hosting integration to host Java/Spring applications using either the Java runtime or a container.
 
 ## Prerequisites
 
@@ -40,11 +40,11 @@ Invoke-WebRequest `
 
 ## Linux and macOS certificate trust
 
-On Linux and macOS platforms, you might need to import the .NET Aspire OpenTelemetry certificate into the Java certificate store for telemetry to work properly. Without this step, your Java application will start successfully, but telemetry collection might fail with certificate errors.
+On Linux and macOS platforms, you might need to import the Aspire OpenTelemetry certificate into the Java certificate store for telemetry to work properly. Without this step, your Java application will start successfully, but telemetry collection might fail with certificate errors.
 
 To add the certificate to the Java truststore, you can use the following steps:
 
-1. Export the .NET Aspire dashboard certificate (this varies by your setup)
+1. Export the Aspire dashboard certificate (this varies by your setup)
 1. Import it into the Java truststore using the `keytool` command:
 
 ```bash
@@ -55,11 +55,11 @@ keytool -import -trustcacerts -alias aspire-dashboard \
 ```
 
 > [!NOTE]
-> The exact steps for obtaining and importing the certificate may vary depending on your development environment and .NET Aspire configuration.
+> The exact steps for obtaining and importing the certificate may vary depending on your development environment and Aspire configuration.
 
 ## Get started
 
-To get started with the .NET Aspire Java/Spring hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.Java](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Java) NuGet package in the AppHost project.
+To get started with the Aspire Java/Spring hosting integration, install the [📦 CommunityToolkit.Aspire.Hosting.Java](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Java) NuGet package in the AppHost project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -124,4 +124,4 @@ The parameters are defined as follows:
 ## See also
 
 - [Java developer resources](/java)
-- [.NET Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)
+- [Aspire Community Toolkit GitHub repo](https://github.com/CommunityToolkit/Aspire)

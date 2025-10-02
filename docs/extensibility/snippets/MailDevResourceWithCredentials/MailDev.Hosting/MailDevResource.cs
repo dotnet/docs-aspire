@@ -17,7 +17,7 @@ public sealed class MailDevResource(
 
     private const string DefaultUsername = "mail-dev";
 
-    // An EndpointReference is a core .NET Aspire type used for keeping
+    // An EndpointReference is a core Aspire type used for keeping
     // track of endpoint details in expressions. Simple literal values cannot
     // be used because endpoints are not known until containers are launched.
     private EndpointReference? _smtpReference;

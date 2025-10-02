@@ -1,18 +1,18 @@
 ---
 title: Entity Framework Core overview
-description: Learn how to optimize the performance of .NET Aspire Entity Framework Core integrations using their context objects.
-ms.date: 03/03/2025
+description: Learn how to optimize the performance of Aspire Entity Framework Core integrations using their context objects.
+ms.date: 10/01/2025
 uid: database/use-entity-framework-db-contexts
 zone_pivot_groups: entity-framework-client-integration
 ---
 
 # Entity Framework Core overview
 
-In a cloud-native solution, such as those .NET Aspire is built to create, microservices often need to store data in relational databases. .NET Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework Core (EF Core) object-relational mapper (O/RM) approach to streamline the process.
+In a cloud-native solution, such as those Aspire is built to create, microservices often need to store data in relational databases. Aspire includes integrations that you can use to ease that task, some of which use the Entity Framework Core (EF Core) object-relational mapper (O/RM) approach to streamline the process.
 
 Developers use O/RMs to work with databases using code objects instead of SQL queries. EF Core automatically codes database interactions by generating SQL queries based on Language-Integrated Query (LINQ) queries. EF Core supports various database providers, including SQL Server, PostgreSQL, and MySQL, so it's easy to interact with relational databases while following object-oriented principles.
 
-The most commonly used .NET Aspire EF Core client integrations are:
+The most commonly used Aspire EF Core client integrations are:
 
 - [Cosmos DB Entity Framework Core integration](azure-cosmos-db-entity-framework-integration.md)
 - [MySQL Pomelo Entity Framework Core integration](mysql-entity-framework-integration.md)
@@ -80,16 +80,16 @@ using (var db = new TicketContext())
 > [!NOTE]
 > EF Core also supports creating, modifying, and deleted records and complex queries. For more information, see [Querying Data](/ef/core/querying/) and [Saving Data](/ef/core/saving/)
 
-## How .NET Aspire can help
+## How Aspire can help
 
-.NET Aspire is designed to help build observable, production-ready, cloud-native solutions that consist of multiple microservices. It orchestrates multiple projects, each of which may be a microservice written by a dedicated team, and connects them to each other. It provides integrations that make it easy to connect to common services, such as databases.
+Aspire is designed to help build observable, production-ready, cloud-native solutions that consist of multiple microservices. It orchestrates multiple projects, each of which may be a microservice written by a dedicated team, and connects them to each other. It provides integrations that make it easy to connect to common services, such as databases.
 
-If you want to use EF Core in any of your microservices, .NET Aspire can help by:
+If you want to use EF Core in any of your microservices, Aspire can help by:
 
 - Managing the database container, or a connection to an existing database, centrally in the AppHost project and passing its reference to any project that uses it.
 
     > [!IMPORTANT]
-    > In .NET Aspire, EF Core is implemented by client integrations, not hosting integrations. The centralized management of the database in the AppHost doesn't involve EF Core, which runs in consuming microservice projects instead. For more information, see [Cosmos DB Hosting integration](/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration#hosting-integration), [MySQL Pomelo Hosting integration](/dotnet/aspire/database/mysql-entity-framework-integration#hosting-integration), [Oracle Hosting integration](/dotnet/aspire/database/oracle-entity-framework-integration#hosting-integration), [PostgreSQL Hosting integration](/dotnet/aspire/database/postgresql-entity-framework-integration#hosting-integration), or [SQL Server Hosting integration](/dotnet/aspire/database/sql-server-entity-framework-integration#hosting-integration).
+    > In Aspire, EF Core is implemented by client integrations, not hosting integrations. The centralized management of the database in the AppHost doesn't involve EF Core, which runs in consuming microservice projects instead. For more information, see [Cosmos DB Hosting integration](/dotnet/aspire/database/azure-cosmos-db-entity-framework-integration#hosting-integration), [MySQL Pomelo Hosting integration](/dotnet/aspire/database/mysql-entity-framework-integration#hosting-integration), [Oracle Hosting integration](/dotnet/aspire/database/oracle-entity-framework-integration#hosting-integration), [PostgreSQL Hosting integration](/dotnet/aspire/database/postgresql-entity-framework-integration#hosting-integration), or [SQL Server Hosting integration](/dotnet/aspire/database/sql-server-entity-framework-integration#hosting-integration).
 
 - Providing EF Core-aware integrations that make it easy to create contexts in microservice projects. There are EF Core integrations for SQL Server, MySQL, PostgreSQL, Oracle, Cosmos DB, and other popular database systems.
 
@@ -99,28 +99,28 @@ To use EF Core in your microservice, you must:
 - Create an instance of the data context, using the reference passed from the AppHost, and add it to the Dependency Injection (DI) container.
 - When you want to interact with the database, obtain the context from DI and use it to execute LINQ queries against the database as normal for any EF Core code.
 
-:::image type="content" source="media/ef-core-aspire-architecture-thumb.png" lightbox="media/ef-core-aspire-architecture-large.png" alt-text="A diagram showing how .NET Aspire utilizes EF Core to interact with a database.." :::
+:::image type="content" source="media/ef-core-aspire-architecture-thumb.png" lightbox="media/ef-core-aspire-architecture-large.png" alt-text="A diagram showing how Aspire utilizes EF Core to interact with a database.." :::
 
-Both defining the EF Core model and querying the database are the same in .NET Aspire projects as in any other EF Core app. However, creating the data context differs. In the rest of this article, you'll learn how to create an configure EF Core contexts in .NET Aspire project.
+Both defining the EF Core model and querying the database are the same in Aspire projects as in any other EF Core app. However, creating the data context differs. In the rest of this article, you'll learn how to create an configure EF Core contexts in Aspire project.
 
-## Use .NET Aspire to create an EF Core context
+## Use Aspire to create an EF Core context
 
 In EF Core, a [**context**](/ef/core/dbcontext-configuration/) is a class used to interact with the database. Contexts inherit from the <xref:Microsoft.EntityFrameworkCore.DbContext> class. They provide access to the database through properties of type `DbSet<T>`, where each `DbSet` represents a table or collection of entities in the database. The context also manages database connections, tracks changes to entities, and handles operations like saving data and executing queries.
 
-The .NET Aspire EF Core client integrations each include extension methods named `Add{DatabaseSystem}DbContext`, where **{DatabaseSystem}** is the name identifying the database product you're using. For example, consider the SQL Server EF Core client integration, the method is named <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> and for the PostgreSQL client integration, the method is named <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A>.
+The Aspire EF Core client integrations each include extension methods named `Add{DatabaseSystem}DbContext`, where **{DatabaseSystem}** is the name identifying the database product you're using. For example, consider the SQL Server EF Core client integration, the method is named <xref:Microsoft.Extensions.Hosting.AspireSqlServerEFCoreSqlClientExtensions.AddSqlServerDbContext%2A> and for the PostgreSQL client integration, the method is named <xref:Microsoft.Extensions.Hosting.AspireEFPostgreSqlExtensions.AddNpgsqlDbContext%2A>.
 
-These .NET Aspire add context methods:
+These Aspire add context methods:
 
 - Check that a context of the same type isn't already registered in the dependency injection (DI) container.
 - Use the connection name you pass to the method to get the connection string from the application builder. This connection name must match the name used when adding the corresponding resource to the AppHost project.
 - Apply the `DbContext` options, if you passed them.
 - Add the specified `DbContext` to the DI container with context pooling enabled.
-- Apply the recommended defaults, unless you've disabled them through the .NET Aspire EF Core settings:
+- Apply the recommended defaults, unless you've disabled them through the Aspire EF Core settings:
   - Enable tracing.
   - Enable health checks.
   - Enable connection resiliency.
 
-Use these .NET Aspire add context methods when you want a simple way to create a context and don't yet need advanced EF Core customization.
+Use these Aspire add context methods when you want a simple way to create a context and don't yet need advanced EF Core customization.
 
 :::zone pivot="sql-server-ef"
 
@@ -129,7 +129,7 @@ builder.AddSqlServerDbContext<ExampleDbContext>(connectionName: "database");
 ```
 
 > [!TIP]
-> For more information about SQL Server hosting and client integrations, see [.NET Aspire SQL Server Entity Framework Core integration](sql-server-entity-framework-integration.md).
+> For more information about SQL Server hosting and client integrations, see [Aspire SQL Server Entity Framework Core integration](sql-server-entity-framework-integration.md).
 
 :::zone-end
 :::zone pivot="postgresql-ef"
@@ -139,7 +139,7 @@ builder.AddNpgsqlDbContext<ExampleDbContext>(connectionName: "database");
 ```
 
 > [!TIP]
-> For more information about PostgreSQL hosting and client integrations, see [.NET Aspire PostgreSQL Entity Framework Core integration](postgresql-entity-framework-integration.md).
+> For more information about PostgreSQL hosting and client integrations, see [Aspire PostgreSQL Entity Framework Core integration](postgresql-entity-framework-integration.md).
 
 :::zone-end
 :::zone pivot="oracle-ef"
@@ -149,7 +149,7 @@ builder.AddOracleDatabaseDbContext<ExampleDbContext>(connectionName: "database")
 ```
 
 > [!TIP]
-> For more information about Oracle Database hosting and client integrations, see [.NET Aspire Oracle Entity Framework Core integration](oracle-entity-framework-integration.md).
+> For more information about Oracle Database hosting and client integrations, see [Aspire Oracle Entity Framework Core integration](oracle-entity-framework-integration.md).
 
 :::zone-end
 :::zone pivot="mysql-ef"
@@ -159,7 +159,7 @@ builder.AddMySqlDbContext<ExampleDbContext>(connectionName: "database");
 ```
 
 > [!TIP]
-> For more information about MySQL hosting and client integrations, see [.NET Aspire Pomelo MySQL Entity Framework Core integration](mysql-entity-framework-integration.md).
+> For more information about MySQL hosting and client integrations, see [Aspire Pomelo MySQL Entity Framework Core integration](mysql-entity-framework-integration.md).
 
 :::zone-end
 
@@ -174,7 +174,7 @@ public class ExampleService(ExampleDbContext context)
 
 ## Use EF Core to add and enrich context
 
-Alternatively, you can add a context to the DI container using the standard EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method, as commonly used in non-.NET Aspire projects:
+Alternatively, you can add a context to the DI container using the standard EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method, as commonly used in non-Aspire projects:
 
 :::zone pivot="sql-server-ef"
 
@@ -227,17 +227,17 @@ builder.Services.AddDbContextPool<ExampleDbContext>(options =>
 
 You have more flexibility when you create the context in this way, for example:
 
-- You can reuse existing configuration code for the context without rewriting it for .NET Aspire.
-- You can choose not to use EF Core context pooling, which may be necessary in some circumstances. For more information, see [Use EF Core context pooling in .NET Aspire](#use-ef-core-context-pooling-in-net-aspire)
-- You can use EF Core context factories or change the lifetime for the EF Core services. For more information, see [Use EF Core context factories in .NET Aspire](#use-ef-core-context-factories-in-net-aspire)
-- You can use dynamic connection strings. For more information, see [Use EF Core with dynamic connection strings in .NET Aspire](#use-ef-core-with-dynamic-connection-strings-in-net-aspire)
-- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) that depend on DI services to modify database operations. For more information, see [Use EF Core interceptors in .NET Aspire](#use-ef-core-interceptors-with-net-aspire)
+- You can reuse existing configuration code for the context without rewriting it for Aspire.
+- You can choose not to use EF Core context pooling, which may be necessary in some circumstances. For more information, see [Use EF Core context pooling in Aspire](#use-ef-core-context-pooling-in-aspire)
+- You can use EF Core context factories or change the lifetime for the EF Core services. For more information, see [Use EF Core context factories in Aspire](#use-ef-core-context-factories-in-aspire)
+- You can use dynamic connection strings. For more information, see [Use EF Core with dynamic connection strings in Aspire](#use-ef-core-with-dynamic-connection-strings-in-aspire)
+- You can use [EF Core interceptors](/ef/core/logging-events-diagnostics/interceptors) that depend on DI services to modify database operations. For more information, see [Use EF Core interceptors in Aspire](#use-ef-core-interceptors-with-aspire)
 
-By default, a context configured this way doesn't include .NET Aspire features, such as telemetry and health checks. To add those features, each .NET Aspire EF Core client integration includes a method named `Enrich\<DatabaseSystem\>DbContext`. These enrich context methods:
+By default, a context configured this way doesn't include Aspire features, such as telemetry and health checks. To add those features, each Aspire EF Core client integration includes a method named `Enrich\<DatabaseSystem\>DbContext`. These enrich context methods:
 
 - Apply an EF Core settings object, if you passed one.
 - Configure connection retry settings.
-- Apply the recommended defaults, unless you've disabled them through the .NET Aspire EF Core settings:
+- Apply the recommended defaults, unless you've disabled them through the Aspire EF Core settings:
   - Enable tracing.
   - Enable health checks.
   - Enable connection resiliency.
@@ -303,11 +303,11 @@ public class ExampleService(ExampleDbContext context)
 }
 ```
 
-### Use EF Core interceptors with .NET Aspire
+### Use EF Core interceptors with Aspire
 
 EF Core interceptors allow developers to hook into and modify database operations at various points during the execution of database queries and commands. You can use them to log, modify, or suppress operations with your own code. Your interceptor must implement one or more interface from the <xref:Microsoft.EntityFrameworkCore.Diagnostics.IInterceptor> interface.
 
-Interceptors that depend on DI services are not supported by the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods. Use the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method and call the <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors*> method in the options builder:
+Interceptors that depend on DI services are not supported by the Aspire `Add\<DatabaseSystem\>DbContext` methods. Use the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method and call the <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.AddInterceptors*> method in the options builder:
 
 :::zone pivot="sql-server-ef"
 
@@ -385,14 +385,14 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
 > [!NOTE]
 > For more information about EF Core interceptors and their use, see [Interceptors](/ef/core/logging-events-diagnostics/interceptors).
 
-### Use EF Core with dynamic connection strings in .NET Aspire
+### Use EF Core with dynamic connection strings in Aspire
 
 Most microservices always connect to the same database with the same credentials and other settings, so they always use the same connection string unless there's a major change in infrastructure. However, you may need to change the connection string for each request. For example:
 
 - You might offer your service to multiple tenants and need to use a different database depending on which customer made the request.
 - You might need to authenticate the request with a different database user account depending on which customer made the request.
 
-For these requirements, you can use code to formulate a **dynamic connection string** and then use it to reach the database and run queries. However, this technique isn't supported by the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods. Instead you must use the EF Core method to create the context and then enrich it:
+For these requirements, you can use code to formulate a **dynamic connection string** and then use it to reach the database and run queries. However, this technique isn't supported by the Aspire `Add\<DatabaseSystem\>DbContext` methods. Instead you must use the EF Core method to create the context and then enrich it:
 
 :::zone pivot="sql-server-ef"
 
@@ -481,13 +481,13 @@ builder.EnrichMySqlDbContext<ExampleDbContext>(
 
 The above code replaces the place holder `{DatabaseName}` in the connection string with the string `ContosoDatabase`, at run time, before it creates the context and enriches it.
 
-### Use EF Core context factories in .NET Aspire
+### Use EF Core context factories in Aspire
 
 An EF Core context is an object designed to be used for a single unit of work. For example, if you want to add a new customer to the database, you might need to add a row in the **Customers** table and a row in the **Addresses** table. You should get the EF Core context, add the new customer and address entities to it, call <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync*>, and then dispose the context.
 
-In many types of web application, such as ASP.NET applications, each HTTP request closely corresponds to a single unit of work against the database. If your .NET Aspire microservice is an ASP.NET application or a similar web application, you can use the standard EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method described above to register a context that is tied to the current HTTP request. Remember to call the .NET Aspire `Enrich\<DatabaseSystem\>DbContext` method to gain health checks, tracing, and other features. When you use this approach, the context lifetime is tied to the web request. You don't have to call the <xref:Microsoft.EntityFrameworkCore.DbContext.Dispose*> method when the unit of work is complete.
+In many types of web application, such as ASP.NET applications, each HTTP request closely corresponds to a single unit of work against the database. If your Aspire microservice is an ASP.NET application or a similar web application, you can use the standard EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method described above to register a context that is tied to the current HTTP request. Remember to call the Aspire `Enrich\<DatabaseSystem\>DbContext` method to gain health checks, tracing, and other features. When you use this approach, the context lifetime is tied to the web request. You don't have to call the <xref:Microsoft.EntityFrameworkCore.DbContext.Dispose*> method when the unit of work is complete.
 
-Other application types, such as ASP.NET Core Blazor, don't necessarily align each request with a unit of work, because they use dependency injection with a different service scope. In such apps, you may need to perform multiple units of work, each with a different context, within a single HTTP request and response. To implement this approach, you can register a context factory, by calling the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddPooledDbContextFactory*> method. This method also partners well with the .NET Aspire `Enrich\<DatabaseSystem\>DbContext` methods:
+Other application types, such as ASP.NET Core Blazor, don't necessarily align each request with a unit of work, because they use dependency injection with a different service scope. In such apps, you may need to perform multiple units of work, each with a different context, within a single HTTP request and response. To implement this approach, you can register a context factory, by calling the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddPooledDbContextFactory*> method. This method also partners well with the Aspire `Enrich\<DatabaseSystem\>DbContext` methods:
 
 :::zone pivot="sql-server-ef"
 
@@ -568,15 +568,15 @@ public class ExampleService(IDbContextFactory<ExampleDbContext> contextFactory)
 
 Contexts created from factories in this way aren't disposed of automatically because they aren't tied to an HTTP request lifetime. You must make sure your code disposes of them. In this example, the `using` code block ensures the disposal.
 
-## Use EF Core context pooling in .NET Aspire
+## Use EF Core context pooling in Aspire
 
 In EF Core a context is relatively quick to create and dispose of so most applications can set them up as needed without impacting their performance. However, the overhead is not zero so, if your microservice intensively creates contexts, you may observe suboptimal performance. In such situations, consider using a context pool.
 
 Context pooling is a feature of EF Core. Contexts are created as normal but, when you dispose of one, it isn't destroyed but reset and stored in a pool. The next time your code creates a context, the stored one is returned to avoid the extra overhead of creating a new one.
 
-In a .NET Aspire consuming project, there are three ways to use context pooling:
+In a Aspire consuming project, there are three ways to use context pooling:
 
-- Use the .NET Aspire `Add\<DatabaseSystem\>DbContext` methods to create the context. These methods create a context pool automatically.
+- Use the Aspire `Add\<DatabaseSystem\>DbContext` methods to create the context. These methods create a context pool automatically.
 - Call the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method instead of the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> method.
 
     :::zone pivot="sql-server-ef"
@@ -663,8 +663,8 @@ Remember to enrich the context after using the last two methods, as described ab
 ## See also
 
 - [Entity Framework Core documentation hub](/ef/core)
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using .NET Aspire and Entity Framework Core](/dotnet/aspire/database/sql-server-integrations)
-- [Apply Entity Framework Core migrations in .NET Aspire](/dotnet/aspire/database/ef-core-migrations)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](/dotnet/aspire/database/sql-server-integrations)
+- [Apply Entity Framework Core migrations in Aspire](/dotnet/aspire/database/ef-core-migrations)
 - [DbContext Lifetime, Configuration, and Initialization](/ef/core/dbcontext-configuration/)
 - [Advanced Performance Topics](/ef/core/performance/advanced-performance-topics)
 - [Entity Framework Interceptors](/ef/core/logging-events-diagnostics/interceptors)

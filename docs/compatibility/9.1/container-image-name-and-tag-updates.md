@@ -1,6 +1,6 @@
 ---
 title: Default container image name and tag changed
-description: Default container image name and tag changes in .NET Aspire 9.1 for AddDockerfile and WithDockerfile methods.
+description: Default container image name and tag changes in Aspire 9.1 for AddDockerfile and WithDockerfile methods.
 ms.date: 02/13/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/2557
@@ -8,22 +8,22 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2557
 
 # Default container image name and tag changed
 
-In .NET Aspire 9.1, the default container image name and tag assigned to the container resource when using <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile*> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile*> changed. This change affects how container images are named and tagged by default, improving consistency and safety.
+In Aspire 9.1, the default container image name and tag assigned to the container resource when using <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile*> or <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile*> changed. This change affects how container images are named and tagged by default, improving consistency and safety.
 
 ## Version introduced
 
-.NET Aspire 9.1
+Aspire 9.1
 
 ## Previous behavior
 
-In .NET Aspire 9.0:
+In Aspire 9.0:
 
 - The default container image name used was based on this format: `{ResourceName}-image-{HashOfAppHostDirectory}`
 - The default container tag used was simply `latest`
 
 ## New behavior
 
-In .NET Aspire 9.1:
+In Aspire 9.1:
 
 - The default container image name used is now simply the resource name lowercased.
 - The default container tag used is now a hash derived from the AppHost directory combined with a timestamp of when the method was called.

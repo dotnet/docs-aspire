@@ -1,12 +1,12 @@
 ---
-title: .NET Aspire Qdrant integration
-description: Learn how to use the .NET Aspire Qdrant integration, which includes both hosting and client integrations.
+title: Aspire Qdrant integration
+description: Learn how to use the Aspire Qdrant integration, which includes both hosting and client integrations.
 ms.date: 07/22/2025
 uid: database/qdrant-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire Qdrant integration
+# Aspire Qdrant integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
@@ -14,7 +14,7 @@ ms.custom: sfi-ropc-nochange
 
 Vector data encodes information as mathematical vectors, which are arrays of numbers or coordinates. Machine learning and AI systems often use vectors to represent unstructured objects like images, text, audio, or video. Each dimension in the vector describes a specific characteristic of the object. By comparing them, systems can classify, search, and identify clusters of objects.
 
-In this article, you learn how to use the .NET Aspire Qdrant integration. The .NET Aspire Qdrant integration enables you to connect to existing Qdrant databases or create new instances with the [`qdrant/qdrant` container image](https://hub.docker.com/r/qdrant/qdrant).
+In this article, you learn how to use the Aspire Qdrant integration. The Aspire Qdrant integration enables you to connect to existing Qdrant databases or create new instances with the [`qdrant/qdrant` container image](https://hub.docker.com/r/qdrant/qdrant).
 
 ## Hosting integration
 
@@ -57,7 +57,7 @@ builder.AddProject<Projects.ExampleProject>()
 > [!NOTE]
 > The Qdrant container can be slow to start, so it's best to use a _persistent_ lifetime to avoid unnecessary restarts. For more information, see [Container resource lifetime](../fundamentals/orchestrate-resources.md#container-resource-lifetime).
 
-When .NET Aspire adds a container image to the AppHost, as shown in the preceding example with the `qdrant/qdrant` image, it creates a new Qdrant instance on your local machine. The resource is named `qdrant` and then added to the `ExampleProject`.
+When Aspire adds a container image to the AppHost, as shown in the preceding example with the `qdrant/qdrant` image, it creates a new Qdrant instance on your local machine. The resource is named `qdrant` and then added to the `ExampleProject`.
 
 The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method configures a connection in the `ExampleProject` named `qdrant`.
 
@@ -65,11 +65,11 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 > If you'd rather connect to an existing Qdrant server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
 
 > [!TIP]
-> The `qdrant/qdrant` container image includes a web UI that you can use to explore your vectors and administer the database. To access this tool, start your .NET Aspire solution and then, in the .NET Aspire dashboard, select the endpoint for the Qdrant resource. In your browser's address bar, append **/dashboard** and press <kbd>Enter</kbd>.
+> The `qdrant/qdrant` container image includes a web UI that you can use to explore your vectors and administer the database. To access this tool, start your Aspire solution and then, in the Aspire dashboard, select the endpoint for the Qdrant resource. In your browser's address bar, append **/dashboard** and press <kbd>Enter</kbd>.
 
 ### Handling API keys and passing other parameters for the Qdrant resource
 
-To connect to Qdrant a client must pass the right API key. In the above code, when .NET Aspire adds a Qdrant resource to your solution, it sets the API key to a random string. If you want to use a specific API key instead, you can pass it as an `apiKey` parameter:
+To connect to Qdrant a client must pass the right API key. In the above code, when Aspire adds a Qdrant resource to your solution, it sets the API key to a random string. If you want to use a specific API key instead, you can pass it as an `apiKey` parameter:
 
 ```csharp
 var apiKey = builder.AddParameter("apiKey", secret: true);
@@ -142,7 +142,7 @@ The Qdrant hosting integration automatically adds a health check for the Qdrant 
 
 ## Client integration
 
-To get started with the .NET Aspire Qdrant client integration, install the [📦 Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Qdrant client. The Qdrant client integration registers a [Qdrant.Client.QdrantClient](https://github.com/qdrant/qdrant-dotnet/) instance that you can use to interact with Qdrant vector data.
+To get started with the Aspire Qdrant client integration, install the [📦 Aspire.Qdrant.Client](https://www.nuget.org/packages/Aspire.Qdrant.Client) NuGet package in the client-consuming project, that is, the project for the application that uses the Qdrant client. The Qdrant client integration registers a [Qdrant.Client.QdrantClient](https://github.com/qdrant/qdrant-dotnet/) instance that you can use to interact with Qdrant vector data.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -205,7 +205,7 @@ For more information on keyed services, see [.NET dependency injection: Keyed se
 
 ### Configuration
 
-The .NET Aspire Qdrant client integration provides multiple options to configure the connection to Qdrant based on the requirements and conventions of your project.
+The Aspire Qdrant client integration provides multiple options to configure the connection to Qdrant based on the requirements and conventions of your project.
 
 #### Use a connection string
 
@@ -215,7 +215,7 @@ When using a connection string from the `ConnectionStrings` configuration sectio
 builder.AddQdrantClient("qdrant");
 ```
 
-Then .NET Aspire retrieves the connection string from the `ConnectionStrings` configuration section:
+Then Aspire retrieves the connection string from the `ConnectionStrings` configuration section:
 
 ```json
 {
@@ -229,7 +229,7 @@ By default the `QdrantClient` uses the gRPC API endpoint.
 
 #### Use configuration providers
 
-The .NET Aspire Qdrant client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Qdrant.Client.QdrantClientSettings> from configuration by using the `Aspire:Qdrant:Client` key. The following is an example of an _:::no-loc text="appsettings.json":::_ that configures some of the options:
+The Aspire Qdrant client integration supports <xref:Microsoft.Extensions.Configuration>. It loads the <xref:Aspire.Qdrant.Client.QdrantClientSettings> from configuration by using the `Aspire:Qdrant:Client` key. The following is an example of an _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
@@ -258,23 +258,23 @@ builder.AddQdrantClient(
 
 ### Client integration health checks
 
-By default, .NET Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [.NET Aspire integrations overview](../fundamentals/integrations-overview.md).
+By default, Aspire integrations enable [health checks](../fundamentals/health-checks.md) for all services. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
 
 [!INCLUDE [integration-observability-and-telemetry](../includes/integration-observability-and-telemetry.md)]
 
 #### Logging
 
-The .NET Aspire Qdrant integration uses standard .NET logging, and you'll see log entries from the following category:
+The Aspire Qdrant integration uses standard .NET logging, and you'll see log entries from the following category:
 
 - `Qdrant.Client`
 
 #### Tracing
 
-The .NET Aspire Qdrant integration doesn't currently emit tracing activities because they are not supported by the `Qdrant.Client` library.
+The Aspire Qdrant integration doesn't currently emit tracing activities because they are not supported by the `Qdrant.Client` library.
 
 #### Metrics
 
-The .NET Aspire Qdrant integration doesn't currently emit metrics because they are not supported by the `Qdrant.Client` library.
+The Aspire Qdrant integration doesn't currently emit metrics because they are not supported by the `Qdrant.Client` library.
 
 ## See also
 
@@ -282,5 +282,5 @@ The .NET Aspire Qdrant integration doesn't currently emit metrics because they a
 - [Qdrant documentation](https://qdrant.tech/documentation/quickstart/)
 - [Qdrant GitHub repo](https://github.com/qdrant/qdrant)
 - [Qdrant .NET SDK](https://github.com/qdrant/qdrant-dotnet)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

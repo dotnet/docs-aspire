@@ -1,15 +1,15 @@
 ---
 title: YARP integration
-description: Learn how to use the .NET Aspire YARP reverse proxy integration, which includes hosting integration for containerized YARP instances.
+description: Learn how to use the Aspire YARP reverse proxy integration, which includes hosting integration for containerized YARP instances.
 ms.date: 09/25/2025
 ai-usage: ai-assisted
 ---
 
-# .NET Aspire YARP integration
+# Aspire YARP integration
 
 [!INCLUDE [includes-hosting](../includes/includes-hosting.md)]
 
-[YARP (Yet Another Reverse Proxy)](https://microsoft.github.io/reverse-proxy/) is a toolkit for developing high-performance reverse proxy applications. The .NET Aspire YARP integration enables you to create containerized YARP reverse proxy instances with programmatic configuration or external configuration files.
+[YARP (Yet Another Reverse Proxy)](https://microsoft.github.io/reverse-proxy/) is a toolkit for developing high-performance reverse proxy applications. The Aspire YARP integration enables you to create containerized YARP reverse proxy instances with programmatic configuration or external configuration files.
 
 ## Hosting integration
 
@@ -53,7 +53,7 @@ var gateway = builder.AddYarp("gateway")
 // After adding all resources, run the app...
 ```
 
-When .NET Aspire adds a YARP resource to the AppHost, it creates a new containerized YARP instance using the [mcr.microsoft.com/dotnet/nightly/yarp](https://mcr.microsoft.com/product/dotnet/nightly/yarp/about) container image. This official Microsoft container image contains a preconfigured YARP reverse proxy server that can be dynamically configured through Aspire's hosting APIs.
+When Aspire adds a YARP resource to the AppHost, it creates a new containerized YARP instance using the [mcr.microsoft.com/dotnet/nightly/yarp](https://mcr.microsoft.com/product/dotnet/nightly/yarp/about) container image. This official Microsoft container image contains a preconfigured YARP reverse proxy server that can be dynamically configured through Aspire's hosting APIs.
 
 The container image provides:
 
@@ -67,7 +67,7 @@ The YARP resource can be configured programmatically using the <xref:Aspire.Host
 ### Migration from external configuration files
 
 > [!IMPORTANT]
-> Starting with .NET Aspire 9.4, the `WithConfigFile` method has been removed. YARP configuration is now done exclusively through code-based configuration using the `WithConfiguration` method. This provides better IntelliSense support, type safety, and works seamlessly with deployment scenarios.
+> Starting with Aspire 9.4, the `WithConfigFile` method has been removed. YARP configuration is now done exclusively through code-based configuration using the `WithConfiguration` method. This provides better IntelliSense support, type safety, and works seamlessly with deployment scenarios.
 
 If you were previously using external JSON configuration files with `WithConfigFile`, you need to migrate to the programmatic configuration approach. For example, the following JSON configuration:
 
@@ -343,7 +343,7 @@ var httpClient = new HttpClient();
 var response = await httpClient.GetAsync("https://gateway/api/catalog/products");
 ```
 
-For applications within the same .NET Aspire solution, you can reference the YARP resource directly:
+For applications within the same Aspire solution, you can reference the YARP resource directly:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -359,5 +359,5 @@ builder.AddProject<Projects.WebApp>("webapp")
 ## See also
 
 - [YARP documentation](https://microsoft.github.io/reverse-proxy/)
-- [.NET Aspire orchestration overview](../fundamentals/orchestrate-resources.md)
-- [Tutorial: Add .NET Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md)
+- [Aspire orchestration overview](../fundamentals/orchestrate-resources.md)
+- [Tutorial: Add Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md)

@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire Community Toolkit SQLite integration
-description: Learn how to use the .NET Aspire SQLite integration for efficient data management within your applications.
+title: Aspire Community Toolkit SQLite integration
+description: Learn how to use the Aspire SQLite integration for efficient data management within your applications.
 ms.date: 03/04/2025
 ---
 
-# .NET Aspire Community Toolkit SQLite integration
+# Aspire Community Toolkit SQLite integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
 [!INCLUDE [banner](includes/banner.md)]
 
-[SQLite](https://www.sqlite.org/index.html) is a lightweight, serverless, self-contained SQL database engine that is widely used for local data storage in applications. The .NET Aspire SQLite integration provides a way to use SQLite databases within your .NET Aspire applications, and access them via the [`Microsoft.Data.Sqlite`](https://www.nuget.org/packages/Microsoft.Data.Sqlite) client.
+[SQLite](https://www.sqlite.org/index.html) is a lightweight, serverless, self-contained SQL database engine that is widely used for local data storage in applications. The Aspire SQLite integration provides a way to use SQLite databases within your Aspire applications, and access them via the [`Microsoft.Data.Sqlite`](https://www.nuget.org/packages/Microsoft.Data.Sqlite) client.
 
 ## Hosting integration
 
@@ -18,7 +18,7 @@ ms.date: 03/04/2025
 
 ## Client integration
 
-To get started with the .NET Aspire SQLite client integration, install the [📦 CommunityToolkit.Aspire.Microsoft.Data.Sqlite](https://www.nuget.org/packages/CommunityToolkit.Aspire.Microsoft.Data.Sqlite) NuGet package in the client-consuming project, that is, the project for the application that uses the SQLite client. The SQLite client integration registers a [`SqliteConnection`](/dotnet/api/microsoft.data.sqlite.sqliteconnection) instance that you can use to interact with SQLite.
+To get started with the Aspire SQLite client integration, install the [📦 CommunityToolkit.Aspire.Microsoft.Data.Sqlite](https://www.nuget.org/packages/CommunityToolkit.Aspire.Microsoft.Data.Sqlite) NuGet package in the client-consuming project, that is, the project for the application that uses the SQLite client. The SQLite client integration registers a [`SqliteConnection`](/dotnet/api/microsoft.data.sqlite.sqliteconnection) instance that you can use to interact with SQLite.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

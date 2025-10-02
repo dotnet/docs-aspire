@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Hosting;
 
-// Example of modern hosting pattern that works with .NET Aspire
+// Example of modern hosting pattern that works with Aspire
 public class ModernHostingExample
 {
     public static void ConfigureServices()

@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire SQL Server integration
-description: Learn how to use the .NET Aspire SQL Server integration, which includes both hosting and client integrations.
+title: Aspire SQL Server integration
+description: Learn how to use the Aspire SQL Server integration, which includes both hosting and client integrations.
 ms.date: 02/07/2025
 uid: database/sql-server-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire SQL Server integration
+# Aspire SQL Server integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[SQL Server](https://www.microsoft.com/sql-server) is a relational database management system developed by Microsoft. The .NET Aspire SQL Server integration enables you to connect to existing SQL Server instances or create new instances from .NET with the [`mcr.microsoft.com/mssql/server` container image](https://hub.docker.com/_/microsoft-mssql-server).
+[SQL Server](https://www.microsoft.com/sql-server) is a relational database management system developed by Microsoft. The Aspire SQL Server integration enables you to connect to existing SQL Server instances or create new instances from .NET with the [`mcr.microsoft.com/mssql/server` container image](https://hub.docker.com/_/microsoft-mssql-server).
 
 ## Hosting integration
 
@@ -71,7 +71,7 @@ Your non-.NET application can then read these environment variables to connect t
 
 - [Azure SQL Database](/azure/azure-sql/database)
 - [SQL Server](/sql/sql-server)
-- [.NET Aspire database containers sample](/samples/dotnet/aspire-samples/aspire-database-containers/)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire database containers sample](/samples/dotnet/aspire-samples/aspire-database-containers/)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [Azure SQL & SQL Server Aspire Samples](https://github.com/Azure-Samples/azure-sql-db-aspire)

@@ -1,16 +1,16 @@
 ---
-title: .NET Aspire PostgreSQL Entity Framework Core integration
-description: Learn how to integrate PostgreSQL with .NET Aspire applications using Entity Framework Core, using both hosting and client integrations.
+title: Aspire PostgreSQL Entity Framework Core integration
+description: Learn how to integrate PostgreSQL with Aspire applications using Entity Framework Core, using both hosting and client integrations.
 ms.date: 02/07/2025
 uid: database/postgresql-ef-core-integration
 ms.custom: sfi-ropc-nochange
 ---
 
-# .NET Aspire PostgreSQL Entity Framework Core integration
+# Aspire PostgreSQL Entity Framework Core integration
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system with many years of active development that has earned it a strong reputation for reliability, feature robustness, and performance. The .NET Aspire PostgreSQL Entity Framework Core integration provides a way to connect to existing PostgreSQL databases, or create new instances from .NET with the [`docker.io/library/postgres` container image](https://hub.docker.com/_/postgres).
+[PostgreSQL](https://www.postgresql.org/) is a powerful, open source object-relational database system with many years of active development that has earned it a strong reputation for reliability, feature robustness, and performance. The Aspire PostgreSQL Entity Framework Core integration provides a way to connect to existing PostgreSQL databases, or create new instances from .NET with the [`docker.io/library/postgres` container image](https://hub.docker.com/_/postgres).
 
 ## Hosting integration
 
@@ -29,6 +29,6 @@ The hosting integration relies on the [📦 AspNetCore.HealthChecks.Npgsql](http
 ## See also
 
 - [PostgreSQL docs](https://www.npgsql.org/doc/api/Npgsql.html)
-- [.NET Aspire Azure PostgreSQL Entity Framework Core integration](azure-postgresql-entity-framework-integration.md)
-- [.NET Aspire integrations](../fundamentals/integrations-overview.md)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire Azure PostgreSQL Entity Framework Core integration](azure-postgresql-entity-framework-integration.md)
+- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

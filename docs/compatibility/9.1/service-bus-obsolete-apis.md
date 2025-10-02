@@ -8,11 +8,11 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/2327
 
 # Azure Service Bus hosting integration obsolete APIs
 
-In .NET Aspire 9.1, the methods `AddQueue`, `AddTopic`, and `AddSubscription` are being obsoleted. This change introduces new methods that better reflect the intended usage and improve the API's clarity.
+In Aspire 9.1, the methods `AddQueue`, `AddTopic`, and `AddSubscription` are being obsoleted. This change introduces new methods that better reflect the intended usage and improve the API's clarity.
 
 ## Version introduced
 
-.NET Aspire 9.1
+Aspire 9.1
 
 ## Previous behavior
 

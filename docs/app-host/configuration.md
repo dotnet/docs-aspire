@@ -1,6 +1,6 @@
 ---
-title: .NET Aspire AppHost configuration
-description: Learn about the .NET Aspire AppHost configuration options.
+title: Aspire AppHost configuration
+description: Learn about the Aspire AppHost configuration options.
 ms.date: 04/15/2025
 ms.topic: reference
 ---
@@ -12,8 +12,8 @@ The AppHost project configures and starts your distributed application (<xref:As
 Configuration includes:
 
 - Settings for hosting the resource service, such as the address and authentication options.
-- Settings used to start the [.NET Aspire dashboard](../fundamentals/dashboard/overview.md), such the dashboard's frontend and OpenTelemetry Protocol (OTLP) addresses.
-- Internal settings that .NET Aspire uses to run the AppHost. These are set internally but can be accessed by integrations that extend .NET Aspire.
+- Settings used to start the [Aspire dashboard](../fundamentals/dashboard/overview.md), such the dashboard's frontend and OpenTelemetry Protocol (OTLP) addresses.
+- Internal settings that Aspire uses to run the AppHost. These are set internally but can be accessed by integrations that extend Aspire.
 
 AppHost configuration is provided by the AppHost launch profile. The AppHost has a launch settings file call _launchSettings.json_ which has a list of launch profiles. Each launch profile is a collection of related options which defines how you would like `dotnet` to start your application.
 
@@ -40,14 +40,14 @@ AppHost configuration is provided by the AppHost launch profile. The AppHost has
 The preceding launch settings file:
 
 - Has one launch profile named `https`.
-- Configures an .NET Aspire AppHost project:
+- Configures an Aspire AppHost project:
   - The `applicationUrl` property configures the dashboard launch address (`ASPNETCORE_URLS`).
   - Environment variables such as `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` are set on the AppHost.
 
-For more information, see [.NET Aspire and launch profiles](../fundamentals/launch-profiles.md).
+For more information, see [Aspire and launch profiles](../fundamentals/launch-profiles.md).
 
 > [!NOTE]
-> Configuration described on this page is for .NET Aspire AppHost project. To configure the standalone dashboard, see [dashboard configuration](../fundamentals/dashboard/configuration.md).
+> Configuration described on this page is for Aspire AppHost project. To configure the standalone dashboard, see [dashboard configuration](../fundamentals/dashboard/configuration.md).
 
 ## Common configuration
 
@@ -55,7 +55,7 @@ For more information, see [.NET Aspire and launch profiles](../fundamentals/laun
 |--|--|--|
 | `ASPIRE_ALLOW_UNSECURED_TRANSPORT` | `false` | Allows communication with the AppHost without https. `ASPNETCORE_URLS` (dashboard address) and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` (AppHost resource service address) must be secured with HTTPS unless true. |
 | `ASPIRE_CONTAINER_RUNTIME` | `docker` | Allows the user of alternative container runtimes for resources backed by containers. Possible values are `docker` (default) or `podman`. See [Setup and tooling overview for more details](../fundamentals/setup-tooling.md).  |
-| `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true`, .NET Aspire doesn't check for newer versions on startup. |
+| `ASPIRE_VERSION_CHECK_DISABLED` | `false` | When set to `true`, Aspire doesn't check for newer versions on startup. |
 
 ## Aspire version update notifications
 
@@ -74,7 +74,7 @@ Updates are manual. You need to edit your project file to upgrade the Aspire SDK
 
 ## Resource service
 
-A resource service is hosted by the AppHost. The resource service is used by the dashboard to fetch information about resources which are being orchestrated by .NET Aspire.
+A resource service is hosted by the AppHost. The resource service is used by the dashboard to fetch information about resources which are being orchestrated by Aspire.
 
 | Option | Default value | Description |
 |--|--|--|

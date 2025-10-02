@@ -4,7 +4,7 @@ ms.topic: include
 
 :::zone pivot="visual-studio"
 
-To install the .NET Aspire templates in Visual Studio, you need to manually install them unless you're using Visual Studio 17.12 or later. For Visual Studio 17.9 to 17.11, follow these steps:
+To install the Aspire templates in Visual Studio, you need to manually install them unless you're using Visual Studio 17.12 or later. For Visual Studio 17.9 to 17.11, follow these steps:
 
 1. Open Visual Studio.
 1. Go to **Tools** > **NuGet Package Manager** > **Package Manager Console**.
@@ -14,7 +14,7 @@ To install the .NET Aspire templates in Visual Studio, you need to manually inst
   dotnet new install Aspire.ProjectTemplates
   ```
 
-For Visual Studio 17.12 or later, the .NET Aspire templates are installed automatically.
+For Visual Studio 17.12 or later, the Aspire templates are installed automatically.
 
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"

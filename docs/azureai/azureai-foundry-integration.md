@@ -1,20 +1,20 @@
 ---
-title: ".NET Aspire Azure AI Foundry integration (Preview)"
-description: "Learn how to integrate Azure AI Foundry with .NET Aspire applications, including hosting and client integration."
+title: "Aspire Azure AI Foundry integration (Preview)"
+description: "Learn how to integrate Azure AI Foundry with Aspire applications, including hosting and client integration."
 ms.date: 08/07/2025
 ai-usage: ai-assisted
 titleSuffix: ''
 ---
 
-# .NET Aspire Azure AI Foundry integration (Preview)
+# Aspire Azure AI Foundry integration (Preview)
 
 [!INCLUDE [includes-hosting-and-client](../includes/includes-hosting-and-client.md)]
 
-[Azure AI Foundry](https://ai.azure.com/) is an AI platform that provides access to cutting-edge foundation models, tools for AI development, and scalable infrastructure for building intelligent applications. The .NET Aspire Azure AI Foundry integration enables you to connect to Azure AI Foundry or run models locally using Foundry Local from your .NET applications.
+[Azure AI Foundry](https://ai.azure.com/) is an AI platform that provides access to cutting-edge foundation models, tools for AI development, and scalable infrastructure for building intelligent applications. The Aspire Azure AI Foundry integration enables you to connect to Azure AI Foundry or run models locally using Foundry Local from your .NET applications.
 
 ## Hosting integration
 
-The .NET Aspire [Azure AI Foundry](/azure/ai-foundry/) hosting integration models Azure AI Foundry resources as `AzureAIFoundryResource`. To access these types and APIs for expressing them within your [AppHost](../fundamentals/app-host-overview.md) project, install the [📦 Aspire.Hosting.Azure.AIFoundry](https://www.nuget.org/packages/Aspire.Hosting.Azure.AIFoundry) NuGet package:
+The Aspire [Azure AI Foundry](/azure/ai-foundry/) hosting integration models Azure AI Foundry resources as `AzureAIFoundryResource`. To access these types and APIs for expressing them within your [AppHost](../fundamentals/app-host-overview.md) project, install the [📦 Aspire.Hosting.Azure.AIFoundry](https://www.nuget.org/packages/Aspire.Hosting.Azure.AIFoundry) NuGet package:
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -159,7 +159,7 @@ The preceding code assigns the `CognitiveServicesUser` role to the `api` project
 
 ### Provisioning-generated Bicep
 
-If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With .NET Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure AI Foundry resource with standard defaults.
+If you're new to [Bicep](/azure/azure-resource-manager/bicep/overview), it's a domain-specific language for defining Azure resources. With Aspire, you don't need to write Bicep by-hand, instead the provisioning APIs generate Bicep for you. When you publish your app, the generated Bicep provisions an Azure AI Foundry resource with standard defaults.
 
 :::code language="bicep" source="../snippets/azure/AppHost/ai-foundry/ai-foundry.bicep":::
 
@@ -171,7 +171,7 @@ The generated Bicep is a starting point and is influenced by changes to the prov
 
 #### Customize provisioning infrastructure
 
-All .NET Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
+All Aspire Azure resources are subclasses of the <xref:Aspire.Hosting.Azure.AzureProvisioningResource> type. This enables customization of the generated Bicep by providing a fluent API to configure the Azure resources—using the <xref:Aspire.Hosting.AzureProvisioningResourceExtensions.ConfigureInfrastructure``1(Aspire.Hosting.ApplicationModel.IResourceBuilder{``0},System.Action{Aspire.Hosting.Azure.AzureResourceInfrastructure})> API:
 
 :::code language="csharp" source="../snippets/azure/AppHost/Program.ConfigureAIFoundryInfra.cs" id="configure":::
 
@@ -186,7 +186,7 @@ The preceding code:
 
 ## Client integration
 
-To get started with the .NET Aspire Azure AI Foundry client integration, install the [📦 Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure AI Foundry client.
+To get started with the Aspire Azure AI Foundry client integration, install the [📦 Aspire.Azure.AI.Inference](https://www.nuget.org/packages/Aspire.Azure.AI.Inference) NuGet package in the client-consuming project, that is, the project for the application that uses the Azure AI Foundry client.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -252,7 +252,7 @@ This approach works well with models that support the OpenAI API format.
 
 ### Configuration
 
-The .NET Aspire Azure AI Foundry library provides multiple options to configure the Azure AI Foundry connection based on the requirements and conventions of your project. Either an `Endpoint` and `DeploymentId`, or a `ConnectionString` is required to be supplied.
+The Aspire Azure AI Foundry library provides multiple options to configure the Azure AI Foundry connection based on the requirements and conventions of your project. Either an `Endpoint` and `DeploymentId`, or a `ConnectionString` is required to be supplied.
 
 #### Use a connection string
 
@@ -290,7 +290,7 @@ Alternatively, a custom connection string can be used:
 
 #### Use configuration providers
 
-The .NET Aspire Azure AI Inference library supports <xref:Microsoft.Extensions.Configuration>. It loads the `ChatCompletionsClientSettings` from configuration by using the `Aspire:Azure:AI:Inference` key. Example appsettings.json that configures some of the options:
+The Aspire Azure AI Inference library supports <xref:Microsoft.Extensions.Configuration>. It loads the `ChatCompletionsClientSettings` from configuration by using the `Aspire:Azure:AI:Inference` key. Example appsettings.json that configures some of the options:
 
 ```json
 {
@@ -325,7 +325,7 @@ builder.AddAzureChatCompletionsClient(
 
 #### Logging
 
-The .NET Aspire Azure AI Foundry integration uses the following log categories:
+The Aspire Azure AI Foundry integration uses the following log categories:
 
 - `Azure`
 - `Azure.Core`
@@ -333,11 +333,11 @@ The .NET Aspire Azure AI Foundry integration uses the following log categories:
 
 #### Tracing
 
-The .NET Aspire Azure AI Foundry integration emits tracing activities using OpenTelemetry for operations performed with the `ChatCompletionsClient`.
+The Aspire Azure AI Foundry integration emits tracing activities using OpenTelemetry for operations performed with the `ChatCompletionsClient`.
 
 ## See also
 
 - [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)
-- [.NET Aspire integrations overview](/dotnet/aspire/fundamentals/integrations-overview)
-- [.NET Aspire Azure integrations overview](/dotnet/aspire/azure/integrations-overview)
-- [.NET Aspire GitHub repo](https://github.com/dotnet/aspire)
+- [Aspire integrations overview](/dotnet/aspire/fundamentals/integrations-overview)
+- [Aspire Azure integrations overview](/dotnet/aspire/azure/integrations-overview)
+- [Aspire GitHub repo](https://github.com/dotnet/aspire)

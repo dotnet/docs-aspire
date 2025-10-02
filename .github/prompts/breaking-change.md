@@ -2,7 +2,7 @@ When you're assigned an issue that's labeled "breaking-change", or when you're g
 
 The document should be in Markdown format.
 
-.NET Aspire breaking changes live in the https://github.com/dotnet/docs-aspire/tree/main/docs/compatibility folder and its subfolders.
+Aspire breaking changes live in the https://github.com/dotnet/docs-aspire/tree/main/docs/compatibility folder and its subfolders.
 
 Rephrase all content to be clear and concise, if necessary.
 
