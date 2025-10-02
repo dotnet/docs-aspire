@@ -211,6 +211,9 @@ items:
     - name: Messaging using Aspire integrations
       displayName: messaging
       href: messaging/messaging-integrations.md
+    - name: Seed data in a database
+      displayName: seed data,ef core,scripts,entrypoint,init
+      href: database/seed-database-data.md
   - name: Apache Kafka
     displayName: kafka,messaging
     href: messaging/kafka-integration.md
@@ -320,9 +323,6 @@ items:
       href: database/entity-framework-core-integration-overview.md
     - name: Apply migrations
       href: database/ef-core-migrations.md
-    - name: Seed data in a database
-      displayName: seed data,ef core,scripts,entrypoint,init
-      href: database/seed-database-data.md
     - name: Azure Cosmos DB
       displayName: cosmos db,database,ef core
       href: database/azure-cosmos-db-entity-framework-integration.md
