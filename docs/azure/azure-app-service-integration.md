@@ -58,6 +58,35 @@ The preceding code creates a new Azure App Service environment named `app-servic
 > [!IMPORTANT]
 > When you call <xref:Aspire.Hosting.AzureAppServiceEnvironmentExtensions.AddAzureAppServiceEnvironment*>, it implicitly calls <xref:Aspire.Hosting.AzureProvisionerExtensions.AddAzureProvisioning*>—which adds support for generating Azure resources dynamically during app startup. The app must configure the appropriate subscription and location. For more information, see [Local provisioning: Configuration](local-provisioning.md#configuration).
 
+## Connect to an existing Azure App Service plan
+
+You might have an existing Azure App Service plan that you want to use. Chain a call to annotate that your <xref:Aspire.Hosting.Azure.AzureAppServiceEnvironmentResource> is an existing resource:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var existingAppServicePlanName = builder.AddParameter("existingAppServicePlanName");
+var existingResourceGroup = builder.AddParameter("existingResourceGroup");
+
+var appServiceEnv = builder.AddAzureAppServiceEnvironment("app-service-env")
+                           .AsExisting(existingAppServicePlanName, existingResourceGroup);
+
+builder.AddProject<Projects.WebApi>("api")
+       .PublishAsAzureAppServiceWebsite((infra, website) =>
+       {
+           // Optional: customize the Azure App Service website here
+       });
+
+// After adding all resources, run the app...
+```
+
+[!INCLUDE [azure-configuration](includes/azure-configuration.md)]
+
+For more information on treating Azure App Service resources as existing resources, see [Use existing Azure resources](integrations-overview.md#use-existing-azure-resources).
+
+> [!NOTE]
+> Alternatively, instead of representing an Azure App Service environment resource, you can add a connection string to the AppHost. This approach is weakly-typed, and doesn't work with role assignments or infrastructure customizations. For more information, see [Add existing Azure resources with connection strings](integrations-overview.md#add-existing-azure-resources-with-connection-strings).
+
 ## Publish resources as Azure App Service websites
 
 After adding an App Service environment, you can publish compute resources (`IComputeResource`) as Azure App Service websites using the <xref:Aspire.Hosting.AzureAppServiceComputeResourceExtensions.PublishAsAzureAppServiceWebsite*> method.
