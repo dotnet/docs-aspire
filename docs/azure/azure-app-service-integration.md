@@ -61,6 +61,7 @@ To use Azure App Service with Aspire, you first add an App Service environment t
 var builder = DistributedApplication.CreateBuilder(args);
 
 var appServiceEnv = builder.AddAzureAppServiceEnvironment("app-service-env");
+
 // Add other resources to the app model
 
 builder.Build().Run();
