@@ -225,6 +225,52 @@ Complete: 3 succeeded, 0 failed, 7 skipped.
 ```
 
 :::zone-end
+:::zone pivot="aspire-cli"
+
+To upgrade your Aspire AppHost project using the Aspire CLI, you need to install the latest version of the Aspire CLI and run the `aspire update` command.
+
+1. Install the latest release of the Aspire CLI:
+
+    # [Bash](#tab/bash)
+
+    ```bash
+    curl -sSL https://aspire.dev/install.sh | bash
+    ```
+
+    # [PowerShell](#tab/powershell)
+
+    ```powershell
+    iex "& { $(irm https://aspire.dev/install.ps1) }"
+    ```
+
+    ---
+
+    For more information, see [Install Aspire CLI](../cli/install.md).
+
+1. Navigate to your Aspire solution directory in a terminal.
+
+1. Run the `aspire update` command:
+
+    ```Aspire
+    aspire update
+    ```
+
+    The `aspire update` command scans your AppHost-based solution and updates Aspire-related NuGet packages to the latest versions. The command:
+
+    - Locates the AppHost project automatically.
+    - Prompts you to choose a channel (for example: `stable`, `preview`, or `daily`).
+    - Detects outdated Aspire packages and computes safe upgrade targets.
+    - Updates package versions and `NuGet.config` file if required.
+    - Asks for confirmation before applying changes.
+
+    :::image type="content" source="../whats-new/media/aspire-update.gif" lightbox="../whats-new/media/aspire-update.gif" alt-text="Recording of aspire update running on eShop sample.":::
+
+> [!IMPORTANT]
+> 🧪 **Preview feature**: The `aspire update` command is in preview and might change before general availability. The `aspire update` command makes changes to project files, central package management, and NuGet.config files. We recommend using version control and inspecting changes after `aspire update` is run to verify the changes.
+
+For more information, see [aspire update command](../cli-reference/aspire-update.md).
+
+:::zone-end
 
 ### Update the NuGet packages
 
@@ -244,6 +290,17 @@ dotnet add package Aspire.Hosting.AppHost --version 9.5.0
 ```
 
 When a package reference already exists, the `dotnet add package` command updates the reference to the specified version. For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-package).
+
+:::zone-end
+:::zone pivot="aspire-cli"
+
+When using the Aspire CLI, the `aspire update` command handles updating NuGet packages automatically. If you need to manually update packages, you can use the .NET CLI command to update the `Aspire.Hosting.AppHost` package to version `9.5.0`:
+
+```dotnetcli
+dotnet add package Aspire.Hosting.AppHost --version 9.5.0
+```
+
+For more information, see [aspire update command](../cli-reference/aspire-update.md).
 
 :::zone-end
 
