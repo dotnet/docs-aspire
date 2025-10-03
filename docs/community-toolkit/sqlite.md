@@ -39,11 +39,11 @@ dotnet add package CommunityToolkit.Aspire.Microsoft.Data.Sqlite
 In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddSqliteConnection` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqliteConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddSqliteConnection(connectionName: "sqlite");
+builder.AddSqliteConnection(name: "sqlite");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the SQLite resource in the AppHost project. For more information, see [Add SQLite resource](#add-sqlite-resource).
+> The `name` parameter must match the name used when adding the SQLite resource in the AppHost project. For more information, see [Add SQLite resource](#add-sqlite-resource).
 
 After adding `SqliteConnection` to the builder, you can get the `SqliteConnection` instance using dependency injection. For example, to retrieve your connection object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
