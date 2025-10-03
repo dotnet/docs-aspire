@@ -40,7 +40,7 @@ The following sections detail various usages, from running Uvicorn applications 
 
 To work with Python apps, they need to be within a virtual environment. To create a virtual environment, refer to the [Initialize the Python virtual environment](../get-started/build-aspire-apps-with-python.md?tabs=powershell#initialize-the-python-virtual-environment) section.
 
-The `PORT` environment variable is used to determine the port the Uvicorn application should listen on. By default, this port is randomly assigned by Aspire. The name of the environment variable can be changed by passing a different value to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint*> method.
+The `UVICORN_PORT` environment variable is used to determine the port the Uvicorn application should listen on. By default, this port is randomly assigned by Aspire. The name of the environment variable can be changed by passing a different value to the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithHttpEndpoint*> method.
 
 # [Uvicorn](#tab/uvicorn)
 
@@ -54,7 +54,7 @@ var uvicorn = builder.AddUvicornApp(
         projectDirectory: "../uvicornapp-api",
         appName: "main:app"
     )
-    .WithHttpEndpoint(env: "PORT");
+    .WithHttpEndpoint(env: "UVICORN_PORT");
 
 builder.Build().Run();
 ```
