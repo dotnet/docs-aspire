@@ -1,7 +1,7 @@
 ---
 title: Aspire Community Toolkit SQLite integration
 description: Learn how to use the Aspire SQLite integration for efficient data management within your applications.
-ms.date: 03/04/2025
+ms.date: 10/03/2025
 ---
 
 # Aspire Community Toolkit SQLite integration
