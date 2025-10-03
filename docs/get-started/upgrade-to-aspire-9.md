@@ -231,13 +231,13 @@ To upgrade your Aspire AppHost project using the Aspire CLI, you need to install
 
 1. Install the latest release of the Aspire CLI:
 
-    # [Bash](#tab/bash)
+    ### [Bash](#tab/bash)
 
     ```bash
     curl -sSL https://aspire.dev/install.sh | bash
     ```
 
-    # [PowerShell](#tab/powershell)
+    ### [PowerShell](#tab/powershell)
 
     ```powershell
     iex "& { $(irm https://aspire.dev/install.ps1) }"
