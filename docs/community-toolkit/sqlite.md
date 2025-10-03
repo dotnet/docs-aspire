@@ -1,7 +1,7 @@
 ---
 title: Aspire Community Toolkit SQLite integration
 description: Learn how to use the Aspire SQLite integration for efficient data management within your applications.
-ms.date: 03/04/2025
+ms.date: 10/03/2025
 ---
 
 # Aspire Community Toolkit SQLite integration
@@ -36,14 +36,14 @@ dotnet add package CommunityToolkit.Aspire.Microsoft.Data.Sqlite
 
 ### Add Sqlite client
 
-In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `Microsoft.Extensions.Hosting.AspireSqliteExtensions.AddSqliteConnection` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqliteConnection` for use via the dependency injection container. The method takes a connection name parameter.
+In the _:::no-loc text="Program.cs":::_ file of your client-consuming project, call the `AddSqliteConnection` extension method on any <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> to register a `SqliteConnection` for use via the dependency injection container. The method takes a connection name parameter.
 
 ```csharp
-builder.AddSqliteConnection(connectionName: "sqlite");
+builder.AddSqliteConnection(name: "sqlite");
 ```
 
 > [!TIP]
-> The `connectionName` parameter must match the name used when adding the SQLite resource in the AppHost project. For more information, see [Add SQLite resource](#add-sqlite-resource).
+> The `name` parameter must match the name used when adding the SQLite resource in the AppHost project. For more information, see [Add SQLite resource](#add-sqlite-resource).
 
 After adding `SqliteConnection` to the builder, you can get the `SqliteConnection` instance using dependency injection. For example, to retrieve your connection object from an example service define it as a constructor parameter and ensure the `ExampleService` class is registered with the dependency injection container:
 
@@ -58,7 +58,7 @@ For more information on dependency injection, see [.NET dependency injection](/d
 
 ### Add keyed Sqlite client
 
-There might be situations where you want to register multiple `SqliteConnection` instances with different connection names. To register keyed Sqlite clients, call the `Microsoft.Extensions.Hosting.AspireSqliteExtensions.AddKeyedSqliteConnection` method:
+There might be situations where you want to register multiple `SqliteConnection` instances with different connection names. To register keyed Sqlite clients, call the `AddKeyedSqliteConnection` method:
 
 ```csharp
 builder.AddKeyedSqliteConnection(name: "chat");
@@ -82,7 +82,7 @@ The SQLite client integration provides multiple configuration approaches and opt
 
 ### Use a connection string
 
-When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the `Microsoft.Extensions.Hosting.AspireSqliteExtensions.AddSqliteConnection` method:
+When using a connection string from the `ConnectionStrings` configuration section, you can provide the name of the connection string when calling the `AddSqliteConnection` method:
 
 ```csharp
 builder.AddSqliteConnection("sqlite");
