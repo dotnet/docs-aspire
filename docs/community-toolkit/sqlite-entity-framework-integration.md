@@ -1,7 +1,7 @@
 ---
 title: Aspire Community Toolkit SQLite Entity Framework integration
 description: Learn how to use the Aspire SQLite Entity Framework integration for efficient data management within your applications.
-ms.date: 03/04/2025
+ms.date: 10/03/2025
 ---
 
 # Aspire Community Toolkit SQLite Entity Framework integration
@@ -94,7 +94,7 @@ Then the connection string will be retrieved from the `ConnectionStrings` config
 
 #### Use configuration providers
 
-The SQLite client integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `Microsoft.Extensions.Hosting.SqliteConnectionSettings` from the _:::no-loc text="appsettings.json":::_ or other configuration providers by using the `Aspire:Sqlite:EntityFrameworkCore:Sqlite` key. Example _:::no-loc text="appsettings.json"::: that configures some of the options:
+The SQLite client integration supports <xref:Microsoft.Extensions.Configuration?displayProperty=fullName>. It loads the `Microsoft.Extensions.Hosting.SqliteConnectionSettings` from the _:::no-loc text="appsettings.json":::_ or other configuration providers by using the `Aspire:Sqlite:EntityFrameworkCore:Sqlite` key. Example _:::no-loc text="appsettings.json":::_ that configures some of the options:
 
 ```json
 {
