@@ -37,10 +37,10 @@ Moving between minor releases of Aspire is simple:
     iex "& { $(irm https://aspire.dev/install.ps1) }"
     ```
 
-1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) package to version `9.5.0`:
+1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) package to version `9.5.1`:
 
     ```xml
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.0" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
     ```
 
     For more information, see [Aspire SDK](xref:dotnet/aspire/sdk).
@@ -114,7 +114,7 @@ For more information, see [aspire config set command](../cli-reference/aspire-co
 You can use `aspire new` to create a new, blank file-based AppHost. Select the _Single-file AppHost (experimental)_ option from the project template list:
 
 ```csharp
-#:sdk Aspire.AppHost.Sdk@9.5.0
+#:sdk Aspire.AppHost.Sdk@9.5.1
 
 var builder = DistributedApplication.CreateBuilder(args);
 
