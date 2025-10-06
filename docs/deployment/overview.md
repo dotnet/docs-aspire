@@ -137,7 +137,7 @@ This example shows how you could explicitly map services to different compute en
 | Integration package | Target | Publish | Deploy | Notes |
 |---------------------|--------|---------|--------|-------|
 | [Aspire.Hosting.Docker](https://www.nuget.org/packages/Aspire.Hosting.Docker) | Docker / Docker Compose | ✅ Yes | ❌ No | Use generated Compose with your own scripts or tooling. |
-| [Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Docker) | Kubernetes | ✅ Yes | ❌ No | Apply with `kubectl`, GitOps, or other controllers. |
+| [Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes) | Kubernetes | ✅ Yes | ❌ No | Apply with `kubectl`, GitOps, or other controllers. |
 | [Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) | Azure Container Apps | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
 | [Aspire.Hosting.Azure.AppService](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppService) | Azure App Service | ✅ Yes | ✅ Yes (Preview) | Deploy capability is in Preview and may change. |
 
