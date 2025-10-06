@@ -918,13 +918,13 @@ New extension methods allow precise control over executable resource execution:
 
 ```csharp
 // Configure executable with custom command and working directory
-var processor = builder.AddExecutable("data-processor", "python")
+var processor = builder.AddExecutable("data-processor", "python", ".")
     .WithCommand("main.py --batch-size 100")
     .WithWorkingDirectory("/app/data-processing")
     .WithArgs("--config", "production.json");
 
 // Executable with specific working directory for relative paths
-var buildTool = builder.AddExecutable("build-tool", "npm")
+var buildTool = builder.AddExecutable("build-tool", "npm", ".")
     .WithCommand("run build:production")
     .WithWorkingDirectory("./frontend");
 ```
@@ -934,7 +934,7 @@ var buildTool = builder.AddExecutable("build-tool", "npm")
 The `CommandLineArgsCallbackContext` now includes resource information for context-aware argument building:
 
 ```csharp
-var worker = builder.AddExecutable("worker", "dotnet")
+var worker = builder.AddExecutable("worker", "dotnet", ".")
     .WithArgs(context =>
     {
         // Access to the resource instance for dynamic configuration
