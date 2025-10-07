@@ -71,12 +71,12 @@ builder.AddKeyedMySqlDataSource(name: "loggingDb");
 > [!IMPORTANT]
 > When using keyed services, it's expected that your MySQL resource configured two named databases, one for the `mainDb` and one for the `loggingDb`.
 
-Then you can retrieve the `MySqlDatSource` instances using dependency injection. For example, to retrieve the connection from an example service:
+Then you can retrieve the `MySqlDataSource` instances using dependency injection. For example, to retrieve the connection from an example service:
 
 ```csharp
 public class ExampleService(
-    [FromKeyedServices("mainDb")] MySqlDataSource mainDbConnection,
-    [FromKeyedServices("loggingDb")] MySqlDataSource loggingDbConnection)
+    [FromKeyedServices("mainDb")] MySqlDataSource mainDataSource,
+    [FromKeyedServices("loggingDb")] MySqlDataSource loggingDataSource)
 {
     // Use connections...
 }
