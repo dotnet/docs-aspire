@@ -234,6 +234,9 @@ items:
     - name: Azure App Configuration
       displayName: app configuration,configuration
       href: azure/azure-app-configuration-integration.md
+    - name: Azure App Service (Preview)
+      displayName: app service,web apps,hosting
+      href: azure/azure-app-service-integration.md
     - name: Azure AI Foundry (Preview)
       displayName: azure ai,foundry,foundation models,ai foundry
       href: azureai/azureai-foundry-integration.md
