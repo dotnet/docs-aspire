@@ -43,6 +43,14 @@ groups:
     title: Visual Studio
   - id: dotnet-cli
     title: .NET CLI
+- id: dev-tools
+  title: Development tools
+  prompt: Choose your preferred development tools
+  pivots:
+  - id: aspire-cli
+    title: Aspire CLI
+  - id: vscode
+    title: Visual Studio Code
 - id: resp-host
   title: Hosting resource type
   prompt: Choose a hosting resource that supports the Redis protocol
