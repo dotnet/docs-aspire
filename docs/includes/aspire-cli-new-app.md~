@@ -3,7 +3,7 @@ The Aspire CLI can lead you through the choices necessary to create a new Aspire
 1. Open a command prompt and navigate to a folder where you want to work. The Aspire CLI will create a new subdirectory and places the entire solution in it.
 1. To run the Aspire CLI, execute the following command:
 
-    ```aspire-cli
+    ```Aspire
     aspire new
     ```
 
