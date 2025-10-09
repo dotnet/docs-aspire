@@ -28,7 +28,7 @@ In this quickstart, you can choose whether to use the Aspire CLI or Visual Studi
 
 :::zone pivot="aspire-cli"
 
-[!INCLUDE [aspire-cli-new-app](../includes/aspire-cli-new-app.md)
+[!INCLUDE [aspire-cli-new-app](../includes/aspire-cli-new-app.md)]
 
 :::zone-end
 :::zone pivot="vscode"
