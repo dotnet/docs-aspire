@@ -112,7 +112,7 @@ After the operation completes successfully, you have two options moving forward:
 
 ## Create the sample solution
 
-Create a Aspire project using either Visual Studio or the .NET CLI.
+Create an Aspire project using either Visual Studio or the .NET CLI.
 
 ## [Visual Studio](#tab/visual-studio)
 

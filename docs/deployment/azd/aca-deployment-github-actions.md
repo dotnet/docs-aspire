@@ -1,5 +1,5 @@
 ---
-title: Deploy a Aspire project using the Azure Developer CLI
+title: Deploy an Aspire project using the Azure Developer CLI
 description: Learn how to use `azd` to deploy Aspire projects.
 ms.date: 07/17/2025
 zone_pivot_groups: deployment-platform
@@ -8,14 +8,14 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Tutorial: Deploy a Aspire project using the Azure Developer CLI
+# Tutorial: Deploy an Aspire project using the Azure Developer CLI
 
-The Azure Developer CLI (`azd`) enables you to deploy Aspire projects using GitHub Actions or Azure Devops pipelines by automatically configuring the required authentication and environment settings. This article walks you through the process of creating and deploying a Aspire project on Azure Container Apps using `azd`. You learn the following concepts:
+The Azure Developer CLI (`azd`) enables you to deploy Aspire projects using GitHub Actions or Azure Devops pipelines by automatically configuring the required authentication and environment settings. This article walks you through the process of creating and deploying an Aspire project on Azure Container Apps using `azd`. You learn the following concepts:
 
 > [!div class="checklist"]
 >
 > - Explore how `azd` integration works with Aspire projects
-> - Create and configure a GitHub or Azure DevOps repository for a Aspire project using `azd`
+> - Create and configure a GitHub or Azure DevOps repository for an Aspire project using `azd`
 > - Monitor and explore GitHub Actions workflow or Azure DevOps pipeline executions and Azure deployments
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
@@ -55,9 +55,9 @@ curl -fsSL https://aka.ms/install-azd.sh | bash
 
 ---
 
-## Create a Aspire solution
+## Create an Aspire solution
 
-As a starting point, this article assumes that you've created a Aspire solution from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire app](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes that you've created an Aspire solution from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire app](../../get-started/build-your-first-aspire-app.md).
 
 [!INCLUDE [init workflow](../includes/init-workflow.md)]
 
@@ -102,7 +102,7 @@ The Azure Developer CLI enables you to automatically create CI/CD pipelines with
 
     :::image type="content" loc-scope="github" source="../media/deployment-links.png" alt-text="A screenshot showing the deployed app links.":::
 
-Congratulations! You successfully deployed a Aspire project using the Azure Developer CLI and GitHub Actions.
+Congratulations! You successfully deployed an Aspire project using the Azure Developer CLI and GitHub Actions.
 
 ## Configure working directory for multi-project solutions
 
@@ -247,7 +247,7 @@ The Azure Developer CLI enables you to automatically create pipelines with the c
 > [!IMPORTANT]
 > If you encounter a `403 Forbidden` error when viewing your site in the browser, make sure the ingress settings are configured correctly. On the **webfrontend** app page in the Azure Portal, navigate to **Ingress** on the left navigation. Make sure **Ingress traffic** is set to **Accepting traffic from anywhere** and save your changes.
 
-Congratulations! You successfully deployed a Aspire project using the Azure Developer CLI and Azure Pipelines.
+Congratulations! You successfully deployed an Aspire project using the Azure Developer CLI and Azure Pipelines.
 
 ## Troubleshoot Azure DevOps pipeline deployment
 

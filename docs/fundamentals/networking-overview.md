@@ -24,7 +24,7 @@ A service binding in Aspire involves two integrations: a **service** representin
 
 Aspire supports two service binding types: **implicit**, automatically created based on specified launch profiles defining app behavior in different environments, and **explicit**, manually created using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEndpoint%2A>.
 
-Upon creating a binding, whether implicit or explicit, Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is a Aspire implementation detail, requiring no configuration or management concern.
+Upon creating a binding, whether implicit or explicit, Aspire launches a lightweight reverse proxy on a specified port, handling routing and load balancing for requests from your app to the service. The proxy is an Aspire implementation detail, requiring no configuration or management concern.
 
 To help visualize how endpoints work, consider the Aspire starter templates inner-loop networking diagram:
 

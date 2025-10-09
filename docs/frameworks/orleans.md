@@ -1,6 +1,6 @@
 ---
 title: Aspire Orleans integration
-description: Learn how to use the Aspire Orleans hosting integration, which can configure and orchestrate Orleans from a Aspire AppHost project.
+description: Learn how to use the Aspire Orleans hosting integration, which can configure and orchestrate Orleans from an Aspire AppHost project.
 ms.date: 11/05/2024
 uid: frameworks/orleans
 ---
@@ -43,9 +43,9 @@ In your AppHost project, call <xref:Aspire.Hosting.OrleansServiceExtensions.AddO
 
 ### Use Azure storage for clustering tables and grain storage
 
-In an Orleans app, the fundamental building block is a **grain**. Grains can have durable states. You must store the durable state for a grain somewhere. In a Aspire application, **Azure Blob Storage** is one possible location.
+In an Orleans app, the fundamental building block is a **grain**. Grains can have durable states. You must store the durable state for a grain somewhere. In an Aspire application, **Azure Blob Storage** is one possible location.
 
-Orleans hosts register themselves in a database and use that database to find each other and form a cluster. They store which servers are members of which silos in a database table. You can use either relational or NoSQL databases to store this information. In a Aspire application, a popular choice to store this table is **Azure Table Storage**.
+Orleans hosts register themselves in a database and use that database to find each other and form a cluster. They store which servers are members of which silos in a database table. You can use either relational or NoSQL databases to store this information. In an Aspire application, a popular choice to store this table is **Azure Table Storage**.
 
 To configure Orleans with clustering and grain storage in Azure, install the [📦 Aspire.Hosting.Azure.Storage](https://www.nuget.org/packages/Aspire.Hosting.Azure.Storage) NuGet package in the AppHost project:
 
@@ -78,7 +78,7 @@ Now you can add a new project, enrolled in Aspire orchestration, to your solutio
 
 ### Add an Orleans client project in the AppHost
 
-Orleans clients communicate with grains hosted on Orleans servers. In a Aspire app, for example, you might have a front-end Web site that calls grains in an Orleans cluster. Reference the Orleans resource from your Orleans client using `WithReference(orleans.AsClient())`.
+Orleans clients communicate with grains hosted on Orleans servers. In an Aspire app, for example, you might have a front-end Web site that calls grains in an Orleans cluster. Reference the Orleans resource from your Orleans client using `WithReference(orleans.AsClient())`.
 
 :::code language="csharp" source="snippets/Orleans/OrleansAppHost/AppHost.cs" range="24-29":::
 

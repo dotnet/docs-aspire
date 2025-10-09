@@ -5,7 +5,7 @@ ms.date: 07/17/2025
 ms.custom: devx-track-extended-azdevcli
 ---
 
-# Deploy a Aspire project to Azure Container Apps
+# Deploy an Aspire project to Azure Container Apps
 
 Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new Aspire solution and deploying it to Microsoft Azure Container Apps using the Azure Developer CLI (`azd`). You'll learn how to complete the following tasks:
 
@@ -19,15 +19,15 @@ Aspire projects are designed to run in containerized environments. Azure Contain
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-As an alternative to this tutorial and for a more in-depth guide, see [Deploy a Aspire project to Azure Container Apps using `azd` (in-depth guide)](aca-deployment-azd-in-depth.md).
+As an alternative to this tutorial and for a more in-depth guide, see [Deploy an Aspire project to Azure Container Apps using `azd` (in-depth guide)](aca-deployment-azd-in-depth.md).
 
 ## Deploy Aspire projects with `azd`
 
 With Aspire and Azure Container Apps (ACA), you have a great hosting scenario for building out your cloud-native apps with .NET. We built some great new features into the Azure Developer CLI (`azd`) specific for making Aspire development and deployment to Azure a friction-free experience. For production scenarios that require granular control over infrastructure, see [Customize Aspire Azure deployments](customize-deployments.md). But for new projects, you won't find an easier path to success for getting a new microservice topology deployed into the cloud.
 
-## Create a Aspire project
+## Create an Aspire project
 
-As a starting point, this article assumes that you've created a Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes that you've created an Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
 
 ### Resource naming
 

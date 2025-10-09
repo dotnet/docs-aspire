@@ -1,11 +1,11 @@
 ---
-title: Deploy a Aspire project with a SQL Server Database to Azure
-description: Learn how to deploy a Aspire app with a SQL Server Database that connects to Azure
+title: Deploy an Aspire project with a SQL Server Database to Azure
+description: Learn how to deploy an Aspire app with a SQL Server Database that connects to Azure
 ms.date: 11/08/2024
 ms.topic: how-to
 ---
 
-# Tutorial: Deploy a Aspire project with a SQL Server Database to Azure
+# Tutorial: Deploy an Aspire project with a SQL Server Database to Azure
 
 In this tutorial, you learn to configure an ASP.NET Core app with a SQL Server Database for deployment to Azure. Aspire provides multiple SQL Server integration configurations that provision different database services in Azure. You'll learn how to:
 
@@ -148,6 +148,6 @@ The deployment process created a SQL Server app container due to the **.AppHost*
 
 ## See also
 
-- [Deploy a Aspire project to Azure Container Apps](../azd/aca-deployment.md)
-- [Deploy a Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md)
-- [Tutorial: Deploy a Aspire project using the Azure Developer CLI](../azd/aca-deployment-github-actions.md)
+- [Deploy an Aspire project to Azure Container Apps](../azd/aca-deployment.md)
+- [Deploy an Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../azd/aca-deployment-azd-in-depth.md)
+- [Tutorial: Deploy an Aspire project using the Azure Developer CLI](../azd/aca-deployment-github-actions.md)

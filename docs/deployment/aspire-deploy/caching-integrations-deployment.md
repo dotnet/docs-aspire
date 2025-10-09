@@ -1,13 +1,13 @@
 ---
-title: Deploy a Aspire project that connects to Redis Cache to Azure
-description: Learn how to deploy a Aspire project that connects to Redis Cache to Azure
+title: Deploy an Aspire project that connects to Redis Cache to Azure
+description: Learn how to deploy an Aspire project that connects to Redis Cache to Azure
 ms.date: 09/30/2025
 ms.topic: how-to
 ---
 
-# Tutorial: Deploy a Aspire project with a Redis Cache to Azure
+# Tutorial: Deploy an Aspire project with a Redis Cache to Azure
 
-In this tutorial, you learn to configure a Aspire project with a Redis Cache for deployment to Azure. Aspire provides multiple caching integration configurations that provision different Redis services in Azure. You'll learn how to:
+In this tutorial, you learn to configure an Aspire project with a Redis Cache for deployment to Azure. Aspire provides multiple caching integration configurations that provision different Redis services in Azure. You'll learn how to:
 
 > [!div class="checklist"]
 >
@@ -150,4 +150,4 @@ The deployment process created a Redis app container due to the **.AppHost** con
 
 - [Aspire deployment via Azure Container Apps](../azd/aca-deployment.md)
 - [Aspire Azure Container Apps deployment deep dive](../azd/aca-deployment-azd-in-depth.md)
-- [Deploy a Aspire project using GitHub Actions](../azd/aca-deployment-github-actions.md)
+- [Deploy an Aspire project using GitHub Actions](../azd/aca-deployment-github-actions.md)

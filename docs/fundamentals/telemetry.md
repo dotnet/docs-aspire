@@ -40,7 +40,7 @@ The environment variables are automatically set in local development.
 
 ## Aspire local development
 
-When you create a Aspire project, the Aspire dashboard provides a UI for viewing app telemetry by default. Telemetry data is sent to the dashboard using OTLP, and the dashboard implements an OTLP server to receive telemetry data and store it in memory. The Aspire debugging workflow is as follows:
+When you create an Aspire project, the Aspire dashboard provides a UI for viewing app telemetry by default. Telemetry data is sent to the dashboard using OTLP, and the dashboard implements an OTLP server to receive telemetry data and store it in memory. The Aspire debugging workflow is as follows:
 
 - Developer starts the Aspire project with debugging, presses <kbd>F5</kbd>.
 - Aspire dashboard and developer control plane (DCP) start.

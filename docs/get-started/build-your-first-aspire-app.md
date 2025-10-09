@@ -9,14 +9,14 @@ ms.custom: sfi-ropc-nochange
 
 # Quickstart: Build your first Aspire solution
 
-Cloud-native apps often require connections to various services such as databases, storage and caching solutions, messaging providers, or other web services. Aspire is designed to streamline connections and configurations between these types of services. This quickstart shows how to create a Aspire Starter Application template solution.
+Cloud-native apps often require connections to various services such as databases, storage and caching solutions, messaging providers, or other web services. Aspire is designed to streamline connections and configurations between these types of services. This quickstart shows how to create an Aspire Starter Application template solution.
 
 In this quickstart, you explore the following tasks:
 
 > [!div class="checklist"]
 >
 > - Create a basic .NET app that is set up to use Aspire.
-> - Add and configure a Aspire integration to implement caching at project creation time.
+> - Add and configure an Aspire integration to implement caching at project creation time.
 > - Create an API and use service discovery to connect to it.
 > - Orchestrate communication between a front end UI, a back end API, and a local Redis cache.
 
@@ -132,7 +132,7 @@ Next, investigate the structure and other features of your new Aspire solution.
 
 ## Explore the Aspire dashboard
 
-When you run a Aspire project, a [dashboard](../fundamentals/dashboard/overview.md) launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
+When you run an Aspire project, a [dashboard](../fundamentals/dashboard/overview.md) launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
 
 :::image type="content" source="media/aspire-dashboard.png" lightbox="media/aspire-dashboard.png" alt-text="A screenshot of the Aspire Dashboard, depicting the Projects tab.":::
 

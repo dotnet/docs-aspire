@@ -20,7 +20,7 @@ You'll have access to Copilot in the dashboard when you launch your app from VS 
 
 ## Requirements
 
-GitHub Copilot is only available when a Aspire project is run from an IDE.
+GitHub Copilot is only available when an Aspire project is run from an IDE.
 
 > [!div class="checklist"]
 >

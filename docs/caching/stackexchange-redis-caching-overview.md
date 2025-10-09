@@ -10,7 +10,7 @@ ms.date: 02/05/2025
 
 With Aspire, there are several ways to use caching in your applications. One popular option is to use [Stack Exchange Redis](https://stackexchange.github.io/StackExchange.Redis), which is a high-performance data store that can be used to store frequently accessed data. This article provides an overview of Stack Exchange Redis caching and links to resources that help you use it in your applications.
 
-To use multiple Redis caching integrations in your application, see [Tutorial: Implement caching with Aspire integrations](caching-integrations.md). If you're interested in using the Redis Cache for Azure, see [Tutorial: Deploy a Aspire project with a Redis Cache to Azure](caching-integrations-deployment.md).
+To use multiple Redis caching integrations in your application, see [Tutorial: Implement caching with Aspire integrations](caching-integrations.md). If you're interested in using the Redis Cache for Azure, see [Tutorial: Deploy an Aspire project with a Redis Cache to Azure](caching-integrations-deployment.md).
 
 ## Redis serialization protocol (RESP)
 

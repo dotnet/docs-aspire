@@ -19,7 +19,7 @@ When you deploy Aspire applications to Azure using the Aspire CLI or Azure Devel
 
 ## Default security posture
 
-When you deploy a Aspire application to Azure Container Apps using `azd`, several security measures are automatically configured:
+When you deploy an Aspire application to Azure Container Apps using `azd`, several security measures are automatically configured:
 
 ### Container-level security
 
@@ -111,7 +111,7 @@ For comprehensive guidance on Azure security, see [Azure security best practices
 
 ## Next steps
 
-- [Deploy a Aspire project to Azure Container Apps](../azd/aca-deployment.md)
+- [Deploy an Aspire project to Azure Container Apps](../azd/aca-deployment.md)
 - [Customize Aspire Azure deployments](customize-deployments.md)
 - [Aspire Azure Key Vault integration](../../security/azure-security-key-vault-integration.md)
 - [User-assigned managed identity](../../azure/user-assigned-managed-identity.md)
