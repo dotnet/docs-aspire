@@ -5,9 +5,9 @@ ms.date: 09/25/2025
 ai-usage: ai-assisted
 ---
 
-# Deploy a Aspire project to Azure Container Apps using Aspire CLI
+# Deploy an Aspire project to Azure Container Apps using Aspire CLI
 
-The [`aspire deploy`](../../cli-reference/aspire-deploy.md) CLI command provides a streamlined way to deploy Aspire applications directly to Azure Container Apps. This command automates the entire deployment process, from building container images to provisioning Azure infrastructure and deploying your applications. This article walks you through using the `aspire deploy` command to deploy a Aspire solution to Container Apps. You'll learn how to complete the following tasks:
+The [`aspire deploy`](../../cli-reference/aspire-deploy.md) CLI command provides a streamlined way to deploy Aspire applications directly to Azure Container Apps. This command automates the entire deployment process, from building container images to provisioning Azure infrastructure and deploying your applications. This article walks you through using the `aspire deploy` command to deploy an Aspire solution to Container Apps. You'll learn how to complete the following tasks:
 
 > [!div class="checklist"]
 >
@@ -47,9 +47,9 @@ This command opens a web browser for you to sign in with your Azure credentials.
 - [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli).
 - [The `aspire deploy` command reference](/dotnet/aspire/cli-reference/aspire-deploy).
 
-## Create a Aspire project
+## Create an Aspire project
 
-As a starting point, this article assumes you've created a Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes you've created an Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
 
 To configure your project for Azure Container Apps deployment, add a package reference to your AppHost project that includes the [`📦Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) NuGet package:
 

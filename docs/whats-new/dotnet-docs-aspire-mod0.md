@@ -61,12 +61,12 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 
 ### Updated articles
 
-- [Deploy a Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md) - Optimize ACA deployment docs workflow and content structure
-- [Deploy a Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md)
+- [Deploy an Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md) - Optimize ACA deployment docs workflow and content structure
+- [Deploy an Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md)
   - Optimize ACA deployment docs workflow and content structure
   - Update aca-deployment-azd-in-depth.md
-- [Deploy a Aspire project to Azure Container Apps using Visual Studio](../deployment/azure/aca-deployment-visual-studio.md) - Optimize ACA deployment docs workflow and content structure
-- [Tutorial: Deploy a Aspire project using the Azure Developer CLI](../deployment/azure/aca-deployment-github-actions.md) - Add troubleshooting guidance for Azure DevOps pipeline "azd init" errors
+- [Deploy an Aspire project to Azure Container Apps using Visual Studio](../deployment/azure/aca-deployment-visual-studio.md) - Optimize ACA deployment docs workflow and content structure
+- [Tutorial: Deploy an Aspire project using the Azure Developer CLI](../deployment/azure/aca-deployment-github-actions.md) - Add troubleshooting guidance for Azure DevOps pipeline "azd init" errors
 
 ## Community contributors
 

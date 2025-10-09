@@ -188,5 +188,5 @@ builder.AddExecutable("data-script", "python", ".", "process_data.py")
 
 - [Configure Azure Container Apps environments](configure-aca-environments.md).
 - [Azure Container Apps Jobs documentation](/azure/container-apps/jobs).
-- [Deploy a Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
+- [Deploy an Aspire project to Azure Container Apps](../deployment/azure/aca-deployment.md).
 - [Customize Azure resources](customize-azure-resources.md).

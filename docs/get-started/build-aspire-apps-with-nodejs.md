@@ -1,13 +1,13 @@
 ---
 title: Orchestrate Node.js apps in Aspire
-description: Learn how to integrate Node.js and npm apps into a Aspire AppHost project.
+description: Learn how to integrate Node.js and npm apps into an Aspire AppHost project.
 ms.date: 05/27/2025
 ms.custom: sfi-image-nochange
 ---
 
 # Orchestrate Node.js apps in Aspire
 
-In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in a Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following Aspire APIs exist to support these scenarios—and they're part of the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package:
+In this article, you learn how to use Node.js and Node Package Manager (`npm`) apps in an Aspire project. The sample app in this article demonstrates [Angular](https://angular.io), [React](https://react.dev/), and [Vue](https://vuejs.org/) client experiences. The following Aspire APIs exist to support these scenarios—and they're part of the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package:
 
 - [Node.js](https://nodejs.org/): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNodeApp%2A>.
 - [`npm` apps](https://docs.npmjs.com/cli/using-npm/scripts): <xref:Aspire.Hosting.NodeAppHostingExtension.AddNpmApp%2A>.

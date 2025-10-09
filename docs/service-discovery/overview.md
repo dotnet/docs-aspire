@@ -7,7 +7,7 @@ ms.topic: quickstart
 
 # Aspire service discovery
 
-In this article, you learn how service discovery works within a Aspire project. Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](/dotnet/core/extensions/service-discovery).
+In this article, you learn how service discovery works within an Aspire project. Aspire includes functionality for configuring service discovery at development and testing time. Service discovery functionality works by providing configuration in the format expected by the _configuration-based endpoint resolver_ from the Aspire AppHost project to the individual service projects added to the application model. For more information, see [Service discovery in .NET](/dotnet/core/extensions/service-discovery).
 
 ## Implicit service discovery by reference
 

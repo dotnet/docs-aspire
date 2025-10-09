@@ -7,12 +7,12 @@ ms.topic: tutorial
 
 # Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core
 
-In this tutorial, you create an ASP.NET Core app that uses a Aspire Entity Framework Core SQL Server integration to connect to SQL Server to read and write support ticket data. [Entity Framework Core](/ef/core/) is a lightweight, extensible, open source object-relational mapper that enables .NET developers to work with databases using .NET objects. You'll learn how to:
+In this tutorial, you create an ASP.NET Core app that uses an Aspire Entity Framework Core SQL Server integration to connect to SQL Server to read and write support ticket data. [Entity Framework Core](/ef/core/) is a lightweight, extensible, open source object-relational mapper that enables .NET developers to work with databases using .NET objects. You'll learn how to:
 
 > [!div class="checklist"]
 >
 > - Create a basic .NET app that is set up to use Aspire integrations
-> - Add a Aspire integration to connect to SQL Server
+> - Add an Aspire integration to connect to SQL Server
 > - Configure and use Aspire Component features to read and write from the database
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
@@ -167,4 +167,4 @@ Let's examine how the data volume changes the behavior of the solution:
 
 - [Aspire with SQL Database deployment](sql-server-integration-deployment.md)
 - [Aspire deployment via Azure Container Apps](../deployment/azure/aca-deployment.md)
-- [Deploy a Aspire project using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)
+- [Deploy an Aspire project using GitHub Actions](../deployment/azure/aca-deployment-github-actions.md)

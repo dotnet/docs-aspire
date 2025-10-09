@@ -249,7 +249,7 @@ You can use Visual Studio Code, with the [C# Dev Kit extension](https://marketpl
 
 Once you create a new Aspire project, you run and debug the app, stepping through breakpoints, and inspecting variables using the Visual Studio Code debugger:
 
-:::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug a Aspire project in Visual Studio Code.":::
+:::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug an Aspire project in Visual Studio Code.":::
 
 :::zone-end
 

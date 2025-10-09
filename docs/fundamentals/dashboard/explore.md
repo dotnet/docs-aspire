@@ -8,7 +8,7 @@ ai-usage: ai-assisted
 
 # Explore the Aspire dashboard
 
-In the upcoming sections, you discover how to create a Aspire project and embark on the following tasks:
+In the upcoming sections, you discover how to create an Aspire project and embark on the following tasks:
 
 > [!div class="checklist"]
 >
@@ -22,7 +22,7 @@ The Aspire dashboard also includes **GitHub Copilot**, your AI debugging assista
 
 ## Dashboard authentication
 
-When you run a Aspire AppHost, the orchestrator starts up all the app's dependent resources and then opens a browser window to the dashboard. The Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
+When you run an Aspire AppHost, the orchestrator starts up all the app's dependent resources and then opens a browser window to the dashboard. The Aspire dashboard requires token-based authentication for its users because it displays environment variables and other sensitive information.
 
 When the dashboard is launched from Visual Studio or Visual Studio Code (with the [C# Dev Kit extension](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)), the browser is automatically logged in, and the dashboard opens directly. This is the typical developer <kbd>F5</kbd> experience, and the authentication login flow is automated by the Aspire tooling.
 
@@ -160,11 +160,11 @@ The search bar in the upper right of the dashboard also provides the option to f
 
 :::image type="content" source="media/explore/select-resource-type.png" alt-text="A screenshot of the resource type selector list in the Aspire dashboard Resources page.":::
 
-In this example, only containers are displayed in the list. For example, if you enable **Use Redis for caching** when creating a Aspire project, you should see a Redis container listed:
+In this example, only containers are displayed in the list. For example, if you enable **Use Redis for caching** when creating an Aspire project, you should see a Redis container listed:
 
 :::image type="content" source="media/explore/resources-filtered-containers.png" lightbox="media/explore/resources-filtered-containers.png" alt-text="A screenshot of the Aspire dashboard Resources page filtered to show only containers.":::
 
-Executables are stand-alone processes. You can configure a Aspire project to run a stand-alone executable during startup, though the default starter templates don't include any executables by default.
+Executables are stand-alone processes. You can configure an Aspire project to run a stand-alone executable during startup, though the default starter templates don't include any executables by default.
 
 The following screenshot shows an example of a project that has errors:
 
@@ -411,7 +411,7 @@ For more information, see [OpenTelemetry Docs: Exemplars](https://opentelemetry.
 
 ### Interact with telemetry
 
-Telemetry information is generated continuously while you run a Aspire application and it can flood the dashboard with information. The dashboard includes tools you can use to reduce the amount of data displayed in monitoring pages and make it easier to target specific events.
+Telemetry information is generated continuously while you run an Aspire application and it can flood the dashboard with information. The dashboard includes tools you can use to reduce the amount of data displayed in monitoring pages and make it easier to target specific events.
 
 #### Pause telemetry output
 

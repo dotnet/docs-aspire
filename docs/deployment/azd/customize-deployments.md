@@ -253,6 +253,6 @@ param location string
 
 ## Next steps
 
-- [Deploy a Aspire project to Azure Container Apps using azd](aca-deployment.md)
+- [Deploy an Aspire project to Azure Container Apps using azd](aca-deployment.md)
 - [Azure Container Apps with azd (In-depth)](aca-deployment-azd-in-depth.md)
 - [Deploy using azd and CI/CD](aca-deployment-github-actions.md)
