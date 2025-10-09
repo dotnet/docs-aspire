@@ -16,6 +16,3 @@ The Aspire CLI can lead you through the choices necessary to create a new Aspire
 1. Select the default version of Aspire, which is the latest version on NuGet. Alternatively you can select the latest daily or stable builds of Aspire.
 1. Choose `Yes` to include a Redis Cache integration in the solution.
 1. Choose `No` to exclude a test project from the solution. The Aspire CLI creates the new solution.
-
-> [!NOTE]
-> You chose not to add a test project to the new solution. You can always add a test project later but it's not needed for this quickstart.

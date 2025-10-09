@@ -37,6 +37,9 @@ In this quickstart, you can choose whether to use the Aspire CLI or Visual Studi
 
 :::zone-end
 
+> [!NOTE]
+> You chose not to add a test project to the new solution. You can always add a test project later but it's not needed for this quickstart.
+
 For more information on the available templates, see [Aspire templates](../fundamentals/aspire-sdk-templates.md).
 
 ## Test the app locally
