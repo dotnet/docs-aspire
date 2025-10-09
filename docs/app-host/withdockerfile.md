@@ -11,7 +11,7 @@ With Aspire it's possible to specify a _Dockerfile_ to build when the [AppHost](
 These two methods serve different purposes:
 
 - **<xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddDockerfile%2A>**: Creates a new container resource from an existing Dockerfile. Use this when you want to add a custom containerized service to your app model.
-- **<xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A>**: Customizes an existing container resource (like a database or cache) to use a different Dockerfile. Use this when you want to modify the default container image for a Aspire component.
+- **<xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithDockerfile%2A>**: Customizes an existing container resource (like a database or cache) to use a different Dockerfile. Use this when you want to modify the default container image for an Aspire component.
 
 Both methods expect an existing Dockerfile in the specified context path—neither method creates a Dockerfile for you.
 

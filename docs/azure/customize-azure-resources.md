@@ -7,7 +7,7 @@ uid: dotnet/aspire/integrations/customize-azure-resources
 
 # Customize Azure resources
 
-If you're using Azure to host resources for a Aspire solution, you have granular control over those resources. You can either let Aspire configure them if the default properties suit your needs, or override defaults to control their behavior. Let's examine how you can customize your Azure infrastructure from Aspire code.
+If you're using Azure to host resources for an Aspire solution, you have granular control over those resources. You can either let Aspire configure them if the default properties suit your needs, or override defaults to control their behavior. Let's examine how you can customize your Azure infrastructure from Aspire code.
 
 The Azure SDK for .NET provides the [📦 Azure.Provisioning](https://www.nuget.org/packages/Azure.Provisioning) NuGet package and a suite of service-specific [Azure provisioning packages](https://www.nuget.org/packages?q=owner%3A+azure-sdk+description%3A+declarative+resource+provisioning&sortby=relevance). These Azure provisioning libraries make it easy to declaratively specify Azure infrastructure natively in .NET. Their APIs enable you to write object-oriented infrastructure in C#, resulting in Bicep. [Bicep is a domain-specific language (DSL)](/azure/azure-resource-manager/bicep/overview) for deploying Azure resources declaratively.
 
@@ -81,7 +81,7 @@ The preceding code:
 - Adds a project named `worker` to the builder.
 - Chains a call to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment*> to set the `ACR_REGISTRY_NAME` environment variable in the project to the value of the `registryName` output.
 
-The functionality demonstrates how to add Azure infrastructure to your AppHost project, even if the Azure service isn't directly exposed as a Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
+The functionality demonstrates how to add Azure infrastructure to your AppHost project, even if the Azure service isn't directly exposed as an Aspire integration. It further shows how to flow the output of the Azure Container Registry into the environment of a dependent project.
 
 Consider the resulting Bicep file:
 

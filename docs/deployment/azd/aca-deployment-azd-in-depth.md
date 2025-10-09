@@ -1,5 +1,5 @@
 ---
-title: Deploy a Aspire project to Azure Container Apps using `azd` (in-depth guide)
+title: Deploy an Aspire project to Azure Container Apps using `azd` (in-depth guide)
 description: Learn how to use `azd` to deploy Aspire projects to Azure Container Apps.
 ms.date: 07/17/2025
 ms.custom:
@@ -8,14 +8,14 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Deploy a Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)
+# Deploy an Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)
 
-The Azure Developer CLI (`azd`) has been extended to support deploying Aspire projects. Use this guide to walk through the process of creating and deploying a Aspire project to Azure Container Apps using the Azure Developer CLI. In this tutorial, you'll learn the following concepts:
+The Azure Developer CLI (`azd`) has been extended to support deploying Aspire projects. Use this guide to walk through the process of creating and deploying an Aspire project to Azure Container Apps using the Azure Developer CLI. In this tutorial, you'll learn the following concepts:
 
 > [!div class="checklist"]
 >
 > - Explore how `azd` integration works with Aspire projects
-> - Provision and deploy resources on Azure for a Aspire project using `azd`
+> - Provision and deploy resources on Azure for an Aspire project using `azd`
 > - Generate Bicep infrastructure and other template files using `azd`
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
@@ -48,7 +48,7 @@ The `azd init` workflow provides customized support for Aspire projects. The fol
 
 :::image type="content" source="../media/azd-internals.png" alt-text="Illustration of internal processing of `azd` when deploying Aspire project.":::
 
-1. When `azd` targets a Aspire project it starts the AppHost with a special command (`dotnet run --project AppHost.csproj --output-path manifest.json --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
+1. When `azd` targets an Aspire project it starts the AppHost with a special command (`dotnet run --project AppHost.csproj --output-path manifest.json --publisher manifest`), which produces the Aspire [manifest file](../manifest-format.md).
 1. The manifest file is interrogated by the `azd provision` sub-command logic to generate Bicep files in-memory only (by default).
 1. After generating the Bicep files, a deployment is triggered using Azure's ARM APIs targeting the subscription and resource group provided earlier.
 1. Once the underlying Azure resources are configured, the `azd deploy` sub-command logic is executed which uses the same Aspire manifest file.
@@ -59,9 +59,9 @@ The `azd init` workflow provides customized support for Aspire projects. The fol
 > [!NOTE]
 > `azd` also enables you to output the generated Bicep to an `infra` folder in your project, which you can read more about in the [Generating Bicep from Aspire app model](/dotnet/aspire/deployment/azure/aca-deployment-azd-in-depth?branch=main#generate-bicep-from-net-aspire-app-model) section.
 
-## Provision and deploy a Aspire starter app
+## Provision and deploy an Aspire starter app
 
-The steps in this section demonstrate how to create a Aspire start app and handle provisioning and deploying the app resources to Azure using `azd`.
+The steps in this section demonstrate how to create an Aspire start app and handle provisioning and deploying the app resources to Azure using `azd`.
 
 ### Create the Aspire starter app
 
@@ -158,7 +158,7 @@ For more information, see [Azure Developer CLI reference: azd deploy](/azure/dev
 
 ### Deploy infrastructure updates
 
-Whenever the dependency structure within a Aspire project changes, `azd` must re-provision the underlying Azure resources. The `azd provision` command is used to apply these changes to the infrastructure.
+Whenever the dependency structure within an Aspire project changes, `azd` must re-provision the underlying Azure resources. The `azd provision` command is used to apply these changes to the infrastructure.
 
 To see this in action, update the _:::no-loc text="AppHost.cs":::_ file in the AppHost project to the following:
 

@@ -13,7 +13,7 @@ The Aspire test project templates rely on the [📦 Aspire.Hosting.Testing](http
 
 ## Create a test project
 
-The easiest way to create a Aspire test project is to use the testing project template. If you're starting a new Aspire project and want to include test projects, the [Visual Studio tooling supports that option](../fundamentals/setup-tooling.md#create-test-project). If you're adding a test project to an existing Aspire project, you can use the `dotnet new` command to create a test project:
+The easiest way to create an Aspire test project is to use the testing project template. If you're starting a new Aspire project and want to include test projects, the [Visual Studio tooling supports that option](../fundamentals/setup-tooling.md#create-test-project). If you're adding a test project to an existing Aspire project, you can use the `dotnet new` command to create a test project:
 
 :::zone pivot="xunit"
 

@@ -1,6 +1,6 @@
 ---
 title: NET Aspire Dapr integration
-description: Learn how to use the Aspire Dapr integration, which can configure and orchestrate Dapr from a Aspire AppHost project.
+description: Learn how to use the Aspire Dapr integration, which can configure and orchestrate Dapr from an Aspire AppHost project.
 ms.date: 05/12/2025
 uid: frameworks/dapr
 ---
@@ -74,7 +74,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 Dapr uses the [sidecar pattern](https://docs.dapr.io/concepts/dapr-services/sidecar/). The Dapr sidecar runs alongside your app as a lightweight, portable, and stateless HTTP server that listens for incoming HTTP requests from your app.
 
-To add a sidecar to a Aspire resource, call the `WithDaprSidecar` method on it. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
+To add a sidecar to an Aspire resource, call the `WithDaprSidecar` method on it. The `appId` parameter is the unique identifier for the Dapr application, but it's optional. If you don't provide an `appId`, the parent resource name is used instead.
 
 :::code language="csharp" source="snippets/Dapr/Dapr.AppHost/AppHost.cs" range="1-7"  highlight="7":::
 
@@ -86,7 +86,7 @@ The `WithDaprSidecar` method offers overloads to configure your Dapr sidecar opt
 
 ### Complete Dapr AppHost example
 
-Putting everything together, consider the following example of a Aspire AppHost project that includes:
+Putting everything together, consider the following example of an Aspire AppHost project that includes:
 
 - A backend API service that declares a Dapr sidecar with defaults.
 - A web frontend project that declares a Dapr sidecar with specific options, such as explict ports.
