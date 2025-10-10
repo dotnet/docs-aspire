@@ -109,42 +109,7 @@ Claim actions configure how claims are mapped from the JSON returned by the Open
 | `IsUnique` (optional) | When `true`, ensures only one claim of this type exists. If a claim already exists, it won't be added again. Defaults to `false`. |
 | `ValueType` (optional) | The claim value type. Defaults to `string`. |
 
-The following JSON example shows how to configure claim actions to map role claims:
-
-```json
-{
-  "Authentication": {
-    "Schemes": {
-      "OpenIdConnect": {
-        "Authority": "https://id.example.com",
-        "ClientId": "aspire-dashboard",
-        "ClientSecret": "secret",
-        "GetClaimsFromUserInfoEndpoint": true,
-        "Scope": [
-          "roles"
-        ]
-      }
-    }
-  },
-  "Dashboard": {
-    "Frontend": {
-      "AuthMode": "OpenIdConnect",
-      "OpenIdConnect": {
-        "RequiredClaimType": "role",
-        "RequiredClaimValue": "AspireAdmin",
-        "ClaimActions": [
-          {
-            "ClaimType": "role",
-            "JsonKey": "role"
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
-The following example shows the equivalent configuration using environment variables:
+The following example shows how to configure claim actions using environment variables:
 
 ```bash
 export Dashboard__Frontend__AuthMode="OpenIdConnect"
