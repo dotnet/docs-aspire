@@ -43,6 +43,8 @@ groups:
     title: Visual Studio
   - id: dotnet-cli
     title: .NET CLI
+  - id: aspire-cli
+    title: Aspire CLI
 - id: resp-host
   title: Hosting resource type
   prompt: Choose a hosting resource that supports the Redis protocol
