@@ -5,7 +5,7 @@ ms.date: 09/23/2025
 ms.custom: sfi-image-nochange
 ---
 
-# Deploy a Aspire project to Azure Container Apps using Visual Studio
+# Deploy an Aspire project to Azure Container Apps using Visual Studio
 
 Aspire projects are designed to run in containerized environments. Azure Container Apps is a fully managed environment that enables you to run microservices and containerized applications on a serverless platform. This article will walk you through creating a new Aspire solution and deploying it to Microsoft Azure Container Apps using the Visual Studio. You'll learn how to complete the following tasks:
 
@@ -19,9 +19,9 @@ Aspire projects are designed to run in containerized environments. Azure Contain
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-## Create a Aspire project
+## Create an Aspire project
 
-As a starting point, this article assumes that you've created a Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes that you've created an Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
 
 ### Resource naming
 

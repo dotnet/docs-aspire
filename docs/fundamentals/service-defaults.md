@@ -46,7 +46,7 @@ The service defaults project template imposes a `FrameworkReference` dependency 
 > [!TIP]
 > If you don't want to take a dependency on `Microsoft.AspNetCore.App`, you can create a custom service defaults project. For more information, see [Custom service defaults](#custom-service-defaults).
 
-The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The Aspire tooling uses this project as a reference for other projects added to a Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _:::no-loc text="Program.cs":::_ file to call the `AddServiceDefaults` method.
+The `IsAspireSharedProject` property is set to `true`, which indicates that this project is a shared project. The Aspire tooling uses this project as a reference for other projects added to an Aspire solution. When you enlist the new project for orchestration, it automatically references the _YourAppName.ServiceDefaults_ project and updates the _:::no-loc text="Program.cs":::_ file to call the `AddServiceDefaults` method.
 
 ## Provided extension methods
 
@@ -239,7 +239,7 @@ This is only an example, and you can customize the `AppDefaultsExtensions` class
 
 ## Next steps
 
-This code is derived from the Aspire Starter Application template and is intended as a starting point. You're free to modify this code however you deem necessary to meet your needs. It's important to know that service defaults project and its functionality are automatically applied to all project resources in a Aspire solution.
+This code is derived from the Aspire Starter Application template and is intended as a starting point. You're free to modify this code however you deem necessary to meet your needs. It's important to know that service defaults project and its functionality are automatically applied to all project resources in an Aspire solution.
 
 - [Service discovery in Aspire](../service-discovery/overview.md)
 - [Aspire SDK](dotnet-aspire-sdk.md)

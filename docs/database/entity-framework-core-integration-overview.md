@@ -574,7 +574,7 @@ In EF Core a context is relatively quick to create and dispose of so most applic
 
 Context pooling is a feature of EF Core. Contexts are created as normal but, when you dispose of one, it isn't destroyed but reset and stored in a pool. The next time your code creates a context, the stored one is returned to avoid the extra overhead of creating a new one.
 
-In a Aspire consuming project, there are three ways to use context pooling:
+In an Aspire consuming project, there are three ways to use context pooling:
 
 - Use the Aspire `Add\<DatabaseSystem\>DbContext` methods to create the context. These methods create a context pool automatically.
 - Call the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool*> method instead of the EF Core <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContext*> method.

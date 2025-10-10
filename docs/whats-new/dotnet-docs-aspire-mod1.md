@@ -52,7 +52,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 - [Aspire MongoDB database integration](../database/mongodb-integration.md) - Split content
 - [Aspire Oracle Entity Framework Core integration](../database/oracle-entity-framework-integration.md) - Split content
 - [Aspire Qdrant integration](../database/qdrant-integration.md) - Split content
-- [Tutorial: Deploy a Aspire project with a SQL Server Database to Azure](../database/sql-server-integration-deployment.md) - Update the Tutorial: Deploy a Aspire project with a SQL Server Database to Azure
+- [Tutorial: Deploy an Aspire project with a SQL Server Database to Azure](../database/sql-server-integration-deployment.md) - Update the Tutorial: Deploy an Aspire project with a SQL Server Database to Azure
 
 ## Messaging
 
@@ -85,7 +85,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Deploy a Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md) - Terminate inline azd code snippet
+- [Deploy an Aspire project to Azure Container Apps using the Azure Developer CLI (in-depth guide)](../deployment/azure/aca-deployment-azd-in-depth.md) - Terminate inline azd code snippet
 
 ## Community contributors
 

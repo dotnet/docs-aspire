@@ -51,9 +51,9 @@ The following Aspire project templates are available:
 
 - **Aspire Test projects**: These project templates are used to create test projects for your Aspire app, and they're intended to represent functional and integration tests. The test projects include the following templates:
 
-  - **MSTest**: A project that contains MSTest integration of a Aspire AppHost project.
-  - **NUnit**: A project that contains NUnit integration of a Aspire AppHost project.
-  - **xUnit**: A project that contains xUnit.net integration of a Aspire AppHost project.
+  - **MSTest**: A project that contains MSTest integration of an Aspire AppHost project.
+  - **NUnit**: A project that contains NUnit integration of an Aspire AppHost project.
+  - **xUnit**: A project that contains xUnit.net integration of an Aspire AppHost project.
   
   For more information on the test templates, see [Testing in Aspire](testing.md).
 
@@ -70,11 +70,11 @@ The following Aspire project templates are available:
 
 ## Create solutions and projects using templates
 
-To create a Aspire solution or project, use Visual Studio, Visual Studio Code, or the .NET CLI, and base it on the available templates. Explore additional Aspire templates in the [Aspire samples](https://github.com/dotnet/aspire-samples) repository.
+To create an Aspire solution or project, use Visual Studio, Visual Studio Code, or the .NET CLI, and base it on the available templates. Explore additional Aspire templates in the [Aspire samples](https://github.com/dotnet/aspire-samples) repository.
 
 :::zone pivot="visual-studio"
 
-To create a Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
+To create an Aspire project using Visual Studio, search for *Aspire* in the Visual Studio new project window and select your desired template.
 
 :::image type="content" source="media/vs-create-dotnet-aspire-proj.png" lightbox="media/vs-create-dotnet-aspire-proj.png" alt-text="Visual Studio: Aspire templates.":::
 
@@ -83,7 +83,7 @@ Follow the prompts to configure your project or solution from the template, and 
 :::zone-end
 :::zone pivot="vscode"
 
-To create a Aspire project using Visual Studio Code, search for *Aspire* in the Visual Studio Code new project window and select your desired template.
+To create an Aspire project using Visual Studio Code, search for *Aspire* in the Visual Studio Code new project window and select your desired template.
 
 :::image type="content" source="media/vscode-create-dotnet-aspire-proj.png" lightbox="media/vscode-create-dotnet-aspire-proj.png" alt-text="Visual Studio Code: Aspire templates.":::
 
@@ -92,7 +92,7 @@ Select the desired location, enter a name, and select **Create**.
 :::zone-end
 :::zone pivot="dotnet-cli"
 
-To create a Aspire solution or project using the .NET CLI, use the [dotnet new](/dotnet/core/tools/dotnet-new) command and specify which template you would like to create. Consider the following examples:
+To create an Aspire solution or project using the .NET CLI, use the [dotnet new](/dotnet/core/tools/dotnet-new) command and specify which template you would like to create. Consider the following examples:
 
 To create a basic [Aspire AppHost](app-host-overview.md) project targeting the latest .NET version:
 
@@ -100,7 +100,7 @@ To create a basic [Aspire AppHost](app-host-overview.md) project targeting the l
 dotnet new aspire-apphost
 ```
 
-To create a Aspire starter app, which is a full solution with a sample UI and backing API included:
+To create an Aspire starter app, which is a full solution with a sample UI and backing API included:
 
 ```dotnetcli
 dotnet new aspire-starter

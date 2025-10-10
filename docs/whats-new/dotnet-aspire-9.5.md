@@ -914,17 +914,16 @@ Enhanced APIs for configuring executable resources with command and working dire
 
 #### WithCommand and WithWorkingDirectory APIs
 
-New extension methods allow precise control over executable resource execution:
+New extension methods enable fluent, mutable configuration of executable resources, allowing you to modify command and working directory after initial setup:
 
 ```csharp
 // Configure executable with custom command and working directory
-var processor = builder.AddExecutable("data-processor", "python")
+var processor = builder.AddExecutable("data-processor", "python", "/app/data-processing")
     .WithCommand("main.py --batch-size 100")
-    .WithWorkingDirectory("/app/data-processing")
     .WithArgs("--config", "production.json");
 
-// Executable with specific working directory for relative paths
-var buildTool = builder.AddExecutable("build-tool", "npm")
+// Change working directory after initial configuration
+var buildTool = builder.AddExecutable("build-tool", "npm", ".")
     .WithCommand("run build:production")
     .WithWorkingDirectory("./frontend");
 ```
@@ -934,7 +933,7 @@ var buildTool = builder.AddExecutable("build-tool", "npm")
 The `CommandLineArgsCallbackContext` now includes resource information for context-aware argument building:
 
 ```csharp
-var worker = builder.AddExecutable("worker", "dotnet")
+var worker = builder.AddExecutable("worker", "dotnet", ".")
     .WithArgs(context =>
     {
         // Access to the resource instance for dynamic configuration

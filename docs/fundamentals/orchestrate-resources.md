@@ -19,7 +19,7 @@ For the fundamentals of Aspire orchestration and how it manages resources, see [
 
 ## Resource naming conventions
 
-Resources in Aspire must follow naming restrictions set by Aspire and the technology that resource represents. For example, a Aspire resource has a maximum name length of 64 characters, but an Azure Container App has a maximum length of 32. When you publish the Aspire container resource for Azure, the name must not exceed 32 characters in length.
+Resources in Aspire must follow naming restrictions set by Aspire and the technology that resource represents. For example, an Aspire resource has a maximum name length of 64 characters, but an Azure Container App has a maximum length of 32. When you publish the Aspire container resource for Azure, the name must not exceed 32 characters in length.
 
 Aspire resource names must follow these basic rules:
 

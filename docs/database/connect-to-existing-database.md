@@ -1,17 +1,17 @@
 ---
-title: Connect a Aspire microservice to an existing database
-description: Learn how to configure a Aspire solution with a connection to an existing database that isn't hosted in a Aspire container.
+title: Connect an Aspire microservice to an existing database
+description: Learn how to configure an Aspire solution with a connection to an existing database that isn't hosted in an Aspire container.
 ms.date: 03/13/2025
 ms.topic: tutorial
 uid: database/connect-to-existing-database
 zone_pivot_groups: entity-framework-client-integration
 ---
 
-# Tutorial: Connect a Aspire microservice to an existing database
+# Tutorial: Connect an Aspire microservice to an existing database
 
 Aspire is designed to make it easy and quick to develop cloud-native solutions. It uses containers to host the services, such as databases, that underpin each microservice. However, if you want your microservice to query a database that already exists, you must connect your microservice to it instead of creating a database container whenever you run the solution.
 
-In this tutorial, you create a Aspire solution with an API that connects to an existing database. You'll learn how to:
+In this tutorial, you create an Aspire solution with an API that connects to an existing database. You'll learn how to:
 
 > [!div class="checklist"]
 >

@@ -15,7 +15,7 @@ This article explains how to allow unsecure transport in Aspire projects.
 
 ## Symptoms
 
-When you run a Aspire project with an `applicationUrl` configured with an unsecure transport protocol, you might see the following error message:
+When you run an Aspire project with an `applicationUrl` configured with an unsecure transport protocol, you might see the following error message:
 
 ```Output
 The 'applicationUrl' setting must be an https address unless the

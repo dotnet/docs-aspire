@@ -32,7 +32,7 @@ In the preceding code there are four resources represented:
 
 Most Aspire-related code that the average developer writes, centers around adding resources to the [app model](../fundamentals/app-host-overview.md) and creating references between them.
 
-## Key elements of a Aspire custom resource
+## Key elements of an Aspire custom resource
 
 Building a custom resource in Aspire requires the following:
 

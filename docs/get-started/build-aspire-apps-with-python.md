@@ -1,13 +1,13 @@
 ---
 title: Orchestrate Python apps in Aspire
-description: Learn how to integrate Python apps into a Aspire AppHost project.
+description: Learn how to integrate Python apps into an Aspire AppHost project.
 ms.date: 04/15/2025
 ms.custom: sfi-image-nochange
 ---
 
 # Orchestrate Python apps in Aspire
 
-In this article, you learn how to use Python apps in a Aspire AppHost. The sample app in this article demonstrates launching a Python application. The Python extension for Aspire requires the use of virtual environments.
+In this article, you learn how to use Python apps in an Aspire AppHost. The sample app in this article demonstrates launching a Python application. The Python extension for Aspire requires the use of virtual environments.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -23,9 +23,9 @@ pip --version
 
 To download Python (including `pip`), see the [Python download page](https://www.python.org/downloads).
 
-## Create a Aspire project using the template
+## Create an Aspire project using the template
 
-To get started launching a Python project in Aspire, use the starter template to first create a Aspire application host:
+To get started launching a Python project in Aspire, use the starter template to first create an Aspire application host:
 
 ```dotnetcli
 dotnet new aspire -o PythonSample
