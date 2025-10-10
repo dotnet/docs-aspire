@@ -91,7 +91,7 @@ Browser token authentication works by the frontend asking for a token. The token
 | `Dashboard:Frontend:OpenIdConnect:UsernameClaimType` | `preferred_username` | Specifies one or more claim types that should be used to display the authenticated user's username. Can be a single claim type or a comma-delimited list of claim types. |
 | `Dashboard:Frontend:OpenIdConnect:RequiredClaimType` | `null` | Specifies the claim that must be present for authorized users. Authorization fails without this claim. This value is optional. |
 | `Dashboard:Frontend:OpenIdConnect:RequiredClaimValue` | `null` | Specifies the value of the required claim. Only used if `Dashboard:Frontend:OpenIdConnect:RequireClaimType` is also specified. This value is optional. |
-| `Dashboard:Frontend:OpenIdConnect:ClaimActions` | `null` | An array of claim actions to configure how claims are mapped from the OpenID Connect user info endpoint. Each claim action can map JSON properties to claims. This value is optional. |
+| `Dashboard:Frontend:OpenIdConnect:ClaimActions` | `null` | A collection of claim actions to configure how claims are mapped from the OpenID Connect user info endpoint. Each claim action can map JSON properties to claims. This value is optional. |
 | `Authentication:Schemes:OpenIdConnect:Authority` | `null` | URL to the identity provider (IdP). |
 | `Authentication:Schemes:OpenIdConnect:ClientId` | `null` | Identity of the relying party (RP). |
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
