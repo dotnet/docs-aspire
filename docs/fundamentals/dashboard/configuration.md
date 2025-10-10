@@ -97,9 +97,14 @@ Browser token authentication works by the frontend asking for a token. The token
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
 | Other properties of <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
 
+> [!NOTE]
+> Additional configuration may be required when using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL. Check if you need `ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED` to be set to `true`.
+>
+> For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer).
+
 ### Claim actions
 
-Claim actions configure how claims are mapped from the JSON returned by the OpenID Connect user info endpoint to the user's claims identity. Each claim action in the `Dashboard:Frontend:OpenIdConnect:ClaimActions` array supports the following properties:
+Claim actions configure how claims are mapped from the JSON returned by the OpenID Connect user info endpoint to the user's claims identity. Each claim action in the `Dashboard:Frontend:OpenIdConnect:ClaimActions` collection supports the following properties:
 
 | Property | Description |
 |--|--|
@@ -109,25 +114,31 @@ Claim actions configure how claims are mapped from the JSON returned by the Open
 | `IsUnique` (optional) | When `true`, ensures only one claim of this type exists. If a claim already exists, it won't be added again. Defaults to `false`. |
 | `ValueType` (optional) | The claim value type. Defaults to `string`. |
 
-The following example shows how to configure claim actions using environment variables:
+The following example shows how to configure claim actions using JSON configuration:
 
-```bash
-export Dashboard__Frontend__AuthMode="OpenIdConnect"
-export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__ClaimType="role"
-export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__JsonKey="role"
-export Dashboard__Frontend__OpenIdConnect__RequiredClaimType="role"
-export Dashboard__Frontend__OpenIdConnect__RequiredClaimValue="AspireAdmin"
-export Authentication__Schemes__OpenIdConnect__Authority="https://id.example.com"
-export Authentication__Schemes__OpenIdConnect__ClientId="aspire-dashboard"
-export Authentication__Schemes__OpenIdConnect__ClientSecret="secret"
-export Authentication__Schemes__OpenIdConnect__GetClaimsFromUserInfoEndpoint="true"
-export Authentication__Schemes__OpenIdConnect__Scope__0="roles"
+```json
+{
+  "Dashboard": {
+    "Frontend": {
+      "OpenIdConnect": {
+        "ClaimActions": [
+          {
+            "ClaimType": "role",
+            "JsonKey": "role"
+          }
+        ]
+      }
+    }
+  }
+}
 ```
 
-> [!NOTE]
-> Additional configuration may be required when using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL. Check if you need `ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED` to be set to `true`.
->
-> For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer).
+Or using environment variables for configuration:
+
+```bash
+export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__ClaimType="role"
+export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__JsonKey="role"
+```
 
 ## OTLP authentication
 
