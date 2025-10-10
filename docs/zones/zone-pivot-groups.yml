@@ -51,6 +51,8 @@ groups:
     title: Aspire CLI
   - id: vscode
     title: Visual Studio Code
+  - id: visual-studio
+    title: Visual Studio
 - id: resp-host
   title: Hosting resource type
   prompt: Choose a hosting resource that supports the Redis protocol
