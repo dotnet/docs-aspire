@@ -42,7 +42,6 @@ In this quickstart, you can choose whether to use the Aspire CLI or Visual Studi
 
 :::zone-end
 
-
 > [!NOTE]
 > You chose not to add a test project to the new solution. You can always add a test project later but it's not needed for this quickstart.
 
@@ -96,7 +95,6 @@ If you're still having an issue, close all browser windows and try again. For mo
 In Visual Studio, set the **AspireSample.AppHost** project as the startup project by right-clicking on the project in the **Solution Explorer** and selecting **Set as Startup Project**. It might already have been automatically set as the startup project. Once set, press <kbd>F5</kbd> or (<kbd>Ctrl</kbd> + <kbd>F5</kbd> to run without debugging) to run the app.
 
 :::zone-end
-
 
 1. The app displays the Aspire dashboard in the browser. You look at the dashboard in more detail later. For now, find the **webfrontend** project in the list of resources and select the project's **localhost** endpoint.
 
