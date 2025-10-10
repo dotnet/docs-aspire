@@ -1,7 +1,7 @@
 ---
 title: Aspire dashboard configuration
 description: Aspire dashboard configuration options
-ms.date: 04/15/2025
+ms.date: 10/10/2025
 ms.topic: reference
 ---
 
@@ -91,10 +91,95 @@ Browser token authentication works by the frontend asking for a token. The token
 | `Dashboard:Frontend:OpenIdConnect:UsernameClaimType` | `preferred_username` | Specifies one or more claim types that should be used to display the authenticated user's username. Can be a single claim type or a comma-delimited list of claim types. |
 | `Dashboard:Frontend:OpenIdConnect:RequiredClaimType` | `null` | Specifies the claim that must be present for authorized users. Authorization fails without this claim. This value is optional. |
 | `Dashboard:Frontend:OpenIdConnect:RequiredClaimValue` | `null` | Specifies the value of the required claim. Only used if `Dashboard:Frontend:OpenIdConnect:RequireClaimType` is also specified. This value is optional. |
+| `Dashboard:Frontend:OpenIdConnect:ClaimActions` | `null` | An array of claim actions to configure how claims are mapped from the OpenID Connect user info endpoint. Each claim action can map JSON properties to claims. This value is optional. |
 | `Authentication:Schemes:OpenIdConnect:Authority` | `null` | URL to the identity provider (IdP). |
 | `Authentication:Schemes:OpenIdConnect:ClientId` | `null` | Identity of the relying party (RP). |
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
 | Other properties of <xref:Microsoft.AspNetCore.Builder.OpenIdConnectOptions> | `null` | Values inside configuration section `Authentication:Schemes:OpenIdConnect:*` are bound to `OpenIdConnectOptions`, such as `Scope`. |
+
+### Claim actions
+
+Claim actions configure how claims are mapped from the JSON returned by the OpenID Connect user info endpoint to the user's claims identity. Each claim action in the `Dashboard:Frontend:OpenIdConnect:ClaimActions` array supports the following properties:
+
+| Property | Description |
+|--|--|
+| `ClaimType` (required) | The claim type to create. |
+| `JsonKey` (required) | The JSON key to map from. |
+| `SubKey` (optional) | The sub-key within the JSON key to map from. Used when the value is nested within another JSON object. |
+| `IsUnique` (optional) | When `true`, ensures only one claim of this type exists. If a claim already exists, it won't be added again. Defaults to `false`. |
+| `ValueType` (optional) | The claim value type. Defaults to `string`. |
+
+The following JSON example shows how to configure claim actions to map role claims:
+
+```json
+{
+  "Authentication": {
+    "Schemes": {
+      "OpenIdConnect": {
+        "Authority": "https://id.example.com",
+        "ClientId": "aspire-dashboard",
+        "ClientSecret": "secret",
+        "GetClaimsFromUserInfoEndpoint": true,
+        "Scope": [
+          "roles"
+        ]
+      }
+    }
+  },
+  "Dashboard": {
+    "Frontend": {
+      "AuthMode": "OpenIdConnect",
+      "OpenIdConnect": {
+        "RequiredClaimType": "role",
+        "RequiredClaimValue": "AspireAdmin",
+        "ClaimActions": [
+          {
+            "ClaimType": "role",
+            "JsonKey": "role"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+The following example shows the equivalent configuration using environment variables:
+
+```bash
+export Dashboard__Frontend__AuthMode="OpenIdConnect"
+export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__ClaimType="role"
+export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__JsonKey="role"
+export Dashboard__Frontend__OpenIdConnect__RequiredClaimType="role"
+export Dashboard__Frontend__OpenIdConnect__RequiredClaimValue="AspireAdmin"
+export Authentication__Schemes__OpenIdConnect__Authority="https://id.example.com"
+export Authentication__Schemes__OpenIdConnect__ClientId="aspire-dashboard"
+export Authentication__Schemes__OpenIdConnect__ClientSecret="secret"
+export Authentication__Schemes__OpenIdConnect__GetClaimsFromUserInfoEndpoint="true"
+export Authentication__Schemes__OpenIdConnect__Scope__0="roles"
+```
+
+For more complex scenarios, you can map nested JSON properties using `SubKey`:
+
+```json
+{
+  "Dashboard": {
+    "Frontend": {
+      "OpenIdConnect": {
+        "ClaimActions": [
+          {
+            "ClaimType": "department",
+            "JsonKey": "profile",
+            "SubKey": "department"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+This configuration maps the `department` value from a JSON structure like `{ "profile": { "department": "Engineering" } }` to a `department` claim.
 
 > [!NOTE]
 > Additional configuration may be required when using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL. Check if you need `ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED` to be set to `true`.
