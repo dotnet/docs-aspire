@@ -54,6 +54,9 @@ The sample app includes a frontend Blazor app that communicates with a Minimal A
 - Weather data is retrieved from the API project using service discovery and displayed on the weather page.
 - Subsequent requests are handled via the output caching configured by the Aspire Redis integration.
 
+> [!TIP]
+> Make sure that your chosen container runtime, such as Docker Desktop or Podman, is running to host containers.
+
 :::zone pivot="aspire-cli"
 
 1. In the command prompt, navigate to the folder where you created the solution. It will be a subdirectory of the location where you ran the `aspire new` command.
@@ -72,19 +75,13 @@ The sample app includes a frontend Blazor app that communicates with a Minimal A
 :::zone-end
 :::zone pivot="vscode"
 
-In Visual Studio Code, press <kbd>F5</kbd> to launch the app. You're prompted to select which language, and C# is suggested. Select **C#** and then select the **AspireSample.AppHost** project with the **Default Configuration**:
+In Visual Studio Code, press <kbd>F5</kbd> to launch the app. You're prompted to select a debugger, and **Aspire** is suggested. Select **Aspire**:
 
-:::image type="content" loc-scope="vs-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code launch configuration for the AspireSample.AppHost project.":::
+:::image type="content" loc-scope="vs-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code launch configuration for the AspireFirstSolution.AppHost project.":::
 
-If this is the first time you're running Aspire, or it's a new machine with a new .NET installation, you're prompted to install a self-signed localhost certificate—and the project will fail to launch:
+Visual Studio Code opens a new debug console and runs the Aspire CLI to start your app. All projects are compiled, containers are deployed and information about the app is displayed. In the **Launch Aspire Dashboard** dialog, to view the dashboard, select **Open local URL**:
 
-:::image type="content" loc-scope="vs-code" source="media/vscode-run-accept-cert.png" lightbox="media/vscode-run-accept-cert.png" alt-text="A screenshot of the Visual Studio Code breaking on an exception and prompting to create a trusted self-signed certificate.":::
-
-Select **Yes**, and you see an informational message indicating that the **Self-signed certificate successfully created**:
-
-:::image type="content" loc-scope="vs-code" source="media/vscode-run-cert-created.png" lightbox="media/vscode-run-cert-created.png" alt-text="A screenshot of the Visual Studio Code success message for creating a self-signed certificate.":::
-
-If you're still having an issue, close all browser windows and try again. For more information, see [Troubleshoot untrusted localhost certificate in Aspire](../troubleshooting/untrusted-localhost-certificate.md).
+:::image type="content" loc-scope="vs-code" source="media/vscode-launch-dashboard.png" lightbox="media/vscode-launch-dashboard.png" alt-text="A screenshot of Visual Studio Code running the new Aspire app.":::
 
 > [!TIP]
 > If you're on MacOS and using Safari, when your browser opens if the page is blank, you might need to manually refresh the page.
