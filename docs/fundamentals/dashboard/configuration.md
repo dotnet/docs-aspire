@@ -159,28 +159,6 @@ export Authentication__Schemes__OpenIdConnect__GetClaimsFromUserInfoEndpoint="tr
 export Authentication__Schemes__OpenIdConnect__Scope__0="roles"
 ```
 
-For more complex scenarios, you can map nested JSON properties using `SubKey`:
-
-```json
-{
-  "Dashboard": {
-    "Frontend": {
-      "OpenIdConnect": {
-        "ClaimActions": [
-          {
-            "ClaimType": "department",
-            "JsonKey": "profile",
-            "SubKey": "department"
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
-This configuration maps the `department` value from a JSON structure like `{ "profile": { "department": "Engineering" } }` to a `department` claim.
-
 > [!NOTE]
 > Additional configuration may be required when using `OpenIdConnect` as authentication mode behind a reverse-proxy that terminates SSL. Check if you need `ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED` to be set to `true`.
 >
