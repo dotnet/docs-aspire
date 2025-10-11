@@ -79,7 +79,7 @@ https://mermaid.live/edit#pako:eNptUl1vozAQ_CvWPrUSTQkQQlBViYRWRbrecQWp0tV92IAbr
 
 :::image type="content" source="media/publish-app-topology-thumb.png" alt-text="Published app topology" lightbox="media/publish-app-topology.png":::
 
-For more information on how to publish mode, [Aspire deployments](../deployment/overview.md).
+For more information on how to use publish mode, see [Aspire deployments](../deployment/overview.md).
 
 ## Dev-time orchestration
 
