@@ -117,7 +117,7 @@ Client certificate authentication validates the TLS connection's client certific
 | `Dashboard:Otlp:AuthMode` | `Unsecured` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Otlp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
 | `Dashboard:Otlp:SecondaryApiKey` | `null` | Specifies the secondary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is optional. If a second API key is specified, then the incoming `x-otlp-api-key` header value can match either the primary or secondary key. |
-| `Dashboard:Otlp:AllowedCertificates` | `null` | Specifies a list of allowed client certificates. This setting accepts a collection of SHA256 certificate thumbprints. For example, `Dashboard:Otlp:AllowedCertificates:0:Thumbprint=XXX`, `Dashboard:Otlp:AllowedCertificates:1:Thumbprint=YYY`. |
+| `Dashboard:Otlp:AllowedCertificates` | `null` | Specifies a list of allowed client certificates. See [allowed certificates](#allowed-certificates) for more information. |
 | Properties of <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions> | `null` | Values inside configuration section `Dashboard:Otlp:CertificateAuthOptions:*` are bound to `CertificateAuthenticationOptions`, such as `AllowedCertificateTypes`. |
 
 ### Allowed certificates
