@@ -128,7 +128,7 @@ When using client certificate authentication you can optionally configure an exp
 |--|--|
 | `Thumbprint` (required) | The SHA256 thumbprint of the certificate to allow. |
 
-The following example shows how to configure claim actions using JSON configuration:
+The following example shows how to configure allowed certificates using JSON configuration:
 
 ```json
 {
