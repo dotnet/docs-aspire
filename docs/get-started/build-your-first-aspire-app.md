@@ -38,7 +38,7 @@ In this quickstart, you can choose whether to use the Aspire CLI or Visual Studi
 :::zone-end
 :::zone pivot="visual-studio"
 
-[!INCLUDE [vscode-file-new](../includes/visual-studio-file-new.md)]
+[!INCLUDE [visual-studio-file-new](../includes/visual-studio-file-new.md)]
 
 :::zone-end
 
