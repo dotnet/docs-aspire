@@ -1,18 +1,22 @@
 ---
-title: Add Aspire to an existing .NET app
-description: Learn how to add Aspire integrations, orchestration, and tooling to a microservices app that already exists.
+title: Add Aspire to an existing app
+description: Learn how to add Aspire integrations, orchestration, and tooling to a distributed app that already exists.
 ms.date: 10/01/2025
 ms.topic: how-to
 zone_pivot_groups: dev-environment
 ---
 
-# Tutorial: Add Aspire to an existing .NET app
+> AJMTODO: change and apply the zone-pivot-groups
 
-If you have existing microservices and .NET web app, you can add Aspire to it and get all the included features and benefits. In this article, you add Aspire orchestration to a simple, preexisting .NET 9 project. You learn how to:
+# Tutorial: Add Aspire to an existing app
+
+If you have existing distributed web app, you can add Aspire to it and get all the included features and benefits. In this article, you add Aspire orchestration to a simple, preexisting .NET 9 project. You learn how to:
+
+> AJMTODO: Check this list at the end.
 
 > [!div class="checklist"]
 >
-> - Understand the structure of the existing microservices app.
+> - Understand the structure of the existing distributed app.
 > - Enroll existing projects in Aspire orchestration.
 > - Understand the changes enrollment makes in the projects.
 > - Start the Aspire project.
@@ -146,6 +150,8 @@ Open and start debugging the project to examine its default behavior:
 
     ---
 
+> AJMTODO: Had to select the "Run All" Launch target here.
+
 1. To start debugging the solution, press <kbd>F5</kbd> or select **Start**.
 1. Two pages open in the browser:
 
@@ -156,6 +162,8 @@ Open and start debugging the project to examine its default behavior:
 
 :::zone-end
 :::zone pivot="dotnet-cli"
+
+> AJMTODO: Want to get rid of dotnet commands and pivot.
 
 1. Open a terminal window and change directories into the newly cloned repository.
 1. To start the _Products_ app, run the following command:
@@ -178,9 +186,12 @@ Open and start debugging the project to examine its default behavior:
 
 :::zone-end
 
-No matter which tool you use—starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where Aspire simplifies and streamlines the process!
+No matter which tool you use, starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where Aspire simplifies and streamlines the process!
 
 ## Ensure Aspire templates are installed
+
+> AJMTODO: get them to install the Aspire CLI instead. It automatically installs templates.
+
 
 If you've worked with Aspire on your current computer before, you likely have the necessary .NET project templates already installed. You can check by using the following command:
 
