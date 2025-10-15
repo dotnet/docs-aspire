@@ -16,7 +16,7 @@ The Aspire dashboard provides an [interactive experience](../extensibility/inter
 
 ## Requirements
 
-This article assumes that you have an Azure account and subscription. If you don't have an Azure account, you can create a free one at [Azure Free Account](https://azure.microsoft.com/free/). For provisioning functionality to work correctly, you need to be authenticated with Azure. Ensure that you have the [Azure CLI](/cli/azure/install-azure-cli) installed.
+This article assumes that you have an Azure account and subscription. If you don't have an Azure account, you can create a free one at [Azure Free Account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). For provisioning functionality to work correctly, you need to be authenticated with Azure. Ensure that you have the [Azure CLI](/cli/azure/install-azure-cli) installed.
 
 When you run your AppHost with Azure resources, the Aspire dashboard automatically prompts you for any missing configuration values, making the setup process straightforward and interactive.
 

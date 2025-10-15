@@ -103,9 +103,14 @@ Browser token authentication works by the frontend asking for a token. The token
 
 ## OTLP authentication
 
-The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or [client certificate](/aspnet/core/security/authentication/certauth) authentication.
+The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or client certificate authentication.
 
 API key authentication works by requiring each OTLP request to have a valid `x-otlp-api-key` header value. It must match either the primary or secondary key.
+
+Client certificate authentication validates the TLS connection's client certificate. When a request with a client certificate is received, two sets of validation are performed:
+
+- **ASP.NET Core certificate authentication validation:** By default this verifies that the certificate chains to a trusted root on the machine, the certificate hasn't expired, and that its Extended Key Usage value is appropriate for Client Authentication. For more information on this validation and how to configure it, see [Configure ASP.NET Core certificate validation](/aspnet/core/security/authentication/certauth#configure-certificate-validation).
+- **Optional explicit certificate allowlist:** You can optionally configure an explicit list of allowed certificates using `AllowedCertificates`. If `AllowedCertificates` is configured and a client certificate does not match any of the listed thumbprints, the request is rejected. If no allowed certificates are specified, all certificates that pass the minimum validation are accepted.
 
 | Option | Default value | Description |
 |--|--|--|
@@ -113,6 +118,41 @@ API key authentication works by requiring each OTLP request to have a valid `x-o
 | `Dashboard:Otlp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
 | `Dashboard:Otlp:SecondaryApiKey` | `null` | Specifies the secondary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is optional. If a second API key is specified, then the incoming `x-otlp-api-key` header value can match either the primary or secondary key. |
 | `Dashboard:Otlp:SuppressUnsecuredTelemetryMessage` | `false` | Suppresses the unsecured telemetry warning message displayed in the dashboard UI and console when OTLP endpoints are configured with `Unsecured` auth mode. When set to `true`, the warning about unsecured OTLP endpoints won't be displayed. Only suppress this warning in controlled environments where security is managed externally. |
+| `Dashboard:Otlp:AllowedCertificates` | `null` | Specifies a list of allowed client certificates. See [allowed certificates](#allowed-certificates) for more information. |
+| Properties of <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions> | `null` | Values inside configuration section `Dashboard:Otlp:CertificateAuthOptions:*` are bound to `CertificateAuthenticationOptions`, such as `AllowedCertificateTypes`. |
+
+### Allowed certificates
+
+When using client certificate authentication you can optionally configure an explicit list of allowed certificates using `AllowedCertificates`. Each allowed certificate  in the `Dashboard:Otlp:AllowedCertificates` collection supports the following properties:
+
+| Property | Description |
+|--|--|
+| `Thumbprint` (required) | The SHA256 thumbprint of the certificate to allow. |
+
+The following example shows how to configure allowed certificates using JSON configuration:
+
+```json
+{
+  "Dashboard": {
+    "Otlp": {
+      "AllowedCertificates": [
+        {
+          "Thumbprint": "HEX_SHA256_THUMBPRINT"
+        }
+      ]
+    }
+  }
+}
+```
+
+Or using environment variables for configuration:
+
+```bash
+export Dashboard__Otlp__AllowedCertificates__0__Thumbprint="HEX_SHA256_THUMBPRINT"
+```
+
+> [!NOTE]
+> If no allowed certificates are configured then all certificates that pass [ASP.NET Core certificate validation](/aspnet/core/security/authentication/certauth#configure-certificate-validation) can authenticate.
 
 ## OTLP CORS
 
