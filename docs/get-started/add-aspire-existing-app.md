@@ -63,7 +63,7 @@ Open and start debugging the project to examine its default behavior:
     dotnet run --project ./Products/Products.csproj
     ```
 
-1. A browser page opens, displaying the JSON for the products. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the commands output. The page display a 404 error. Append **/api/product** to the URL and press <kbd>ENTER</kbd>. The JSON is displayed.
+1. A browser page opens, displaying the JSON for the products. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the command's output. The page display a 404 error. Append **/api/product** to the URL and press <kbd>ENTER</kbd>. The JSON is displayed.
 1. In a separate terminal window, again change directories to cloned repository.
 1. Start the _Store_ app by running the following command:
 
@@ -71,7 +71,7 @@ Open and start debugging the project to examine its default behavior:
     dotnet run --project ./Store/Store.csproj
     ```
 
-1. The browser opens a page that displays the homepage of the website. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the commands output. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
+1. The browser opens a page that displays the homepage of the website. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the command's output. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
 
 1. To stop debugging, close the browser, and press <kbd>Ctrl</kbd>+<kbd>C</kbd> in both terminals.
 
@@ -184,6 +184,23 @@ Open and start debugging the project to examine its default behavior:
 
 No matter which tool you use, starting multiple projects manually or configuring connections between them is tedious. Additionally, the **Store** project requires explicit endpoint configuration for the **Products** API, which is both cumbersome and prone to errors. This is where Aspire simplifies and streamlines the process!
 
+:::zone pivot="aspire-cli,vscode"
+
+## Install the Aspire CLI
+
+The Aspire CLI tool can be used to enroll your app in Aspire orchestration, both when you're using the command prompt exclusively and when you're using Visual Studio Code.
+
+In a terminal window, install the Aspire CLI tool:
+
+```dotnetcli
+dotnet tool install -g Aspire.Cli --prerelease
+```
+
+> [!NOTE]
+> For more information about installing the Aspire CLI, see [Install Aspire CLI](../cli/install.md)
+
+:::zone-end
+
 ## Ensure Aspire templates are installed
 
 If you've worked with Aspire on your current computer before, you likely have the necessary .NET project templates already installed. You can check by using the following command:
@@ -227,7 +244,38 @@ Now, let's enroll the **Store** project, which implements the web user interface
 
 :::zone pivot="aspire-cli"
 
+### Create an AppHost project
+
+In order to orchestrate the existing projects, you need to create a new _AppHost_ project. 
+
+1. To create a new [_AppHost_ project](../fundamentals/app-host-overview.md) from the available Aspire templates, use the following Aspire CLI command:
+
+    ```Aspire
+    aspire new
+    ```
+
+1. In the list of templates, select **AppHost** and then press <kbd>Enter</kbd>.
+1. For the project name, type **AppHost** and then press <kbd>Enter</kbd>.
+1. To accept **./AppHost** as the output path, press <kbd>Enter</kbd>.
+1. To select the default template version, press <kbd>Enter</kbd>.
+
+The Aspire CLI downloads the selected template and adds a new Aspire AppHost project to the folder.
+
+
+
 > AJMTODO: Add this.
+
+Steps:
+1. add a new app host. Done.
+1. Add the app host to the exitsing solution (unless aspire has already done it?)
+1. Add the store project as a reference to the apphost project
+1. Create a service defaults project
+1. Add the service defaults project to the existing solution
+1. Add the products project as a reference to the apphost project
+1. Add the service default project as a reference to the store project
+1. Add the service default project as a reference to the products project
+1. Add the builder.AddServiceDefaults() call to both store and products.
+1. Add the usual code to AppHost.cs
 
 :::zone-end
 :::zone pivot="vscode"
