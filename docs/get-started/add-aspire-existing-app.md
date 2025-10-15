@@ -56,8 +56,6 @@ Open and start debugging the project to examine its default behavior:
 
 :::zone pivot="aspire-cli"
 
-> AJMTODO: try this!
-
 1. Open a terminal window and change directories into the newly cloned repository.
 1. To start the _Products_ app, run the following command:
 
@@ -65,7 +63,7 @@ Open and start debugging the project to examine its default behavior:
     dotnet run --project ./Products/Products.csproj
     ```
 
-1. A browser page opens, displaying the JSON for the products.
+1. A browser page opens, displaying the JSON for the products. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the commands output. The page display a 404 error. Append **/api/product** to the URL and press <kbd>ENTER</kbd>. The JSON is displayed.
 1. In a separate terminal window, again change directories to cloned repository.
 1. Start the _Store_ app by running the following command:
 
@@ -73,7 +71,7 @@ Open and start debugging the project to examine its default behavior:
     dotnet run --project ./Store/Store.csproj
     ```
 
-1. The browser opens a page that displays the homepage of the website. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
+1. The browser opens a page that displays the homepage of the website. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the commands output. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
 
 1. To stop debugging, close the browser, and press <kbd>Ctrl</kbd>+<kbd>C</kbd> in both terminals.
 
@@ -86,11 +84,11 @@ Open and start debugging the project to examine its default behavior:
     ```
 
 1. Select the **Run and Debug** menu item, or press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>D</kbd>.
-1. Select the **create a launch.json file** link.
+1. Select the **create a launch.json file** link. If you're asked to select a debugger, select **Aspire**.
 
     :::image type="content" source="media/vscode-launch.json.png" lightbox="media/vscode-launch.json.png" alt-text="Visual Studio Code: Run and Debug create launch.json file.":::
 
-1. Copy and paste the following JSON into this file and **Save**:
+1. Copy and paste the following JSON into this file, replacing it's original content, and **Save**:
 
     ## [Unix](#tab/unix)
 
@@ -156,8 +154,7 @@ Open and start debugging the project to examine its default behavior:
 
     ---
 
-> AJMTODO: Had to select the "Run All" Launch target here.
-
+1. At the top of the **RUN AND DEBUG** pane, in the drop-down list, select **Run all**.
 1. To start debugging the solution, press <kbd>F5</kbd> or select **Start**.
 1. Two pages open in the browser:
 
@@ -168,8 +165,6 @@ Open and start debugging the project to examine its default behavior:
 
 :::zone-end
 :::zone pivot="visual-studio"
-
->AJMTODO: Try this
 
 1. Start Visual Studio and then select **File** > **Open** > **Project/Solution**.
 1. Navigate to the top level folder of the solution you cloned, select **eShopLite.sln**, and then select **Open**.
@@ -383,8 +378,6 @@ The preceding code:
 :::zone-end
 :::zone pivot="visual-studio"
 
-> AJMRTODO: try this
-
 1. In Visual Studio, in the **Solution Explorer**, right-click the **Store** project, select **Add**, and then select **Aspire Orchestrator Support**.
 1. In the **Add Aspire Orchestrator Support** dialog, select **OK**.
 
@@ -393,7 +386,7 @@ The preceding code:
 You should now have two new projects, both added to the solution:
 
 - **eShopLite.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator is set as the _Startup project_, and it depends on the **eShopLite.Store** project.
-- **eShopLite.ServiceDefaults**: A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
+- **eShopLite.ServiceDefaults**: An Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
 
 In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Store** project in the Aspire orchestration:
 
@@ -483,8 +476,6 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
 :::zone-end
 :::zone pivot="visual-studio"
 
-> AJMTODO: Try this
-
 > [!NOTE]
 > Notice that the **eShopLite.AppHost** project is the new startup project.
 
@@ -493,7 +484,7 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
 1. In the dashboard, select the endpoint for the **products** project. A new browser tab appears and displays the product catalog in JSON format.
 1. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
 1. In the menu on the left, select **Products**. The product catalog is displayed.
-1. To stop debugging, close the browser.
+1. To stop debugging, close the browser and then, in Visual Studio select the **Stop** button or press <kbd>SHIFT</kbd> + <kbd>F5</kbd>.
 
 :::zone-end
 :::zone pivot="dotnet-cli"
@@ -510,7 +501,6 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
     > If Docker Desktop (or Podman) isn't running, you experience an error. Start the container runtime and try again.
 
 :::zone-end
-> AJMTODO: Isn't this next bit for all three pivots?
 :::zone pivot="vscode,dotnet-cli"
 
 <!-- markdownlint-disable MD029 -->
