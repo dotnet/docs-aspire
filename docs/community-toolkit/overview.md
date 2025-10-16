@@ -54,6 +54,9 @@ The community toolkit is a growing project, publishing a set of NuGet packages. 
 - The [RavenDB](https://ravendb.net/) integration enables hosting RavenDB containers.
   - [📄 Aspire RavenDB hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.RavenDB).
   - [📦 CommunityToolkit.Aspire.Hosting.RavenDB](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.RavenDB).
+- The [flagd](https://flagd.dev/) integration enables hosting flagd containers.
+  - [📄 Aspire flagd hosting integration](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Flagd).
+  - [📦 CommunityToolkit.Aspire.Hosting.Flagd](https://nuget.org/packages/CommunityToolkit.Aspire.Hosting.Flagd).
 
 ### Client integrations
 
