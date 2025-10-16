@@ -6,13 +6,9 @@ ms.topic: how-to
 zone_pivot_groups: dev-tools
 ---
 
-> AJMTODO: change and apply the zone-pivot-groups
-
 # Tutorial: Add Aspire to an existing app
 
 If you have existing distributed web app, you can add Aspire to it and get all the included features and benefits. In this article, you add Aspire orchestration to a simple, preexisting .NET 9 project. You learn how to:
-
-> AJMTODO: Check this list at the end.
 
 > [!div class="checklist"]
 >
@@ -242,7 +238,7 @@ For more information about the Aspire templates, see [Aspire templates](../funda
 
 Now, let's enroll the **Store** project, which implements the web user interface, in Aspire orchestration:
 
-:::zone pivot="aspire-cli"
+:::zone pivot="aspire-cli,vscode"
 
 ### Create an AppHost project
 
@@ -261,47 +257,18 @@ In order to orchestrate the existing projects, you need to create a new _AppHost
 
 The Aspire CLI downloads the selected template and adds a new Aspire AppHost project to the folder.
 
-
-
-> AJMTODO: Add this.
-
-Steps:
-1. add a new app host. Done.
-1. Add the app host to the exitsing solution (unless aspire has already done it?)
-1. Add the store project as a reference to the apphost project
-1. Create a service defaults project
-1. Add the service defaults project to the existing solution
-1. Add the products project as a reference to the apphost project
-1. Add the service default project as a reference to the store project
-1. Add the service default project as a reference to the products project
-1. Add the builder.AddServiceDefaults() call to both store and products.
-1. Add the usual code to AppHost.cs
-
-:::zone-end
-:::zone pivot="vscode"
-
-> AJMTODO: Most of this is dotnet commands. Do it with aspire and add it to the previous pivot ("pivot="aspire-cli,vscode")
-
-### Create an AppHost project
-
-In order to orchestrate the existing projects, you need to create a new _AppHost_ project. To create a new [_AppHost_ project](../fundamentals/app-host-overview.md) from the available Aspire templates, use the following .NET CLI command:
-
-```dotnetcli
-dotnet new aspire-apphost -o eShopLite.AppHost
-```
-
 Add the _AppHost_ project to existing solution:
 
 ## [Unix](#tab/unix)
 
 ```dotnetcli
-dotnet sln ./eShopLite.sln add ./eShopLite.AppHost/eShopLite.AppHost.csproj
+dotnet sln ./eShopLite.sln add ./AppHost/AppHost.csproj
 ```
 
 ## [Windows](#tab/windows)
 
 ```dotnetcli
-dotnet sln .\eShopLite.sln add .\eShopLite.AppHost\eShopLite.AppHost.csproj
+dotnet sln .\eShopLite.sln add .\AppHost\AppHost.csproj
 ```
 
 ---
@@ -311,39 +278,13 @@ Add the **Store** project as a project reference to the _AppHost_ project using 
 ## [Unix](#tab/unix)
 
 ```dotnetcli
-dotnet add ./eShopLite.AppHost/eShopLite.AppHost.csproj reference ./Store/Store.csproj
+dotnet add ./AppHost/AppHost.csproj reference ./Store/Store.csproj
 ```
 
 ## [Windows](#tab/windows)
 
 ```dotnetcli
-dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Store\Store.csproj
-```
-
----
-
-For more information on the available templates, see [Aspire templates](../fundamentals/aspire-sdk-templates.md).
-
-### Create a service defaults project
-
-After the AppHost project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available Aspire templates, use the following .NET CLI command:
-
-```dotnetcli
-dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
-```
-
-To add the project to the solution, use the following .NET CLI command:
-
-## [Unix](#tab/unix)
-
-```dotnetcli
-dotnet sln ./eShopLite.sln add ./eShopLite.ServiceDefaults/eShopLite.ServiceDefaults.csproj
-```
-
-## [Windows](#tab/windows)
-
-```dotnetcli
-dotnet sln .\eShopLite.sln add .\eShopLite.ServiceDefaults\eShopLite.ServiceDefaults.csproj
+dotnet add .\AppHost\AppHost.csproj reference .\Store\Store.csproj
 ```
 
 ---
@@ -353,13 +294,46 @@ Update the _AppHost_ project to add a project reference to the **Products** proj
 ## [Unix](#tab/unix)
 
 ```dotnetcli
-dotnet add ./eShopLite.AppHost/eShopLite.AppHost.csproj reference ./Products/Products.csproj
+dotnet add ./AppHost/AppHost.csproj reference ./Products/Products.csproj
 ```
 
 ## [Windows](#tab/windows)
 
 ```dotnetcli
-dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Products\Products.csproj
+dotnet add .\AppHost\AppHost.csproj reference .\Products\Products.csproj
+```
+
+---
+
+### Create a service defaults project
+
+After the AppHost project is created, you need to create a new _service defaults_ project.
+
+1. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available Aspire templates, use the following Aspire CLI command:
+
+    ```Aspire
+    aspire new
+    ```
+
+1. In the list of templates, select **Service defaults** and then press <kbd>Enter</kbd>.
+1. For the project name, type **ServiceDefaults** and then press <kbd>Enter</kbd>.
+1. To accept **./ServiceDefaults** as the output path, press <kbd>Enter</kbd>.
+1. To select the default template version, press <kbd>Enter</kbd>.
+
+The Aspire CLI downloads the selected template and adds a new Aspire service defaults project to the folder.
+
+To add the project to the solution, use the following .NET CLI command:
+
+## [Unix](#tab/unix)
+
+```dotnetcli
+dotnet sln ./eShopLite.sln add ./ServiceDefaults/ServiceDefaults.csproj
+```
+
+## [Windows](#tab/windows)
+
+```dotnetcli
+dotnet sln .\eShopLite.sln add .\ServiceDefaults\ServiceDefaults.csproj
 ```
 
 ---
@@ -369,13 +343,13 @@ Both the **Store** and **Products** projects need to reference the _service defa
 ## [Unix](#tab/unix)
 
 ```dotnetcli
-dotnet add ./Store/Store.csproj reference ./eShopLite.ServiceDefaults/eShopLite.ServiceDefaults.csproj
+dotnet add ./Store/Store.csproj reference ./ServiceDefaults/ServiceDefaults.csproj
 ```
 
 ## [Windows](#tab/windows)
 
 ```dotnetcli
-dotnet add .\Store\Store.csproj reference .\eShopLite.ServiceDefaults\eShopLite.ServiceDefaults.csproj
+dotnet add .\Store\Store.csproj reference .\ServiceDefaults\ServiceDefaults.csproj
 ```
 
 ---
@@ -385,13 +359,13 @@ The same command with slightly different paths should be used to add a reference
 ## [Unix](#tab/unix)
 
 ```dotnetcli
-dotnet add ./Products/Products.csproj reference ./eShopLite.ServiceDefaults/eShopLite.ServiceDefaults.csproj
+dotnet add ./Products/Products.csproj reference ./ServiceDefaults/ServiceDefaults.csproj
 ```
 
 ## [Windows](#tab/windows)
 
 ```dotnetcli
-dotnet add .\Products\Products.csproj reference .\eShopLite.ServiceDefaults\eShopLite.ServiceDefaults.csproj
+dotnet add .\Products\Products.csproj reference .\ServiceDefaults\ServiceDefaults.csproj
 ```
 
 ---
@@ -409,9 +383,9 @@ Open the _:::no-loc text="AppHost.cs":::_ file of the _AppHost_ project, and rep
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.Store>("store");
-
 builder.AddProject<Projects.Products>("products");
+
+builder.AddProject<Projects.Store>("store");
 
 builder.Build().Run();
 ```
@@ -463,7 +437,7 @@ Also notice that the **eShopLite.AppHost** project, now depends on both the **St
 
 ## Service Discovery
 
-At this point, both projects are part of Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="AppHost.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
+At this point, both projects are part of Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="AppHost.cs":::_ file in **AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -505,18 +479,23 @@ Let's start the solution and examine the new behavior that Aspire provides.
 
 :::zone pivot="aspire-cli"
 
-> AJMTODO: finish this
+In a command prompt, change to the root of the eShopLite solution and then run this command:
+
+```Aspire
+aspire run
+```
+
+Hold down <kbd>CTRL</kbd> and then select the **Dashboard** URL.
 
 :::zone-end
 :::zone pivot="vscode"
 
-> AJMTODO: try this
-
 Delete the _launch.json_ file that you created earlier, it no longer serves a purpose. Instead, start the _AppHost_ project, which orchestrates the other projects:
 
-1. Start the _AppHost_ project by right-clicking the **eShopLite.AppHost** project in the **Solution Explorer** and selecting **Debug** > **Start New Instance**:
-
-    :::image type="content" source="media/vscode-run-app-host.png" lightbox="media/vscode-run-app-host.png" alt-text="Visual Studio Code: Solution Explorer selecting Debug > Start New Instance." :::
+1. In Visual Studio Code, open the _:::no-loc text="AppHost.cs":::_ file in the _AppHost_ project.
+1. To open the **RUN AND DEBUG** window, press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>D</kbd>.
+1. Press <kbd>F5</kbd> or select **Start Debugging**. If you are asked to select a debugger, select **C#**.
+1. In you are asked to select a launch configuration, select **C#:AppHost [Default Configuration]**.
 
     > [!NOTE]
     > If Docker Desktop (or Podman) isn't running, you experience an error. Start the container runtime and try again.
@@ -533,20 +512,6 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
 1. In the dashboard, select the endpoint for the **store** project. A new browser tab appears and displays the home page for the web app.
 1. In the menu on the left, select **Products**. The product catalog is displayed.
 1. To stop debugging, close the browser and then, in Visual Studio select the **Stop** button or press <kbd>SHIFT</kbd> + <kbd>F5</kbd>.
-
-:::zone-end
-:::zone pivot="dotnet-cli"
-
-> AJMTODO: Get rid of this
-
-1. Start the _AppHost_ project by running the following command:
-
-    ```dotnetcli
-    dotnet run --project ./eShopLite.AppHost/eShopLite.AppHost.csproj
-    ```
-
-    > [!NOTE]
-    > If Docker Desktop (or Podman) isn't running, you experience an error. Start the container runtime and try again.
 
 :::zone-end
 :::zone pivot="vscode,dotnet-cli"
