@@ -59,7 +59,7 @@ Open and start debugging the project to examine its default behavior:
     dotnet run --project ./Products/Products.csproj
     ```
 
-1. A browser page opens, displaying the JSON for the products. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the command's output. The page display a 404 error. Append **/api/product** to the URL and press <kbd>ENTER</kbd>. The JSON is displayed.
+1. A browser page opens, displaying the JSON for the products. If the browser doesn't open, hold down <kbd>CTRL</kbd> and click the **Now listening on:** link in the command's output. The page display a 404 error. Append **/api/product** to the URL and press <kbd>ENTER</kbd>. The JSON is displayed.
 1. In a separate terminal window, again change directories to cloned repository.
 1. Start the _Store_ app by running the following command:
 
@@ -67,12 +67,13 @@ Open and start debugging the project to examine its default behavior:
     dotnet run --project ./Store/Store.csproj
     ```
 
-1. The browser opens a page that displays the homepage of the website. If the browser doesn't open, hold down <kdb>CTRL</kbd> and click the **Now listening on:** link in the command's output. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
+1. The browser opens a page that displays the homepage of the website. If the browser doesn't open, hold down <kbd>CTRL</kbd> and click the **Now listening on:** link in the command's output. In the menu on the left, select **Products** to see the catalog obtained from the Web API.
 
 1. To stop debugging, close the browser, and press <kbd>Ctrl</kbd>+<kbd>C</kbd> in both terminals.
 
 :::zone-end
 :::zone pivot="vscode"
+
 1. Start Visual Studio Code and open the folder that you cloned. From the terminal where you cloned the repo, run the following command:
 
     ```bash
@@ -242,7 +243,7 @@ Now, let's enroll the **Store** project, which implements the web user interface
 
 ### Create an AppHost project
 
-In order to orchestrate the existing projects, you need to create a new _AppHost_ project. 
+In order to orchestrate the existing projects, you need to create a new _AppHost_ project.
 
 1. To create a new [_AppHost_ project](../fundamentals/app-host-overview.md) from the available Aspire templates, use the following Aspire CLI command:
 
@@ -514,7 +515,7 @@ Delete the _launch.json_ file that you created earlier, it no longer serves a pu
 1. To stop debugging, close the browser and then, in Visual Studio select the **Stop** button or press <kbd>SHIFT</kbd> + <kbd>F5</kbd>.
 
 :::zone-end
-:::zone pivot="vscode,dotnet-cli"
+:::zone pivot="aspire-cli,vscode"
 
 <!-- markdownlint-disable MD029 -->
 <!-- We need to continue from the previous shared step from a different pivot. -->
