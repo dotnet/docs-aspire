@@ -38,7 +38,7 @@ For more information, see [dotnet add package](/dotnet/core/tools/dotnet-add-pac
 
 ### Add flagd server resource
 
-In your app host project, call `AddFlagd` on the `builder` instance to add a flagd container resource:
+In your AppHost project, call `AddFlagd` on the `builder` instance to add a flagd container resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
