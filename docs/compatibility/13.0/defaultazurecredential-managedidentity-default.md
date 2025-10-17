@@ -97,5 +97,5 @@ builder.AddProject<Projects.Frontend>("frontend")
 
 ## Affected APIs
 
-- <xref:Aspire.Hosting.Azure.AzureContainerAppsExtensions.AddAzureContainerAppEnvironment*?displayProperty=fullName>
-- <xref:Aspire.Hosting.Azure.AzureAppServiceExtensions.AddAzureAppServiceEnvironment*?displayProperty=fullName>
+- <xref:Aspire.Hosting.Azure.AzureContainerAppExtensions.AddAzureContainerAppEnvironment*?displayProperty=fullName>
+- <xref:Aspire.Hosting.Azure.AzureAppServiceEnvironmentExtensions.AddAzureAppServiceEnvironment*?displayProperty=fullName>
