@@ -1,13 +1,16 @@
 ---
 title: Orchestrate Python apps in Aspire
-description: Learn how to integrate Python apps into an Aspire AppHost project.
-ms.date: 04/15/2025
+description: Learn how to integrate existing Python apps into an Aspire AppHost project.
+ms.date: 10/17/2025
 ms.custom: sfi-image-nochange
 ---
 
 # Orchestrate Python apps in Aspire
 
-In this article, you learn how to use Python apps in an Aspire AppHost. The sample app in this article demonstrates launching a Python application. The Python extension for Aspire requires the use of virtual environments.
+In this article, you learn how to add existing Python applications to an Aspire solution. This approach is ideal when you have an existing Python codebase and want to add Aspire orchestration and observability capabilities to it. The sample app in this article demonstrates launching a Python application with Flask. The Python extension for Aspire requires the use of virtual environments.
+
+> [!TIP]
+> If you're starting a new project from scratch, consider using the Aspire Python template instead. See [Build an Aspire app with Python and JavaScript](build-aspire-python-app.md) for more information.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
@@ -194,10 +197,71 @@ Once the AppHost is running, navigate to the dashboard and select the **Structur
 
 :::image source="media/python-telemetry-in-dashboard.png" lightbox="media/python-telemetry-in-dashboard.png" alt-text="Aspire dashboard: Structured logging from Python process.":::
 
+## Onboard existing Python applications
+
+If you have an existing Python application that you want to add to Aspire, here are some key considerations and best practices:
+
+### Common Python frameworks
+
+Aspire works with various Python web frameworks. The most common ones include:
+
+- **Flask**: A lightweight WSGI web application framework
+- **FastAPI**: A modern, fast web framework for building APIs with Python
+- **Django**: A high-level web framework that encourages rapid development
+
+The integration process is similar across frameworks:
+
+1. Ensure your application can read configuration from environment variables
+1. Add OpenTelemetry instrumentation for observability
+1. Use the `AddPythonApp` API in your AppHost to orchestrate the application
+
+### Migration tips
+
+When migrating an existing Python application to Aspire:
+
+1. **Virtual environments**: Ensure your application uses a virtual environment (`.venv` directory)
+1. **Dependencies**: List all dependencies in a `requirements.txt` file
+1. **Configuration**: Use environment variables for configuration instead of hardcoded values
+1. **Port binding**: Make your application read the port from an environment variable (commonly `PORT`)
+1. **Logging**: Configure logging to work with OpenTelemetry for better observability
+
+### Common pitfalls
+
+Be aware of these common issues when onboarding Python apps:
+
+- **Certificate issues**: When running locally, you might need to set `ASPIRE_ALLOW_UNSECURED_TRANSPORT=true` in your AppHost launch settings
+- **Path issues**: Ensure the path to your Python entry point file is correct relative to the AppHost project
+- **Virtual environment activation**: The `AddPythonApp` API handles virtual environment activation automatically—you don't need to activate it manually
+- **Python version compatibility**: Ensure your Python version is compatible with the packages you're using
+
+### Multiple Python services
+
+If you have multiple Python services, you can add them all to the same AppHost:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+var pythonApi = builder.AddPythonApp("python-api", "../python-api", "main.py")
+    .WithHttpEndpoint(port: 8111);
+
+var pythonWorker = builder.AddPythonApp("python-worker", "../python-worker", "worker.py");
+
+builder.Build().Run();
+```
+
 ## Summary
 
-While there are several considerations that are beyond the scope of this article, you learned how to build Aspire solution that integrates with Python. You also learned how to use the `AddPythonApp` API to host Python apps.
+In this article, you learned how to integrate existing Python applications into an Aspire solution. You learned how to:
+
+- Create an Aspire AppHost project
+- Prepare a Python application with a virtual environment
+- Install the Python hosting package
+- Use the `AddPythonApp` API to orchestrate Python apps
+- Add OpenTelemetry for observability
+- Handle common pitfalls and best practices for migrating existing Python apps
 
 ## See also
 
+- [Build an Aspire app with Python and JavaScript](build-aspire-python-app.md)
 - [GitHub: Aspire Samples—Python hosting integration](https://github.com/dotnet/aspire-samples/tree/main/samples/AspireWithPython)
+- [GitHub: Aspire issue #11865 - Python Templates](https://github.com/dotnet/aspire/issues/11865)
