@@ -39,7 +39,8 @@ To add a `GitHubModelResource` to your AppHost project, call the `AddGitHubModel
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini");
+var model = GitHubModel.OpenAI.OpenAIGpt4oMini;
+var chat = builder.AddGitHubModel("chat", model);
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(chat);
@@ -47,7 +48,10 @@ builder.AddProject<Projects.ExampleProject>()
 // After adding all resources, run the app...
 ```
 
-The preceding code adds a GitHub Model resource named `chat` using the `openai/gpt-4o-mini` model. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
+The preceding code adds a GitHub Model resource named `chat` using the <xref:Aspire.Hosting.GitHub.GitHubModel> constant for OpenAI's GPT-4o-mini model. The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method passes the connection information to the `ExampleProject` project.
+
+> [!TIP]
+> Use the strongly-typed <xref:Aspire.Hosting.GitHub.GitHubModel> constants to avoid typos and ensure you're using valid model identifiers. These constants are grouped by publisher (for example, `GitHubModel.OpenAI.OpenAIGpt4oMini`, `GitHubModel.Microsoft.Phi4MiniInstruct`, `GitHubModel.DeepSeek.DeepSeekV30324`).
 
 ### Specify an organization
 
@@ -57,7 +61,8 @@ For organization-specific requests, you can specify an organization parameter:
 var builder = DistributedApplication.CreateBuilder(args);
 
 var organization = builder.AddParameter("github-org");
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini", organization);
+var model = GitHubModel.OpenAI.OpenAIGpt4oMini;
+var chat = builder.AddGitHubModel("chat", model, organization);
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(chat);
@@ -76,7 +81,8 @@ The GitHub Models integration supports multiple ways to configure authentication
 By default, the integration creates a parameter named `{resource_name}-gh-apikey` that automatically falls back to the `GITHUB_TOKEN` environment variable:
 
 ```csharp
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini");
+var model = GitHubModel.OpenAI.OpenAIGpt4oMini;
+var chat = builder.AddGitHubModel("chat", model);
 ```
 
 Then in user secrets:
@@ -95,7 +101,8 @@ You can also specify a custom parameter for the API key:
 
 ```csharp
 var apiKey = builder.AddParameter("my-api-key", secret: true);
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini")
+var model = GitHubModel.OpenAI.OpenAIGpt4oMini;
+var chat = builder.AddGitHubModel("chat", model)
                   .WithApiKey(apiKey);
 ```
 
@@ -114,7 +121,8 @@ Then in user secrets:
 You can add health checks to verify the GitHub Models endpoint accessibility and API key validity:
 
 ```csharp
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini")
+var model = GitHubModel.OpenAI.OpenAIGpt4oMini;
+var chat = builder.AddGitHubModel("chat", model)
                   .WithHealthCheck();
 ```
 
@@ -123,14 +131,14 @@ var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini")
 
 ### Available models
 
-GitHub Models supports various AI models. Some popular options include:
+GitHub Models supports various AI models. Use the strongly-typed <xref:Aspire.Hosting.GitHub.GitHubModel> constants for the most up-to-date list of available models. Some popular options include:
 
-- `openai/gpt-4o-mini`
-- `openai/gpt-4o`
-- `deepseek/DeepSeek-V3-0324`
-- `microsoft/Phi-4-mini-instruct`
+- `GitHubModel.OpenAI.OpenAIGpt4oMini`
+- `GitHubModel.OpenAI.OpenAIGpt41Mini`
+- `GitHubModel.DeepSeek.DeepSeekV30324`
+- `GitHubModel.Microsoft.Phi4MiniInstruct`
 
-Check the [GitHub Models documentation](https://docs.github.com/github-models) for the most up-to-date list of available models.
+Check the [GitHub Models documentation](https://docs.github.com/github-models) for more information about these models and their capabilities.
 
 ## Client integration
 
@@ -171,7 +179,6 @@ public class ExampleService(ChatCompletionsClient client)
     public async Task<string> GetResponseAsync(string prompt)
     {
         var response = await client.GetChatCompletionsAsync(
-            "openai/gpt-4o-mini",
             new[]
             {
                 new ChatMessage(ChatRole.User, prompt)
@@ -237,7 +244,7 @@ public class ChatService(OpenAIClient client)
 {
     public async Task<string> GetChatResponseAsync(string prompt)
     {
-        var chatClient = client.GetChatClient("openai/gpt-4o-mini");
+        var chatClient = client.GetChatClient(GitHubModel.OpenAI.OpenAIGpt4oMini);
 
         var response = await chatClient.CompleteChatAsync(
             new[]
@@ -271,7 +278,8 @@ When running an app in GitHub Codespaces or GitHub Actions, the `GITHUB_TOKEN` e
 
 ```csharp
 // No additional configuration needed in Codespaces/GitHub Actions
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini");
+var model = GitHubModel.OpenAI.OpenAIGpt4oMini;
+var chat = builder.AddGitHubModel("chat", model);
 ```
 
 ##### Personal access tokens for local development

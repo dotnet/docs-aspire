@@ -117,7 +117,8 @@ The [Aspire.Hosting.GitHub.Models](https://www.nuget.org/packages/Aspire.Hosting
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var chat = builder.AddGitHubModel("chat", "openai/gpt-4o-mini");
+var model = GitHubModel.OpenAI.OpenAIGpt4oMini;
+var chat = builder.AddGitHubModel("chat", model);
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(chat);

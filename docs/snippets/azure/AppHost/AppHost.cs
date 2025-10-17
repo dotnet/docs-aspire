@@ -6,7 +6,7 @@ var foundry = builder.AddAzureAIFoundry("ai-foundry");
 var foundryDeployment = foundry.AddDeployment(
     name: "chat",
     modelName: "Phi-4",
-    modelVersion: "1",
+    modelVersion: "7",
     format: "Microsoft");
 
 builder.AddAzureAppConfiguration("config");
