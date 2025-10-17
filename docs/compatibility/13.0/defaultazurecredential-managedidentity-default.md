@@ -52,6 +52,7 @@ This change enforces Azure SDK best practices for production environments. Using
 - Following the principle of least privilege by using managed identities
 
 For more information, see:
+
 - [Use deterministic credentials in production environments](https://learn.microsoft.com/dotnet/azure/sdk/authentication/best-practices?tabs=aspdotnet#use-deterministic-credentials-in-production-environments)
 - [GitHub PR dotnet/aspire#11832](https://github.com/dotnet/aspire/pull/11832)
 - [Azure SDK resilience improvements](https://github.com/Azure/azure-sdk-for-net/pull/52545)
