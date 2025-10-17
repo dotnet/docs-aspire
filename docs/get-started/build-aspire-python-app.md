@@ -18,7 +18,7 @@ In this article, you learn how to create a new Aspire application using the Aspi
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-Additionally, you need to install [Python](https://www.python.org/downloads) on your machine. The sample app in this article requires Python version 3.11 or later. To verify your Python and pip versions, run the following commands:
+Additionally, you need to install [Python](https://www.python.org/downloads) on your machine. This article requires Python version 3.12 or later. To verify your Python and pip versions, run the following commands:
 
 ```console
 python --version
