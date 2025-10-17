@@ -62,7 +62,7 @@ In the preceding JSON:
 
 ### Named endpoints in Aspire
 
-Named endpoints can also be exposed by code in the App Host. For instance the previous example can be modeled as: 
+Named endpoints can also be exposed by code in the App Host. For instance the previous example can be modeled as:
 
 ```csharp
 var basket = builder.AddProject<Projects.BasketService>("basket")
