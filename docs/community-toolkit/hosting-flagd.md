@@ -59,9 +59,6 @@ The <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method conf
 > [!IMPORTANT]
 > The flagd container requires a sync source to be configured. Use the `WithBindFileSync` method to configure file-based flag synchronization.
 
-> [!TIP]
-> If you'd rather connect to an existing flagd server, call <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddConnectionString*> instead. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
-
 ### Add flagd server resource with bind mount
 
 To add a bind mount to the flagd container resource, call the `Aspire.Hosting.FlagdBuilderExtensions.WithBindFileSync` method on the flagd container resource:
