@@ -238,6 +238,9 @@ APISERVICE_MYENDPOINT
 
 In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`.
 
+> [!NOTE]
+> The environment variable name is based on the resource name, not the connection string name. Even when using `WithReference(resource, "customname")`, the environment variables use the resource's name.
+
 #### .NET service discovery format
 
 The .NET service discovery format is used by .NET's configuration-based service discovery. Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each endpoint.
