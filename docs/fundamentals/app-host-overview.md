@@ -176,9 +176,16 @@ Project-to-project references are handled differently than resources that have w
 | Method | Environment variable |
 |--|--|
 | `WithReference(cache)` | `ConnectionStrings__cache="localhost:62354"` |
-| `WithReference(apiservice)` | `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
+| `WithReference(apiservice)` | `APISERVICE_HTTP="http://localhost:5455"` <br /> `APISERVICE_HTTPS="https://localhost:7356"` <br /> `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
 
-Adding a reference to the "apiservice" project results in service discovery environment variables being added to the frontend. This is because typically, project-to-project communication occurs over HTTP/gRPC. For more information, see [Aspire service discovery](../service-discovery/overview.md).
+Adding a reference to the "apiservice" project results in service discovery environment variables being added to the frontend. This is because typically, project-to-project communication occurs over HTTP/gRPC. 
+
+Aspire injects two types of environment variables for service references:
+
+- **Simplified format** (e.g., `APISERVICE_HTTP`): Uses the pattern `{RESOURCENAME}_{ENDPOINTNAME}` in uppercase. This format is simpler and more suitable for non-.NET languages and polyglot scenarios.
+- **.NET service discovery format** (e.g., `services__apiservice__http__0`): Uses the pattern `services__{servicename}__{endpointname}__{index}` in lowercase. This format is used by .NET's configuration-based service discovery.
+
+For more information, see [Aspire service discovery](../service-discovery/overview.md).
 
 To get specific endpoints from a <xref:Aspire.Hosting.ApplicationModel.ContainerResource> or an <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, use one of the following endpoint APIs:
 
@@ -202,31 +209,65 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 | Method                    | Environment variable                                  |
 |---------------------------|-------------------------------------------------------|
-| `WithReference(endpoint)` | `services__myapp__endpoint__0=https://localhost:9043` |
+| `WithReference(endpoint)` | `MYAPP_ENDPOINT="https://localhost:9043"` <br /> `services__myapp__endpoint__0="https://localhost:9043"` |
 
 The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [Aspire service discovery](../service-discovery/overview.md).
 
 ### Service endpoint environment variable format
 
-In the preceding section, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on this format.
+In the preceding section, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on the available formats.
 
-When one resource depends on another resource, the AppHost injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
+When one resource depends on another resource, the AppHost injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. Aspire provides two environment variable formats to support different scenarios:
 
-Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each endpoint.
+#### Simplified format (polyglot-friendly)
+
+The simplified format uses the pattern `{RESOURCENAME}_{ENDPOINTNAME}` in uppercase. This format is easier to use from non-.NET languages and is recommended for polyglot scenarios.
+
+Consider the following environment variable examples:
+
+```Environment
+APISERVICE_HTTP
+APISERVICE_HTTPS
+```
+
+The preceding environment variables express HTTP and HTTPS endpoints for the `apiservice` service. A named endpoint might be expressed as follows:
+
+```Environment
+APISERVICE_MYENDPOINT
+```
+
+In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`.
+
+#### .NET service discovery format
+
+The .NET service discovery format is used by .NET's configuration-based service discovery. Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each endpoint.
 
 Consider the following environment variable examples:
 
 ```Environment
 services__apiservice__http__0
+services__apiservice__https__0
 ```
 
-The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
+The preceding environment variables express the first HTTP and HTTPS endpoints for the `apiservice` service. A named endpoint might be expressed as follows:
 
 ```Environment
 services__apiservice__myendpoint__0
 ```
 
-In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`. The value of the environment variable is the URL of the service endpoint.
+In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`.
+
+#### Using a specific endpoint with WithEnvironment
+
+To specify a custom environment variable name for a specific endpoint, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment%2A> method combined with <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint*>:
+
+```csharp
+var projectA = builder.AddProject<Projects.ProjectA>("projecta");
+var projectB = builder.AddProject<Projects.ProjectB>("projectb")
+                      .WithEnvironment("PROJECTA_URL", projectA.GetEndpoint("https"));
+```
+
+This generates a single environment variable `PROJECTA_URL` with the HTTPS endpoint URL of the `projecta` service.
 
 ## Reference existing resources
 
