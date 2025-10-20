@@ -5,6 +5,16 @@ items:
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
+- name: Aspire 13.0
+  expanded: true
+  items:
+  - name: Overview
+    href: 13.0/index.md
+  - name: Breaking changes in 13.0
+    expanded: true
+    items:
+    - name: Activity reporter and pipeline context renamed
+      href: 13.0/pipeline-activity-reporter-renamed.md
 - name: Aspire 9.5
   expanded: true
   items:
