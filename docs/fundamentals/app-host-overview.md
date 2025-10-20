@@ -239,7 +239,7 @@ APISERVICE_MYENDPOINT
 In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`.
 
 > [!NOTE]
-> The environment variable name is based on the resource name, not the connection string name. Even when using `WithReference(resource, "customname")`, the environment variables use the resource's name.
+> The environment variable name is based on the resource name, not the optional connection name parameter. Even when using `WithReference(resource, "customname")` to specify a custom connection name, the generated environment variables still use the resource's name (e.g., `APISERVICE_HTTP`), not the custom name.
 
 #### .NET service discovery format
 
