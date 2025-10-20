@@ -250,5 +250,5 @@ Certificate trust customization has the following limitations:
 ## See also
 
 - [Host external executables in Aspire](executable-resources.md)
-- [Add Dockerfiles to the app model](withdockerfile.md)
+- [Add Dockerfiles to your .NET app model](withdockerfile.md)
 - [AppHost configuration](configuration.md)
