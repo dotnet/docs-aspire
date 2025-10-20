@@ -228,7 +228,7 @@ The connection string placeholder references the `password` input parameter from
 
 The preceding JSON snippet shows the `inputs` field for a resource that has a `connectionString` field. The `password` input parameter is a string type and is marked as a secret. The `default` field is used to specify a default value for the input parameter. In this case, the default value is generated using the `generate` field, with random string of a minimum length.
 
-When a parameter is using a formatter (for example `uri`), the manifest contains an additional resource that represents the formatted projection.
+When a parameter is using a filter (for example `uri`), the manifest contains an additional resource that represents the filtered projection.
 
 - The resource type is `"annotated.string"`.
 - `value` references the raw parameter value (`{parameter-name.value}`).
