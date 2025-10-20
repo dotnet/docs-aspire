@@ -15,8 +15,10 @@ items:
     items:
     - name: Activity reporter and pipeline context renamed
       href: 13.0/pipeline-activity-reporter-renamed.md
+    - name: DefaultAzureCredential defaults to ManagedIdentityCredential on ACA and App Service
+      href: 13.0/defaultazurecredential-managedidentity-default.md
 - name: Aspire 9.5
-  expanded: true
+  expanded: false
   items:
   - name: Overview
     href: 9.5/index.md
