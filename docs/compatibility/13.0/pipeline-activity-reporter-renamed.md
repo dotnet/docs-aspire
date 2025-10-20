@@ -51,10 +51,10 @@ The types used were:
 The API now uses pipeline-specific names and automatically creates steps during pipeline execution:
 
 ```csharp
-builder.Pipeline.AddStep("assign-storage-role", async (deployingContext) =>
+builder.Pipeline.AddStep("assign-storage-role", async (stepContext) =>
 {
-    var assignRoleTask = await deployingContext.ReportingStep
-        .CreateTaskAsync($"Granting file share access...", deployingContext.CancellationToken);
+    var assignRoleTask = await stepContext.ReportingStep
+        .CreateTaskAsync($"Granting file share access...", stepContext.CancellationToken);
     
     await using (assignRoleTask.ConfigureAwait(false))
     {
