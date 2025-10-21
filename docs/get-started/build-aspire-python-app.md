@@ -71,10 +71,6 @@ cd MyPythonApp
 
 The solution uses a file-based AppHost with a single _apphost.cs_ file. This file contains the orchestration logic for both the Python backend and JavaScript frontend. The AppHost uses `AddPythonScript` to add the Python backend and `AddViteApp` to add the React frontend.
 
-### File-based AppHost
-
-The solution uses a file-based AppHost with a single _apphost.cs_ file. This file contains the orchestration logic for both the Python backend and JavaScript frontend. The AppHost uses `AddPythonScript` to add the Python backend and `AddViteApp` to add the React frontend.
-
 ### Python backend
 
 The Python backend is located in the _app_ directory. It uses the [FastAPI](https://fastapi.tiangolo.com/) framework to create RESTful APIs. The backend includes:
