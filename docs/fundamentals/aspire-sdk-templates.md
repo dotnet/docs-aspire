@@ -39,12 +39,11 @@ The following Aspire solution templates are available, assume the solution is na
 
 <a name="python-app"></a>
 
-- **Aspire Python App**: A full-stack Aspire application with a Python backend and JavaScript frontend. This template includes:
+- **Aspire Python App**: A full-stack Aspire application with a Python backend and JavaScript frontend. This template uses a file-based AppHost and includes:
 
-  - [**AspireSample.AppHost**](#app-host): An orchestrator project to connect and configure services.
-  - [**AspireSample.ServiceDefaults**](#service-defaults): A shared project for common configurations.
-  - **AspireSample.Backend**: A Python backend using FastAPI framework with OpenTelemetry instrumentation.
-  - **AspireSample.Frontend**: A JavaScript frontend using React framework.
+  - **apphost.cs**: A file-based AppHost that orchestrates the Python backend and JavaScript frontend.
+  - **app**: A Python backend using [FastAPI](https://fastapi.tiangolo.com/) framework with OpenTelemetry instrumentation.
+  - **frontend**: A JavaScript frontend using [React](https://react.dev/) framework with Vite.
   
   > [!NOTE]
   > The Aspire Python template is currently under development. For more information and updates, see [GitHub: Aspire issue #11865](https://github.com/dotnet/aspire/issues/11865). For now, you can manually add Python applications to an existing Aspire solution using the guidance in [Orchestrate Python apps in Aspire](../get-started/build-aspire-apps-with-python.md).
@@ -108,30 +107,30 @@ To create an Aspire solution or project using the .NET CLI, use the [dotnet new]
 
 To create a basic [Aspire AppHost](app-host-overview.md) project targeting the latest .NET version:
 
-```dotnetcli
-dotnet new aspire-apphost
+```Aspire
+aspire new aspire-apphost
 ```
 
 To create an Aspire starter app, which is a full solution with a sample UI and backing API included:
 
-```dotnetcli
-dotnet new aspire-starter
+```Aspire
+aspire new aspire-starter
 ```
 
 To create an Aspire app with a Python backend and JavaScript frontend:
 
-```dotnetcli
-dotnet new aspire-python
+```Aspire
+aspire new aspire-py-starter
 ```
 
 > [!NOTE]
-> The `aspire-python` template is currently under development. For more information, see [Build an Aspire app with Python and JavaScript](../get-started/build-aspire-python-app.md).
+> The `aspire-py-starter` template is currently under development. For more information, see [Build an Aspire app with Python and JavaScript](../get-started/build-aspire-python-app.md).
 
 > [!TIP]
 > Aspire templates default to using the latest .NET version, even when using an earlier version of the .NET CLI. To manually specify the .NET version, use the `--framework <tfm>` option, for example to create a basic [Aspire AppHost](app-host-overview.md) project targeting .NET 8:
 >
-> ```dotnetcli
-> dotnet new aspire-apphost --framework net8.0
+> ```Aspire
+> aspire new aspire-apphost --framework net8.0
 > ```
 
 You need to trust the ASP.NET Core :::no-loc text="localhost"::: certificate before running the app. Run the following command:
