@@ -9,7 +9,7 @@ ai-usage: ai-assisted
 
 # Aspire Visual Studio Code extension
 
-The Aspire Visual Studio Code extension provides a set of commands and tools to help you work with Aspire and Aspire AppHost projects directly from Visual Studio Code. The extension streamlines development workflows by offering commands to create projects, add integrations, configure solutions, and manage deployments.
+The Aspire Visual Studio Code extension provides a set of commands and tools to streamline your work with Aspire within Visual Studio Code. The extension includes commands to create projects, add integrations, configure solutions, and manage deployments. The extension requires the Aspire CLI and provides similar functionality on the Visual Studio Code command palette.
 
 ## Prerequisites
 
