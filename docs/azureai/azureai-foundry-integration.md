@@ -147,7 +147,7 @@ When the AppHost starts up, the local foundry service is also started. This requ
 The <xref:Aspire.Hosting.AzureAIFoundryExtensions.RunAsFoundryLocal*> method configures the resource to run as an emulator. It downloads and loads the specified models locally. The method provides health checks for the local service and automatically manages the Foundry Local lifecycle.
 
 > [!TIP]
-> Use the strongly-typed <xref:Aspire.Hosting.Azure.AIFoundryModel.Local> constants for local development models. These constants are specifically optimized for Foundry Local (for example, `AIFoundryModel.Local.Phi4Mini`, `AIFoundryModel.Local.DeepseekR17b`).
+> Use the strongly-typed `AIFoundryModel.Local` constants for local development models. These constants are specifically optimized for Foundry Local (for example, `AIFoundryModel.Local.Phi4Mini`, `AIFoundryModel.Local.DeepseekR17b`).
 
 ### Assign roles to resources
 
