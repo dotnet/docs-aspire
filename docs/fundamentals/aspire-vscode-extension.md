@@ -11,14 +11,9 @@ ai-usage: ai-assisted
 
 The Aspire Visual Studio Code extension provides a set of commands and tools to streamline your work with Aspire within Visual Studio Code. The extension includes commands to create projects, add integrations, configure solutions, and manage deployments. The extension requires the Aspire CLI and provides similar functionality on the Visual Studio Code command palette.
 
-## Prerequisites
+[!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-Before installing the Aspire Visual Studio Code extension, ensure you have the following prerequisites:
-
-- [Visual Studio Code](https://code.visualstudio.com/) installed
-- [.NET 8.0](https://dotnet.microsoft.com/download/dotnet/8.0) or [.NET 9.0](https://dotnet.microsoft.com/download/dotnet/9.0) installed
-- [Aspire CLI](../cli/install.md) installed and available on your PATH
-- An OCI compliant container runtime, such as [Docker Desktop](https://www.docker.com/products/docker-desktop) or [Podman](https://podman.io/)
+In addition, before you can use the Aspire Visual Studio Code extension, you must have the [Aspire CLI](../cli/install.md) installed and available on your PATH.
 
 ### Optional extensions
 
