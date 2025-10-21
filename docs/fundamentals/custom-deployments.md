@@ -14,7 +14,7 @@ Aspire provides powerful APIs for building container images from your resources 
 During publishing and deployment, the container image builder is available to create images for resources that need them. Aspire uses this builder when a resource requires a container image, such as when publishing with Docker Compose. The process involves two main components:
 
 - <xref:Aspire.Hosting.Publishing.IResourceContainerImageBuilder>: The service that turns resource definitions into runnable container images.
-- <xref:Aspire.Hosting.Pipelines.IPipelineActivityReporter>: The API that provides structured progress reporting during long-running operations.
+- `IPipelineActivityReporter`: The API that provides structured progress reporting during long-running operations.
 
 These APIs give you fine-grained control over the image building process and provide real-time feedback to users during lengthy build operations.
 

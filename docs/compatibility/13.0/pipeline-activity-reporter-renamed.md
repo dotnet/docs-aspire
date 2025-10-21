@@ -133,10 +133,10 @@ builder.Pipeline.AddStep("my-step", async (stepContext) =>
 
 - <xref:Aspire.Hosting.ApplicationModel.DeployingContext?displayProperty=fullName>
 - <xref:Aspire.Hosting.Publishing.IPublishingActivityReporter?displayProperty=fullName>
-- <xref:Aspire.Hosting.Publishing.PublishingActivityReporter?displayProperty=fullName>
+- `Aspire.Hosting.Publishing.PublishingActivityReporter`
 - <xref:Aspire.Hosting.Publishing.NullPublishingActivityReporter?displayProperty=fullName>
 - <xref:Aspire.Hosting.Publishing.IPublishingStep?displayProperty=fullName>
 - <xref:Aspire.Hosting.Publishing.IPublishingTask?displayProperty=fullName>
-- <xref:Aspire.Hosting.Publishing.PublishingStep?displayProperty=fullName>
-- <xref:Aspire.Hosting.Publishing.PublishingTask?displayProperty=fullName>
+- `Aspire.Hosting.Publishing.PublishingStep`
+- `Aspire.Hosting.Publishing.PublishingTask`
 - <xref:Aspire.Hosting.Publishing.PublishingExtensions?displayProperty=fullName>
