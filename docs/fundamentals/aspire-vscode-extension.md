@@ -59,7 +59,7 @@ The Aspire Visual Studio Code extension provides the following commands:
 | **Aspire: Open Aspire terminal** | Open an Aspire terminal for working with Aspire projects using CLI commands | Available |
 | **Aspire: Publish deployment artifacts** | Generate deployment artifacts for an Aspire apphost | Preview |
 | **Aspire: Deploy app** | Deploy the contents of an Aspire apphost to its defined deployment targets | Preview |
-| **Aspire: Update integrations** | Update hosting integrations and Aspire SDK in the apphost | Preview |
+| **Aspire: Update Aspire CLI** | Install the latest version of the Aspire CLI. | Preview |
 
 ## Create a new Aspire solution
 
