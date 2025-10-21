@@ -53,7 +53,7 @@ The Aspire Visual Studio Code extension provides the following commands:
 | Command | Description | Status |
 |---------|-------------|--------|
 | **Aspire: New Aspire project** | Create a new Aspire apphost or starter app from a template | Available |
-| **Aspire: Add an integration** | Add a hosting integration package (`Aspire.Hosting.*`) to the Aspire apphost | Available |
+| **Aspire: Add an integration** | Add a [hosting integration package](./integrations-overview.md) (`Aspire.Hosting.*`) to the Aspire apphost | Available |
 | **Aspire: Configure launch.json** | Add the default Aspire debugger launch configuration to your workspace's `launch.json` file | Available |
 | **Aspire: Manage configuration settings** | Manage Aspire configuration settings including feature flags | Available |
 | **Aspire: Open Aspire terminal** | Open an Aspire terminal for working with Aspire projects using CLI commands | Available |
