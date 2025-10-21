@@ -21,7 +21,7 @@ public class EnvVarTests
         // Assert
         CollectionAssert.Contains(envVars,
             new KeyValuePair<string, string>(
-                key: "services__apiservice__https__0",
+                key: "APISERVICE_HTTPS",
                 value: "{apiservice.bindings.https.url}"));
     }
 }
