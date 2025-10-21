@@ -2,7 +2,7 @@
 title: Aspire Visual Studio Code extension
 description: Learn how to use the Aspire Visual Studio Code extension to create, configure, run, and deploy Aspire solutions.
 ms.date: 10/20/2025
-ms.topic: how-to
+ms.topic: overview
 uid: dotnet/aspire/vscode-extension
 ai-usage: ai-assisted
 ---
