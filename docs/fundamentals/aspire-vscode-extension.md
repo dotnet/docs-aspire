@@ -43,32 +43,27 @@ All commands are grouped under the **Aspire** category in the Command Palette fo
 
 The Aspire VS Code extension provides the following commands:
 
-| Command | Description | Status |
-|---------|-------------|--------|
-| **Aspire: New Aspire project** | Create a new Aspire AppHost or starter app from a template. | Available |
-| **Aspire: Add an integration** | Add a [hosting integration package](integrations-overview.md#hosting-integrations) (`Aspire.Hosting.*`) to the Aspire AppHost. | Available |
-| **Aspire: Configure launch.json file** | Add the default Aspire debugger launch configuration to your workspace's `launch.json` file. | Available |
-| **Aspire: Manage configuration settings** | Manage Aspire configuration settings including feature flags. | Available |
-| **Aspire: Open Aspire terminal** | Open a terminal to use Aspire CLI commands. | Available |
-| **Aspire: Publish deployment artifacts** | Generate deployment artifacts for an Aspire AppHost. | Preview |
-| **Aspire: Deploy app host** | Deploy the contents of an Aspire AppHost to its defined deployment targets. | Preview |
-| **Aspire: Update Aspire CLI** | Install the latest version of the Aspire CLI. | Preview |
+| Command | Description | Availability |
+|---------|-------------|--------------|
+| Aspire: New Aspire project | Create a new Aspire apphost or starter app from a template. | Available |
+| Aspire: Add an integration | Add a hosting integration (`Aspire.Hosting.*`) to the Aspire apphost. | Available |
+| Aspire: Configure launch.json | Adds the default Aspire debugger launch configuration to your workspace's `launch.json`, which will detect and run the apphost in the workspace. | Available |
+| Aspire: Manage configuration settings | Manage configuration settings including feature flags. | Available |
+| Aspire: Open Aspire terminal | Open an Aspire VS Code terminal for working with Aspire projects. | Available |
+| Aspire: Publish deployment artifacts | Generates deployment artifacts for an Aspire apphost. | Preview |
+| Aspire: Deploy app | Deploy the contents of an Aspire apphost to its defined deployment targets. | Preview |
+| Aspire: Update integrations | Update hosting integrations and Aspire SDK in the apphost. | Preview |
 
-## Create a new Aspire solution
+## Create a new Aspire app
 
-To create a new Aspire solution using the extension:
+To create a new Aspire app using the extension:
 
 1. Open the Command Palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 1. Run the **Aspire: New Aspire project** command.
 1. Select the desired template:
-   - **Starter template**: Creates a full solution with a sample UI and backing API included.
-   - **AppHost and service defaults**: Creates a minimal Aspire project with AppHost and ServiceDefaults projects.
-   - **AppHost**: Creates only an AppHost project.
-   - **Service defaults**: Creates only a service defaults project.
-   - **Integration tests**: Creates a test project for an Aspire solution.
 1. Specify the project name and location.
 
-    :::image type="content" source="media/code-extension-create-aspire-project.png" lightbox="media/code-extension-create-aspire-project.png" alt-text="A screenshot of VS Code showing how to create a new Aspire solution by using the Aspire extension..":::
+    :::image type="content" source="media/code-extension-create-aspire-project.png" lightbox="media/code-extension-create-aspire-project.png" alt-text="A screenshot of VS Code showing how to create a new Aspire solution by using the Aspire extension.":::
 
 The extension creates the project and opens it in VS Code.
 
@@ -135,6 +130,8 @@ To run your Aspire application in development mode:
 
 The extension builds and starts the AppHost project, launches the Aspire dashboard in your browser, and enables debugging for all resources in your solution.
 
+Alternatively, you can open an Aspire VS Code terminal using `Aspire: Open Aspire terminal` and run `aspire run --start-debug-session` to start a VS Code debug session. 
+
 ### Run or debug from the editor
 
 When an AppHost project is detected in your workspace, you can also run or debug it directly from the editor. Use the run buttons in the editor title bar when viewing an AppHost file.
@@ -144,7 +141,7 @@ When an AppHost project is detected in your workspace, you can also run or debug
 > [!IMPORTANT]
 > This feature is in **Preview**.
 
-The **Aspire: Publish deployment artifacts** command generates deployment artifacts for your Aspire apphost. This command serializes resources to disk, allowing them to be consumed by deployment tools.
+The **Aspire: Publish deployment artifacts** command generates deployment artifacts for your Aspire AppHost. This command serializes resources to disk, allowing them to be consumed by deployment tools.
 
 To publish deployment artifacts:
 
