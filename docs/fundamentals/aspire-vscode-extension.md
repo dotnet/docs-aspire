@@ -25,6 +25,8 @@ To install the Aspire VS Code extension:
 1. Select the **Aspire** extension published by **Microsoft**.
 1. Select **Install**.
 
+    :::image type="content" source="../media/install-aspire-code-extension.png" lightbox="../media/install-aspire-code-extension.png" alt-text="A screenshot of VS Code showing how to install the Aspire extension.":::
+
 Alternatively, you can install the extension directly from the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=microsoft-aspire.aspire-vscode).
 
 ## Access extension commands
