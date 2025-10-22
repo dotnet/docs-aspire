@@ -68,7 +68,7 @@ To create a new Aspire solution using the extension:
    - **Integration tests**: Creates a test project for an Aspire solution.
 1. Specify the project name and location.
 
-    :::image type="content" source="media/code-extension-create-aspire-project.png" lightbox="media/code-extension-create-aspire-project.png" alt-text="A screenshot of VS Code showing how to create a new Aspire solution by using the Aspire extension..":::
+    :::image type="content" source="media/code-extension-create-aspire-project.png" lightbox="media/code-extension-create-aspire-project.png" alt-text="A screenshot of VS Code showing how to create a new Aspire solution by using the Aspire extension.":::
 
 The extension creates the project and opens it in VS Code.
 
