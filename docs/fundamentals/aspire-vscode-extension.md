@@ -81,7 +81,10 @@ Aspire integrations provide pre-configured connections to various cloud services
 1. Browse or search for the desired integration package.
 1. Select the integration to add it to your AppHost project.
 
-The extension adds the appropriate NuGet package reference to your AppHost project.
+The extension adds the appropriate NuGet package reference to your AppHost project. 
+
+> [!NOTE]
+> The **Add an integration** command adds a hosting integration to the AppHost project. It doesn't add the corresponding client integration to any consuming projects.
 
 ## Configure an Aspire solution
 
@@ -101,12 +104,12 @@ The default configuration looks like this:
 {
     "type": "aspire",
     "request": "launch",
-    "name": "Aspire: Launch AppHost",
+    "name": "Aspire: Launch Default AppHost",
     "program": "${workspaceFolder}"
 }
 ```
 
-You can customize the `program` field to point to a specific AppHost project file:
+You can customize the `program` field to point to a specific AppHost project file. For example:
 
 ```json
 {
@@ -117,41 +120,9 @@ You can customize the `program` field to point to a specific AppHost project fil
 }
 ```
 
-### Customize debugger attributes for resources
-
-The `debuggers` property in the launch configuration allows you to specify common debug configuration properties for different types of Aspire services:
-
-| Environment | Debugger entry |
-|----------|---------------|
-| C# | `project` |
-| Python | `python` |
-| AppHost | `apphost` |
-
-For example, to customize debugging properties for C# projects and the AppHost:
-
-```json
-{
-    "type": "aspire",
-    "request": "launch",
-    "name": "Aspire: Launch MyAppHost",
-    "program": "${workspaceFolder}/MyAppHost/MyAppHost.csproj",
-    "debuggers": {
-        "project": {
-            "console": "integratedTerminal",
-            "logging": {
-                "moduleLoad": false
-            }
-        },
-        "apphost": {
-            "stopAtEntry": true
-        }
-    }
-}
-```
-
 ### Manage configuration settings
 
-The **Aspire: Manage configuration settings** command executes `aspire config` in the VS Code terminal to display its usage. Use this information to formulate `get` and `set` commands to configure the Aspire CLI. Use `aspire configure list` to show current configuration values.
+The **Aspire: Manage configuration settings** command executes `aspire config` request options and displays the results in the VS Code terminal. Use `get` and `set` commands to configure the Aspire CLI. Use the `list` command to show current configuration values.
 
 ## Run an Aspire solution in development mode
 
@@ -166,10 +137,7 @@ The extension builds and starts the AppHost project, launches the Aspire dashboa
 
 ### Run or debug from the editor
 
-When an AppHost project is detected in your workspace, you can also run or debug it directly from the editor:
-
-- Right-select on a file named `AppHost.cs` in the Explorer view and select **Aspire: Run AppHost** or **Aspire: Debug AppHost**.
-- Use the run buttons in the editor title bar when viewing an AppHost file.
+When an AppHost project is detected in your workspace, you can also run or debug it directly from the editor. Use the run buttons in the editor title bar when viewing an AppHost file.
 
 ## Publish deployment artifacts
 
@@ -189,6 +157,8 @@ The command invokes registered publishing callback annotations to generate artif
 - Bicep files for Azure resources.
 - Docker Compose YAML files.
 - Kubernetes Helm charts.
+
+For more information about Aspire publishing, see [Aspire publishing and deployment overview](../deployment/overview.md).
 
 ## Deploy an Aspire solution
 
