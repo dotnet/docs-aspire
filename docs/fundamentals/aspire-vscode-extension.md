@@ -61,9 +61,14 @@ To create a new Aspire solution using the extension:
 1. Open the Command Palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> or <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 1. Run the **Aspire: New Aspire project** command.
 1. Select the desired template:
-   - **Aspire Empty App**: Creates a minimal Aspire project with AppHost and ServiceDefaults projects.
-   - **Aspire Starter App**: Creates a full solution with a sample UI and backing API included.
+   - **Starter template**: Creates a full solution with a sample UI and backing API included.
+   - **AppHost and service defaults**: Creates a minimal Aspire project with AppHost and ServiceDefaults projects.
+   - **AppHost**: Creates only an AppHost project.
+   - **Service defaults**: Creates only a service defaults project.
+   - **Integration tests**: Creates a test project for an Aspire solution.
 1. Specify the project name and location.
+
+    :::image type="content" source="media/code-extension-create-aspire-project.png" lightbox="media/code-extension-create-aspire-project.png" alt-text="A screenshot of VS Code showing how to create a new Aspire solution by using the Aspire extension..":::
 
 The extension creates the project and opens it in VS Code.
 
