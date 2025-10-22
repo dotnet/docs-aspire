@@ -81,7 +81,7 @@ Aspire integrations provide pre-configured connections to various cloud services
 1. Browse or search for the desired integration package.
 1. Select the integration to add it to your AppHost project.
 
-The extension adds the appropriate NuGet package reference to your AppHost project. 
+The extension adds the appropriate NuGet package reference to your AppHost project.
 
 > [!NOTE]
 > The **Add an integration** command adds a hosting integration to the AppHost project. It doesn't add the corresponding client integration to any consuming projects.
