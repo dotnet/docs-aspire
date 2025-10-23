@@ -22,7 +22,7 @@ public class EnvVarTests
         {
             var (key, value) = kvp;
 
-            return key is "services__apiservice__https__0"
+            return key is "APISERVICE_HTTPS"
                 && value is "{apiservice.bindings.https.url}";
         });
     }

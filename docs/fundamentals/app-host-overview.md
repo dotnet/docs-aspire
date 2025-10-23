@@ -176,7 +176,7 @@ Project-to-project references are handled differently than resources that have w
 | Method | Environment variable |
 |--|--|
 | `WithReference(cache)` | `ConnectionStrings__cache="localhost:62354"` |
-| `WithReference(apiservice)` | `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
+| `WithReference(apiservice)` | `APISERVICE_HTTP="http://localhost:5455"` <br /> `APISERVICE_HTTPS="https://localhost:7356"` |
 
 Adding a reference to the "apiservice" project results in service discovery environment variables being added to the frontend. This is because typically, project-to-project communication occurs over HTTP/gRPC. For more information, see [Aspire service discovery](../service-discovery/overview.md).
 
@@ -202,7 +202,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 | Method                    | Environment variable                                  |
 |---------------------------|-------------------------------------------------------|
-| `WithReference(endpoint)` | `services__myapp__endpoint__0=https://localhost:9043` |
+| `WithReference(endpoint)` | `MYAPP_ENDPOINT=https://localhost:9043` |
 
 The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [Aspire service discovery](../service-discovery/overview.md).
 
@@ -210,20 +210,20 @@ The `port` parameter is the port that the container is listening on. For more in
 
 In the preceding section, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on this format.
 
-When one resource depends on another resource, the AppHost injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
+When one resource depends on another resource, the AppHost injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md) and polyglot scenarios.
 
-Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each endpoint.
+Service endpoint environment variable names follow the pattern `{RESOURCENAME}_{ENDPOINTNAME}`, where both the resource name and endpoint name are uppercased. This format is language-agnostic and works well with non-.NET technologies.
 
 Consider the following environment variable examples:
 
 ```Environment
-services__apiservice__http__0
+APISERVICE_HTTP
 ```
 
-The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
+The preceding environment variable expresses the HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
 
 ```Environment
-services__apiservice__myendpoint__0
+APISERVICE_MYENDPOINT
 ```
 
 In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`. The value of the environment variable is the URL of the service endpoint.

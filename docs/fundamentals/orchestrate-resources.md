@@ -285,7 +285,7 @@ var frontend = builder.AddProject<Projects.Frontend>("frontend")
     .WithReference(api);
 ```
 
-This configuration injects an environment variable like `services__api__https__0=https://api.example.com/` into the frontend project, enabling service discovery through the standard .NET service discovery mechanisms.
+This configuration injects an environment variable like `API_HTTPS=https://api.example.com/` into the frontend project, enabling service discovery through the standard .NET service discovery mechanisms.
 
 ### External service lifecycle
 
