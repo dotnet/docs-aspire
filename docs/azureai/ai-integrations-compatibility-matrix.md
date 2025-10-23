@@ -2,7 +2,7 @@
 title: Aspire AI integrations compatibility matrix
 description: Learn which AI client integrations are compatible with which AI hosting integrations in Aspire.
 ms.date: 09/23/2025
-ms.update-cycle: 180
+ms.update-cycle: 180-days
 ai-usage: ai-generated
 ---
 
