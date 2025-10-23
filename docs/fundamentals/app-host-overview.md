@@ -147,7 +147,7 @@ The preceding code adds three replicas of the "apiservice" project resource to t
 
 C# app resources represent C# projects or file-based apps that are part of the app model. Unlike <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, which requires a project reference, the `AddCSharpApp` method can add C# projects or file-based apps using a path to a _*.cs_ file, _*.csproj_ file, or project directory. This is useful for adding file-based apps introduced in .NET 10 or for including projects without adding a project reference to the AppHost.
 
-To add a C# app to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> method:
+To add a C# app to the app model, use the `AddCSharpApp` method:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
