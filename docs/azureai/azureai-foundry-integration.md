@@ -2,6 +2,7 @@
 title: "Aspire Azure AI Foundry integration (Preview)"
 description: "Learn how to integrate Azure AI Foundry with Aspire applications, including hosting and client integration."
 ms.date: 08/07/2025
+ms.custom: sfi-ropc-nochange
 ai-usage: ai-assisted
 titleSuffix: ''
 ---

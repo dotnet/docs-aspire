@@ -2,6 +2,7 @@
 title: Aspire Azure AI Inference integration (Preview)
 description: Learn how to use the Aspire Azure AI Inference integration to deploy and manage machine learning models in the cloud.
 ms.date: 05/14/2025
+ms.custom: sfi-ropc-nochange
 titleSuffix: ''
 ---
 
