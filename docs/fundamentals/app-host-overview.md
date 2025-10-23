@@ -113,12 +113,16 @@ Aspire projects are made up of a set of resources. The primary base resource typ
 | Method | Resource type | Description |
 |--|--|--|
 | <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | <xref:Aspire.Hosting.ApplicationModel.ProjectResource> | A .NET project, for example, an ASP.NET Core web app. |
-| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> | <xref:Aspire.Hosting.ApplicationModel.CSharpAppResource> | A C# project or file-based app, for example, a .cs file, .csproj file, or project directory. |
+| `AddCSharpApp` | `CSharpAppResource` | A C# project or file-based app, for example, a _*.cs_ file, _*.csproj_ file, or project directory. |
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.ContainerResource> | A container image, such as a Docker image. |
 | <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file, such as a [Node.js app](../get-started/build-aspire-apps-with-nodejs.md). |
 | <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddParameter%2A> | <xref:Aspire.Hosting.ApplicationModel.ParameterResource> | A parameter resource that can be used to [express external parameters](external-parameters.md). |
 
-Project resources represent .NET projects that are part of the app model. When you add a project reference to the AppHost project, the Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references). Alternatively, you can add C# projects or file-based apps without a project reference using the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> method.
+<!-- TODO: add when xref is ready.
+| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> | <xref:Aspire.Hosting.ApplicationModel.CSharpAppResource> | A C# project or file-based app, for example, a .cs file, .csproj file, or project directory. |
+-->
+
+Project resources represent .NET projects that are part of the app model. When you add a project reference to the AppHost project, the Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references). Alternatively, you can add C# projects or file-based apps without a project reference using the `AddCSharpApp` method.
 
 To add a project to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method:
 
@@ -141,7 +145,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [Aspire dashboard: Resource replicas](dashboard/explore.md#resource-replicas).
 
-C# app resources represent C# projects or file-based apps that are part of the app model. Unlike <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, which requires a project reference, the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> method can add C# projects or file-based apps using a path to a .cs file, .csproj file, or project directory. This is useful for adding file-based apps introduced in .NET 10 or for including projects without adding a project reference to the AppHost.
+C# app resources represent C# projects or file-based apps that are part of the app model. Unlike <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, which requires a project reference, the `AddCSharpApp` method can add C# projects or file-based apps using a path to a _*.cs_ file, _*.csproj_ file, or project directory. This is useful for adding file-based apps introduced in .NET 10 or for including projects without adding a project reference to the AppHost.
 
 To add a C# app to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> method:
 
@@ -155,10 +159,10 @@ var inventoryService = builder.AddCSharpApp("inventoryservice", @"..\InventorySe
 var catalogService = builder.AddCSharpApp("catalogservice", @"..\CatalogService");
 ```
 
-The <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> method supports the same configuration options as <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, including replicas, environment variables, and resource dependencies.
+The `AddCSharpApp` method supports the same configuration options as <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, including replicas, environment variables, and resource dependencies.
 
 > [!NOTE]
-> The <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> method is marked as experimental and requires .NET 10 SDK for file-based C# app support. For more information on file-based apps, see the [What's new in Aspire 9.5](../whats-new/dotnet-aspire-9.5.md#file-based-apphost-support-preview) documentation.
+> The `AddCSharpApp` method is marked as experimental and requires .NET 10 SDK for file-based C# app support. For more information on file-based apps, see the [What's new in Aspire 9.5](../whats-new/dotnet-aspire-9.5.md#file-based-apphost-support-preview) documentation.
 
 ## Reference resources
 
