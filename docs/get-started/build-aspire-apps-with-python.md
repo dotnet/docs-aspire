@@ -11,7 +11,7 @@ In this article, you learn how to use Python apps in an Aspire AppHost. The samp
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-This tutorial also assumes that you have installed the Aspire CLI. For further instructions see, [Install Aspire CLI](../cli/install.md).
+This tutorial also assumes that you have installed the Aspire CLI. For further instructions, see [Install Aspire CLI](../cli/install.md).
 
 Additionally, you need to install [Python](https://www.python.org/downloads) on your machine. The sample app in this article was built with Python version 3.12.4 and pip version 24.1.2. To verify your Python and pip versions, run the following commands:
 
