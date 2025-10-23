@@ -11,6 +11,8 @@ In this article, you learn how to use Python apps in an Aspire AppHost. The samp
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
+This tutorial also assumes that you have installed the Aspire CLI. For further instructions see, [Install Aspire CLI](../cli/install).
+
 Additionally, you need to install [Python](https://www.python.org/downloads) on your machine. The sample app in this article was built with Python version 3.12.4 and pip version 24.1.2. To verify your Python and pip versions, run the following commands:
 
 ```console
@@ -27,9 +29,20 @@ To download Python (including `pip`), see the [Python download page](https://www
 
 To get started launching a Python project in Aspire, use the starter template to first create an Aspire application host:
 
-```dotnetcli
-dotnet new aspire -o PythonSample
-```
+1. Use the following Aspire CLI command:
+
+    ```Aspire
+    aspire new
+    ```
+
+1. To select the **Starter template**, press <kbd>Enter</kbd>.
+1. For the **project name** type **PythonSample** and then press <kbd>Enter</kbd>.
+1. For the output path, press <kbd>Enter</kbd> to accept the default.
+1. To choose the default template version, press <kbd>Enter</kbd>.
+1. For **Use Redis Cache**, choose **No**.
+1. For **Do you want to create a test project?**, choose **No**.
+
+The Aspire CLI fetches the correct template and uses it to create a new Aspire solution in the **PythonSample** folder.
 
 In the same terminal session, change directories into the newly created project:
 
@@ -37,13 +50,17 @@ In the same terminal session, change directories into the newly created project:
 cd PythonSample
 ```
 
-After the template is created, launch the AppHost with the following command to ensure that the AppHost and the [Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
+After the template is created, use the Aspire CLI to launch the solution to check that the AppHost and the [Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
 
-```dotnetcli
-dotnet run --project ./PythonSample.AppHost/PythonSample.AppHost.csproj
+```Aspire
+aspire run
 ```
 
-If the Aspire Dashboard doesn't open, open it with the link in the console output. At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
+The Aspire CLI runs the solution and displays some information about it. To access the Aspire dashboard, hold down <kbd>CTRL</kbd> and then select the **Dashboard** URL.
+
+:::image source="media/aspire-run-access-dashboard.png" lightbox="media/aspire-run-access-dashboard.png" alt-text="Screenshot showing how to access the Aspire dashboard from the output of the Aspire CLI.":::
+
+At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
 
 ## Prepare a Python app
 
@@ -126,19 +143,21 @@ The preceding code creates a simple Flask app that listens on port 8111 and retu
 
 ## Update the AppHost project
 
-Install the Python hosting package by running the following command:
+Install the Python hosting package by changing into the parent *PythonSample* directory, and then running the following command:
 
-```dotnetcli
-dotnet add ../PythonSample.AppHost/PythonSample.AppHost.csproj package Aspire.Hosting.Python --version 9.0.0
+```Aspire
+aspire add
 ```
 
-After the package is installed, the project XML should have a new package reference similar to the following example:
+Use the arrow keys to select the **python (Aspire.Hosting.Python)** hosting integration and then press <kbd>Enter</kbd>. Then press <kbd>Enter</kbd> again to select the default version. The Aspire CLI adds the Python hosting integration to the Aspire AppHost project.
+
+After the package is installed, the *./PythonSample.AppHost/pythonSample.AppHost.csproj* file should have a new package reference similar to the following example:
 
 :::code language="xml" source="snippets/PythonSample/PythonSample.AppHost/PythonSample.AppHost.csproj" highlight="15":::
 
 Replace the _AppHost.cs_ code with the following snippet. This code adds the Python project to Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
 
-:::code source="snippets/PythonSample/PythonSample.AppHost/AppHost.cs" highlight="6":::
+:::code source="snippets/PythonSample/PythonSample.AppHost/AppHost.cs" highlight="5-15":::
 
 > [!IMPORTANT]
 > The preceding code suppresses the `ASPIREHOSTINGPYTHON001` diagnostic error. This error is generated because the `AddPythonApp` API is experimental and might change in future release. For more information, see [Compiler Error ASPIREHOSTINGPYTHON001](../diagnostics/aspirehostingpython001.md).
@@ -147,15 +166,15 @@ Replace the _AppHost.cs_ code with the following snippet. This code adds the Pyt
 
 Now that you've added the Python hosting package, updated the _AppHost.cs_ file, and created a Python project, you can run the AppHost:
 
-```dotnetcli
-dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj
+```Aspire
+aspire run
 ```
 
 Launch the dashboard by clicking the link in the console output. The dashboard should display the Python project as a resource.
 
 :::image source="media/python-dashboard.png" lightbox="media/python-dashboard.png" alt-text="Aspire dashboard: Python sample app.":::
 
-Select the **Endpoints** link to open the `hello-python` endpoint in a new browser tab. The browser should display the message "Hello, World!":
+Select the **URLs** link to open the `hello-python` endpoint in a new browser tab. The browser should display the message "Hello, World!":
 
 :::image source="media/python-hello-world.png" lightbox="media/python-hello-world.png" alt-text="Aspire dashboard: Python sample app endpoint.":::
 
@@ -196,7 +215,7 @@ Once the AppHost is running, navigate to the dashboard and select the **Structur
 
 ## Summary
 
-While there are several considerations that are beyond the scope of this article, you learned how to build Aspire solution that integrates with Python. You also learned how to use the `AddPythonApp` API to host Python apps.
+In this article, you learned how to build an Aspire solution that integrates with Python. You also learned how to use the `AddPythonApp` API to host Python apps.
 
 ## See also
 
