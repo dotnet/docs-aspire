@@ -2,7 +2,7 @@
 title: Aspire Azure AI Search integration
 description: Learn how to integrate Azure AI Search with Aspire.
 ms.date: 07/22/2025
-ms.custom: sfi-ropc-nochange
+ms.update-cycle: 180
 ---
 
 # Aspire Azure AI Search integration

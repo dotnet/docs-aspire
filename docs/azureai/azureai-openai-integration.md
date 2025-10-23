@@ -2,7 +2,7 @@
 title: Aspire Azure OpenAI integration (Preview)
 description: Learn how to use the Aspire Azure OpenAI integration.
 ms.date: 07/22/2025
-ms.custom: sfi-ropc-nochange
+ms.update-cycle: 180
 ---
 
 # Aspire Azure OpenAI integration (Preview)

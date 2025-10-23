@@ -2,7 +2,7 @@
 title: Aspire AI integrations compatibility matrix
 description: Learn which AI client integrations are compatible with which AI hosting integrations in Aspire.
 ms.date: 09/23/2025
-ms.custom: sfi-ropc-nochange
+ms.update-cycle: 180
 ai-usage: ai-generated
 ---
 
