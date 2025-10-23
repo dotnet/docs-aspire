@@ -46,27 +46,44 @@ When you call <xref:Aspire.Hosting.DistributedApplication.CreateBuilder*?display
 
 ## AppHost project
 
-The AppHost project handles running all of the projects that are part of the Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that references the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package, and uses the [Aspire SDK](dotnet-aspire-sdk.md):
+The AppHost project handles running all of the projects that are part of the Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that uses the [Aspire SDK](dotnet-aspire-sdk.md). Starting with Aspire 13.0, the `Aspire.AppHost.Sdk` can be set as the sole project SDK, which implicitly adds a package reference to the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <!-- Omitted for brevity -->
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.1" />
-    </ItemGroup>
 
     <!-- Omitted for brevity -->
 
 </Project>
 ```
+
+> [!NOTE]
+> The alternative approach of explicitly listing the SDK and package reference still works and isn't a requirement to change existing projects:
+>
+> ```xml
+> <Project Sdk="Microsoft.NET.Sdk">
+>
+>     <Sdk Name="Aspire.AppHost.Sdk" Version="13.0.0" />
+>     
+>     <PropertyGroup>
+>         <OutputType>Exe</OutputType>
+>         <TargetFramework>net10.0</TargetFramework>
+>         <!-- Omitted for brevity -->
+>     </PropertyGroup>
+>
+>     <ItemGroup>
+>         <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+>     </ItemGroup>
+>
+>     <!-- Omitted for brevity -->
+>
+> </Project>
+> ```
 
 The following code describes an AppHost `Program` with two project references and a Redis cache:
 
