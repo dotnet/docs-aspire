@@ -13,6 +13,8 @@ items:
   - name: Breaking changes in 13.0
     expanded: true
     items:
+    - name: Activity reporter and pipeline context renamed
+      href: 13.0/pipeline-activity-reporter-renamed.md
     - name: DefaultAzureCredential defaults to ManagedIdentityCredential on ACA and App Service
       href: 13.0/defaultazurecredential-managedidentity-default.md
 - name: Aspire 9.5
