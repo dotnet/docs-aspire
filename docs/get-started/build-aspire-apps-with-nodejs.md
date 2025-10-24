@@ -147,7 +147,7 @@ There are several key modifications from the original Angular template. The firs
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
 
-The Aspire AppHost sets the `services__weatherapi__http__0` environment variable, which is used to resolve the "weatherapi" service endpoint. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
+The Aspire AppHost sets the `WEATHERAPI_HTTPS` and `WEATHERAPI_HTTP` environment variables, which are used to resolve the "weatherapi" service endpoints. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
 
 Then include the proxy file to in the _angular.json_ file.
 Update the `serve` target to include the `proxyConfig` option, referencing to the created _proxy.conf.js_ file.
@@ -217,7 +217,7 @@ As the `TheWelcome` integration is `mounted`, it calls the `/api/weatherforecast
 
 :::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/vite.config.ts":::
 
-Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `services__weatherapi__http__0` environment variable, which is set by the Aspire AppHost.
+Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `WEATHERAPI_HTTPS` and `WEATHERAPI_HTTP` environment variables, which are set by the Aspire AppHost.
 
 The final update from the template is made to the _TheWelcome.vue_ file. This file calls the `/api/WeatherForecast` endpoint to retrieve the weather forecast data, and displays the data in a table. It includes [CSS, HTML, and TypeScript updates](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue).
 

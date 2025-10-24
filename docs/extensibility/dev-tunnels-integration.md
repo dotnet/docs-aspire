@@ -101,7 +101,7 @@ The preceding code:
 When another resource references a dev tunnel, environment variables are injected using the [Aspire service discovery](../service-discovery/overview.md) configuration format. Use the `WithReference` overloads that accept the `IResourceBuilder<DevTunnelResource>` parameter to reference a dev tunnel. This injects environment variables like:
 
 ```env
-services__web__https__0=https://myweb-1234.westeurope.devtunnels.ms/
+WEB_HTTPS=https://myweb-1234.westeurope.devtunnels.ms/
 ```
 
 This lets downstream resources use the tunneled address exactly like any other Aspire service discovery entry.

@@ -20,7 +20,7 @@ public class EnvVarTests
         // Assert
         Assert.That(envVars, Does.Contain(
             new KeyValuePair<string, string>(
-                key: "services__apiservice__https__0",
+                key: "APISERVICE_HTTPS",
                 value: "{apiservice.bindings.https.url}")));
     }
 }
