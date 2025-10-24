@@ -137,7 +137,7 @@ jobs:
         AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 ```
 
-This workflow caches the _~/.aspire/deployments_ directory, using the AppHost project file hash and branch reference as cache keys. Subsequent workflow runs restore the cached deployment state, allowing automated deployments without re-prompting for configuration values.
+This workflow caches the _~/.aspire/deployments_ directory, using the AppHost project file hash and branch reference as cache keys. The `actions/cache` action automatically restores the cache before the deployment step and saves any updates to the cache after the job completes. Subsequent workflow runs restore the cached deployment state, allowing automated deployments without re-prompting for configuration values.
 
 > [!CAUTION]
 > When caching deployment state in CI/CD pipelines, ensure that your pipeline has appropriate access controls and secret management practices in place, as the cached state might contain sensitive configuration values.
