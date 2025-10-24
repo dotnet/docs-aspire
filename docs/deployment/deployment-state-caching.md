@@ -1,11 +1,11 @@
 ---
-title: Local deployment state
+title: Deployment state caching
 description: Learn how the aspire deploy command manages deployment state through cached configuration files.
 ms.date: 10/17/2025
 ai-usage: ai-assisted
 ---
 
-# Local deployment state
+# Deployment state caching
 
 The `aspire deploy` command manages deployment state through cached configuration files stored locally on your machine. This caching mechanism streamlines repeated deployments by preserving provisioning settings and parameters, making subsequent deployments faster and more efficient.
 
@@ -167,5 +167,5 @@ Consider these security best practices:
 
 ## See also
 
-- [aspire deploy command reference](../../cli-reference/aspire-deploy.md)
-- [Deploy to Azure Container Apps using Aspire CLI](aca-deployment-aspire-cli.md)
+- [aspire deploy command reference](../cli-reference/aspire-deploy.md)
+- [Deploy to Azure Container Apps using Aspire CLI](aspire-deploy/aca-deployment-aspire-cli.md)

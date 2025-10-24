@@ -139,7 +139,7 @@ Save to user secrets: [y/n] (n): n
 ```
 
 > [!NOTE]
-> The CLI continuously prompts until all unresolved parameters are provided with values. The `aspire deploy` command caches deployment state locally to streamline subsequent deployments. For more information, see [Local deployment state](local-deployment-state.md).
+> The CLI continuously prompts until all unresolved parameters are provided with values. The `aspire deploy` command caches deployment state locally to streamline subsequent deployments. For more information, see [Deployment state caching](../deployment-state-caching.md).
 
 Once parameters are collected, Azure infrastructure is provisioned using Bicep templates. This step creates the necessary Azure resources including the Container Apps environment, Container Registry, and any backing services like Redis caches:
 

@@ -491,6 +491,9 @@ items:
     href: deployment/overview.md
   - name: Building custom deployment pipelines
     href: fundamentals/custom-deployments.md
+  - name: Deployment state caching
+    href: deployment/deployment-state-caching.md
+    displayName: deployment state,deployment cache,clear-cache,deployment settings,aspire deploy
   - name: Azure deployment with Aspire
     items:
     - name: Deploy to Azure Container Apps using Aspire CLI
@@ -498,9 +501,6 @@ items:
     - name: Deploy to Azure Container Apps using Visual Studio
       href: deployment/aspire-deploy/aca-deployment-visual-studio.md
       displayName: azure container apps,vs
-    - name: Local deployment state
-      href: deployment/aspire-deploy/local-deployment-state.md
-      displayName: deployment state,deployment cache,clear-cache,deployment settings
     - name: Azure security best practices
       href: deployment/aspire-deploy/azure-security-best-practices.md
       displayName: azure security,security best practices,container security,managed identity
