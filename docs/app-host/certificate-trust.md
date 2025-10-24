@@ -9,6 +9,9 @@ ai-usage: ai-assisted
 
 In Aspire, you can customize which certificates resources consider trusted for TLS/HTTPS traffic. This is particularly useful for resources that don't use the system's root trusted certificates by default, such as containerized applications, Python apps, and Node.js apps. By configuring certificate trust, you enable these resources to communicate securely with services that use certificates they wouldn't otherwise trust, including the Aspire dashboard's OTLP endpoint.
 
+> [!IMPORTANT]
+> Certificate trust customization only applies at run time. Custom certificates aren't included in publish or deployment artifacts.
+
 ## When to use certificate trust customization
 
 Certificate trust customization is valuable when:
@@ -34,11 +37,11 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 // Explicitly enable development certificate trust
 var nodeApp = builder.AddNpmApp("frontend", "../frontend")
-    .WithDeveloperCertificateTrust(enabled: true);
+    .WithDeveloperCertificateTrust(trust: true);
 
 // Disable development certificate trust
 var pythonApp = builder.AddPythonApp("api", "../api", "main.py")
-    .WithDeveloperCertificateTrust(enabled: false);
+    .WithDeveloperCertificateTrust(trust: false);
 
 builder.Build().Run();
 ```
@@ -56,7 +59,7 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 // Load your custom certificates
 var certificates = new X509Certificate2Collection();
-certificates.Import("path/to/certificate.pem");
+certificates.ImportFromPemFile("path/to/certificate.pem");
 
 // Create a certificate authority collection
 var certBundle = builder.AddCertificateAuthorityCollection("my-bundle")
@@ -75,7 +78,15 @@ In the preceding example, the certificate bundle is created with custom certific
 
 Certificate trust scopes control how custom certificates interact with a resource's default trusted certificates. Different scopes provide flexibility in managing certificate trust based on your application's requirements.
 
-The `WithCertificateTrustScope` API accepts a <xref:Aspire.Hosting.ApplicationModel.CertificateTrustScope> value to specify the trust behavior:
+The `WithCertificateTrustScope` API accepts a <xref:Aspire.Hosting.ApplicationModel.CertificateTrustScope> value to specify the trust behavior.
+
+### Default trust scopes
+
+Different resource types have different default trust scopes:
+
+- **Append**: The default for most resources, appending custom certificates to the default trusted certificates.
+- **System**: The default for Python projects, which combines custom certificates with system root certificates because Python doesn't properly support Append mode.
+- **None**: The default for .NET projects on Windows, as there's no way to automatically change the default system store source.
 
 ### Append mode
 
@@ -148,14 +159,16 @@ Use `WithExecutableCertificateTrustCallback` to customize certificate trust for 
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddExecutable("custom-app", "myapp", ".")
-    .WithExecutableCertificateTrustCallback((certificates, args) =>
+    .WithExecutableCertificateTrustCallback((ctx) =>
     {
-        // Customize command line arguments
-        args.Add("--ca-file");
-        args.Add("/path/to/ca-bundle.pem");
+        // Add a command line argument that must be set to enable custom certificates
+        ctx.CertificateTrustArguments.Add("--use-custom-ca");
         
-        // Set environment variables
-        // Environment variables can be set through the resource builder
+        // Add a command line argument that expects the path to a bundle (single file) of the custom CA certificates
+        ctx.CertificateBundleArguments.Add("--ca-file");
+        
+        // Add an environment variable that expects the path to a bundle (single file) of the custom CA certificates
+        ctx.CertificateBundleEnvironment.Add("EXTRA_CA_BUNDLE");
     });
 
 builder.Build().Run();
@@ -171,13 +184,21 @@ Use `WithContainerCertificateTrustCallback` to customize certificate trust for c
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddContainer("api", "myimage")
-    .WithContainerCertificateTrustCallback((certificates, containerConfig) =>
+    .WithContainerCertificateTrustCallback((ctx) =>
     {
-        // Customize container certificate paths
-        containerConfig.CertificatePath = "/custom/certs/path";
+        // Override the path to default individual certificates in the container (this is a list of common certificate paths for various Linux distros by default)
+        // This should only need to be updated if your container has certificates in non-standard paths
+        ctx.DefaultContainerCertificatesDirectoryPaths.Clear();
+        ctx.DefaultContainerCertificatesDirectoryPaths.Add("/path/to/custom/certs");
         
-        // Add environment variables for certificate configuration
-        containerConfig.EnvironmentVariables["SSL_CERT_FILE"] = "/custom/certs/ca-bundle.pem";
+        // Same as above, by default this is a collection of the default locations of the system certificate authority bundle file for common Linux distros
+        // You should only need to customize this if your image uses non-standard certificate paths
+        ctx.DefaultContainerCertificateAuthorityBundlePaths.Clear();
+        ctx.DefaultContainerCertificateAuthorityBundlePaths.Add("/path/to/custom/certbundle.pem");
+        
+        // Add environment variables that should be set with a path to the additional CA certificates as its value
+        // By default this includes "SSL_CERT_DIR" for OpenSSL compatibility
+        ctx.CertificatesDirectoryEnvironment.Add("EXTRA_CERTS");
     });
 
 builder.Build().Run();
@@ -224,16 +245,16 @@ builder.AddContainer("service", "myservice:latest")
 builder.Build().Run();
 ```
 
-### Configure Python apps with certificate trust
+### Disable certificate trust for Python apps
 
-Python applications require special handling due to their certificate trust model:
+Python projects use System mode by default. To disable certificate trust customization for a Python app:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-// Use System mode for Python apps
+// Disable certificate trust for Python apps
 builder.AddPythonModule("api", "./api", "uvicorn")
-    .WithCertificateTrustScope(CertificateTrustScope.System);
+    .WithCertificateTrustScope(CertificateTrustScope.None);
 
 builder.Build().Run();
 ```
