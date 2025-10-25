@@ -12,6 +12,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: What's new in Aspire 13
+      url: dotnet-aspire-13.md
     - text: What's new in Aspire 9.5
       url: dotnet-aspire-9.5.md
     - text: What's new in Aspire 9.4
@@ -34,6 +36,8 @@ landingContent:
   linkLists:
   - linkListType: whats-new
     links:
+    - text: Aspire 13.0
+      url: https://github.com/dotnet/aspire/releases/tag/v13.0.0
     - text: Aspire 9.4.2
       url: https://github.com/dotnet/aspire/releases/tag/v9.4.2
     - text: Aspire 9.4.1
