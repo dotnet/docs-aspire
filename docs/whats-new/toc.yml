@@ -6,6 +6,8 @@ items:
 - name: Latest product updates
   expanded: true
   items:
+  - name: What's new in Aspire 13
+    href: dotnet-aspire-13.md
   - name: What's new in Aspire 9.5
     href: dotnet-aspire-9.5.md
   - name: What's new in Aspire 9.4
@@ -28,6 +30,8 @@ items:
   href: ../compatibility/breaking-changes.md
 - name: GitHub releases
   items:
+  - name: Aspire 13.0
+    href: https://github.com/dotnet/aspire/releases/tag/v13.0.0
   - name: Aspire 9.4.2
     href: https://github.com/dotnet/aspire/releases/tag/v9.4.2
   - name: Aspire 9.4.1
