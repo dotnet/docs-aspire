@@ -1,7 +1,7 @@
 ---
 title: Compiler Error ASPIREDEPLOYMENT001
 description: Learn more about compiler Error ASPIREDEPLOYMENT001. Deployment state manager APIs are for evaluation purposes only and are subject to change or removal in future updates.
-ms.date: 01/28/2025
+ms.date: 10/27/2025
 f1_keywords:
   - "ASPIREDEPLOYMENT001"
 helpviewer_keywords:

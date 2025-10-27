@@ -1,7 +1,7 @@
 ---
 title: Compiler Error ASPIREIMGBUILD001
 description: Learn more about compiler Error ASPIREIMGBUILD001. Container image build APIs are for evaluation purposes only and are subject to change or removal in future updates.
-ms.date: 01/28/2025
+ms.date: 10/27/2025
 f1_keywords:
   - "ASPIREIMGBUILD001"
 helpviewer_keywords:
