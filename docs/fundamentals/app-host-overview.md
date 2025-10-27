@@ -51,7 +51,7 @@ The AppHost project handles running all of the projects that are part of the Asp
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.2" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -60,7 +60,7 @@ The AppHost project handles running all of the projects that are part of the Asp
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.1" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.2" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->
