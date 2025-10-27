@@ -24,7 +24,7 @@ The following snippet is an example `.aspire/settings.json` file:
 
 ## Config file locations
 
-A global Aspire CLI settings file is stored at `$HOME/.aspire/settings.json`, and is used as the default settings for the CLI. A local settings file overwrites the settings from the global file. Local settings files are stored at `./.aspire/settings.json`.
+A global Aspire CLI settings file is stored at `$HOME/.aspire/globalsettings.json`, and is used as the default settings for the CLI. A local settings file overwrites the settings from the global file. Local settings files are stored at `./.aspire/settings.json`.
 
 ## Generating a config file
 
