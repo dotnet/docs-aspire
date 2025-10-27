@@ -33,7 +33,7 @@ items:
       href: get-started/dev-containers.md
   - name: What's new in Aspire 9.5
     href: whats-new/dotnet-aspire-9.5.md
-  - name: Upgrade to Aspire 9.5.0
+  - name: Upgrade to Aspire 9.5.2
     href: get-started/upgrade-to-aspire-9.md
 
 - name: AppHost

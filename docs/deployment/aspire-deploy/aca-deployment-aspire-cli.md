@@ -56,7 +56,7 @@ To configure your project for Azure Container Apps deployment, add a package ref
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.2" />
 
     <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -67,8 +67,8 @@ To configure your project for Azure Container Apps deployment, add a package ref
     </PropertyGroup>
 
     <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.1" />
-    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.1" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.2" />
     </ItemGroup>
 
 </Project>
