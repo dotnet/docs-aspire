@@ -592,6 +592,12 @@ items:
         href: diagnostics/aspireproxyendpoints001.md
       - name: ASPIREPUBLISHERS001
         href: diagnostics/aspirepublishers001.md
+      - name: ASPIREPIPELINES001
+        href: diagnostics/aspirepipelines001.md
+      - name: ASPIREPIPELINES002
+        href: diagnostics/aspirepipelines002.md
+      - name: ASPIREPIPELINES003
+        href: diagnostics/aspirepipelines003.md
       - name: ASPIREAZURE001
         href: diagnostics/aspireazure001.md
     - name: By category
@@ -628,6 +634,12 @@ items:
           href: diagnostics/aspirehostingpython001.md
         - name: Publishing APIs are experimental
           href: diagnostics/aspirepublishers001.md
+        - name: Pipeline infrastructure APIs are experimental
+          href: diagnostics/aspirepipelines001.md
+        - name: Deployment state management APIs are experimental
+          href: diagnostics/aspirepipelines002.md
+        - name: Container image building APIs are experimental
+          href: diagnostics/aspirepipelines003.md
         - name: Publishing to Azure APIs are experimental
           href: diagnostics/aspireazure001.md
   - name: Aspire API reference

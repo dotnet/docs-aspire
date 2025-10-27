@@ -12,6 +12,15 @@ helpviewer_keywords:
 
 **Version introduced:** 9.2
 
+> [!NOTE]
+> Starting in version 9.2, this diagnostic has been replaced by more specific diagnostic codes:
+>
+> - [ASPIREPIPELINES001](aspirepipelines001.md) for pipeline infrastructure
+> - [ASPIREPIPELINES002](aspirepipelines002.md) for deployment state management
+> - [ASPIREPIPELINES003](aspirepipelines003.md) for container image building
+>
+> Use these more specific diagnostics to selectively suppress warnings for different experimental features.
+
 > Publishers are for evaluation purposes only and are subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
 Aspire introduced the concept of _Publishers_ starting in version 9.2. Publishers play a pivotal role in the deployment process, enabling the transformation of your distributed app into deployable assets. This alleviates the intermediate step of producing the publishing [manifest](../deployment/manifest-format.md) for tools to act on, instead empowering the developer to express their intent directly in C#.
