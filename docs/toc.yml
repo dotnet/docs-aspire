@@ -588,6 +588,12 @@ items:
         href: diagnostics/aspirecosmosdb001.md
       - name: ASPIREHOSTINGPYTHON001
         href: diagnostics/aspirehostingpython001.md
+      - name: ASPIREPIPELINES001
+        href: diagnostics/aspirepipelines001.md
+      - name: ASPIREPIPELINES002
+        href: diagnostics/aspirepipelines002.md
+      - name: ASPIREPIPELINES003
+        href: diagnostics/aspirepipelines003.md
       - name: ASPIREPROXYENDPOINTS001
         href: diagnostics/aspireproxyendpoints001.md
       - name: ASPIREPUBLISHERS001
@@ -626,6 +632,12 @@ items:
           href: diagnostics/aspireproxyendpoints001.md
         - name: Hosting Python apps
           href: diagnostics/aspirehostingpython001.md
+        - name: Pipeline infrastructure APIs are experimental
+          href: diagnostics/aspirepipelines001.md
+        - name: Deployment state manager APIs are experimental
+          href: diagnostics/aspirepipelines002.md
+        - name: Container image build APIs are experimental
+          href: diagnostics/aspirepipelines003.md
         - name: Publishing APIs are experimental
           href: diagnostics/aspirepublishers001.md
         - name: Publishing to Azure APIs are experimental
