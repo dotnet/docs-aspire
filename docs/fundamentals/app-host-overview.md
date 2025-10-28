@@ -46,27 +46,44 @@ When you call <xref:Aspire.Hosting.DistributedApplication.CreateBuilder*?display
 
 ## AppHost project
 
-The AppHost project handles running all of the projects that are part of the Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that references the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package, and uses the [Aspire SDK](dotnet-aspire-sdk.md):
+The AppHost project handles running all of the projects that are part of the Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that uses the [Aspire SDK](dotnet-aspire-sdk.md). Starting with Aspire 13.0, the `Aspire.AppHost.Sdk` can be set as the sole project SDK, which implicitly adds a package reference to the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <!-- Omitted for brevity -->
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.1" />
-    </ItemGroup>
 
     <!-- Omitted for brevity -->
 
 </Project>
 ```
+
+> [!NOTE]
+> The alternative approach of explicitly listing the SDK and package reference still works and isn't a requirement to change existing projects:
+>
+> ```xml
+> <Project Sdk="Microsoft.NET.Sdk">
+>
+>     <Sdk Name="Aspire.AppHost.Sdk" Version="13.0.0" />
+>     
+>     <PropertyGroup>
+>         <OutputType>Exe</OutputType>
+>         <TargetFramework>net10.0</TargetFramework>
+>         <!-- Omitted for brevity -->
+>     </PropertyGroup>
+>
+>     <ItemGroup>
+>         <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+>     </ItemGroup>
+>
+>     <!-- Omitted for brevity -->
+>
+> </Project>
+> ```
 
 The following code describes an AppHost `Program` with two project references and a Redis cache:
 
@@ -113,11 +130,16 @@ Aspire projects are made up of a set of resources. The primary base resource typ
 | Method | Resource type | Description |
 |--|--|--|
 | <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | <xref:Aspire.Hosting.ApplicationModel.ProjectResource> | A .NET project, for example, an ASP.NET Core web app. |
+| `AddCSharpApp` | `CSharpAppResource` | A C# project or file-based app, for example, a _*.cs_ file, _*.csproj_ file, or project directory. |
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.ContainerResource> | A container image, such as a Docker image. |
 | <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file, such as a [Node.js app](../get-started/build-aspire-apps-with-nodejs.md). |
 | <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddParameter%2A> | <xref:Aspire.Hosting.ApplicationModel.ParameterResource> | A parameter resource that can be used to [express external parameters](external-parameters.md). |
 
-Project resources represent .NET projects that are part of the app model. When you add a project reference to the AppHost project, the Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references).
+<!-- TODO: add when xref is ready.
+| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> | <xref:Aspire.Hosting.ApplicationModel.CSharpAppResource> | A C# project or file-based app, for example, a .cs file, .csproj file, or project directory. |
+-->
+
+Project resources represent .NET projects that are part of the app model. When you add a project reference to the AppHost project, the Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references). Alternatively, you can add C# projects or file-based apps without a project reference using the `AddCSharpApp` method.
 
 To add a project to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method:
 
@@ -139,6 +161,25 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 ```
 
 The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [Aspire dashboard: Resource replicas](dashboard/explore.md#resource-replicas).
+
+C# app resources represent C# projects or file-based apps that are part of the app model. Unlike <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, which requires a project reference, the `AddCSharpApp` method can add C# projects or file-based apps using a path to a _*.cs_ file, _*.csproj_ file, or project directory. This is useful for adding file-based apps introduced in .NET 10 or for including projects without adding a project reference to the AppHost.
+
+To add a C# app to the app model, use the `AddCSharpApp` method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Adds a file-based C# app "inventoryservice" from a .cs file.
+var inventoryService = builder.AddCSharpApp("inventoryservice", @"..\InventoryService.cs");
+
+// Adds a C# project "catalogservice" from a project directory.
+var catalogService = builder.AddCSharpApp("catalogservice", @"..\CatalogService");
+```
+
+The `AddCSharpApp` method supports the same configuration options as <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, including replicas, environment variables, and resource dependencies.
+
+> [!NOTE]
+> The `AddCSharpApp` method is marked as experimental and requires .NET 10 SDK for file-based C# app support. For more information on file-based apps, see the [What's new in Aspire 9.5](../whats-new/dotnet-aspire-9.5.md#file-based-apphost-support-preview) documentation.
 
 ## Reference resources
 
@@ -255,7 +296,7 @@ services__apiservice__https__0
 The preceding environment variables express the first HTTP and HTTPS endpoints for the `apiservice` service. A named endpoint might be expressed as follows:
 
 ```Environment
-services__apiservice__myendpoint__0
+APISERVICE_MYENDPOINT
 ```
 
 In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`.

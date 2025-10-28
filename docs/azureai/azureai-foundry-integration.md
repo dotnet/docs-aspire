@@ -62,7 +62,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var foundry = builder.AddAzureAIFoundry("foundry");
 
-var chat = foundry.AddDeployment("chat", "Phi-4", "1", "Microsoft");
+var model = AIFoundryModel.Microsoft.Phi4;
+var chat = foundry.AddDeployment("chat", model);
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(chat)
@@ -74,17 +75,18 @@ builder.AddProject<Projects.ExampleProject>()
 The preceding code:
 
 - Adds an Azure AI Foundry resource named `foundry`.
-- Adds an Azure AI Foundry deployment resource named `chat` with a model name of `Phi-4`. The model name must correspond to an [available model](/azure/ai-foundry/foundry-models/concepts/models) in the Azure AI Foundry service.
+- Adds an Azure AI Foundry deployment resource named `chat` using the <xref:Aspire.Hosting.Azure.AIFoundryModel> constant for Phi-4. The model must correspond to an [available model](/azure/ai-foundry/foundry-models/concepts/models) in the Azure AI Foundry service.
 
-> [!NOTE]
-> The `format` parameter of the `AddDeployment(...)` method can be found in the Azure AI Foundry portal in the details page of the model, right after the `Quick facts` text.
+> [!TIP]
+> Use the strongly-typed <xref:Aspire.Hosting.Azure.AIFoundryModel> constants to avoid typos and ensure you're using valid model identifiers. These constants are grouped by publisher (for example, `AIFoundryModel.Microsoft.Phi4`, `AIFoundryModel.OpenAI.Gpt4o`).
 
 ### Configure deployment properties
 
 You can customize deployment properties using the <xref:Aspire.Hosting.AzureAIFoundryExtensions.WithProperties*> method:
 
 ```csharp
-var chat = foundry.AddDeployment("chat", "Phi-4", "1", "Microsoft")
+var model = AIFoundryModel.Microsoft.Phi4;
+var chat = foundry.AddDeployment("chat", model)
                   .WithProperties(deployment =>
                   {
                       deployment.SkuName = "Standard";
@@ -130,7 +132,8 @@ var builder = DistributedApplication.CreateBuilder(args);
 var foundry = builder.AddAzureAIFoundry("foundry")
                      .RunAsFoundryLocal();
 
-var chat = foundry.AddDeployment("chat", "phi-3.5-mini", "1", "Microsoft");
+var model = AIFoundryModel.Local.Phi35Mini;
+var chat = foundry.AddDeployment("chat", model);
 
 builder.AddProject<Projects.ExampleProject>()
        .WithReference(chat)
@@ -142,6 +145,9 @@ builder.AddProject<Projects.ExampleProject>()
 When the AppHost starts up, the local foundry service is also started. This requires the local machine to have [Foundry Local](/azure/ai-foundry/foundry-local/get-started) installed and running.
 
 The <xref:Aspire.Hosting.AzureAIFoundryExtensions.RunAsFoundryLocal*> method configures the resource to run as an emulator. It downloads and loads the specified models locally. The method provides health checks for the local service and automatically manages the Foundry Local lifecycle.
+
+> [!TIP]
+> Use the strongly-typed `AIFoundryModel.Local` constants for local development models. These constants are specifically optimized for Foundry Local (for example, `AIFoundryModel.Local.Phi4Mini`, `AIFoundryModel.Local.DeepseekR17b`).
 
 ### Assign roles to resources
 
