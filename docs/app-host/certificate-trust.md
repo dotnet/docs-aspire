@@ -147,76 +147,29 @@ builder.AddContainer("service", "myimage")
 builder.Build().Run();
 ```
 
-## Custom certificate trust callbacks
+## Custom certificate trust configuration
 
-For advanced scenarios, you can specify custom certificate trust behavior using callback APIs. These callbacks allow you to customize how certificates are configured for different resource types.
+For advanced scenarios, you can specify custom certificate trust behavior using a callback API. This callback allows you to customize the command line arguments and environment variables required to configure certificate trust for different resource types.
 
-### Executable resource certificate trust
+### Configure certificate trust with a callback
 
-Use `WithExecutableCertificateTrustCallback` to customize certificate trust for executable resources:
-
-```csharp
-var builder = DistributedApplication.CreateBuilder(args);
-
-builder.AddExecutable("custom-app", "myapp", ".")
-    .WithExecutableCertificateTrustCallback(async (ctx) =>
-    {
-        // Add a command line argument that must be set to enable custom certificates
-        ctx.CertificateTrustArguments.Add("--use-custom-ca");
-        
-        // Add a command line argument that expects the path to a bundle (single file) of the custom CA certificates
-        ctx.CertificateBundleArguments.Add("--ca-file");
-        
-        // Add an environment variable that expects the path to a bundle (single file) of the custom CA certificates
-        ctx.CertificateBundleEnvironment.Add("EXTRA_CA_BUNDLE");
-        
-        // Add an environment variable that expects the path to a directory containing CA certificates
-        ctx.CertificatesDirectoryEnvironment.Add("EXTRA_CERTS_DIR");
-        
-        await Task.CompletedTask;
-    });
-
-builder.Build().Run();
-```
-
-The callback receives an `ExecutableCertificateTrustCallbackAnnotationContext` that provides:
-
-- `Certificates`: The `X509Certificate2Collection` of certificates for this resource.
-- `Scope`: The `CertificateTrustScope` of trust for the resource.
-- `CertificateTrustArguments`: Command line arguments required to enable certificate trust.
-- `CertificateBundleArguments`: Command line arguments that will be combined with the path to the custom certificates bundle.
-- `CertificateBundleEnvironment`: Environment variable names that will be set with the path to the custom certificates bundle.
-- `CertificatesDirectoryEnvironment`: Environment variable names that will be set with paths to directories containing CA certificates to trust.
-
-### Container resource certificate trust
-
-Use `WithContainerCertificateTrustCallback` to customize certificate trust for container resources:
+Use `WithCertificateTrustConfiguration` to customize how certificate trust is configured for a resource:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
 builder.AddContainer("api", "myimage")
-    .WithContainerCertificateTrustCallback(async (ctx) =>
+    .WithCertificateTrustConfiguration(async (ctx) =>
     {
-        // Customize the path where custom certificates will be placed in the container
-        // Defaults to /usr/lib/ssl/aspire
-        ctx.CustomCertificatesContainerFilePath = "/custom/certs/path";
+        // Add a command line argument
+        ctx.Arguments.Add("--use-system-ca");
         
-        // Override the default container certificate authority bundle paths
-        // This is a list of common certificate paths for various Linux distros by default
-        // You should only need to update this if your container has certificates in non-standard paths
-        ctx.DefaultContainerCertificateAuthorityBundlePaths.Clear();
-        ctx.DefaultContainerCertificateAuthorityBundlePaths.Add("/path/to/custom/certbundle.pem");
+        // Set environment variables with certificate paths
+        // CertificateBundlePath resolves to the path of the custom certificate bundle file
+        ctx.EnvironmentVariables["MY_CUSTOM_CERT_VAR"] = ctx.CertificateBundlePath;
         
-        // Override the default container certificates directory paths
-        // By default this is a collection of common certificate directory paths for various Linux distros
-        // You should only need to customize this if your image uses non-standard certificate paths
-        ctx.DefaultContainerCertificatesDirectoryPaths.Clear();
-        ctx.DefaultContainerCertificatesDirectoryPaths.Add("/path/to/custom/certs/dir");
-        
-        // Add environment variables that should be set with a path to the additional CA certificates directory as its value
-        // By default this includes "SSL_CERT_DIR" for OpenSSL compatibility
-        ctx.CertificatesDirectoryEnvironment.Add("EXTRA_CERTS");
+        // CertificateDirectoriesPath resolves to paths containing individual certificates
+        ctx.EnvironmentVariables["CERTS_DIR"] = ctx.CertificateDirectoriesPath;
         
         await Task.CompletedTask;
     });
@@ -224,19 +177,40 @@ builder.AddContainer("api", "myimage")
 builder.Build().Run();
 ```
 
-The callback receives a `ContainerCertificateTrustCallbackAnnotationContext` that provides:
+The callback receives a `CertificateTrustConfigurationCallbackAnnotationContext` that provides:
 
-- `Certificates`: The `X509Certificate2Collection` of certificates for this resource.
-- `Scope`: The `CertificateTrustScope` of trust for the resource.
-- `CustomCertificatesContainerFilePath`: The path in the container where custom certificates will be placed (defaults to `/usr/lib/ssl/aspire`).
-- `DefaultContainerCertificateAuthorityBundlePaths`: List of default certificate bundle files in the container that will be replaced in Override mode.
-- `DefaultContainerCertificatesDirectoryPaths`: List of default certificate directories in the container that will be appended to in Append mode.
-- `CertificateTrustArguments`: Command line arguments required to enable certificate trust.
-- `CertificateBundleArguments`: Command line arguments that will be combined with the path to the custom certificates bundle.
-- `CertificateBundleEnvironment`: Environment variable names that will be set with the path to the custom certificates bundle.
-- `CertificatesDirectoryEnvironment`: Environment variable names that will be set with paths to directories containing CA certificates (defaults include `SSL_CERT_DIR` for OpenSSL compatibility).
+- `Scope`: The `CertificateTrustScope` for the resource.
+- `Arguments`: Command line arguments for the resource. Values can be strings or path providers like `CertificateBundlePath` or `CertificateDirectoriesPath`.
+- `EnvironmentVariables`: Environment variables for configuring certificate trust. The dictionary key is the environment variable name; values can be strings or path providers. By default, includes `SSL_CERT_DIR` and may include `SSL_CERT_FILE` if Override or System scope is configured.
+- `CertificateBundlePath`: A value provider that resolves to the path of a custom certificate bundle file.
+- `CertificateDirectoriesPath`: A value provider that resolves to paths containing individual certificates.
 
-Default implementations are provided for Node.js, Python, and container resources. Container resources rely on standard OpenSSL configuration options, with default values that support the majority of common Linux distributions. You can override these defaults if necessary.
+Default implementations are provided for Node.js, Python, and container resources. Container resources rely on standard OpenSSL configuration options, with default values that support the majority of common Linux distributions.
+
+### Configure container certificate paths
+
+For container resources, you can customize where certificates are stored and accessed using `WithContainerCertificatePaths`:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+builder.AddContainer("api", "myimage")
+    .WithContainerCertificatePaths(
+        customCertificatesDestination: "/custom/certs/path",
+        defaultCertificateBundlePaths: ["/etc/ssl/certs/ca-certificates.crt"],
+        defaultCertificateDirectoryPaths: ["/etc/ssl/certs"]);
+
+builder.Build().Run();
+```
+
+The `WithContainerCertificatePaths` API accepts three optional parameters:
+
+- `customCertificatesDestination`: Overrides the base path in the container where custom certificate files are placed. If not set or set to `null`, the default path of `/usr/lib/ssl/aspire` is used.
+- `defaultCertificateBundlePaths`: Overrides the path(s) in the container where a default certificate authority bundle file is located. When the `CertificateTrustScope` is Override or System, the custom certificate bundle is additionally written to these paths. If not set or set to `null`, a set of default certificate paths for common Linux distributions is used.
+- `defaultCertificateDirectoryPaths`: Overrides the path(s) in the container where individual trusted certificate files are found. When the `CertificateTrustScope` is Append, these paths are concatenated with the path to the uploaded certificate artifacts. If not set or set to `null`, a set of default certificate paths for common Linux distributions is used.
+
+> [!NOTE]
+> All desired paths must be configured in a single call to `WithContainerCertificatePaths` as only the most recent call to the API is honored.
 
 ## Common scenarios
 
