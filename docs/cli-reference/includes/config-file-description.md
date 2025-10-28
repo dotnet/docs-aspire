@@ -11,4 +11,4 @@ Aspire supports a local and global settings file. Settings defined in a local se
 
 - **Global settings**
 
-  The global settings file is stored at `$HOME/.aspire/settings.json`.
+  The global settings file is stored at `$HOME/.aspire/globalsettings.json`.

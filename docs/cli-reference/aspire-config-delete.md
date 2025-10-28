@@ -42,7 +42,7 @@ The following options are available:
 
 - **`-g, --global`**
 
-  Delete the configuration value from the global `$HOME/.aspire/settings.json` instead of the local settings file.
+  Delete the configuration value from the global `$HOME/.aspire/globalsettings.json` instead of the local settings file.
 
 - [!INCLUDE [option-help](includes/option-help.md)]
 
