@@ -18,6 +18,8 @@ In this article, you learn how to create a new Aspire application using the Aspi
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
+This tutorial also assumes that you have installed the Aspire CLI. For further instructions, see [Install Aspire CLI](../cli/install.md).
+
 Additionally, you need to install [Python](https://www.python.org/downloads) on your machine. This article requires Python version 3.12 or later. To verify your Python and pip versions, run the following commands:
 
 ```console
@@ -45,13 +47,23 @@ To download Node.js (including `npm`), see the [Node.js download page](https://n
 ## Create an Aspire project using the Python template
 
 > [!IMPORTANT]
-> The `aspire-py-starter` template is currently being developed and might not be available yet. Once released, you'll be able to create a Python-based Aspire application using the following command. For updates on template availability, see [Aspire Python Templates (issue #11865)](https://github.com/dotnet/aspire/issues/11865).
+> The `aspire-py-starter` template is currently being developed. Once it's released, you'll be able to create a Python-based Aspire application using the following command. For updates on template availability, see [Aspire Python Templates (issue #11865)](https://github.com/dotnet/aspire/issues/11865).
 
 To create a new Aspire application with a Python backend and JavaScript frontend, use the `aspire-py-starter` template:
 
-```Aspire
-aspire new aspire-py-starter
-```
+1. Execute the following command
+
+    ```Aspire
+    aspire new aspire-py-starter
+    ```
+
+1. For the project name, type **MyPythonApp**, and then press <kbd>Enter</kbd>.
+1. To accept the default output path, press <kbd>Enter</kbd>.
+1. To select the default template version, press <kbd>Enter</kbd>.
+1. When asked whether to use a Redis cache, select **No** and then press <kbd>Enter</kbd>.
+1. When asked whether to create a test project, select **No** and then press <kbd>Enter</kbd>.
+
+The Aspire CLI creates the new solution.
 
 This command creates a new Aspire solution with the following structure:
 
@@ -69,7 +81,7 @@ cd MyPythonApp
 
 ### File-based AppHost
 
-The solution uses a file-based AppHost with a single _apphost.cs_ file. This file contains the orchestration logic for both the Python backend and JavaScript frontend. The AppHost uses `AddPythonScript` to add the Python backend and `AddViteApp` to add the React frontend.
+The solution uses a file-based AppHost with a single _apphost.cs_ file. This file contains the orchestration logic for both the Python backend and JavaScript frontend. The AppHost uses `AddUvicornApp` to add the backend and `AddViteApp` to add the React frontend.
 
 ### Python backend
 
@@ -82,7 +94,7 @@ The Python backend is located in the _app_ directory. It uses the [FastAPI](http
 
 ### JavaScript frontend
 
-The JavaScript frontend is located in the _frontend_ directory. It uses [React](https://react.dev/) with Vite to create the user interface. The frontend includes:
+The JavaScript frontend is located in the _frontend_ directory. It uses [React](https://react.dev/) with [Vite](https://vite.dev/) to create the user interface. The frontend includes:
 
 - A _package.json_ file listing required npm packages.
 - Source code in the _src_ directory.

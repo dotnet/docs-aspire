@@ -39,11 +39,11 @@ The following Aspire solution templates are available, assume the solution is na
 
 <a name="python-app"></a>
 
-- **Aspire Python App**: A full-stack Aspire application with a Python backend and JavaScript frontend. This template uses a file-based AppHost and includes:
+- **Aspire Python App**: A full-stack Aspire application with a Python backend and a JavaScript frontend. This template uses a file-based AppHost and includes:
 
-  - **apphost.cs**: A file-based AppHost that orchestrates the Python backend and JavaScript frontend.
-  - **app**: A Python backend using [FastAPI](https://fastapi.tiangolo.com/) framework with OpenTelemetry instrumentation.
-  - **frontend**: A JavaScript frontend using [React](https://react.dev/) framework with Vite.
+  - **apphost.cs**: A file-based AppHost that orchestrates the Python backend and the JavaScript frontend. It also includes a Redis cache in the solution.
+  - **app**: A Python backend that uses the [FastAPI](https://fastapi.tiangolo.com/) framework with OpenTelemetry instrumentation.
+  - **frontend**: A JavaScript frontend using the [React](https://react.dev/) framework with [Vite](https://vite.dev).
   
   > [!NOTE]
   > The Aspire Python template is currently under development. For more information and updates, see [GitHub: Aspire issue #11865](https://github.com/dotnet/aspire/issues/11865). For now, you can manually add Python applications to an existing Aspire solution using the guidance in [Orchestrate Python apps in Aspire](../get-started/build-aspire-apps-with-python.md).
@@ -127,10 +127,10 @@ aspire new aspire-py-starter
 > The `aspire-py-starter` template is currently under development. For more information, see [Build an Aspire app with Python and JavaScript](../get-started/build-aspire-python-app.md).
 
 > [!TIP]
-> Aspire templates default to using the latest .NET version, even when using an earlier version of the .NET CLI. To manually specify the .NET version, use the `--framework <tfm>` option, for example to create a basic [Aspire AppHost](app-host-overview.md) project targeting .NET 8:
+> Aspire templates default to using the latest .NET version. To manually specify the .NET version, use the .NET CLI with the `--framework <tfm>` option, for example to create a basic [Aspire AppHost](app-host-overview.md) project targeting .NET 8:
 >
-> ```Aspire
-> aspire new aspire-apphost --framework net8.0
+> ```dotnetcli
+> dotnet new aspire-apphost --framework net8.0
 > ```
 
 You need to trust the ASP.NET Core :::no-loc text="localhost"::: certificate before running the app. Run the following command:
