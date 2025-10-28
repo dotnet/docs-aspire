@@ -1,21 +1,21 @@
 ---
-title: Compiler Error ASPIREIMGBUILD001
-description: Learn more about compiler Error ASPIREIMGBUILD001. Container image build APIs are for evaluation purposes only and are subject to change or removal in future updates.
-ms.date: 10/27/2025
+title: Compiler Error ASPIREPIPELINES003
+description: Learn more about compiler Error ASPIREPIPELINES003. Container image build APIs are for evaluation purposes only and are subject to change or removal in future updates.
+ms.date: 10/28/2025
 f1_keywords:
-  - "ASPIREIMGBUILD001"
+  - "ASPIREPIPELINES003"
 helpviewer_keywords:
-  - "ASPIREIMGBUILD001"
+  - "ASPIREPIPELINES003"
 ai-usage: ai-generated
 ---
 
-# Compiler Error ASPIREIMGBUILD001
+# Compiler Error ASPIREPIPELINES003
 
-**Version introduced:** 9.2
+**Version introduced:** 13.0
 
 > Container image build APIs are for evaluation purposes only and are subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
-Aspire introduced container image build APIs starting in version 9.2. These APIs provide functionality for building container images as part of the deployment pipeline. The container image build APIs enable you to configure build options, specify target platforms, select image formats, and integrate with container runtimes like Docker and Podman.
+Aspire introduced container image build APIs as part of the pipeline infrastructure starting in version 13.0. These APIs provide functionality for building container images as part of the deployment pipeline. The container image build APIs enable you to configure build options, specify target platforms, select image formats, and integrate with container runtimes like Docker and Podman.
 
 Container image build APIs are considered experimental and are expected to change in future updates.
 
@@ -39,7 +39,7 @@ Suppress the error with one of the following methods:
 
   ```ini
   [*.{cs,vb}]
-  dotnet_diagnostic.ASPIREIMGBUILD001.severity = none
+  dotnet_diagnostic.ASPIREPIPELINES003.severity = none
   ```
 
   For more information about editor config files, see [Configuration files for code analysis rules](/dotnet/fundamentals/code-analysis/configuration-files).
@@ -48,8 +48,8 @@ Suppress the error with one of the following methods:
 
   ```xml
   <PropertyGroup>
-      <NoWarn>$(NoWarn);ASPIREIMGBUILD001</NoWarn>
+      <NoWarn>$(NoWarn);ASPIREPIPELINES003</NoWarn>
   </PropertyGroup>
   ```
 
-- Suppress in code with the `#pragma warning disable ASPIREIMGBUILD001` directive.
+- Suppress in code with the `#pragma warning disable ASPIREPIPELINES003` directive.

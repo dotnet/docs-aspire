@@ -11,7 +11,7 @@ ai-usage: ai-generated
 
 # Compiler Error ASPIREPIPELINES001
 
-**Version introduced:** 9.2
+**Version introduced:** 13.0
 
 > Pipeline infrastructure APIs are for evaluation purposes only and are subject to change or removal in future updates. Suppress this diagnostic to proceed.
 
