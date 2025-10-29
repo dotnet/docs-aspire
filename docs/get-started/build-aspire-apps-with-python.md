@@ -32,9 +32,20 @@ To download Python (including `pip`), see the [Python download page](https://www
 
 To get started launching a Python project in Aspire, use the starter template to first create an Aspire application host:
 
-```Aspire
-aspire new aspire -o PythonSample
-```
+1. Use the following Aspire CLI command:
+
+    ```Aspire
+    aspire new
+    ```
+
+1. To select the **Starter template**, press <kbd>Enter</kbd>.
+1. For the **project name** type **PythonSample** and then press <kbd>Enter</kbd>.
+1. For the output path, press <kbd>Enter</kbd> to accept the default.
+1. To choose the default template version, press <kbd>Enter</kbd>.
+1. For **Use Redis Cache**, choose **No**.
+1. For **Do you want to create a test project?**, choose **No**.
+
+The Aspire CLI fetches the correct template and uses it to create a new Aspire solution in the **PythonSample** folder.
 
 In the same terminal session, change directories into the newly created project:
 
@@ -133,9 +144,11 @@ The preceding code creates a simple Flask app that listens on port 8111 and retu
 
 Install the Python hosting package by running the following command:
 
-```dotnetcli
-dotnet add package Aspire.Hosting.Python --version 9.0.0
+```Aspire
+aspire add
 ```
+
+Use the arrow keys to select the **python (Aspire.Hosting.Python)** hosting integration and then press <kbd>Enter</kbd>. Then press <kbd>Enter</kbd> again to select the default version. The Aspire CLI adds the Python hosting integration to the Aspire AppHost project.
 
 After the package is installed, the project XML should have a new package reference similar to the following example:
 
