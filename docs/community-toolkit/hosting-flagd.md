@@ -83,7 +83,7 @@ For more information on bind mounts, see [Docker docs: Bind mounts](https://docs
 
 ### Flag configuration format
 
-flagd uses JSON files for flag definitions. Create a folder named `flags` in your project root and place your `flagd.json` file inside it. The flag configuration file must be named `flagd.json`.
+flagd uses JSON files for flag definitions. Create a folder named `flags` in your project root and place your flag configuration file inside it. By default, the filename is `flagd.json`, but you can specify a different filename using the `filename` parameter in `WithBindFileSync`.
 
 Here's a simple example:
 
