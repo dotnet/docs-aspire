@@ -45,8 +45,8 @@ The following Aspire solution templates are available, assume the solution is na
   - **app**: A Python backend that uses the [FastAPI](https://fastapi.tiangolo.com/) framework with OpenTelemetry instrumentation.
   - **frontend**: A JavaScript frontend using the [React](https://react.dev/) framework with [Vite](https://vite.dev).
   
-  > [!NOTE]
-  > The Aspire Python template is currently under development. For more information and updates, see [GitHub: Aspire issue #11865](https://github.com/dotnet/aspire/issues/11865). For now, you can manually add Python applications to an existing Aspire solution using the guidance in [Orchestrate Python apps in Aspire](../get-started/build-aspire-apps-with-python.md).
+> [!NOTE]
+> You can't yet use the Aspire Python App template in Visual Studio.
 
 ### Project templates
 
