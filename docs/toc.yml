@@ -57,6 +57,9 @@ items:
       href: get-started/build-aspire-apps-with-python.md
   - name: AppHost configuration
     href: app-host/configuration.md
+  - name: Certificate trust customization
+    href: app-host/certificate-trust.md
+    displayName: certificate trust,TLS,HTTPS,development certificate,certificate authority
   - name: Customize resources
     items:
     - name: Persistent container services
