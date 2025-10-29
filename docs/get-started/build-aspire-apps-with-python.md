@@ -32,8 +32,8 @@ To download Python (including `pip`), see the [Python download page](https://www
 
 To get started launching a Python project in Aspire, use the starter template to first create an Aspire application host:
 
-```dotnetcli
-dotnet new aspire -o PythonSample
+```Aspire
+aspire new aspire -o PythonSample
 ```
 
 In the same terminal session, change directories into the newly created project:
@@ -44,8 +44,8 @@ cd PythonSample
 
 After the template is created, launch the AppHost with the following command to ensure that the AppHost and the [Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
 
-```dotnetcli
-dotnet run --project ./PythonSample.AppHost/PythonSample.AppHost.csproj
+```Aspire
+aspire run
 ```
 
 If the Aspire Dashboard doesn't open, open it with the link in the console output. At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
@@ -134,7 +134,7 @@ The preceding code creates a simple Flask app that listens on port 8111 and retu
 Install the Python hosting package by running the following command:
 
 ```dotnetcli
-dotnet add ../PythonSample.AppHost/PythonSample.AppHost.csproj package Aspire.Hosting.Python --version 9.0.0
+dotnet add package Aspire.Hosting.Python --version 9.0.0
 ```
 
 After the package is installed, the project XML should have a new package reference similar to the following example:
@@ -152,8 +152,8 @@ Replace the _AppHost.cs_ code with the following snippet. This code adds the Pyt
 
 Now that you've added the Python hosting package, updated the _AppHost.cs_ file, and created a Python project, you can run the AppHost:
 
-```dotnetcli
-dotnet run --project ../PythonSample.AppHost/PythonSample.AppHost.csproj
+```Aspire
+aspire run
 ```
 
 Launch the dashboard by clicking the link in the console output. The dashboard should display the Python project as a resource.
