@@ -160,7 +160,7 @@ After the package is installed, the project XML should have a new package refere
 
 Replace the _AppHost.cs_ code with the following snippet. This code adds the Python project to Aspire by calling the `AddPythonApp` API and specifying the project name, project path, and the entry point file:
 
-:::code source="snippets/PythonSample/PythonSample.AppHost/AppHost.cs" highlight="6":::
+:::code source="snippets/PythonSample/PythonSample.AppHost/AppHost.cs" highlight="5-15":::
 
 > [!IMPORTANT]
 > The preceding code suppresses the `ASPIREHOSTINGPYTHON001` diagnostic error. This error is generated because the `AddPythonApp` API is experimental and might change in future release. For more information, see [Compiler Error ASPIREHOSTINGPYTHON001](../diagnostics/aspirehostingpython001.md).
@@ -177,7 +177,7 @@ Launch the dashboard by clicking the link in the console output. The dashboard s
 
 :::image source="media/python-dashboard.png" lightbox="media/python-dashboard.png" alt-text="Aspire dashboard: Python sample app.":::
 
-Select the **Endpoints** link to open the `hello-python` endpoint in a new browser tab. The browser should display the message "Hello, World!":
+Select the **URLs** link to open the `hello-python` endpoint in a new browser tab. The browser should display the message "Hello, World!":
 
 :::image source="media/python-hello-world.png" lightbox="media/python-hello-world.png" alt-text="Aspire dashboard: Python sample app endpoint.":::
 
