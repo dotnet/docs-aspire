@@ -59,7 +59,11 @@ After the template is created, launch the AppHost with the following command to 
 aspire run
 ```
 
-If the Aspire Dashboard doesn't open, open it with the link in the console output. At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
+The Aspire CLI runs the solution and displays some information about it. To access the Aspire dashboard, hold down <kbd>CTRL</kbd> and then select the **Dashboard** URL.
+
+:::image source="media/aspire-run-access-dashboard.png" lightbox="media/aspire-run-access-dashboard.png" alt-text="Screenshot showing how to access the Aspire dashboard from the output of the Aspire CLI.":::
+
+At this point the dashboard won't show any resources. Stop the AppHost by pressing <kbd>Ctrl + C</kbd> in the terminal.
 
 ## Prepare a Python app
 
