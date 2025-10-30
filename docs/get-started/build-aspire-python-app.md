@@ -20,6 +20,8 @@ In this article, you learn how to create a new Aspire application using the Aspi
 
 This tutorial also assumes that you have installed the Aspire CLI. For further instructions, see [Install Aspire CLI](../cli/install.md).
 
+This tutorial also assumes that you have installed the Aspire CLI. For further instructions, see [Install Aspire CLI](../cli/install.md).
+
 Additionally, you need to install [Python](https://www.python.org/downloads) on your machine. This article requires Python version 3.12 or later. To verify your Python and pip versions, run the following commands:
 
 ```console
