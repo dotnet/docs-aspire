@@ -130,7 +130,7 @@ To run your Aspire application in development mode:
 
 The extension builds and starts the AppHost project, launches the Aspire dashboard in your browser, and enables debugging for all resources in your solution.
 
-Alternatively, you can open an Aspire VS Code terminal using `Aspire: Open Aspire terminal` and run `aspire run --start-debug-session` to start a VS Code debug session. 
+Alternatively, you can open an Aspire VS Code terminal using `Aspire: Open Aspire terminal` and run `aspire run --start-debug-session` to start a VS Code debug session.
 
 ### Run or debug from the editor
 
