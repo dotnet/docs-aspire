@@ -46,27 +46,44 @@ When you call <xref:Aspire.Hosting.DistributedApplication.CreateBuilder*?display
 
 ## AppHost project
 
-The AppHost project handles running all of the projects that are part of the Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that references the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package, and uses the [Aspire SDK](dotnet-aspire-sdk.md):
+The AppHost project handles running all of the projects that are part of the Aspire project. In other words, it's responsible for orchestrating all apps within the app model. The project itself is a .NET executable project that uses the [Aspire SDK](dotnet-aspire-sdk.md). Starting with Aspire 13.0, the `Aspire.AppHost.Sdk` can be set as the sole project SDK, which implicitly adds a package reference to the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package:
 
 ```xml
-<Project Sdk="Microsoft.NET.Sdk">
-
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.2" />
+<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <!-- Omitted for brevity -->
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.2" />
-    </ItemGroup>
 
     <!-- Omitted for brevity -->
 
 </Project>
 ```
+
+> [!NOTE]
+> The alternative approach of explicitly listing the SDK and package reference still works and isn't a requirement to change existing projects:
+>
+> ```xml
+> <Project Sdk="Microsoft.NET.Sdk">
+>
+>     <Sdk Name="Aspire.AppHost.Sdk" Version="13.0.0" />
+>     
+>     <PropertyGroup>
+>         <OutputType>Exe</OutputType>
+>         <TargetFramework>net10.0</TargetFramework>
+>         <!-- Omitted for brevity -->
+>     </PropertyGroup>
+>
+>     <ItemGroup>
+>         <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+>     </ItemGroup>
+>
+>     <!-- Omitted for brevity -->
+>
+> </Project>
+> ```
 
 The following code describes an AppHost `Program` with two project references and a Redis cache:
 
@@ -113,11 +130,16 @@ Aspire projects are made up of a set of resources. The primary base resource typ
 | Method | Resource type | Description |
 |--|--|--|
 | <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> | <xref:Aspire.Hosting.ApplicationModel.ProjectResource> | A .NET project, for example, an ASP.NET Core web app. |
+| `AddCSharpApp` | `CSharpAppResource` | A C# project or file-based app, for example, a _*.cs_ file, _*.csproj_ file, or project directory. |
 | <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.AddContainer%2A> | <xref:Aspire.Hosting.ApplicationModel.ContainerResource> | A container image, such as a Docker image. |
 | <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.AddExecutable%2A> | <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> | An executable file, such as a [Node.js app](../get-started/build-aspire-apps-with-nodejs.md). |
 | <xref:Aspire.Hosting.ParameterResourceBuilderExtensions.AddParameter%2A> | <xref:Aspire.Hosting.ApplicationModel.ParameterResource> | A parameter resource that can be used to [express external parameters](external-parameters.md). |
 
-Project resources represent .NET projects that are part of the app model. When you add a project reference to the AppHost project, the Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references).
+<!-- TODO: add when xref is ready.
+| <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddCSharpApp%2A> | <xref:Aspire.Hosting.ApplicationModel.CSharpAppResource> | A C# project or file-based app, for example, a .cs file, .csproj file, or project directory. |
+-->
+
+Project resources represent .NET projects that are part of the app model. When you add a project reference to the AppHost project, the Aspire SDK generates a type in the `Projects` namespace for each referenced project. For more information, see [Aspire SDK: Project references](dotnet-aspire-sdk.md#project-references). Alternatively, you can add C# projects or file-based apps without a project reference using the `AddCSharpApp` method.
 
 To add a project to the app model, use the <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> method:
 
@@ -139,6 +161,25 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 ```
 
 The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [Aspire dashboard: Resource replicas](dashboard/explore.md#resource-replicas).
+
+C# app resources represent C# projects or file-based apps that are part of the app model. Unlike <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, which requires a project reference, the `AddCSharpApp` method can add C# projects or file-based apps using a path to a _*.cs_ file, _*.csproj_ file, or project directory. This is useful for adding file-based apps introduced in .NET 10 or for including projects without adding a project reference to the AppHost.
+
+To add a C# app to the app model, use the `AddCSharpApp` method:
+
+```csharp
+var builder = DistributedApplication.CreateBuilder(args);
+
+// Adds a file-based C# app "inventoryservice" from a .cs file.
+var inventoryService = builder.AddCSharpApp("inventoryservice", @"..\InventoryService.cs");
+
+// Adds a C# project "catalogservice" from a project directory.
+var catalogService = builder.AddCSharpApp("catalogservice", @"..\CatalogService");
+```
+
+The `AddCSharpApp` method supports the same configuration options as <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, including replicas, environment variables, and resource dependencies.
+
+> [!NOTE]
+> The `AddCSharpApp` method is marked as experimental and requires .NET 10 SDK for file-based C# app support. For more information on file-based apps, see the [What's new in Aspire 9.5](../whats-new/dotnet-aspire-9.5.md#file-based-apphost-support-preview) documentation.
 
 ## Reference resources
 
@@ -176,9 +217,16 @@ Project-to-project references are handled differently than resources that have w
 | Method | Environment variable |
 |--|--|
 | `WithReference(cache)` | `ConnectionStrings__cache="localhost:62354"` |
-| `WithReference(apiservice)` | `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
+| `WithReference(apiservice)` | `APISERVICE_HTTP="http://localhost:5455"` <br /> `APISERVICE_HTTPS="https://localhost:7356"` <br /> `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
 
-Adding a reference to the "apiservice" project results in service discovery environment variables being added to the frontend. This is because typically, project-to-project communication occurs over HTTP/gRPC. For more information, see [Aspire service discovery](../service-discovery/overview.md).
+Adding a reference to the "apiservice" project results in service discovery environment variables being added to the frontend. This is because typically, project-to-project communication occurs over HTTP/gRPC.
+
+Aspire injects two types of environment variables for service references:
+
+- **Simplified format** (e.g., `APISERVICE_HTTP`): Uses the pattern `{RESOURCENAME}_{ENDPOINTNAME}` in uppercase. This format is simpler and more suitable for non-.NET languages and polyglot scenarios.
+- **.NET service discovery format** (e.g., `services__apiservice__http__0`): Uses the pattern `services__{servicename}__{endpointname}__{index}` in lowercase. This format is used by .NET's configuration-based service discovery.
+
+For more information, see [Aspire service discovery](../service-discovery/overview.md).
 
 To get specific endpoints from a <xref:Aspire.Hosting.ApplicationModel.ContainerResource> or an <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, use one of the following endpoint APIs:
 
@@ -202,31 +250,68 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 | Method                    | Environment variable                                  |
 |---------------------------|-------------------------------------------------------|
-| `WithReference(endpoint)` | `services__myapp__endpoint__0=https://localhost:9043` |
+| `WithReference(endpoint)` | `MYAPP_ENDPOINT="https://localhost:9043"` <br /> `services__myapp__endpoint__0="https://localhost:9043"` |
 
 The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [Aspire service discovery](../service-discovery/overview.md).
 
 ### Service endpoint environment variable format
 
-In the preceding section, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on this format.
+In the preceding section, the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*> method is used to express dependencies between resources. When service endpoints result in environment variables being injected into the dependent resource, the format might not be obvious. This section provides details on the available formats.
 
-When one resource depends on another resource, the AppHost injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. The format of the environment variables is specific to Aspire and expresses service endpoints in a way that is compatible with [Service Discovery](../service-discovery/overview.md).
+When one resource depends on another resource, the AppHost injects environment variables into the dependent resource. These environment variables configure the dependent resource to connect to the resource it depends on. Aspire provides two environment variable formats to support different scenarios:
 
-Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each endpoint.
+#### Simplified format (polyglot-friendly)
+
+The simplified format uses the pattern `{RESOURCENAME}_{ENDPOINTNAME}` in uppercase. This format is easier to use from non-.NET languages and is recommended for polyglot scenarios.
+
+Consider the following environment variable examples:
+
+```Environment
+APISERVICE_HTTP
+APISERVICE_HTTPS
+```
+
+The preceding environment variables express HTTP and HTTPS endpoints for the `apiservice` service. A named endpoint might be expressed as follows:
+
+```Environment
+APISERVICE_MYENDPOINT
+```
+
+In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`.
+
+> [!NOTE]
+> The environment variable name is based on the resource name, not the optional connection name parameter. Even when using `WithReference(resource, "customname")` to specify a custom connection name, the generated environment variables still use the resource's name (e.g., `APISERVICE_HTTP`), not the custom name.
+
+#### .NET service discovery format
+
+The .NET service discovery format is used by .NET's configuration-based service discovery. Service endpoint environment variable names are prefixed with `services__` (double underscore), then the service name, the endpoint name, and finally the index. The index supports multiple endpoints for a single service, starting with `0` for the first endpoint and incrementing for each endpoint.
 
 Consider the following environment variable examples:
 
 ```Environment
 services__apiservice__http__0
+services__apiservice__https__0
 ```
 
-The preceding environment variable expresses the first HTTP endpoint for the `apiservice` service. The value of the environment variable is the URL of the service endpoint. A named endpoint might be expressed as follows:
+The preceding environment variables express the first HTTP and HTTPS endpoints for the `apiservice` service. A named endpoint might be expressed as follows:
 
 ```Environment
-services__apiservice__myendpoint__0
+APISERVICE_MYENDPOINT
 ```
 
-In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`. The value of the environment variable is the URL of the service endpoint.
+In the preceding example, the `apiservice` service has a named endpoint called `myendpoint`.
+
+#### Using a specific endpoint with WithEnvironment
+
+To specify a custom environment variable name for a specific endpoint, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithEnvironment%2A> method combined with <xref:Aspire.Hosting.ResourceBuilderExtensions.GetEndpoint*>:
+
+```csharp
+var projectA = builder.AddProject<Projects.ProjectA>("projecta");
+var projectB = builder.AddProject<Projects.ProjectB>("projectb")
+                      .WithEnvironment("PROJECTA_URL", projectA.GetEndpoint("https"));
+```
+
+This generates a single environment variable `PROJECTA_URL` with the HTTPS endpoint URL of the `projecta` service.
 
 ## Reference existing resources
 

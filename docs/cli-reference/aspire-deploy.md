@@ -55,6 +55,14 @@ The following options are available:
 
 - [!INCLUDE [option-project](includes/option-project.md)]
 
+- **`-e, --environment`**
+
+  The deployment environment name. Defaults to `production`. Each environment maintains its own isolated deployment state file.
+
+- **`--clear-cache`**
+
+  Clears the cached deployment state for the specified environment before deploying. When used, the deployment prompts for all values but doesn't save them to cache.
+
 - **`-o, --output-path`**
 
   The output path for deployment artifacts. Defaults to a folder named _deploy_ in the current directory.
@@ -84,3 +92,25 @@ The following options are available:
   ```Command
   aspire deploy --project './projects/apphost/orchestration.AppHost.csproj' -- -fast
   ```
+
+- Deploy to a specific environment:
+
+  ```Command
+  aspire deploy --environment staging
+  ```
+
+- Clear cached deployment state and deploy:
+
+  ```Command
+  aspire deploy --clear-cache
+  ```
+
+- Clear cached deployment state for a specific environment:
+
+  ```Command
+  aspire deploy --environment staging --clear-cache
+  ```
+
+## See also
+
+- [Deployment state caching](../deployment/deployment-state-caching.md)

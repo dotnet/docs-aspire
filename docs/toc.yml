@@ -34,8 +34,8 @@ items:
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in Aspire 9.5
-    href: whats-new/dotnet-aspire-9.5.md
+  - name: What's new in Aspire 13
+    href: https://aspire.dev/whats-new/aspire-13/
   - name: Upgrade to Aspire 9.5.2
     href: get-started/upgrade-to-aspire-9.md
 
@@ -60,6 +60,9 @@ items:
       href: get-started/build-aspire-apps-with-python.md
   - name: AppHost configuration
     href: app-host/configuration.md
+  - name: Certificate trust customization
+    href: app-host/certificate-trust.md
+    displayName: certificate trust,TLS,HTTPS,development certificate,certificate authority
   - name: Customize resources
     items:
     - name: Persistent container services
@@ -103,6 +106,8 @@ items:
     href: fundamentals/dashboard/explore.md
   - name: GitHub Copilot
     href: fundamentals/dashboard/copilot.md
+  - name: Aspire MCP
+    href: fundamentals/dashboard/mcp-server.md
   - name: Standalone mode
     items:
     - name: Overview
@@ -496,6 +501,9 @@ items:
     href: deployment/overview.md
   - name: Building custom deployment pipelines
     href: fundamentals/custom-deployments.md
+  - name: Deployment state caching
+    href: deployment/deployment-state-caching.md
+    displayName: deployment state,deployment cache,clear-cache,deployment settings,aspire deploy
   - name: Azure deployment with Aspire
     items:
     - name: Deploy to Azure Container Apps using Aspire CLI
@@ -593,6 +601,12 @@ items:
         href: diagnostics/aspirecosmosdb001.md
       - name: ASPIREHOSTINGPYTHON001
         href: diagnostics/aspirehostingpython001.md
+      - name: ASPIREPIPELINES001
+        href: diagnostics/aspirepipelines001.md
+      - name: ASPIREPIPELINES002
+        href: diagnostics/aspirepipelines002.md
+      - name: ASPIREPIPELINES003
+        href: diagnostics/aspirepipelines003.md
       - name: ASPIREPROXYENDPOINTS001
         href: diagnostics/aspireproxyendpoints001.md
       - name: ASPIREPUBLISHERS001
@@ -631,6 +645,12 @@ items:
           href: diagnostics/aspireproxyendpoints001.md
         - name: Hosting Python apps
           href: diagnostics/aspirehostingpython001.md
+        - name: Pipeline infrastructure APIs are experimental
+          href: diagnostics/aspirepipelines001.md
+        - name: Deployment state manager APIs are experimental
+          href: diagnostics/aspirepipelines002.md
+        - name: Container image build APIs are experimental
+          href: diagnostics/aspirepipelines003.md
         - name: Publishing APIs are experimental
           href: diagnostics/aspirepublishers001.md
         - name: Publishing to Azure APIs are experimental
