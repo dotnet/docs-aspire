@@ -38,8 +38,6 @@ items:
     href: https://aspire.dev/whats-new/aspire-13/
   - name: Upgrade to Aspire 13.0
     href: get-started/upgrade-to-aspire-13.md
-  - name: Upgrade to Aspire 9.5.2
-    href: get-started/upgrade-to-aspire-9.md
 
 - name: AppHost
   items:

@@ -16,7 +16,7 @@ In this article, you learn the steps involved in updating your existing Aspire p
 > If you're new to Aspire, there's no reason to upgrade anything. For more information, see [Aspire setup and tooling](../fundamentals/setup-tooling.md).
 
 > [!NOTE]
-> If you're upgrading from Aspire 8.x, follow the [upgrade guide to 9.x](upgrade-to-aspire-9.md) first, then upgrade to 13.0.
+> If you're upgrading from Aspire 8.x, you should first upgrade to Aspire 9.x using the Upgrade Assistant or manually, then upgrade to 13.0. Be sure to [remove the legacy Aspire workload](#remove-the-aspire-workload-first-time-upgrades-from-version-8-only) if upgrading from version 8.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ Before you upgrade your projects to Aspire 13.0, ensure that you have the follow
 
 - [Install the latest tooling](../fundamentals/setup-tooling.md).
 - [Use the Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
-- If you have a version of Aspire older than 9.0, [remove it](upgrade-to-aspire-9.md#remove-the-aspire-workload-first-time-upgrades-from-version-8-only).
+- If you have a version of Aspire older than 9.0, [remove the legacy workload](#remove-the-aspire-workload-first-time-upgrades-from-version-8-only).
 
 ## Upgrade using the Aspire CLI
 
@@ -72,7 +72,7 @@ dotnet new install Aspire.ProjectTemplates
 ```
 
 > [!TIP]
-> If you have the legacy Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the legacy workload, see [Remove the Aspire workload](upgrade-to-aspire-9.md#remove-the-aspire-workload-first-time-upgrades-from-version-8-only).
+> If you have the legacy Aspire workload installed, you need to pass the `--force` flag to overwrite the existing templates. For instructions on uninstalling the legacy workload, see [Remove the Aspire workload](#remove-the-aspire-workload-first-time-upgrades-from-version-8-only).
 
 ## AppHost template updates
 
@@ -322,6 +322,38 @@ Complete: 3 succeeded, 0 failed, 7 skipped.
 ```
 
 :::zone-end
+
+## Remove the Aspire workload (first-time upgrades from version 8 only)
+
+If you're upgrading from Aspire 8 to Aspire 9 or later for the first time, you need to remove the legacy workload. This step is not needed for upgrades between Aspire 9 versions or from Aspire 9 to 13.
+
+Previously the **aspire workload** was required to create and run Aspire projects. But, with Aspire 9 and later the workload is no longer required and should be removed from your .NET environment.
+
+> [!IMPORTANT]
+> You must remove Aspire 8 (the **aspire workload**) to enable the Aspire 9+ templates.
+
+1. Find the installation source by opening a terminal and running the `dotnet workload list` command.
+
+    The preceding command lists the workloads installed in the .NET environment. The method used to install Aspire is listed under the **Installation Source** column of the output, and is either _VS_ for Visual Studio or _SDK_ for the .NET SDK. For example, the following snippet indicates that Visual Studio was used to install Aspire:
+
+    ```
+    Installed Workload Id      Manifest Version      Installation Source
+    --------------------------------------------------------------------
+    aspire                     8.2.2/8.0.100         VS 17.14.36109.1
+    ```
+
+1. Remove Aspire 8.
+
+    - If the **Installation Source** starts with _VS_:
+
+      1. Open the **Visual Studio Installer** app.
+      1. **Modify** the installation instance of Visual Studio.
+      1. Select **Individual Components**.
+      1. Search for `aspire`.
+      1. Unselect **Aspire SDK**.
+      1. Select the **Modify** button to apply the changes.
+
+    - If the **Installation Source** starts with _SDK_, run `dotnet workload uninstall aspire` to remove Aspire.
 
 ## Verify the upgrade
 
