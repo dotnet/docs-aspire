@@ -34,8 +34,6 @@ The recommended way to upgrade to Aspire 13.0 is using the Aspire CLI. This meth
 
 First, update the Aspire CLI to the latest version:
 
-:::zone pivot="visual-studio,dotnet-cli"
-
 # [Bash](#tab/bash)
 
 ```bash
@@ -49,8 +47,6 @@ Invoke-RestMethod -Uri "https://aspire.dev/install.ps1" | Invoke-Expression
 ```
 
 ---
-
-:::zone-end
 
 ### Update your Aspire project
 
