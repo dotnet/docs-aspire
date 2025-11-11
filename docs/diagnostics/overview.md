@@ -24,6 +24,9 @@ The following table lists the possible MSBuild and .NET Analyzer warnings and er
 | [`ASPIRECOMPUTE001`](aspirecompute001.md) | (Experimental) Error | <span id="ASPIRECOMPUTE001"></span> Compute related types and members are for evaluation purposes only and is subject to change or removal in future updates. |
 | [`ASPIRECOSMOSDB001`](aspirecosmosdb001.md) | (Experimental) Error | <span id="ASPIRECOSMOSDB001"></span> `RunAsPreviewEmulator` is for evaluation purposes only and is subject to change or removal in future updates. |
 | [`ASPIREHOSTINGPYTHON001`](aspirehostingpython001.md) | (Experimental) Error | <span id="ASPIREHOSTINGPYTHON001"></span> `AddPythonApp` is for evaluation purposes only and is subject to change or removal in future updates. |
+| [`ASPIREPIPELINES001`](aspirepipelines001.md) | (Experimental) Error | <span id="ASPIREPIPELINES001"></span> Pipeline infrastructure APIs are for evaluation purposes only and are subject to change or removal in future updates. |
+| [`ASPIREPIPELINES002`](aspirepipelines002.md) | (Experimental) Error | <span id="ASPIREPIPELINES002"></span> Deployment state manager APIs are for evaluation purposes only and are subject to change or removal in future updates. |
+| [`ASPIREPIPELINES003`](aspirepipelines003.md) | (Experimental) Error | <span id="ASPIREPIPELINES003"></span> Container image build APIs are for evaluation purposes only and are subject to change or removal in future updates. |
 | [`ASPIREPROXYENDPOINTS001`](aspireproxyendpoints001.md) | (Experimental) Error | <span id="ASPIREPROXYENDPOINTS001"></span> ProxyEndpoint members are for evaluation purposes only and are subject to change or removal in future updates. |
 | [`ASPIREPUBLISHERS001`](aspirepublishers001.md) | Error | <span id="ASPIREPUBLISHERS001"></span> Publishers are for evaluation purposes only and are subject to change or removal in future updates. |
 

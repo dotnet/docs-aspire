@@ -1,7 +1,7 @@
 ---
 title: Aspire dashboard configuration
 description: Aspire dashboard configuration options
-ms.date: 04/15/2025
+ms.date: 10/10/2025
 ms.topic: reference
 ---
 
@@ -72,12 +72,13 @@ Alternatively, these same values could be configured using a JSON configuration 
 | `ASPNETCORE_URLS` | `http://localhost:18888` | One or more HTTP endpoints through which the dashboard frontend is served. The frontend endpoint is used to view the dashboard in a browser. When the dashboard is launched by the Aspire AppHost this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
 | `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` | `http://localhost:18889` | The [OTLP/gRPC](https://opentelemetry.io/docs/specs/otlp/#otlpgrpc) endpoint. This endpoint hosts an OTLP service and receives telemetry using gRPC. When the dashboard is launched by the Aspire AppHost this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
 | `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` | `http://localhost:18890` | The [OTLP/HTTP](https://opentelemetry.io/docs/specs/otlp/#otlphttp) endpoint. This endpoint hosts an OTLP service and receives telemetry using Protobuf over HTTP. When the dashboard is launched by the Aspire AppHost the OTLP/HTTP endpoint isn't configured by default. To configure an OTLP/HTTP endpoint with the AppHost, set an `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` env var value in _launchSettings.json_. Securing the dashboard with HTTPS is recommended. |
-| `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode` and `Dashboard:Otlp:AuthMode` to `Unsecured`. |
+| `ASPIRE_DASHBOARD_MCP_ENDPOINT_URL` | `http://localhost:18891` | The [Aspire MCP](mcp-server.md) endpoint. When this value isn't specified then the MCP server is hosted with an `ASPNETCORE_URLS` endpoint. The MCP server can be disabled by configuring `Dashboard:Mcp:Disabled` to `true`. When the dashboard is launched by the Aspire AppHost this address is secured with HTTPS. Securing the dashboard with HTTPS is recommended. |
+| `ASPIRE_DASHBOARD_UNSECURED_ALLOW_ANONYMOUS` | `false` | Configures the dashboard to not use authentication and accepts anonymous access. This setting is a shortcut to configuring `Dashboard:Frontend:AuthMode`, `Dashboard:Otlp:AuthMode` and `Dashboard:Mcp:AuthMode` to `Unsecured`. |
 | `ASPIRE_DASHBOARD_CONFIG_FILE_PATH` | `null` | The path for a JSON configuration file. If the dashboard is being run in a Docker container, then this is the path to the configuration file in a mounted volume. This value is optional. |
 | `ASPIRE_DASHBOARD_FILE_CONFIG_DIRECTORY` | `null` | The directory where the dashboard looks for key-per-file configuration. This value is optional. |
 | `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` | `null` | The gRPC endpoint to which the dashboard connects for its data. If this value is unspecified, the dashboard shows telemetry data but no resource list or console logs. This setting is a shortcut to `Dashboard:ResourceServiceClient:Url`. |
 
-## Frontend authentication
+## Frontend
 
 The dashboard frontend endpoint authentication is configured with `Dashboard:Frontend:AuthMode`. The frontend can be secured with OpenID Connect (OIDC) or browser token authentication.
 
@@ -87,10 +88,12 @@ Browser token authentication works by the frontend asking for a token. The token
 |--|--|--|
 | `Dashboard:Frontend:AuthMode` | `BrowserToken` | Can be set to `BrowserToken`, `OpenIdConnect` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Frontend:BrowserToken` | `null` | Specifies the browser token. If the browser token isn't specified, then the dashboard generates one. Tooling that wants to automate logging in with browser token authentication can specify a token and open a browser with the token in the query string. A new token should be generated each time the dashboard is launched. |
+| `Dashboard:Frontend:PublicUrl` | `null` | Specifies the public URL used to access the dashboard frontend. The public URL is used when constructing links to the dashboard frontend. If a public URL isn't specified, the frontend endpoint is used instead. This setting is important when the dashboard is accessed through a proxy and the dashboard endpoint isn't directly reachable. |
 | `Dashboard:Frontend:OpenIdConnect:NameClaimType` | `name` | Specifies one or more claim types that should be used to display the authenticated user's full name. Can be a single claim type or a comma-delimited list of claim types. |
 | `Dashboard:Frontend:OpenIdConnect:UsernameClaimType` | `preferred_username` | Specifies one or more claim types that should be used to display the authenticated user's username. Can be a single claim type or a comma-delimited list of claim types. |
 | `Dashboard:Frontend:OpenIdConnect:RequiredClaimType` | `null` | Specifies the claim that must be present for authorized users. Authorization fails without this claim. This value is optional. |
 | `Dashboard:Frontend:OpenIdConnect:RequiredClaimValue` | `null` | Specifies the value of the required claim. Only used if `Dashboard:Frontend:OpenIdConnect:RequireClaimType` is also specified. This value is optional. |
+| `Dashboard:Frontend:OpenIdConnect:ClaimActions` | `null` | A collection of claim actions to configure how claims are mapped from the OpenID Connect user info endpoint. Each claim action can map JSON properties to claims. This value is optional. |
 | `Authentication:Schemes:OpenIdConnect:Authority` | `null` | URL to the identity provider (IdP). |
 | `Authentication:Schemes:OpenIdConnect:ClientId` | `null` | Identity of the relying party (RP). |
 | `Authentication:Schemes:OpenIdConnect:ClientSecret` | `null` | A secret that only the real RP would know. |
@@ -101,7 +104,45 @@ Browser token authentication works by the frontend asking for a token. The token
 >
 > For more information, see [Configure ASP.NET Core to work with proxy servers and load balancers](/aspnet/core/host-and-deploy/proxy-load-balancer).
 
-## OTLP authentication
+### Claim actions
+
+Claim actions configure how claims are mapped from the JSON returned by the OpenID Connect user info endpoint to the user's claims identity. Each claim action in the `Dashboard:Frontend:OpenIdConnect:ClaimActions` collection supports the following properties:
+
+| Property | Description |
+|--|--|
+| `ClaimType` (required) | The claim type to create. |
+| `JsonKey` (required) | The JSON key to map from. |
+| `SubKey` (optional) | The sub-key within the JSON key to map from. Used when the value is nested within another JSON object. |
+| `IsUnique` (optional) | When `true`, ensures only one claim of this type exists. If a claim already exists, it won't be added again. Defaults to `false`. |
+| `ValueType` (optional) | The claim value type. Defaults to `string`. |
+
+The following example shows how to configure claim actions using JSON configuration:
+
+```json
+{
+  "Dashboard": {
+    "Frontend": {
+      "OpenIdConnect": {
+        "ClaimActions": [
+          {
+            "ClaimType": "role",
+            "JsonKey": "role"
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+Or using environment variables for configuration:
+
+```bash
+export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__ClaimType="role"
+export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__JsonKey="role"
+```
+
+## OTLP
 
 The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or client certificate authentication.
 
@@ -117,42 +158,7 @@ Client certificate authentication validates the TLS connection's client certific
 | `Dashboard:Otlp:AuthMode` | `Unsecured` | Can be set to `ApiKey`, `Certificate` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
 | `Dashboard:Otlp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
 | `Dashboard:Otlp:SecondaryApiKey` | `null` | Specifies the secondary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is optional. If a second API key is specified, then the incoming `x-otlp-api-key` header value can match either the primary or secondary key. |
-| `Dashboard:Otlp:SuppressUnsecuredTelemetryMessage` | `false` | Suppresses the unsecured telemetry warning message displayed in the dashboard UI and console when OTLP endpoints are configured with `Unsecured` auth mode. When set to `true`, the warning about unsecured OTLP endpoints won't be displayed. Only suppress this warning in controlled environments where security is managed externally. |
-| `Dashboard:Otlp:AllowedCertificates` | `null` | Specifies a list of allowed client certificates. See [allowed certificates](#allowed-certificates) for more information. |
-| Properties of <xref:Microsoft.AspNetCore.Authentication.Certificate.CertificateAuthenticationOptions> | `null` | Values inside configuration section `Dashboard:Otlp:CertificateAuthOptions:*` are bound to `CertificateAuthenticationOptions`, such as `AllowedCertificateTypes`. |
-
-### Allowed certificates
-
-When using client certificate authentication you can optionally configure an explicit list of allowed certificates using `AllowedCertificates`. Each allowed certificate  in the `Dashboard:Otlp:AllowedCertificates` collection supports the following properties:
-
-| Property | Description |
-|--|--|
-| `Thumbprint` (required) | The SHA256 thumbprint of the certificate to allow. |
-
-The following example shows how to configure allowed certificates using JSON configuration:
-
-```json
-{
-  "Dashboard": {
-    "Otlp": {
-      "AllowedCertificates": [
-        {
-          "Thumbprint": "HEX_SHA256_THUMBPRINT"
-        }
-      ]
-    }
-  }
-}
-```
-
-Or using environment variables for configuration:
-
-```bash
-export Dashboard__Otlp__AllowedCertificates__0__Thumbprint="HEX_SHA256_THUMBPRINT"
-```
-
-> [!NOTE]
-> If no allowed certificates are configured then all certificates that pass [ASP.NET Core certificate validation](/aspnet/core/security/authentication/certauth#configure-certificate-validation) can authenticate.
+| `Dashboard:Otlp:SuppressUnsecuredMessage` | `false` | Suppresses the unsecured message displayed in the dashboard when `Dashboard:Otlp:AuthMode` is `Unsecured`. This message should only be suppressed if an external frontdoor proxy is securing access to the endpoint. |
 
 ## OTLP CORS
 
@@ -181,6 +187,21 @@ Consider the following configuration options:
 
 > [!NOTE]
 > The dashboard only supports the `POST` method for sending telemetry and doesn't allow configuration of the _allowed methods_ (`Access-Control-Allow-Methods`) for CORS.
+
+## MCP
+
+The MCP endpoint authentication is configured with `Dashboard:Mcp:AuthMode`. The MCP endpoint can be secured with API key authentication.
+
+API key authentication works by requiring each MCP request to have a valid `x-mcp-api-key` header value. It must match either the primary or secondary key.
+
+| Option | Default value | Description |
+|--|--|--|
+| `Dashboard:Mcp:AuthMode` | `Unsecured` | Can be set to `ApiKey` or `Unsecured`. `Unsecured` should only be used during local development. It's not recommended when hosting the dashboard publicly or in other settings. |
+| `Dashboard:Mcp:PrimaryApiKey` | `null` | Specifies the primary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is required if auth mode is API key. |
+| `Dashboard:Mcp:SecondaryApiKey` | `null` | Specifies the secondary API key. The API key can be any text, but a value with at least 128 bits of entropy is recommended. This value is optional. If a second API key is specified, then the incoming `x-mcp-api-key` header value can match either the primary or secondary key. |
+| `Dashboard:Mcp:SuppressUnsecuredMessage` | `false` | Suppresses the unsecured message displayed in the dashboard when `Dashboard:Mcp:AuthMode` is `Unsecured`. This message should only be suppressed if an external frontdoor proxy is securing access to the endpoint. |
+| `Dashboard:Mcp:PublicUrl` | `null` | Specifies the public URL used to access the MCP server. The public URL is used when constructing links to the MCP server. If a public URL isn't specified, the MCP endpoint is used instead. This setting is important when the dashboard is accessed through a proxy and the dashboard endpoint isn't directly reachable. |
+| `Dashboard:Mcp:Disabled` | `false` | Disables the MCP server and remove MCP UI in the dashboard. |
 
 ## Resources
 

@@ -5,8 +5,20 @@ items:
   href: ../get-started/aspire-overview.md
 - name: Breaking changes
   href: breaking-changes.md
-- name: Aspire 9.5
+- name: Aspire 13.0
   expanded: true
+  items:
+  - name: Overview
+    href: 13.0/index.md
+  - name: Breaking changes in 13.0
+    expanded: true
+    items:
+    - name: Activity reporter and pipeline context renamed
+      href: 13.0/pipeline-activity-reporter-renamed.md
+    - name: DefaultAzureCredential defaults to ManagedIdentityCredential on ACA and App Service
+      href: 13.0/defaultazurecredential-managedidentity-default.md
+- name: Aspire 9.5
+  expanded: false
   items:
   - name: Overview
     href: 9.5/index.md

@@ -87,7 +87,7 @@ These approaches help you create interactive, user-friendly experiences for loca
 > });
 > ```
 >
-> For CLI specific contexts, the interaction service is retrieved from either the `PublishingContext` or `DeploymentContext` depending on the operation being performed.
+> For CLI specific contexts, the interaction service is retrieved from either the `PublishingContext` or `PipelineStepContext` depending on the operation being performed.
 
 ## Display messages
 

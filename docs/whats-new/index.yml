@@ -5,13 +5,15 @@ summary: Welcome to what's new in Aspire docs. Use this page to quickly find the
 metadata:
   title: Aspire what's new?
   description: Learn about new and updated content in Aspire docs.
-  ms.date: 09/24/2025
+  ms.date: 11/10/2025
   ms.topic: landing-page
 landingContent:
 - title: Aspire release documentation
   linkLists:
   - linkListType: whats-new
     links:
+    - text: What's new in Aspire 13.0
+      url: https://aspire.dev/whats-new/aspire-13/
     - text: What's new in Aspire 9.5
       url: dotnet-aspire-9.5.md
     - text: What's new in Aspire 9.4
