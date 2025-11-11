@@ -6,6 +6,8 @@ items:
 - name: Latest product updates
   expanded: true
   items:
+  - name: What's new in Aspire 13.0
+    href: https://aspire.dev/whats-new/aspire-13/
   - name: What's new in Aspire 9.5
     href: dotnet-aspire-9.5.md
   - name: What's new in Aspire 9.4
