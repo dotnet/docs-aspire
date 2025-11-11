@@ -219,7 +219,7 @@ Project-to-project references are handled differently than resources that have w
 | `WithReference(cache)` | `ConnectionStrings__cache="localhost:62354"` |
 | `WithReference(apiservice)` | `APISERVICE_HTTP="http://localhost:5455"` <br /> `APISERVICE_HTTPS="https://localhost:7356"` <br /> `services__apiservice__http__0="http://localhost:5455"` <br /> `services__apiservice__https__0="https://localhost:7356"` |
 
-Adding a reference to the "apiservice" project results in service discovery environment variables being added to the frontend. This is because typically, project-to-project communication occurs over HTTP/gRPC. 
+Adding a reference to the "apiservice" project results in service discovery environment variables being added to the frontend. This is because typically, project-to-project communication occurs over HTTP/gRPC.
 
 Aspire injects two types of environment variables for service references:
 
