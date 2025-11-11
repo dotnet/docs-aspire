@@ -144,9 +144,14 @@ export Dashboard__Frontend__OpenIdConnect__ClaimActions__0__JsonKey="role"
 
 ## OTLP
 
-The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or [client certificate](/aspnet/core/security/authentication/certauth) authentication.
+The OTLP endpoint authentication is configured with `Dashboard:Otlp:AuthMode`. The OTLP endpoint can be secured with an API key or client certificate authentication.
 
 API key authentication works by requiring each OTLP request to have a valid `x-otlp-api-key` header value. It must match either the primary or secondary key.
+
+Client certificate authentication validates the TLS connection's client certificate. When a request with a client certificate is received, two sets of validation are performed:
+
+- **ASP.NET Core certificate authentication validation:** By default this verifies that the certificate chains to a trusted root on the machine, the certificate hasn't expired, and that its Extended Key Usage value is appropriate for Client Authentication. For more information on this validation and how to configure it, see [Configure ASP.NET Core certificate validation](/aspnet/core/security/authentication/certauth#configure-certificate-validation).
+- **Optional explicit certificate allowlist:** You can optionally configure an explicit list of allowed certificates using `AllowedCertificates`. If `AllowedCertificates` is configured and a client certificate does not match any of the listed thumbprints, the request is rejected. If no allowed certificates are specified, all certificates that pass the minimum validation are accepted.
 
 | Option | Default value | Description |
 |--|--|--|

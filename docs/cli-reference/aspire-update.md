@@ -6,7 +6,7 @@ ms.date: 09/24/2025
 
 # aspire update command (Preview)
 
-**This article applies to:** ✔️ Aspire CLI 9.5.0 and later versions.
+**This article applies to:** ✔️ Aspire CLI 9.5.2 and later versions.
 
 ## Name
 
@@ -65,8 +65,8 @@ The following options are available:
     default
     stable
   > daily
-  Updating Aspire.Hosting 9.4.2 -> 9.5.0-daily.20240923.1
-  Updating Aspire.Azure.Cosmos 9.4.2 -> 9.5.0-daily.20240923.1
+  Updating Aspire.Hosting 9.5.1 -> 9.5.2-daily.20241023.1
+  Updating Aspire.Azure.Cosmos 9.5.1 -> 9.5.2-daily.20241023.1
   Done.
   ```
 

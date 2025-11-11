@@ -10,8 +10,8 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.SignalR" Version="1.32.0" />
     <PackageReference Include="Microsoft.Azure.SignalR.Management" Version="1.32.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.9" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.8.10" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.10" />
+    <PackageReference Include="Scalar.AspNetCore" Version="2.10.1" />
   </ItemGroup>
 
   <ItemGroup>
