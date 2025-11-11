@@ -102,6 +102,7 @@ When another resource references a dev tunnel, environment variables are injecte
 
 ```env
 WEB_HTTPS=https://myweb-1234.westeurope.devtunnels.ms/
+services__web__https__0=https://myweb-1234.westeurope.devtunnels.ms/
 ```
 
 This lets downstream resources use the tunneled address exactly like any other Aspire service discovery entry.
