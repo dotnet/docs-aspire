@@ -1,7 +1,7 @@
 ---
 title: "Breaking change - DefaultAzureCredential defaults to ManagedIdentityCredential on ACA and App Service"
 description: "Learn about the breaking change in Aspire 13.0 where DefaultAzureCredential behavior is changed to only use ManagedIdentityCredential when deploying to Azure Container Apps and Azure App Service."
-ms.date: 10/17/2025
+ms.date: 11/10/2025
 ai-usage: ai-assisted
 ms.custom: https://github.com/dotnet/docs-aspire/issues/5154
 ---
@@ -53,7 +53,7 @@ This change enforces Azure SDK best practices for production environments. Using
 
 For more information, see:
 
-- [Use deterministic credentials in production environments](https://learn.microsoft.com/dotnet/azure/sdk/authentication/best-practices?tabs=aspdotnet#use-deterministic-credentials-in-production-environments)
+- [Use deterministic credentials in production environments](/dotnet/azure/sdk/authentication/best-practices?tabs=aspdotnet#use-deterministic-credentials-in-production-environments)
 - [GitHub PR dotnet/aspire#11832](https://github.com/dotnet/aspire/pull/11832)
 - [Azure SDK resilience improvements](https://github.com/Azure/azure-sdk-for-net/pull/52545)
 
@@ -97,5 +97,5 @@ builder.AddProject<Projects.Frontend>("frontend")
 
 ## Affected APIs
 
-- <xref:Aspire.Hosting.Azure.AzureContainerAppExtensions.AddAzureContainerAppEnvironment*?displayProperty=fullName>
-- <xref:Aspire.Hosting.Azure.AzureAppServiceEnvironmentExtensions.AddAzureAppServiceEnvironment*?displayProperty=fullName>
+- `Aspire.Hosting.Azure.AzureContainerAppExtensions.AddAzureContainerAppEnvironment`
+- `Aspire.Hosting.Azure.AzureAppServiceEnvironmentExtensions.AddAzureAppServiceEnvironment`

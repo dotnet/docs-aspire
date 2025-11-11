@@ -1,7 +1,7 @@
 ---
 title: Certificate trust customization in Aspire
 description: Learn how to customize trusted certificates for Executable and Container resources in Aspire to enable secure communication.
-ms.date: 10/20/2025
+ms.date: 11/10/2025
 ai-usage: ai-assisted
 ---
 
@@ -78,7 +78,7 @@ In the preceding example, the certificate bundle is created with custom certific
 
 Certificate trust scopes control how custom certificates interact with a resource's default trusted certificates. Different scopes provide flexibility in managing certificate trust based on your application's requirements.
 
-The `WithCertificateTrustScope` API accepts a <xref:Aspire.Hosting.ApplicationModel.CertificateTrustScope> value to specify the trust behavior.
+The `WithCertificateTrustScope` API accepts a `CertificateTrustScope` value to specify the trust behavior.
 
 ### Default trust scopes
 

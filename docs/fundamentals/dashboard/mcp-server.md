@@ -1,7 +1,7 @@
 ---
 title: Aspire MCP server
 description: Learn how to use Aspire MCP server to develop your apps.
-ms.date: 11/03/2025
+ms.date: 11/10/2025
 ms.topic: reference
 ---
 
@@ -67,12 +67,12 @@ By default all resources, console logs and telemetry is accessible by Aspire MCP
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
+var apiService = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
                         .ExcludeFromMcp();
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithExternalHttpEndpoints()
-       .WithReference(apiservice);
+       .WithReference(apiService);
 
 builder.Build().Run();
 ```
@@ -81,11 +81,11 @@ builder.Build().Run();
 
 ### MCP connection secured with self-signed HTTPS certificate not supported by some AI assistants
 
-An MCP connection secured with HTTPS is recommended for security. However, some AI assistants currently don't support calling endpoints secured with a trusted, self-signed certificate. This includes the Aspire MCP, which is secured using [a self-signed certificate](https://learn.microsoft.com/dotnet/core/additional-tools/self-signed-certificates-guide).
+An MCP connection secured with HTTPS is recommended for security. However, some AI assistants currently don't support calling endpoints secured with a trusted, self-signed certificate. This includes the Aspire MCP, which is secured using [a self-signed certificate](/dotnet/core/additional-tools/self-signed-certificates-guide).
 
 Currently the only work around for using Aspire MCP with these AI assistants is to configure an `http` MCP endpoint.
 
-- If you already launch your Aspire app with [the `http` launch profile](https://learn.microsoft.com/dotnet/aspire/fundamentals/launch-profiles) then your app isn't using HTTPS and you don't need to do anything.
+- If you already launch your Aspire app with [the `http` launch profile](/dotnet/aspire/fundamentals/launch-profiles) then your app isn't using HTTPS and you don't need to do anything.
 - If you use HTTPS everywhere, you can configure just the MCP endpoint to use `http` by updating *launchSettings.json*.
   - Set `ASPIRE_DASHBOARD_MCP_ENDPOINT_URL` to an `http` address.
   - Add `ASPIRE_ALLOW_UNSECURED_TRANSPORT` set to `true`.
