@@ -335,6 +335,10 @@
     {
       "source_path_from_root": "/docs/fundamentals/build-container-images.md",
       "redirect_url": "/dotnet/aspire/fundamentals/custom-deployments"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/aspire-deploy/local-deployment-state.md",
+      "redirect_url": "/dotnet/aspire/deployment/deployment-state-caching"
     }
   ]
 }
