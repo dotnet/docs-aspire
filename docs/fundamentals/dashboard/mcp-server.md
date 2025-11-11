@@ -72,7 +72,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 
 builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithExternalHttpEndpoints()
-       .WithReference(apiService);
+       .WithReference(apiservice);
 
 builder.Build().Run();
 ```

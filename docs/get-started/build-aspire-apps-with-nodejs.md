@@ -149,8 +149,8 @@ There are several key modifications from the original Angular template. The firs
 
 The Aspire AppHost sets the `WEATHERAPI_HTTPS` and `WEATHERAPI_HTTP` environment variables, which are used to resolve the "weatherapi" service endpoints. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
 
-Then include the proxy file to in the _angular.json_ file.
-Update the `serve` target to include the `proxyConfig` option, referencing to the created _proxy.conf.js_ file.
+Then include the proxy file in the _angular.json_ file.
+Update the `serve` target to include the `proxyConfig` option, referencing the created _proxy.conf.js_ file.
 The Angular CLI will now use the proxy configuration while serving the Angular client app.
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/angular.json" range="59-73" highlight="13":::
