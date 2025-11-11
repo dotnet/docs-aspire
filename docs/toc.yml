@@ -100,6 +100,8 @@ items:
     href: fundamentals/dashboard/explore.md
   - name: GitHub Copilot
     href: fundamentals/dashboard/copilot.md
+  - name: Aspire MCP
+    href: fundamentals/dashboard/mcp-server.md
   - name: Standalone mode
     items:
     - name: Overview
