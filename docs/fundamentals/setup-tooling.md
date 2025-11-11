@@ -251,6 +251,8 @@ Once you create a new Aspire project, you run and debug the app, stepping throug
 
 :::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug an Aspire project in Visual Studio Code.":::
 
+The [Aspire Visual Studio Code extension](aspire-vscode-extension.md) provides additional commands and tooling to streamline working with Aspire projects, including commands to add integrations, configure launch settings, publish deployment artifacts, and deploy applications.
+
 :::zone-end
 
 ## Aspire CLI
