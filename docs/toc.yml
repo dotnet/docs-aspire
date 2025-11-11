@@ -27,6 +27,9 @@ items:
       href: fundamentals/dotnet-aspire-sdk.md
     - name: Aspire templates
       href: fundamentals/aspire-sdk-templates.md
+    - name: Aspire Visual Studio Code extension
+      href: fundamentals/aspire-vscode-extension.md
+      displayName: vscode,visual studio code,extension,vs code
     - name: GitHub Codespaces
       href: get-started/github-codespaces.md
     - name: Dev Containers
