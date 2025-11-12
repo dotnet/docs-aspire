@@ -164,6 +164,9 @@ builder.Build().Run();
 
 No project file needed - just a single _.cs_ file with package references declared using `#:package` directives.
 
+> [!NOTE]
+> Single-file AppHosts are not currently supported in Visual Studio. Use Visual Studio Code or the command line to work with single-file AppHosts.
+
 ## Manually upgrade a solution to Aspire 13.0
 
 If you prefer to manually upgrade your projects, you can update your project files directly. The following steps guide you through the process:
