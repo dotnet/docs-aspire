@@ -358,7 +358,7 @@ additionalContent:
     items:
     - title: "Aspire API reference"
       summary: API reference documentation for Aspire
-      url: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
+      url: /dotnet/api?view=dotnet-aspire-13.0&preserve-view=true
     - title: ".NET API reference"
       summary: API reference documentation for .NET
       url: /dotnet/api?view=net-9.0&preserve-view=true
