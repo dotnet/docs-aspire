@@ -161,7 +161,289 @@ items:
     href: https://aspire.dev/fundamentals/health-checks/
 
 - name: Integrations
-  href: https://aspire.dev/integrations/gallery/
+  items:
+  - name: Overview
+    displayName: aspire integrations,integrations,nuget packages,packages
+    href: fundamentals/integrations-overview.md
+  - name: Tutorials
+    items:
+    - name: Caching using Redis integrations
+      displayName: caching,redis
+      href: caching/caching-integrations.md
+    - name: Connect to SQL Server with EF Core
+      displayName: database,sql server,ef core
+      href: database/sql-server-integrations.md
+    - name: Connect to an existing SQL Server database
+      displayName: database, sql server, ef core
+      href: database/connect-to-existing-database.md
+    - name: Connect to storage
+      href: storage/azure-storage-integrations.md
+    - name: Messaging using Aspire integrations
+      displayName: messaging
+      href: messaging/messaging-integrations.md
+  - name: Apache Kafka
+    displayName: kafka,messaging
+    href: messaging/kafka-integration.md
+  - name: Azure
+    items:
+    - name: Overview
+      href: azure/integrations-overview.md
+    - name: Customize Azure resources
+      href: azure/customize-azure-resources.md
+    - name: Local Azure provisioning
+      href: azure/local-provisioning.md
+    - name: Configure Azure Container Apps environments
+      href: azure/configure-aca-environments.md
+    - name: Azure Container App Jobs
+      displayName: container app jobs,jobs,batch processing,scheduled tasks
+      href: azure/container-app-jobs.md
+    - name: User-assigned managed identity
+      href: azure/user-assigned-managed-identity.md
+    - name: Manage role assignments
+      href: azure/role-assignments.md
+    - name: Azure App Configuration
+      displayName: app configuration,configuration
+      href: azure/azure-app-configuration-integration.md
+    - name: Azure App Service (Preview)
+      displayName: app service,web apps,hosting
+      href: azure/azure-app-service-integration.md
+    - name: Azure AI Foundry (Preview)
+      displayName: azure ai,foundry,foundation models,ai foundry
+      href: azureai/azureai-foundry-integration.md
+    - name: Azure AI Inference (Preview)
+      displayName: azure ai,inference
+      href: azureai/azureai-inference-integration.md
+    - name: Azure AI Search
+      displayName: azure search,search,azure ai,cognitive search,cognitive services
+      href: azureai/azureai-search-document-integration.md
+    - name: AI integrations compatibility matrix
+      displayName: ai compatibility,ai integrations,openai,azure ai,github models
+      href: azureai/ai-integrations-compatibility-matrix.md
+    - name: Azure Cache for Redis
+      items:
+      - name: Azure Cache for Redis
+        href: caching/azure-cache-for-redis-integration.md
+      - name: Azure Managed Redis
+        href: caching/azure-redis-enterprise-integration.md
+      - name: Azure Cache for Redis distributed cache
+        href: caching/azure-cache-for-redis-distributed-caching-integration.md
+      - name: Azure Cache for Redis output caching
+        href: caching/azure-cache-for-redis-output-caching-integration.md
+    - name: Azure Container Registry (Preview)
+      displayName: container registry,acr
+      href: azure/container-registry-integration.md
+    - name: Azure Cosmos DB
+      displayName: cosmos db,database
+      href: database/azure-cosmos-db-integration.md
+    - name: Azure Event Hubs
+      displayName: event hubs,messaging
+      href: messaging/azure-event-hubs-integration.md
+    - name: Azure Functions (Preview)
+      displayName: azure functions,serverless
+      href: serverless/functions.md
+    - name: Azure Key Vault
+      displayName: key vault,security
+      href: security/azure-security-key-vault-integration.md
+    - name: Azure PostgreSQL
+      displayName: postgres,postgresql,database,flexible server,azure for database
+      href: database/azure-postgresql-integration.md
+    - name: Azure OpenAI (Preview)
+      displayName: azure ai,openai
+      href: azureai/azureai-openai-integration.md
+    - name: Azure SignalR Service
+      displayName: azure signalr service,signalr,real-time
+      href: real-time/azure-signalr-scenario.md
+    - name: Azure Service Bus
+      displayName: service bus,messaging
+      href: messaging/azure-service-bus-integration.md
+    - name: Azure SQL Database
+      displayName: azure sql database,database
+      href: database/azure-sql-integration.md
+    - name: Azure Storage
+      items:
+      - name: Azure Blob Storage
+        displayName: blob storage,azure storage
+        href: storage/azure-storage-blobs-integration.md
+      - name: Azure Queue Storage
+        displayName: storage queues,azure storage
+        href: storage/azure-storage-queues-integration.md
+      - name: Azure Table Storage
+        displayName: table storage,azure storage
+        href: storage/azure-storage-tables-integration.md
+    - name: Azure Web PubSub
+      displayName: web pubsub,real-time,messaging
+      href: messaging/azure-web-pubsub-integration.md
+    - name: Aspire.Hosting.Azure API reference
+      href: /dotnet/api/?term=Aspire.Hosting.Azure&view=dotnet-aspire-9.0&preserve-view=true
+    - name: Aspire.Azure API reference
+      href: /dotnet/api/?term=Aspire.Azure&view=dotnet-aspire-9.0&preserve-view=true
+  - name: Dev tunnels
+    displayName: dev tunnels,tunnels,development,secure sharing
+    href: extensibility/dev-tunnels-integration.md
+  - name: Docker
+    displayName: docker,docker compose,deployment
+    href: deployment/docker-integration.md
+  - name: Elasticsearch
+    displayName: elasticsearch,search
+    href: search/elasticsearch-integration.md
+  - name: Entity Framework Core
+    displayName: ef core,entity framework core,database
+    items:
+    - name: Overview
+      href: database/entity-framework-core-integration-overview.md
+    - name: Apply migrations
+      href: database/ef-core-migrations.md
+    - name: Seed data in a database
+      displayName: seed data,ef core,scripts,entrypoint,init
+      href: database/seed-database-data.md
+    - name: Azure Cosmos DB
+      displayName: cosmos db,database,ef core
+      href: database/azure-cosmos-db-entity-framework-integration.md
+    - name: Azure PostgreSQL
+      displayName: postgresql,ef core
+      href: database/azure-postgresql-entity-framework-integration.md
+    - name: Azure SQL Database
+      displayName: azure sql database,database,ef core
+      href: database/azure-sql-entity-framework-integration.md
+    - name: MySQL Pomelo
+      displayName: mysql pomelo,ef core
+      href: database/mysql-entity-framework-integration.md
+    - name: Oracle
+      displayName: oracle,ef core
+      href: database/oracle-entity-framework-integration.md
+    - name: PostgreSQL
+      displayName: postgresql,ef core
+      href: database/postgresql-entity-framework-integration.md
+    - name: SQL Server
+      displayName: sql server,ef core
+      href: database/sql-server-entity-framework-integration.md
+  - name: GitHub Models
+    displayName: github models,github ai,github copilot,github copilot chat,deepseek,phi,gpt
+    href: github/github-models-integration.md
+  - name: Keycloak (Preview)
+    displayName: security,openid connect,single sign-on,sso,identity,federation,account management
+    href: authentication/keycloak-integration.md
+  - name: Kubernetes
+    displayName: kubernetes,k8s,hosting,deployment,manifests
+    href: deployment/kubernetes-integration.md
+  - name: Milvus
+    displayName: milvus,database
+    href: database/milvus-integration.md
+  - name: MongoDB
+    displayName: mongodb,database
+    href: database/mongodb-integration.md
+  - name: MySQL
+    displayName: mysql,database
+    href: database/mysql-integration.md
+  - name: NATS
+    displayName: nats,messaging
+    href: messaging/nats-integration.md
+  - name: OpenAI
+    displayName: openai,chatgpt,gpt,ai,open ai
+    href: openai/openai-integration.md
+  - name: Orleans
+    items:
+    - name: Overview
+      href: frameworks/orleans.md
+    - name: Orleans voting sample
+      href: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
+  - name: PostgreSQL
+    displayName: postgresql,database
+    href: database/postgresql-integration.md
+  - name: Qdrant
+    href: database/qdrant-integration.md
+  - name: RabbitMQ service broker
+    displayName: rabbitmq,messaging,service broker
+    href: messaging/rabbitmq-integration.md
+  - name: Redis
+    items:
+    - name: Overview
+      href: caching/stackexchange-redis-caching-overview.md
+    - name: Redis caching
+      href: caching/stackexchange-redis-integration.md
+    - name: Redis distributed cache
+      href: caching/stackexchange-redis-distributed-caching-integration.md
+    - name: Redis output caching
+      href: caching/stackexchange-redis-output-caching-integration.md
+    - name: Redis caching (Garnet)
+      href: caching/stackexchange-redis-integration.md?pivots=garnet
+    - name: Redis distributed cache (Garnet)
+      href: caching/stackexchange-redis-distributed-caching-integration.md?pivots=garnet
+    - name: Redis output caching (Garnet)
+      href: caching/stackexchange-redis-output-caching-integration.md?pivots=garnet
+    - name: Redis caching (Valkey)
+      href: caching/stackexchange-redis-integration.md?pivots=valkey
+    - name: Redis distributed cache (Valkey)
+      href: caching/stackexchange-redis-distributed-caching-integration.md?pivots=valkey
+    - name: Redis output caching (Valkey)
+      href: caching/stackexchange-redis-output-caching-integration.md?pivots=valkey
+  - name: Seq
+    displayName: seq,logging
+    href: logging/seq-integration.md
+  - name: SQL Server
+    displayName: sql server,sql database
+    href: database/sql-server-integration.md
+  - name: YARP (Yet Another Reverse Proxy)
+    displayName: yarp,reverse proxy
+    href: proxies/yarp-integration.md
+  - name: Community Toolkit
+    items:
+    - name: Overview
+      href: community-toolkit/overview.md
+    - name: Bun apps
+      href: community-toolkit/hosting-bun.md
+    - name: Dapr
+      href: community-toolkit/dapr.md
+    - name: Deno apps
+      href: community-toolkit/hosting-deno.md
+    - name: Go apps
+      href: community-toolkit/hosting-golang.md
+    - name: Java/Spring
+      href: community-toolkit/hosting-java.md
+    - name: LavinMQ
+      href: community-toolkit/hosting-lavinmq.md
+    - name: Node.js extensions
+      href: community-toolkit/hosting-nodejs-extensions.md
+    - name: Python extensions
+      href: community-toolkit/hosting-python-extensions.md
+    - name: Ollama
+      href: community-toolkit/ollama.md
+    - name: Meilisearch
+      href: community-toolkit/hosting-meilisearch.md
+    - name: MailPit
+      href: community-toolkit/hosting-mailpit.md
+    - name: Rust apps
+      href: community-toolkit/hosting-rust.md
+    - name: SQL Database Projects
+      href: community-toolkit/hosting-sql-database-projects.md
+    - name: Data API Builder
+      href: community-toolkit/hosting-data-api-builder.md
+    - name: EventStore
+      href: community-toolkit/hosting-eventstore.md
+    - name: SQLite
+      items:
+      - name: SQLite - EF Core
+        displayName: sqlite,database,ef core
+        href: community-toolkit/sqlite-entity-framework-integration.md
+      - name: SQLite
+        displayName: sqlite,database
+        href: community-toolkit/sqlite.md
+    - name: SQL Server Extensions
+      href: community-toolkit/hosting-sqlserver-extensions.md
+    - name: MongoDB Extensions
+      href: community-toolkit/hosting-mongodb-extensions.md
+    - name: Redis Extensions
+      href: community-toolkit/hosting-redis-extensions.md
+    - name: PostgreSQL Extensions
+      href: community-toolkit/hosting-postgresql-extensions.md
+    - name: MySql Extensions
+      href: community-toolkit/hosting-mysql-extensions.md
+    - name: RavenDB
+      href: community-toolkit/ravendb.md
+    - name: flagd
+      href: community-toolkit/hosting-flagd.md
+  - name: Aspire.Hosting API reference
+    href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.0&preserve-view=true
 
 - name: Custom integrations
   items:
@@ -254,7 +536,7 @@ items:
   - name: Diagnostics
     href: https://aspire.dev/diagnostics/overview/
   - name: Aspire API reference
-    href: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
+    href: /dotnet/api?view=dotnet-aspire-13.0&preserve-view=true
   - name: Aspire FAQ
     displayName: iis,functions,deploy,azure,kubernetes
     href: reference/aspire-faq.yml
