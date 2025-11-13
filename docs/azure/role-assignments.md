@@ -32,7 +32,7 @@ These role assignments allow the API project to read and write data to the Azure
 
 ## Override default role assignments
 
-To override the default role assignment, use the [WithRoleAssignments APIs](/dotnet/api/?preserve-view=true&view=dotnet-aspire-9.0&term=WithRoleAssignments) and assign built-in roles as shown in the following example:
+To override the default role assignment, use the [WithRoleAssignments APIs](/dotnet/api/?preserve-view=true&view=dotnet-aspire-13.0&term=WithRoleAssignments) and assign built-in roles as shown in the following example:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
