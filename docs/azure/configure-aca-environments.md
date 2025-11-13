@@ -40,7 +40,7 @@ This module configures:
 - An Azure Container Registry (ACR) for the ACA environment.
 - A Log Analytics workspace for the ACA environment.
 - An Azure Container Apps environment.
-- The [Aspire dashboard](../fundamentals/dashboard/overview.md) for the ACA environment.
+- The [Aspire dashboard](https://aspire.dev/dashboard/overview/) for the ACA environment.
 - A role assignment for the user principal ID to the ACA environment.
 - Various outputs for the ACA environment.
 

@@ -160,7 +160,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
                         .WithReplicas(3);
 ```
 
-The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [Aspire dashboard: Resource replicas](dashboard/explore.md#resource-replicas).
+The preceding code adds three replicas of the "apiservice" project resource to the app model. For more information, see [Aspire dashboard: Resource replicas](https://aspire.dev/dashboard/explore/#resource-replicas).
 
 C# app resources represent C# projects or file-based apps that are part of the app model. Unlike <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A>, which requires a project reference, the `AddCSharpApp` method can add C# projects or file-based apps using a path to a _*.cs_ file, _*.csproj_ file, or project directory. This is useful for adding file-based apps introduced in .NET 10 or for including projects without adding a project reference to the AppHost.
 

@@ -160,17 +160,15 @@ Both commands should succeed and return valid results before running your Aspire
 
 ## Aspire dashboard
 
-Aspire templates that expose the [AppHost](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+Aspire templates that expose the [AppHost](app-host-overview.md) project also include a useful developer [dashboard](https://aspire.dev/dashboard/overview/) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The Aspire dashboard is only visible while the app is running and starts automatically when you start the _*.AppHost_ project. Visual Studio and Visual Studio Code launch both your app and the Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
-
-:::image type="content" source="dashboard/media/explore/dotnet-run-login-url.png" lightbox="dashboard/media/explore/dotnet-run-login-url.png" alt-text="A screenshot showing how to launch the dashboard using the CLI.":::
 
 The left navigation provides links to the different parts of the dashboard, each of which you explore in the following sections.
 
 :::image type="content" source="../get-started/media/aspire-dashboard.png" lightbox="../get-started/media/aspire-dashboard.png" alt-text="A screenshot of the Aspire dashboard Projects page.":::
 
-The Aspire dashboard is also available in a standalone mode. For more information, see [Standalone Aspire dashboard](dashboard/standalone.md).
+The Aspire dashboard is also available in a standalone mode. For more information, see [Standalone Aspire dashboard](https://aspire.dev/dashboard/standalone/).
 
 :::zone pivot="visual-studio"
 

@@ -33,16 +33,16 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 - [Aspire setup and tooling](../fundamentals/setup-tooling.md) - Rename configs-replace prefix
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md) - Add dev-cert details to templates content
 - [Custom HTTP commands in Aspire](../fundamentals/http-commands.md) - Split content
-- [Dashboard configuration](../fundamentals/dashboard/configuration.md) - Rename configs-replace prefix
-- [Enable browser telemetry](../fundamentals/dashboard/enable-browser-telemetry.md) - Rename configs-replace prefix
-- [Explore the Aspire dashboard](../fundamentals/dashboard/explore.md) - Update the Explore the Aspire Dashboard article for v9.2.0
+- [Dashboard configuration](https://aspire.dev/dashboard/configuration/) - Rename configs-replace prefix
+- [Enable browser telemetry](https://aspire.dev/dashboard/enable-browser-telemetry/) - Rename configs-replace prefix
+- [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/) - Update the Explore the Aspire Dashboard article for v9.2.0
 - [External parameters](../fundamentals/external-parameters.md) - #3063 - Rename parameter name to not be 'value'
 - [Orchestrate resources in Aspire](../fundamentals/orchestrate-resources.md)
   - Initial draft of diagnostic redesign
   - Split content
 - [Persist Aspire project data using volumes or bind mounts](../fundamentals/persist-data-volumes.md) - Update the "Persist Aspire project data using volumes" article
-- [Security considerations for running the Aspire dashboard](../fundamentals/dashboard/security-considerations.md) - Rename configs-replace prefix
-- [Standalone Aspire dashboard](../fundamentals/dashboard/standalone.md) - Rename configs-replace prefix
+- [Security considerations for running the Aspire dashboard](https://aspire.dev/dashboard/security-considerations/) - Rename configs-replace prefix
+- [Standalone Aspire dashboard](https://aspire.dev/dashboard/standalone/) - Rename configs-replace prefix
 
 ## Database
 

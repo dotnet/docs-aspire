@@ -19,7 +19,7 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 
 ### Updated articles
 
-- [Standalone Aspire dashboard](../fundamentals/dashboard/standalone.md) - Update container version for standalone dashboard examples
+- [Standalone Aspire dashboard](https://aspire.dev/dashboard/standalone/) - Update container version for standalone dashboard examples
 
 ## Database
 

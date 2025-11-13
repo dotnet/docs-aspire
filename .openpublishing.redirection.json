@@ -343,6 +343,50 @@
     {
       "source_path_from_root": "/docs/get-started/upgrade-to-aspire-9.md",
       "redirect_url": "/dotnet/aspire/get-started/upgrade-to-aspire-13"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/overview.md",
+      "redirect_url": "https://aspire.dev/dashboard/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/explore.md",
+      "redirect_url": "https://aspire.dev/dashboard/explore/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/copilot.md",
+      "redirect_url": "https://aspire.dev/dashboard/copilot/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/mcp-server.md",
+      "redirect_url": "https://aspire.dev/dashboard/mcp-server/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/standalone.md",
+      "redirect_url": "https://aspire.dev/dashboard/standalone/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/standalone-for-python.md",
+      "redirect_url": "https://aspire.dev/dashboard/standalone-for-python/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/standalone-for-nodejs.md",
+      "redirect_url": "https://aspire.dev/dashboard/standalone-for-nodejs/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/configuration.md",
+      "redirect_url": "https://aspire.dev/dashboard/configuration/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/security-considerations.md",
+      "redirect_url": "https://aspire.dev/dashboard/security-considerations/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/enable-browser-telemetry.md",
+      "redirect_url": "https://aspire.dev/dashboard/enable-browser-telemetry/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md",
+      "redirect_url": "https://aspire.dev/dashboard/microsoft-collected-dashboard-telemetry/"
     }
   ]
 }

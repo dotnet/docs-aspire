@@ -62,7 +62,7 @@ The onboarding experience for Aspire is improved with 9.1. The team worked on cr
 
 ## 🔧 Dashboard UX and customization
 
-With every release of Aspire, the [dashboard](../fundamentals/dashboard/overview.md) gets more powerful and customizable, this release is no exception. The following features were added to the dashboard in Aspire 9.1:
+With every release of Aspire, the [dashboard](https://aspire.dev/dashboard/overview/) gets more powerful and customizable, this release is no exception. The following features were added to the dashboard in Aspire 9.1:
 
 ### 🧩 Resource relationships
 
@@ -70,7 +70,7 @@ The dashboard now supports "parent" and "child" resource relationships. For inst
 
 :::image type="content" source="media/dashboard-parentchild.png" lightbox="media/dashboard-parentchild.png" alt-text="A screenshot of the Aspire dashboard showing the Postgres resource with a database nested underneath it.":::
 
-For more information, see [Explore the Aspire dashboard](../fundamentals/dashboard/explore.md).
+For more information, see [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/).
 
 ### 🔤 Localization overrides
 
@@ -103,7 +103,7 @@ When you select a resource in the dashboard, the details pane now displays new d
 
 :::image type="content" source="media/dashboard-resourcedetails.png" lightbox="media/dashboard-resourcedetails.png" alt-text="A screenshot of the Aspire dashboard with references and back references showing.":::
 
-For more information, see [Aspire dashboard: Resources page](../fundamentals/dashboard/explore.md#resources-page).
+For more information, see [Aspire dashboard: Resources page](https://aspire.dev/dashboard/explore/#resources-page).
 
 ### 🛡️ CORS support for custom local domains
 
@@ -117,7 +117,7 @@ The console log page has two new options. You're now able to download your logs 
 
 :::image type="content" source="media/consolelogs-download.png" lightbox="media/consolelogs-download.png" alt-text="A screenshot of the console logs page with the download button, turn off timestamps button, and logs that don't show timestamps.":::
 
-For more information, see [Aspire dashboard: Console logs page](../fundamentals/dashboard/explore.md#console-logs-page).
+For more information, see [Aspire dashboard: Console logs page](https://aspire.dev/dashboard/explore/#console-logs-page).
 
 ### 🎨 Various UX improvements
 
@@ -302,7 +302,7 @@ The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
 Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The AppHost allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
 
-Now, you're able to disable port randomization or enable the [dashboard](../fundamentals/dashboard/overview.md). For more information, see [Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your AppHost](../testing/manage-app-host.md#pass-arguments-to-your-apphost).
+Now, you're able to disable port randomization or enable the [dashboard](https://aspire.dev/dashboard/overview/). For more information, see [Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your AppHost](../testing/manage-app-host.md#pass-arguments-to-your-apphost).
 
 Some of these enhancements were introduced as a result of stability issues that were reported, such as [Aspire GitHub issue #6678](https://github.com/dotnet/aspire/issues/6678)—where some resources failed to start do to "address in use" errors.
 

@@ -53,7 +53,7 @@ Each `ProjectReference` in the [Aspire AppHost][app-host] project isn't treated 
 
 ### Orchestrator dependencies
 
-The Aspire SDK dynamically adds references to the [Aspire dashboard](dashboard/overview.md) and other AppHost dependencies, such as the developer control plane (DCP) packages. These dependencies are specific to the platform that the AppHost is built on.
+The Aspire SDK dynamically adds references to the [Aspire dashboard](https://aspire.dev/dashboard/overview/) and other AppHost dependencies, such as the developer control plane (DCP) packages. These dependencies are specific to the platform that the AppHost is built on.
 
 When the AppHost project runs, the orchestrator relies on these dependencies to provide the necessary functionality to the AppHost. For more information, see [Aspire orchestration overview][app-host].
 
