@@ -1,7 +1,7 @@
 ---
 title: Define custom resource URLs
 description: Learn how to create custom URLs for Aspire resources.
-ms.date: 05/06/2025
+ms.date: 11/13/2025
 ms.topic: how-to
 ---
 
@@ -37,9 +37,7 @@ Use the appropriate `WithUrl` overload, `WithUrls`, or `WithUrlForEndpoint` APIs
 > [!TIP]
 > There's an overload that accepts a `string` allowing you to pass any URL. This is useful for defining custom URLs that aren't directly related to the resource's endpoint.
 
-The preceding code assigns a project reference to the `api` variable, which is then used to create a custom URL for the `Admin Portal` route. The `WithUrl` method takes a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and a display name as parameters. The resulting URL is available in the dashboard as shown in the following screenshot:
-
-:::image type="content" source="dashboard/media/custom-urls/custom-url-admin-portal.png" alt-text="Aspire dashboard custom Admin Portal URL." lightbox="dashboard/media/custom-urls/custom-url-admin-portal.png":::
+The preceding code assigns a project reference to the `api` variable, which is then used to create a custom URL for the `Admin Portal` route. The `WithUrl` method takes a <xref:Aspire.Hosting.ApplicationModel.ReferenceExpression> and a display name as parameters. The resulting URL is available in the dashboard as shown in the following screenshot.
 
 ### Customize endpoint URL
 
@@ -53,9 +51,7 @@ If you want to add a separate URL (even for the same endpoint) you need to call 
 
 The preceding example assumes that the `api` project resource has an `https` endpoint configured. The `WithUrlForEndpoint` method updates the <xref:Aspire.Hosting.ApplicationModel.ResourceUrlAnnotation> associated with the endpoint. In this case, it assigns the display text to `Scalar (HTTPS)` and assigns the relative `/scalar` path to the URL.
 
-When the resource is started, the URL is available in the dashboard as shown in the following screenshot:
-
-:::image type="content" source="dashboard/media/custom-urls/custom-url-scalar-https.png" alt-text="Aspire dashboard with custom Scalar URL." lightbox="dashboard/media/custom-urls/custom-url-scalar-https.png":::
+When the resource is started, the URL is available in the dashboard as shown in the following screenshot.
 
 Alternatively, you could use the overload that accepts a `Func<EndpointReference, ResourceUrlAnnotation>` as a callback. This allows you to specify deep-links on target <xref:Aspire.Hosting.ApplicationModel.EndpointReference> instances.
 
@@ -65,9 +61,7 @@ To customize multiple URLs for a resource, use the <xref:Aspire.Hosting.Resource
 
 :::code source="snippets/custom-urls/AspireApp.AppHost/Program.WithUrls.cs" id="withurls":::
 
-The preceding code iterates through the URLs defined for the `api` project resource and assigns a display text with scheme. The resulting URLs are available in the dashboard as shown in the following screenshot:
-
-:::image type="content" source="dashboard/media/custom-urls/custom-url-ordered.png" alt-text="Aspire dashboard custom ordered and named URLs.":::
+The preceding code iterates through the URLs defined for the `api` project resource and assigns a display text with scheme.
 
 > [!TIP]
 > The <xref:Aspire.Hosting.ApplicationModel.ResourceUrlsCallbackContext> exposes an extension method that enables you to easily access the underlying resource named endpoints. Call the `GetEndpoint` API on a context instance to achieve this.
