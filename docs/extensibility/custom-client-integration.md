@@ -116,7 +116,7 @@ The consumer could choose to omit health checks by setting the `DisableHealthChe
 
 ### Wire up telemetry
 
-As a best practice, the [MailKit client library exposes telemetry](https://github.com/jstedfast/MailKit/blob/master/Telemetry.md). Aspire can take advantage of this telemetry and display it in the [Aspire dashboard](../fundamentals/dashboard/overview.md). Depending on whether or not tracing and metrics are enabled, telemetry is wired up as shown in the following code snippet:
+As a best practice, the [MailKit client library exposes telemetry](https://github.com/jstedfast/MailKit/blob/master/Telemetry.md). Aspire can take advantage of this telemetry and display it in the [Aspire dashboard](https://aspire.dev/dashboard/overview/). Depending on whether or not tracing and metrics are enabled, telemetry is wired up as shown in the following code snippet:
 
 ```csharp
 if (settings.DisableTracing is false)
@@ -165,7 +165,7 @@ The most notable changes in the preceding code are:
 
 ## Run the sample
 
-Now that you've created the MailKit client integration and updated the Newsletter service to use it, you can run the sample. From your IDE, select <kbd>F5</kbd> or run `dotnet run` from the root directory of the solution to start the application—you should see the [Aspire dashboard](../fundamentals/dashboard/overview.md):
+Now that you've created the MailKit client integration and updated the Newsletter service to use it, you can run the sample. From your IDE, select <kbd>F5</kbd> or run `dotnet run` from the root directory of the solution to start the application—you should see the [Aspire dashboard](https://aspire.dev/dashboard/overview/):
 
 :::image type="content" source="./media/maildev-with-newsletterservice-dashboard.png" lightbox="./media/maildev-with-newsletterservice-dashboard.png" alt-text="Aspire dashboard: MailDev and Newsletter resources running.":::
 

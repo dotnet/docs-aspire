@@ -104,7 +104,7 @@ To run the sample app, call the [dotnet run](/dotnet/core/tools/dotnet-run) comm
 dotnet run --project ./AspireJavaScript.AppHost/AspireJavaScript.AppHost.csproj
 ```
 
-The [Aspire dashboard](../fundamentals/dashboard/overview.md) launches in your default browser, and each client app endpoint displays under the **Endpoints** column of the **Resources** page. The following image depicts the dashboard for this sample app:
+The [Aspire dashboard](https://aspire.dev/dashboard/overview/) launches in your default browser, and each client app endpoint displays under the **Endpoints** column of the **Resources** page. The following image depicts the dashboard for this sample app:
 
 :::image type="content" source="media/aspire-dashboard-with-nodejs.png" lightbox="media/aspire-dashboard-with-nodejs.png" alt-text="Aspire dashboard with multiple JavaScript client apps.":::
 
@@ -252,7 +252,7 @@ For a complete example of a Node.js server app using the OpenTelemetry JavaScrip
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithNode/NodeFrontend/instrumentation.js":::
 
 > [!TIP]
-> To configure the Aspire dashboard OTEL CORS settings, see the [Aspire dashboard OTEL CORS settings](../fundamentals/dashboard/configuration.md#otlp-cors) page.
+> To configure the Aspire dashboard OTEL CORS settings, see the [Aspire dashboard OTEL CORS settings](https://aspire.dev/dashboard/configuration/#otlp-cors) page.
 
 ## Summary
 

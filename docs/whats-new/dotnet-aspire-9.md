@@ -42,11 +42,11 @@ For more information, see [Aspire templates](../fundamentals/aspire-sdk-template
 
 ## Dashboard UX enhancements and new interactivity features
 
-The [Aspire dashboard](../fundamentals/dashboard/overview.md) continues to improve with each release.
+The [Aspire dashboard](https://aspire.dev/dashboard/overview/) continues to improve with each release.
 
 ### Manage resource lifecycle
 
-The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire AppHost. For project resources, when the debugger is attached, it's reattached on restart. For more information, see [Aspire dashboard: Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
+The most requested feature for the dashboard is to manage the life-cycles of your orchestrated named resources. Specifically, the ability to stop, start, and restart resources. This feature works for projects, containers, and executables. It enables restarting individual resources without having to restart the entire AppHost. For project resources, when the debugger is attached, it's reattached on restart. For more information, see [Aspire dashboard: Stop or Start a resource](https://aspire.dev/dashboard/explore/#stop-or-start-a-resource).
 
 ### Mobile and responsive support
 
@@ -82,11 +82,11 @@ Traces can be filtered with attribute values. For example, if you only want to v
 
 Telemetry filtering also supports autocomplete of existing values. The **Add filter** dialog provides a combo box for selecting from values that dashboard has available. This feature makes it much easier to filter to real data and helps avoid typos by entered a value yourself.
 
-For more information, see [Aspire dashboard: Filter traces](../fundamentals/dashboard/explore.md#filter-traces).
+For more information, see [Aspire dashboard: Filter traces](https://aspire.dev/dashboard/explore/#filter-traces).
 
 ### Combine telemetry from multiple resources
 
-When a resource has multiple replicas, you can now filter telemetry to view data from all instances at once. Select the parent resource, labeled `(application)`. For more information, see [Aspire dashboard: Combine telemetry from multiple resources](../fundamentals/dashboard/explore.md#combine-telemetry-from-multiple-resources).
+When a resource has multiple replicas, you can now filter telemetry to view data from all instances at once. Select the parent resource, labeled `(application)`. For more information, see [Aspire dashboard: Combine telemetry from multiple resources](https://aspire.dev/dashboard/explore/#combine-telemetry-from-multiple-resources).
 
 ### Browser telemetry support
 
@@ -96,7 +96,7 @@ For example, a browser-based single page app (SPA) can configure the [JavaScript
 
 :::image type="content" source="media/dashboard-browser-telemetry.png" lightbox="media/dashboard-browser-telemetry.png" alt-text="Trace detail page with browser telemetry":::
 
-For more information on configuring browser telemetry, see [Enable browser telemetry](../fundamentals/dashboard/enable-browser-telemetry.md) documentation.
+For more information on configuring browser telemetry, see [Enable browser telemetry](https://aspire.dev/dashboard/enable-browser-telemetry/) documentation.
 
 ## AppHost (Orchestration)
 
@@ -695,5 +695,5 @@ The preceding code example defers generation of the Azure Container App definiti
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Eventing in Aspire](../app-host/eventing.md)
-- [Aspire dashboard overview](../fundamentals/dashboard/overview.md)
-- [Explore the Aspire dashboard](../fundamentals/dashboard/explore.md)
+- [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
+- [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/)

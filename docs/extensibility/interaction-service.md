@@ -36,7 +36,7 @@ if (interactionService.IsAvailable)
 
 The interaction service has several methods that you use to interact with users or display messages. The behavior of these methods depends on the execution context:
 
-- **Dashboard context** (`aspire run` or direct AppHost launch): Interactions appear as modal dialogs, notifications, and form inputs in the [Aspire dashboard web interface](../fundamentals/dashboard/overview.md).
+- **Dashboard context** (`aspire run` or direct AppHost launch): Interactions appear as modal dialogs, notifications, and form inputs in the [Aspire dashboard web interface](https://aspire.dev/dashboard/overview/).
 - **CLI context** (`aspire publish` or `aspire deploy`): Interactions are prompted through the command-line interface with text-based prompts and responses.
 
 The following sections describe how to use these APIs effectively in both contexts:

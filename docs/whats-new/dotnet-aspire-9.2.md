@@ -96,13 +96,13 @@ For more information, see [Define custom resource URLs](../fundamentals/custom-r
 
 ## 🔧 Dashboard user experience improvements
 
-Aspire 9.2 adds new features to the [dashboard](../fundamentals/dashboard/overview.md), making it a more powerful developer tool than ever. The following features were added to the dashboard in Aspire 9.2:
+Aspire 9.2 adds new features to the [dashboard](https://aspire.dev/dashboard/overview/), making it a more powerful developer tool than ever. The following features were added to the dashboard in Aspire 9.2:
 
 ### 🧩 Resource graph
 
 The resource graph is a new way to visualize the resources in your apps. It displays a graph of resources, linked by relationships. Click the 'Graph' tab on the Resources page to view the resource graph. See it in action on [James's BlueSky](https://bsky.app/profile/james.newtonking.com/post/3lj7odu4re22p).
 
-For more information, see [Aspire dashboard: Resources page](../fundamentals/dashboard/explore.md#resources-page).
+For more information, see [Aspire dashboard: Resources page](https://aspire.dev/dashboard/explore/#resources-page).
 
 ### 🎨 Resource icons
 

@@ -77,7 +77,7 @@ When the factory determines that credentials have been configured, it authentica
 
 ## Run the sample
 
-Now that you've updated the resource, corresponding integration projects, and the AppHost, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
+Now that you've updated the resource, corresponding integration projects, and the AppHost, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [Aspire dashboard](https://aspire.dev/dashboard/overview/). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
 
 :::image type="content" source="media/maildev-details.png" lightbox="media/maildev-details.png" alt-text="Aspire Dashboard: MailDev container resource details.":::
 
