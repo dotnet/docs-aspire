@@ -7,7 +7,7 @@ ms.topic: how-to
 
 # Define custom resource URLs
 
-In Aspire, resources that expose endpoints only configure host and port, which aren't known until run time. If you need to access a specific path on one of these endpoints—especially from the [dashboard](dashboard/overview.md)—you can define custom resource URLs. You can also add custom URLs that aren't tied to any endpoint. All custom URLs are only available in "run" mode, since they're meant for dashboard use. This article demonstrates how to define custom URLs.
+In Aspire, resources that expose endpoints only configure host and port, which aren't known until run time. If you need to access a specific path on one of these endpoints—especially from the [dashboard](https://aspire.dev/dashboard/overview/)—you can define custom resource URLs. You can also add custom URLs that aren't tied to any endpoint. All custom URLs are only available in "run" mode, since they're meant for dashboard use. This article demonstrates how to define custom URLs.
 
 ## Default endpoint behavior
 
@@ -78,5 +78,5 @@ URL customization callbacks run during the application model lifecycle, specific
 
 ## See also
 
-- [Aspire dashboard overview](dashboard/overview.md)
+- [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 - [Aspire AppHost](app-host-overview.md)
