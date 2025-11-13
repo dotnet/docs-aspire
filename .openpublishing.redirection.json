@@ -339,6 +339,10 @@
     {
       "source_path_from_root": "/docs/deployment/aspire-deploy/local-deployment-state.md",
       "redirect_url": "/dotnet/aspire/deployment/deployment-state-caching"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/upgrade-to-aspire-9.md",
+      "redirect_url": "/dotnet/aspire/get-started/upgrade-to-aspire-13"
     }
   ]
 }
