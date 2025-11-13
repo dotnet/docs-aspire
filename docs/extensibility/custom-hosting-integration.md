@@ -88,7 +88,7 @@ info: Aspire.Hosting.DistributedApplication[0]
       Distributed application started. Press Ctrl+C to shut down.
 ```
 
-Select the [dashboard link in the browser](../fundamentals/dashboard/explore.md#dashboard-authentication) to see the Aspire dashboard:
+Select the [dashboard link in the browser](https://aspire.dev/dashboard/explore/#dashboard-authentication) to see the Aspire dashboard:
 
 :::image type="content" source="media/maildevresource-empty-dashboard.png" lightbox="media/maildevresource-empty-dashboard.png" alt-text="A screenshot of the empty Aspire dashboard for test project.":::
 

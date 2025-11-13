@@ -132,7 +132,7 @@ Next, investigate the structure and other features of your new Aspire solution.
 
 ## Explore the Aspire dashboard
 
-When you run an Aspire project, a [dashboard](../fundamentals/dashboard/overview.md) launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
+When you run an Aspire project, a [dashboard](https://aspire.dev/dashboard/overview/) launches that you use to monitor various parts of your app. The dashboard resembles the following screenshot:
 
 :::image type="content" source="media/aspire-dashboard.png" lightbox="media/aspire-dashboard.png" alt-text="A screenshot of the Aspire Dashboard, depicting the Projects tab.":::
 
@@ -149,7 +149,7 @@ Visit each page using the left navigation to view different information about th
 
     :::image type="content" source="media/aspire-dashboard-metrics.png" lightbox="media/aspire-dashboard-metrics.png" alt-text="A screenshot showing an Aspire dashboard metrics page for the webfrontend.":::
 
-For more information, see [Aspire dashboard overview](../fundamentals/dashboard/overview.md).
+For more information, see [Aspire dashboard overview](https://aspire.dev/dashboard/overview/).
 
 ## Understand the Aspire solution structure
 

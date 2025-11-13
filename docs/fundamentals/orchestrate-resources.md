@@ -46,7 +46,7 @@ builder.AddProject<Projects.AspireApp_DbMigration>("dbmigration")
 
 In the preceding code the `"dbmigration"` resource is configured to not automatically start with the distributed application.
 
-Resources with explicit start can be started from the Aspire dashboard by clicking the "Start" command. For more information, see [Aspire dashboard: Stop or Start a resource](dashboard/explore.md#stop-or-start-a-resource).
+Resources with explicit start can be started from the Aspire dashboard by clicking the "Start" command. For more information, see [Aspire dashboard: Stop or Start a resource](https://aspire.dev/dashboard/explore/#stop-or-start-a-resource).
 
 ## Waiting for resources
 
@@ -293,7 +293,7 @@ External services implement <xref:Aspire.Hosting.ApplicationModel.IResourceWitho
 
 ## Resource relationships
 
-Resource relationships link resources together. Relationships are informational and don't impact an app's runtime behavior. Instead, they're used when displaying details about resources in the dashboard. For example, relationships are visible in the [dashboard's resource details](./dashboard/explore.md#resource-details), and `Parent` relationships control resource nesting on the resources page.
+Resource relationships link resources together. Relationships are informational and don't impact an app's runtime behavior. Instead, they're used when displaying details about resources in the dashboard. For example, relationships are visible in the [dashboard's resource details](https://aspire.dev/dashboard/explore/#resource-details), and `Parent` relationships control resource nesting on the resources page.
 
 Relationships are automatically created by some app model APIs. For example:
 

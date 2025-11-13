@@ -368,7 +368,7 @@ When migrating from Docker Compose to Aspire, you might encounter some common ch
 - [Docker Compose FAQ](https://docs.docker.com/compose/faq/)
 - [Container runtime unhealthy](../troubleshooting/container-runtime-unhealthy.md)
 - [Container runtime 'podman' could not be found in WSL](../troubleshooting/podman-wsl-not-found.md)
-- [Aspire dashboard overview](../fundamentals/dashboard/overview.md)
+- [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 
 ## Next steps
 

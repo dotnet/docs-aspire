@@ -233,7 +233,7 @@ You'll have access to Copilot in the dashboard when you launch your app from VS 
 
 :::image type="content" source="media/dashboard-copilot.png" lightbox="media/dashboard-copilot.png" alt-text="Screenshot of dashboard with GitHub Copilot chat open.":::
 
-For more details on requirements and how to get started, see [GitHub Copilot in the Aspire dashboard](../fundamentals/dashboard/copilot.md).
+For more details on requirements and how to get started, see [GitHub Copilot in the Aspire dashboard](https://aspire.dev/dashboard/copilot/).
 
 ### 🧠 Remembers your filter settings
 

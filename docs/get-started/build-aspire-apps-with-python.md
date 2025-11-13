@@ -37,7 +37,7 @@ In the same terminal session, change directories into the newly created project:
 cd PythonSample
 ```
 
-After the template is created, launch the AppHost with the following command to ensure that the AppHost and the [Aspire dashboard](../fundamentals/dashboard/overview.md) run successfully:
+After the template is created, launch the AppHost with the following command to ensure that the AppHost and the [Aspire dashboard](https://aspire.dev/dashboard/overview/) run successfully:
 
 ```dotnetcli
 dotnet run --project ./PythonSample.AppHost/PythonSample.AppHost.csproj
