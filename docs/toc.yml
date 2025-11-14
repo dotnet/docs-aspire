@@ -97,35 +97,6 @@ items:
     displayName: volumes,persist data
     href: fundamentals/persist-data-volumes.md
 
-- name: Dashboard
-  items:
-  - name: Overview
-    displayName: aspire dashboard,dashboard
-    href: fundamentals/dashboard/overview.md
-  - name: Explore features
-    href: fundamentals/dashboard/explore.md
-  - name: GitHub Copilot
-    href: fundamentals/dashboard/copilot.md
-  - name: Aspire MCP
-    href: fundamentals/dashboard/mcp-server.md
-  - name: Standalone mode
-    items:
-    - name: Overview
-      href: fundamentals/dashboard/standalone.md
-    - name: Tutorial — Use with Python
-      href: fundamentals/dashboard/standalone-for-python.md
-    - name: Tutorial — Use with Node.js
-      href: fundamentals/dashboard/standalone-for-nodejs.md
-  - name: Configuration
-    href: fundamentals/dashboard/configuration.md
-  - name: Enable browser telemetry
-    displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
-    href: fundamentals/dashboard/enable-browser-telemetry.md
-  - name: Security considerations
-    href: fundamentals/dashboard/security-considerations.md
-  - name: Microsoft-collected dashboard telemetry
-    href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
-
 - name: Aspire CLI
   displayName: aspire cli,aspire command line interface,aspire commands,cli
   items:

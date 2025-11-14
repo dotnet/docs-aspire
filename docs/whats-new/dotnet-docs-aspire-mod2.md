@@ -24,7 +24,7 @@ Welcome to what's new in the Aspire docs for May 2025. This article lists some o
   - Add Rancher Desktop details
   - Update setup-tooling.md to latest Aspire version
 - [External parameters](../fundamentals/external-parameters.md) - Add ReferenceExpression to the External Parameters article
-- [Tutorial: Use the Aspire dashboard with Python apps](../fundamentals/dashboard/standalone-for-python.md) - Update standalone-for-python.md
+- [Tutorial: Use the Aspire dashboard with Python apps](https://aspire.dev/dashboard/standalone-for-python/) - Update standalone-for-python.md
 
 ## Database
 

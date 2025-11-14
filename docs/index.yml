@@ -35,7 +35,7 @@ highlightedContent:
     url: deployment/overview.md
   - itemType: overview
     title: Aspire dashboard
-    url: fundamentals/dashboard/overview.md
+    url: https://aspire.dev/dashboard/overview/
   - itemType: whats-new
     title: What's new in Aspire
     url: whats-new/index.yml
@@ -69,10 +69,10 @@ conceptualContent:
       url: fundamentals/service-defaults.md
     - itemType: reference
       text: Aspire dashboard
-      url: fundamentals/dashboard/overview.md
+      url: https://aspire.dev/dashboard/overview/
     - itemType: reference
       text: Aspire dashboard and GitHub Copilot
-      url: fundamentals/dashboard/copilot.md
+      url: https://aspire.dev/dashboard/copilot/
     - itemType: overview
       text: Aspire local networking
       url: fundamentals/networking-overview.md

@@ -155,7 +155,7 @@ This opens a dialog where you can configure the Azure provisioning settings, as 
 
 ### Configuration prompts and error handling
 
-When the `Azure` configuration section is missing, has missing values, or is invalid, the [Aspire dashboard](../fundamentals/dashboard/overview.md) provides interactive prompts to help you configure the required values. The dashboard displays a message bar prompting you to **Enter values** for the missing configuration.
+When the `Azure` configuration section is missing, has missing values, or is invalid, the [Aspire dashboard](https://aspire.dev/dashboard/overview/) provides interactive prompts to help you configure the required values. The dashboard displays a message bar prompting you to **Enter values** for the missing configuration.
 
 If you dismiss the prompt or there are validation errors, the dashboard provides detailed error information. For example, consider an AppHost that's missing the `SubscriptionId` configuration value that's attempting to use an Azure Key Vault resource. The **Resources** page indicates the **State** as **Missing subscription configuration**:
 
