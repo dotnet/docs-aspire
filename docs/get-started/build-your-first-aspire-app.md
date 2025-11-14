@@ -1,9 +1,9 @@
 ---
 title: Build your first Aspire solution
-description: Learn how to build your first Aspire solution using the Aspire Started Application template.
-ms.date: 11/07/2024
+description: Learn how to build your first Aspire solution using the Aspire Starter application template.
+ms.date: 10/08/2025
 ms.topic: quickstart
-zone_pivot_groups: dev-environment
+zone_pivot_groups: dev-tools
 ms.custom: sfi-ropc-nochange
 ---
 
@@ -15,20 +15,20 @@ In this quickstart, you explore the following tasks:
 
 > [!div class="checklist"]
 >
-> - Create a basic .NET app that is set up to use Aspire.
-> - Add and configure an Aspire integration to implement caching at project creation time.
-> - Create an API and use service discovery to connect to it.
-> - Orchestrate communication between a front end UI, a back end API, and a local Redis cache.
+> - Create a basic app that is set up to use Aspire.
+> - Test the basic functionality of the app.
+> - Use the Aspire dashboard to monitor your app as it runs.
+> - Understand the structure of an Aspire solution.
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-## Create the Aspire template
+## Create the Aspire application
 
-To create a new Aspire Starter Application, you can use either Visual Studio, Visual Studio Code, or the .NET CLI.
+In this quickstart, you can choose whether to use the Aspire CLI or Visual Studio Code to create a new Aspire Starter application.
 
-:::zone pivot="visual-studio"
+:::zone pivot="aspire-cli"
 
-[!INCLUDE [visual-studio-file-new](../includes/visual-studio-file-new.md)]
+[!INCLUDE [aspire-cli-new-app](../includes/aspire-cli-new-app.md)]
 
 :::zone-end
 :::zone pivot="vscode"
@@ -36,11 +36,14 @@ To create a new Aspire Starter Application, you can use either Visual Studio, Vi
 [!INCLUDE [vscode-file-new](../includes/vscode-file-new.md)]
 
 :::zone-end
-:::zone pivot="dotnet-cli"
+:::zone pivot="visual-studio"
 
-[!INCLUDE [dotnet-cli-file-new](../includes/dotnet-cli-file-new.md)]
+[!INCLUDE [visual-studio-file-new](../includes/visual-studio-file-new.md)]
 
 :::zone-end
+
+> [!NOTE]
+> You chose not to add a test project to the new solution. You can always add a test project later but it's not needed for this quickstart.
 
 For more information on the available templates, see [Aspire templates](../fundamentals/aspire-sdk-templates.md).
 
@@ -51,49 +54,42 @@ The sample app includes a frontend Blazor app that communicates with a Minimal A
 - Weather data is retrieved from the API project using service discovery and displayed on the weather page.
 - Subsequent requests are handled via the output caching configured by the Aspire Redis integration.
 
-:::zone pivot="visual-studio"
+> [!TIP]
+> Make sure that your chosen container runtime, such as Docker Desktop or Podman, is running to host containers.
 
-In Visual Studio, set the **AspireSample.AppHost** project as the startup project by right-clicking on the project in the **Solution Explorer** and selecting **Set as Startup Project**. It might already have been automatically set as the startup project. Once set, press <kbd>F5</kbd> or (<kbd>Ctrl</kbd> + <kbd>F5</kbd> to run without debugging) to run the app.
+:::zone pivot="aspire-cli"
 
-:::zone-end
-:::zone pivot="dotnet-cli"
+1. In the command prompt, navigate to the folder where you created the solution. It will be a subdirectory of the location where you ran the `aspire new` command.
+1. To run the Aspire solution, execute this command:
 
-You need to trust the ASP.NET Core localhost certificate before running the app. Run the following command:
+    ```Aspire
+    aspire run
+    ```
 
-```dotnetcli
-dotnet dev-certs https --trust
-```
+1. The `aspire run` command compiles all the projects in the solution, and then locates and runs the AppHost project. It displays information about the solution, including the location of the Aspire dashboard:
 
-For more information, see [Troubleshoot untrusted localhost certificate in Aspire](../troubleshooting/untrusted-localhost-certificate.md). For in-depth details about troubleshooting localhost certificates on Linux, see [ASP.NET Core: GitHub repository issue #32842](https://github.com/dotnet/aspnetcore/issues/32842).
+    :::image type="content" source="media/aspire-cli-run.png" lightbox="media/aspire-cli-run.png" alt-text="A screenshot of the Aspire CLI running an Aspire solution.":::
+
+1. To browse the Aspire dashboard, hold down <kbd>CTRL</kbd> and select the **Dashboard** URL.
 
 :::zone-end
 :::zone pivot="vscode"
 
-In Visual Studio Code, press <kbd>F5</kbd> to launch the app. You're prompted to select which language, and C# is suggested. Select **C#** and then select the **AspireSample.AppHost** project with the **Default Configuration**:
+In Visual Studio Code, press <kbd>F5</kbd> to launch the app. You're prompted to select a debugger, and **Aspire** is suggested. Select **Aspire**:
 
-:::image type="content" loc-scope="vs-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code launch configuration for the AspireSample.AppHost project.":::
+:::image type="content" loc-scope="vs-code" source="media/vscode-run.png" lightbox="media/vscode-run.png" alt-text="A screenshot of the Visual Studio Code launch configuration for the AspireFirstSolution.AppHost project.":::
 
-If this is the first time you're running Aspire, or it's a new machine with a new .NET installation, you're prompted to install a self-signed localhost certificate—and the project will fail to launch:
+Visual Studio Code opens a new debug console and runs the Aspire CLI to start your app. All projects are compiled, containers are deployed and information about the app is displayed. In the **Launch Aspire Dashboard** dialog, to view the dashboard, select **Open local URL**:
 
-:::image type="content" loc-scope="vs-code" source="media/vscode-run-accept-cert.png" lightbox="media/vscode-run-accept-cert.png" alt-text="A screenshot of the Visual Studio Code breaking on an exception and prompting to create a trusted self-signed certificate.":::
-
-Select **Yes**, and you see an informational message indicating that the **Self-signed certificate successfully created**:
-
-:::image type="content" loc-scope="vs-code" source="media/vscode-run-cert-created.png" lightbox="media/vscode-run-cert-created.png" alt-text="A screenshot of the Visual Studio Code success message for creating a self-signed certificate.":::
-
-If you're still having an issue, close all browser windows and try again. For more information, see [Troubleshoot untrusted localhost certificate in Aspire](../troubleshooting/untrusted-localhost-certificate.md).
+:::image type="content" loc-scope="vs-code" source="media/vscode-launch-dashboard.png" lightbox="media/vscode-launch-dashboard.png" alt-text="A screenshot of Visual Studio Code running the new Aspire app.":::
 
 > [!TIP]
 > If you're on MacOS and using Safari, when your browser opens if the page is blank, you might need to manually refresh the page.
 
 :::zone-end
-:::zone pivot="dotnet-cli"
+:::zone pivot="visual-studio"
 
-```dotnetcli
-dotnet run --project AspireSample/AspireSample.AppHost
-```
-
-For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
+In Visual Studio, set the **AspireSample.AppHost** project as the startup project by right-clicking on the project in the **Solution Explorer** and selecting **Set as Startup Project**. It might already have been automatically set as the startup project. Once set, press <kbd>F5</kbd> or (<kbd>Ctrl</kbd> + <kbd>F5</kbd> to run without debugging) to run the app.
 
 :::zone-end
 
@@ -108,11 +104,11 @@ For more information, see [dotnet run](/dotnet/core/tools/dotnet-run).
 
 :::image type="content" source="media/weather-page.png" lightbox="media/weather-page.png" alt-text="The Weather page of the webfrontend app showing the weather data retrieved from the API.":::
 
-🤓 Congratulations! You created and ran your first Aspire solution! To stop the app, close the browser window.
+🤓 Congratulations! You created and ran your first Aspire solution! Close the browser window.
 
-:::zone pivot="visual-studio"
+:::zone pivot="aspire-cli"
 
-To stop the app in Visual Studio, select the **Stop Debugging** from the **Debug** menu.
+To stop the app, switch to the command prompt where the `aspire run` command is still running and then press <kbd>CTRL</kbd> + <kbd>C</kbd>.
 
 :::zone-end
 :::zone pivot="vscode"
@@ -122,9 +118,9 @@ To stop the app in Visual Studio Code, press <kbd>Shift</kbd> + <kbd>F5</kbd>, o
 :::image type="content" loc-scope="vs-code" source="media/vscode-stop.png" lightbox="media/vscode-stop.png" alt-text="A screenshot of the Visual Studio Code stop button.":::
 
 :::zone-end
-:::zone pivot="dotnet-cli"
+:::zone pivot="visual-studio"
 
-To stop the app, press <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal window.
+To stop the app in Visual Studio, select the **Stop Debugging** from the **Debug** menu.
 
 :::zone-end
 
@@ -138,8 +134,11 @@ When you run an Aspire project, a [dashboard](https://aspire.dev/dashboard/overv
 
 Visit each page using the left navigation to view different information about the Aspire resources:
 
-- **Resources**: Lists basic information for all of the individual .NET projects in your Aspire project, such as the app state, endpoint addresses, and the environment variables that were loaded in.
-- **Console**: Displays the console output from each of the projects in your app.
+- **Resources**: Lists basic information for all of the individual .NET projects and other resources in your Aspire project, such as the app state, endpoint addresses, and the environment variables that were loaded in. The **Graph** tab displays dependencies between these components:
+
+    :::image type="content" source="media/aspire-dashboard-graph.png" lightbox="media/aspire-dashboard-graph.png" alt-text="A screenshot showing the Graph page of the Aspire dashboard.":::
+
+- **Console**: Displays the console output from each of the resources in your app.
 - **Structured**: Displays structured logs in table format. These logs support basic filtering, free-form search, and log level filtering as well. You should see logs from the `apiservice` and the `webfrontend`. You can expand the details of each log entry by selecting the **View** button on the right end of the row.
 - **Traces**: Displays the traces for your application, which can track request paths through your apps. Locate a request for **/weather** and select **View** on the right side of the page. The dashboard should display the request in stages as it travels through the different parts of your app.
 
@@ -163,70 +162,6 @@ The solution consists of the following projects:
 Your _AspireSample_ directory should resemble the following structure:
 
 [!INCLUDE [template-directory-structure](../includes/template-directory-structure.md)]
-
-## Explore the starter projects
-
-Each project in an Aspire solution plays a role in the composition of your app. The _*.Web_ project is a standard ASP.NET Core Blazor App that provides a front end UI. For more information, see [What's new in ASP.NET Core 9.0: Blazor](/aspnet/core/release-notes/aspnetcore-9.0?view=aspnetcore-9.0&preserve-view=true#blazor). The _*.ApiService_ project is a standard ASP.NET Core Minimal API template project. Both of these projects depend on the _*.ServiceDefaults_ project, which is a shared project that's used to manage configurations that are reused across projects in your solution.
-
-The two projects of interest in this quickstart are the _*.AppHost_ and _*.ServiceDefaults_ projects detailed in the following sections.
-
-### Aspire host project
-
-The _*.AppHost_ project is responsible for acting as a local dev-orchestrator:
-
-:::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.AppHost/AspireSample.AppHost.csproj" highlight="10":::
-
-For more information, see [Aspire orchestration overview](../fundamentals/app-host-overview.md) and [Aspire SDK](../fundamentals/dotnet-aspire-sdk.md).
-
-Consider the _:::no-loc text="AppHost.cs":::_ file of the _AspireSample.AppHost_ project:
-
-:::code source="snippets/quickstart/AspireSample/AspireSample.AppHost/AppHost.cs":::
-
-If you've used either the [.NET Generic Host](/dotnet/core/extensions/generic-host) or the [ASP.NET Core Web Host](/aspnet/core/fundamentals/host/web-host) before, the AppHost programming model and builder pattern should be familiar to you. The preceding code:
-
-- Creates an <xref:Aspire.Hosting.IDistributedApplicationBuilder> instance from calling <xref:Aspire.Hosting.DistributedApplication.CreateBuilder?displayProperty=nameWithType>.
-- Calls <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis%2A> with the name `"cache"` to add a Redis server to the app, assigning the returned value to a variable named `cache`, which is of type `IResourceBuilder<RedisResource>`.
-- Calls <xref:Aspire.Hosting.ProjectResourceBuilderExtensions.AddProject%2A> given the generic-type parameter with the project's details, adding the `AspireSample.ApiService` project to the application model. This is one of the fundamental building blocks of Aspire, and it's used to configure service discovery and communication between the projects in your app. The name argument `"apiservice"` is used to identify the project in the application model, and used later by projects that want to communicate with it.
-- Calls `AddProject` again, this time adding the `AspireSample.Web` project to the application model. It also chains multiple calls to <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> passing the `cache` and `apiService` variables. The `WithReference` API is another fundamental API of Aspire, which injects either service discovery information or connection string configuration into the project being added to the application model. Additionally, calls to the `WaitFor` API are used to ensure that the `cache` and `apiService` resources are available before the `AspireSample.Web` project is started. For more information, see [Aspire orchestration: Waiting for resources](../fundamentals/orchestrate-resources.md#waiting-for-resources).
-
-Finally, the app is built and run. The <xref:Aspire.Hosting.DistributedApplication.Run?displayProperty=nameWithType> method is responsible for starting the app and all of its dependencies. For more information, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).
-
-> [!TIP]
-> The call to <xref:Aspire.Hosting.RedisBuilderExtensions.AddRedis*> creates a local Redis container for the app to use. If you'd rather simply point to an existing Redis instance, you can use the `AddConnectionString` method to reference an existing connection string. For more information, see [Reference existing resources](../fundamentals/app-host-overview.md#reference-existing-resources).
-
-### Aspire service defaults project
-
-The _*.ServiceDefaults_ project is a shared project that's used to manage configurations that are reused across the projects in your solution. This project ensures that all dependent services share the same resilience, service discovery, and OpenTelemetry configuration. A shared Aspire project file contains the `IsAspireSharedProject` property set as `true`:
-
-:::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.ServiceDefaults/AspireSample.ServiceDefaults.csproj" highlight="7":::
-
-The service defaults project exposes an extension method on the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> type, named `AddServiceDefaults`. The service defaults project from the template is a starting point, and you can customize it to meet your needs. For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
-
-## Orchestrate service communication
-
-Aspire provides orchestration features to assist with configuring connections and communication between the different parts of your app. The _AspireSample.AppHost_ project added the _AspireSample.ApiService_ and _AspireSample.Web_ projects to the application model. It also declared their names as `"webfrontend"` for Blazor front end, `"apiservice"` for the API project reference. Additionally, a Redis server resource labeled `"cache"` was added. These names are used to configure service discovery and communication between the projects in your app.
-
-The front end app defines a typed <xref:System.Net.Http.HttpClient> that's used to communicate with the API project.
-
-:::code source="snippets/quickstart/AspireSample/AspireSample.Web/WeatherApiClient.cs":::
-
-The `HttpClient` is configured to use service discovery. Consider the following code from the _:::no-loc text="Program.cs":::_ file of the _AspireSample.Web_ project:
-
-:::code source="snippets/quickstart/AspireSample/AspireSample.Web/Program.cs" highlight="7-8,14-19":::
-
-The preceding code:
-
-- Calls `AddServiceDefaults`, configuring the shared defaults for the app.
-- Calls <xref:Microsoft.Extensions.Hosting.AspireRedisOutputCacheExtensions.AddRedisOutputCache%2A> with the same `connectionName` that was used when adding the Redis container `"cache"` to the application model. This configures the app to use Redis for output caching.
-- Calls <xref:Microsoft.Extensions.DependencyInjection.HttpClientFactoryServiceCollectionExtensions.AddHttpClient%2A> and configures the <xref:System.Net.Http.HttpClient.BaseAddress?displayProperty=nameWithType> to be `"https+http://apiservice"`. This is the name that was used when adding the API project to the application model, and with service discovery configured, it automatically resolves to the correct address to the API project.
-
-For more information, see [Make HTTP requests with the `HttpClient`](/dotnet/fundamentals/networking/http/httpclient) class.
-
-## Aspire CLI
-
-The Aspire CLI (`aspire` command) is a cross-platform tool that provides command-line functionality to create, manage, run, and publish polyglot Aspire projects. Use the Aspire CLI to streamline development workflows and coordinate services for distributed applications.
-
-For more information, see [Aspire CLI Overview](../cli/overview.md) and [Install Aspire CLI](../cli/install.md).
 
 ## See also
 
