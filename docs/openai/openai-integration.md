@@ -239,7 +239,7 @@ Endpoint={endpoint};Key={api_key};Model={model_name}
 
 #### Use configuration providers
 
-Configure via `Aspire:OpenAI` keys (global) and `Aspire:OpenAI:{connectionName}` (per named client). Supported settings include `Key`, `Endpoint`, `DisableTracing`, `DisableMetrics`, and the `ClientOptions` subtree (`UserAgentApplicationId`, `OrganizationId`, `ProjectId`, `NetworkTimeout`, logging options, etc.).
+Configure via `Aspire:OpenAI` keys (global) and `Aspire:OpenAI:{connectionName}` (per named client). Supported settings include `Key`, `Endpoint`, `DisableTracing`, `DisableMetrics`, `EnableSensitiveTelemetryData`, and the `ClientOptions` subtree (`UserAgentApplicationId`, `OrganizationId`, `ProjectId`, `NetworkTimeout`, logging options, etc.).
 
 ```json
 {
@@ -280,7 +280,54 @@ Explore the end-to-end sample that wires up the hosting and client integrations,
 
 #### Tracing
 
-- `OpenAI.*` (when telemetry enabled and not disabled)
+The Aspire OpenAI integration will emit the following tracing activities using OpenTelemetry:
+
+- `Experimental.Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI to record AI operations
+
+> [!IMPORTANT]
+> Telemetry is only recorded by default when using the `IChatClient` interface from Microsoft.Extensions.AI. Raw `OpenAIClient` calls do not automatically generate telemetry.
+
+##### Configuring sensitive data in telemetry
+
+By default, telemetry includes metadata such as token counts, but not raw inputs and outputs like message content. To include potentially sensitive information in telemetry, set the `EnableSensitiveTelemetryData` configuration option:
+
+```csharp
+builder.AddOpenAIClient("chat", settings =>
+{
+    settings.EnableSensitiveTelemetryData = true;
+})
+.AddChatClient();
+```
+
+Or through configuration:
+
+```json
+{
+  "Aspire": {
+    "OpenAI": {
+      "EnableSensitiveTelemetryData": true
+    }
+  }
+}
+```
+
+Alternatively, you can enable sensitive data capture by setting the environment variable:
+
+```bash
+OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
+```
+
+##### Using underlying library telemetry
+
+If you need to access telemetry from the underlying OpenAI library directly, you can manually add the appropriate activity sources and meters to your OpenTelemetry configuration:
+
+```csharp
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing.AddSource("OpenAI.*"))
+    .WithMetrics(metrics => metrics.AddMeter("OpenAI.*"));
+```
+
+However, you'll need to enable experimental telemetry support in the OpenAI library by setting the `OPENAI_EXPERIMENTAL_ENABLE_OPEN_TELEMETRY` environment variable to `"true"` or calling `AppContext.SetSwitch("OpenAI.Experimental.EnableOpenTelemetry", true)` during app startup.
 
 #### Metrics
 
