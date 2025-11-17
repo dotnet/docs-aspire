@@ -283,7 +283,6 @@ Explore the end-to-end sample that wires up the hosting and client integrations,
 The Aspire OpenAI integration will emit the following tracing activities using OpenTelemetry:
 
 - `Experimental.Microsoft.Extensions.AI` - Used by Microsoft.Extensions.AI to record AI operations
-- `OpenAI.*` (when telemetry enabled and not disabled)
 
 > [!IMPORTANT]
 > Telemetry is only recorded by default when using the `IChatClient` interface from Microsoft.Extensions.AI. Raw `OpenAIClient` calls do not automatically generate telemetry.
@@ -317,6 +316,18 @@ Alternatively, you can enable sensitive data capture by setting the environment 
 ```bash
 OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true
 ```
+
+##### Using underlying library telemetry
+
+If you need to access telemetry from the underlying OpenAI library directly, you can manually add the appropriate activity sources and meters to your OpenTelemetry configuration:
+
+```csharp
+builder.Services.AddOpenTelemetry()
+    .WithTracing(tracing => tracing.AddSource("OpenAI.*"))
+    .WithMetrics(metrics => metrics.AddMeter("OpenAI.*"));
+```
+
+However, you'll need to enable experimental telemetry support in the OpenAI library by setting the `OPENAI_EXPERIMENTAL_ENABLE_OPEN_TELEMETRY` environment variable to `"true"` or calling `AppContext.SetSwitch("OpenAI.Experimental.EnableOpenTelemetry", true)` during app startup.
 
 #### Metrics
 
