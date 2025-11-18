@@ -302,7 +302,7 @@ The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
 Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The AppHost allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
 
-Now, you're able to disable port randomization or enable the [dashboard](https://aspire.dev/dashboard/overview/). For more information, see [Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your AppHost](../testing/manage-app-host.md#pass-arguments-to-your-apphost).
+Now, you're able to disable port randomization or enable the [dashboard](https://aspire.dev/dashboard/overview/). For more information, see [Aspire testing overview](https://aspire.dev/testing/overview/). Additionally, you can now [Pass arguments to your AppHost](https://aspire.dev/testing/manage-app-host/#pass-arguments-to-your-apphost).
 
 Some of these enhancements were introduced as a result of stability issues that were reported, such as [Aspire GitHub issue #6678](https://github.com/dotnet/aspire/issues/6678)—where some resources failed to start do to "address in use" errors.
 

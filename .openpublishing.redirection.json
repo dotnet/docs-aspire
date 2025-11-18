@@ -387,6 +387,22 @@
     {
       "source_path_from_root": "/docs/fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md",
       "redirect_url": "https://aspire.dev/dashboard/microsoft-collected-dashboard-telemetry/"
+    },
+    {
+      "source_path_from_root": "/docs/testing/overview.md",
+      "redirect_url": "https://aspire.dev/testing/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/testing/write-your-first-test.md",
+      "redirect_url": "https://aspire.dev/testing/write-your-first-test/"
+    },
+    {
+      "source_path_from_root": "/docs/testing/manage-app-host.md",
+      "redirect_url": "https://aspire.dev/testing/manage-app-host/"
+    },
+    {
+      "source_path_from_root": "/docs/testing/accessing-resources.md",
+      "redirect_url": "https://aspire.dev/testing/accessing-resources/"
     }
   ]
 }

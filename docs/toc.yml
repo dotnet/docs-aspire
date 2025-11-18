@@ -140,16 +140,7 @@ items:
       href: cli-reference/aspire-update.md
 
 - name: Testing
-  items:
-  - name: Overview
-    displayName: aspire testing,testing
-    href: testing/overview.md
-  - name: Write your first Aspire test
-    href: testing/write-your-first-test.md
-  - name: Managing the AppHost
-    href: testing/manage-app-host.md
-  - name: Accessing resources in tests
-    href: testing/accessing-resources.md
+  href: https://aspire.dev/testing/overview/
 
 - name: Fundamentals
   items:
