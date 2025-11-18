@@ -21,7 +21,7 @@ In this tutorial, you learn to configure an Aspire project with a Redis Cache fo
 
 ## Create the sample solution
 
-Follow the [Tutorial: Implement caching with Aspire integrations](../../caching/caching-integrations.md) to create the sample project.
+Follow the [Tutorial: Implement caching with Aspire integrations](https://aspire.dev/integrations/caching/) to create the sample project.
 
 ## Configure the app for Redis cache deployment
 

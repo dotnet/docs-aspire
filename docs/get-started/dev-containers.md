@@ -215,7 +215,7 @@ If you encounter networking issues between containers or need IPv6 support, you 
 
 ### Dapr integration examples
 
-For Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container. For more information, see [Aspire Dapr integration](../community-toolkit/dapr.md).
+For Aspire apps that integrate with Dapr, you can set up Dapr components in your Dev Container. For more information, see [Aspire Dapr integration](https://aspire.dev/integrations/frameworks/dapr/).
 
 #### Basic Dapr setup
 
@@ -309,6 +309,8 @@ When using Dev Containers with Aspire, keep the following considerations in mind
 ## See also
 
 - [Aspire and GitHub Codespaces](github-codespaces.md)
-- [Aspire Dapr integration](../community-toolkit/dapr.md)
+- [Docker and Aspire](../fundamentals/app-host-overview.md#container-runtime)
+- [Aspire Dapr integration](https://aspire.dev/integrations/frameworks/dapr/)
+- [Visual Studio Dev Containers](https://aka.ms/vs/devcontainers)
 - [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
 - [Dev Containers specification](https://containers.dev/implementors/spec/)

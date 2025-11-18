@@ -115,7 +115,7 @@ The preceding code:
   - Adds a reference to the `apiservice` resource and waits for it to be ready using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> and <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitFor*> methods.
 - Builds and runs the app model using the <xref:Aspire.Hosting.DistributedApplicationBuilder.Build%2A> and <xref:Aspire.Hosting.DistributedApplication.Run%2A> methods.
 
-The example code uses the [Aspire Redis hosting integration](../caching/stackexchange-redis-integration.md#hosting-integration).
+The example code uses the [Aspire Redis hosting integration](https://aspire.dev/integrations/caching/redis/#hosting-integration).
 
 To help visualize the relationship between the AppHost project and the resources it describes, consider the following diagram:
 
@@ -194,7 +194,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is _injected_ into the "webfrontend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the `webfrontend` uses to connect to Redis via the [Aspire Redis integration](../caching/stackexchange-redis-caching-overview.md), for example, `ConnectionStrings__cache="localhost:62354"`.
+The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is _injected_ into the "webfrontend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the `webfrontend` uses to connect to Redis via the [Aspire Redis integration](https://aspire.dev/integrations/caching/redis/), for example, `ConnectionStrings__cache="localhost:62354"`.
 
 ### Connection string and endpoint references
 
@@ -369,7 +369,7 @@ In the preceding code:
 This logic can easily be inverted to connect to an existing Redis resource when you're running locally, and create a new Redis resource when you're publishing.
 
 > [!IMPORTANT]
-> Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource. For more information on how the Azure resources use these APIs, see [Use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+> Aspire provides common APIs to control the modality of resource builders, allowing resources to behave differently based on the execution mode. The fluent APIs are prefixed with `RunAs*` and `PublishAs*`. The `RunAs*` APIs influence the local development (or run mode) behavior, whereas the `PublishAs*` APIs influence the publishing of the resource. For more information on how the Azure resources use these APIs, see [Use existing Azure resources](https://aspire.dev/integrations/cloud/azure/#use-existing-azure-resources).
 
 ## See also
 

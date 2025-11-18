@@ -218,4 +218,4 @@ The `Parameters_ApiService` project consumes the `insertionRows` parameter. Cons
 ## See also
 
 - [Aspire manifest format for deployment tool builders](../deployment/manifest-format.md)
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](../database/sql-server-integrations.md)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](https://aspire.dev/integrations/databases/sql-server/)

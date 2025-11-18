@@ -80,7 +80,7 @@ var dab = builder.AddDataAPIBuilder("dab")
 
 ### Database Configuration
 
-If you need to configure your own local database, you can refer to the [SQL Server integration](../database/sql-server-integration.md) documentation.
+If you need to configure your own local database, you can refer to the [SQL Server integration](https://aspire.dev/integrations/databases/sql-server/) documentation.
 
 Once you have your database added as a resource, you can reference it using the following APIs chained to the `IResourceBuilder<DataApiBuilderContainerResource>`:
 
