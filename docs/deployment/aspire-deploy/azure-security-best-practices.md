@@ -68,7 +68,7 @@ builder.AddProject<Projects.ApiService>()
        .WithReference(keyVault);
 ```
 
-For more information, see [Aspire Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/).
+For more information, see [Aspire Azure Key Vault integration](https://aspire.dev/integrations/cloud/azure/azure-key-vault/).
 
 ### Configure user-assigned managed identities
 
@@ -85,7 +85,7 @@ builder.AddProject<Projects.ApiService>()
        .WithReference(managedIdentity);
 ```
 
-For detailed guidance, see [User-assigned managed identity](https://aspire.dev/integrations/azure-managed-identity/).
+For detailed guidance, see [User-assigned managed identity](https://aspire.dev/integrations/cloud/azure/user-assigned-identity/).
 
 ### Enable comprehensive monitoring
 
@@ -113,5 +113,5 @@ For comprehensive guidance on Azure security, see [Azure security best practices
 
 - [Deploy an Aspire project to Azure Container Apps](../azd/aca-deployment.md)
 - [Customize Aspire Azure deployments](customize-deployments.md)
-- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/)
-- [User-assigned managed identity](https://aspire.dev/integrations/azure-managed-identity/)
+- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/cloud/azure/azure-key-vault/)
+- [User-assigned managed identity](https://aspire.dev/integrations/cloud/azure/user-assigned-identity/)

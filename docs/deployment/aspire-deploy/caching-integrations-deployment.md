@@ -19,10 +19,6 @@ In this tutorial, you learn to configure an Aspire project with a Redis Cache fo
 
 [!INCLUDE [aspire-prereqs](../../includes/aspire-prereqs.md)]
 
-## Create the sample solution
-
-Follow the [Tutorial: Implement caching with Aspire integrations](https://aspire.dev/integrations/caching/) to create the sample project.
-
 ## Configure the app for Redis cache deployment
 
 Aspire provides two built-in configuration options to streamline Redis Cache deployment on Azure:
@@ -129,20 +125,6 @@ When you run the `aspire deploy` command for the first time, you'll be prompted 
 The deployment process will provision the necessary Azure resources and deploy your Aspire app. The process may take a few minutes to complete.
 
 When the deployment finishes, the command output will provide information about the deployed resources that you can view in the Azure portal.
-
-## [Azure Cache for Redis](#tab/azure-redis)
-
-The deployment process provisioned an Azure Cache for Redis resource due to the **.AppHost** configuration you provided.
-
-:::image type="content" loc-scope="azure" source="../../caching/media/resources-azure-redis.png" alt-text="A screenshot showing the deployed Azure Cache for Redis.":::
-
-## [Redis Container](#tab/redis-container)
-
-The deployment process created a Redis app container due to the **.AppHost** configuration you provided.
-
-:::image type="content" loc-scope="azure" source="../../caching/media/resources-azure-redis-container.png" alt-text="A screenshot showing the containerized Redis.":::
-
----
 
 [!INCLUDE [clean-up-resources](../../includes/clean-up-resources.md)]
 
