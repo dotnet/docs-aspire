@@ -767,6 +767,82 @@
     {
       "source_path_from_root": "/docs/community-toolkit/sqlite-entity-framework-integration.md",
       "redirect_url": "https://aspire.dev/integrations/databases/sqlite/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/overview.md",
+      "redirect_url": "https://aspire.dev/diagnostics/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspire001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspire001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspire002.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspire002/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspire003.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspire003/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspire004.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspire004/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspire006.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspire006/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspire007.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspire007/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspire008.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspire008/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspireacadomains001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspireacadomains001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspirecompute001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspirecompute001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspirecosmosdb001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspirecosmosdb001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspirehostingpython001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspirehostingpython001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspirepipelines001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspirepipelines001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspirepipelines002.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspirepipelines002/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspirepipelines003.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspirepipelines003/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspireproxyendpoints001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspireproxyendpoints001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspirepublishers001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspirepublishers001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspireazure001.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspireazure001/"
+    },
+    {
+      "source_path_from_root": "/docs/diagnostics/aspireazure002.md",
+      "redirect_url": "https://aspire.dev/diagnostics/aspireazure002/"
     }
   ]
 }

@@ -285,7 +285,7 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
        });
 ```
 
-For more information, see [Aspire diagnostics overview](../diagnostics/overview.md).
+For more information, see [Aspire diagnostics overview](https://aspire.dev/diagnostics/overview/).
 
 ### ➕ Even more integration updates
 
