@@ -24,7 +24,7 @@ By default, the `ConfigureOpenTelemetry` method enables logging, tracing, and me
 
 ## Export OpenTelemetry data for monitoring
 
-...export of this telemetry data to a data store or reporting tool. The telemetry export mechanism relies on the [OpenTelemetry protocol (OTLP)](https://opentelemetry.io/docs/specs/otel/protocol), which serves as a standardized approach for transmitting telemetry data through REST or gRPC. The `ConfigureOpenTelemetry` method also registers exporters to provide your telemetry data to other monitoring tools, such as Prometheus or Azure Monitor. For more information, see [OpenTelemetry configuration](https://aspire.dev/fundamentals/service-defaults/#opentelemetry-configuration).
+Aspire enables export of telemetry data to a data store or reporting tool. The telemetry export mechanism relies on the [OpenTelemetry protocol (OTLP)](https://opentelemetry.io/docs/specs/otel/protocol), which serves as a standardized approach for transmitting telemetry data through REST or gRPC. The `ConfigureOpenTelemetry` method also registers exporters to provide your telemetry data to other monitoring tools, such as Prometheus or Azure Monitor. For more information, see [OpenTelemetry configuration](https://aspire.dev/fundamentals/service-defaults/#opentelemetry-configuration).
 
 ## OpenTelemetry environment variables
 
