@@ -158,7 +158,7 @@ The solution consists of the following projects:
 - **AspireSample.ApiService**: An ASP.NET Core Minimal API project is used to provide data to the front end. This project depends on the shared **AspireSample.ServiceDefaults** project.
 - **AspireSample.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the _Startup project_, and it depends on the **AspireSample.ApiService** and **AspireSample.Web** projects.
 - **AspireSample.ServiceDefaults**: A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](https://aspire.dev/fundamentals/service-discovery/), and [telemetry](../fundamentals/telemetry.md).
-- **AspireSample.Web**: An ASP.NET Core Blazor App project with default Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project. For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
+- **AspireSample.Web**: An ASP.NET Core Blazor App project with default Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project. For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).
 
 Your _AspireSample_ directory should resemble the following structure:
 
