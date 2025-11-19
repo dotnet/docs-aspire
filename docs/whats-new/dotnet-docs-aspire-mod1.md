@@ -48,24 +48,24 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Aspire Milvus database integration](../database/milvus-integration.md) - Split content
-- [Aspire MongoDB database integration](../database/mongodb-integration.md) - Split content
-- [Aspire Oracle Entity Framework Core integration](../database/oracle-entity-framework-integration.md) - Split content
-- [Aspire Qdrant integration](../database/qdrant-integration.md) - Split content
-- [Tutorial: Deploy an Aspire project with a SQL Server Database to Azure](../database/sql-server-integration-deployment.md) - Update the Tutorial: Deploy an Aspire project with a SQL Server Database to Azure
+- [Aspire Milvus database integration](https://aspire.dev/integrations/databases/milvus/) - Split content
+- [Aspire MongoDB database integration](https://aspire.dev/integrations/databases/mongodb/) - Split content
+- [Aspire Oracle Entity Framework Core integration](https://aspire.dev/integrations/databases/oracle/) - Split content
+- [Aspire Qdrant integration](https://aspire.dev/integrations/databases/qdrant/) - Split content
+- [Tutorial: Deploy an Aspire project with a SQL Server Database to Azure](https://aspire.dev/integrations/databases/sql-server/) - Update the Tutorial: Deploy an Aspire project with a SQL Server Database to Azure
 
 ## Messaging
 
 ### Updated articles
 
-- [Aspire Apache Kafka integration](../messaging/kafka-integration.md) - Split content
-- [Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
-- [Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md)
+- [Aspire Apache Kafka integration](https://aspire.dev/integrations/messaging/apache-kafka/) - Split content
+- [Aspire Azure Event Hubs integration](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
+- [Aspire Azure Service Bus integration](https://aspire.dev/integrations/cloud/azure/azure-service-bus/)
   - Split content
   - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
-- [Aspire Azure Web PubSub integration](../messaging/azure-web-pubsub-integration.md) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
-- [Aspire NATS integration](../messaging/nats-integration.md) - Split content
-- [Aspire RabbitMQ integration](../messaging/rabbitmq-integration.md)
+- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/azure-web-pubsub/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
+- [Aspire NATS integration](https://aspire.dev/integrations/messaging/nats/) - Split content
+- [Aspire RabbitMQ integration](https://aspire.dev/integrations/messaging/rabbitmq/)
   - Split content
   - Clarify how to set credentials for the RabbitMQ management plugin
 
@@ -73,13 +73,13 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Aspire Redis&reg; distributed caching integration](../caching/stackexchange-redis-distributed-caching-integration.md) - Correct keyed IDistributedCache registration and usage
+- [Aspire Redis&reg; distributed caching integration](https://aspire.dev/integrations/caching/redis-distributed/) - Correct keyed IDistributedCache registration and usage
 
 ## Security
 
 ### Updated articles
 
-- [Aspire Azure Key Vault integration](../security/azure-security-key-vault-integration.md) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
+- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
 
 ## Deployment
 

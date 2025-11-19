@@ -25,23 +25,23 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 
 ### Updated articles
 
-- [Aspire MongoDB database integration](../database/mongodb-integration.md) - Documents the issue with deploying data volumes to ACA.
-- [Apply Entity Framework Core migrations in Aspire](../database/ef-core-migrations.md)
+- [Aspire MongoDB database integration](https://aspire.dev/integrations/databases/mongodb/) - Documents the issue with deploying data volumes to ACA.
+- [Apply Entity Framework Core migrations in Aspire](https://aspire.dev/integrations/databases/ef-core-migrations/)
   - Altered EF Core Migrations tutorial to ensure that API waits for the migrations to complete
   - Add Microsoft.EntityFrameworkCore.Tools package guidance to EF Core migrations documentation
-- [Seed data in a database using Aspire](../database/seed-database-data.md) - Update seeding data article to Aspire 9.3
+- [Seed data in a database using Aspire](https://aspire.dev/integrations/databases/seed-database/) - Update seeding data article to Aspire 9.3
 
 ## Messaging
 
 ### Updated articles
 
-- [Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md)
+- [Aspire Azure Event Hubs integration](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/)
   - Move the "Infrastructure as code" section of the Azure Overview article into a separate article
   - Recommend AsExisting() for Azure Integrations
-- [Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md)
+- [Aspire Azure Service Bus integration](https://aspire.dev/integrations/cloud/azure/azure-service-bus/)
   - Move the "Infrastructure as code" section of the Azure Overview article into a separate article
   - Recommend AsExisting() for Azure Integrations
-- [Aspire Azure Web PubSub integration](../messaging/azure-web-pubsub-integration.md)
+- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/azure-web-pubsub/)
   - Move the "Infrastructure as code" section of the Azure Overview article into a separate article
   - Recommend AsExisting() for Azure Integrations
 
@@ -49,7 +49,7 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 
 ### Updated articles
 
-- [Aspire Azure Key Vault integration](../security/azure-security-key-vault-integration.md)
+- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/)
   - Move the "Infrastructure as code" section of the Azure Overview article into a separate article
   - Recommend AsExisting() for Azure Integrations
 

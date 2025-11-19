@@ -19,7 +19,7 @@ During publishing and deployment, the container image builder is available to cr
 These APIs give you fine-grained control over the image building process and provide real-time feedback to users during lengthy build operations.
 
 > [!IMPORTANT]
-> These APIs are currently in preview and subject to change. They are designed for advanced scenarios where you need custom control over container image building and progress reporting. To suppress warnings for these APIs, see [Compiler Error ASPIREPUBLISHERS001](../diagnostics/aspirepublishers001.md).
+> These APIs are currently in preview and subject to change. They are designed for advanced scenarios where you need custom control over container image building and progress reporting. To suppress warnings for these APIs, see [Compiler Error ASPIREPUBLISHERS001](https://aspire.dev/diagnostics/aspirepublishers001/).
 
 ## When to use these APIs
 

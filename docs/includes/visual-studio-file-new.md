@@ -11,6 +11,6 @@ Visual Studio provides Aspire templates that handle some initial setup configura
 1. On the **Additional information** screen:
     - Make sure **.NET 9.0 (Standard Term Support)** is selected.
     - Ensure that **Use Redis for caching (requires a supported container runtime)** is checked and select **Create**.
-    - Optionally, you can select **Create a tests project**. For more information, see [Write your first Aspire test](../testing/write-your-first-test.md).
+    - Optionally, you can select **Create a tests project**. For more information, see [Write your first Aspire test](https://aspire.dev/testing/write-your-first-test/).
 
 Visual Studio creates a new solution that is structured to use Aspire.
