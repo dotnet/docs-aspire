@@ -157,7 +157,7 @@ The solution consists of the following projects:
 
 - **AspireSample.ApiService**: An ASP.NET Core Minimal API project is used to provide data to the front end. This project depends on the shared **AspireSample.ServiceDefaults** project.
 - **AspireSample.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator should be set as the _Startup project_, and it depends on the **AspireSample.ApiService** and **AspireSample.Web** projects.
-- **AspireSample.ServiceDefaults**: A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
+- **AspireSample.ServiceDefaults**: A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](https://aspire.dev/fundamentals/service-discovery/), and [telemetry](../fundamentals/telemetry.md).
 - **AspireSample.Web**: An ASP.NET Core Blazor App project with default Aspire service configurations, this project depends on the **AspireSample.ServiceDefaults** project. For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
 
 Your _AspireSample_ directory should resemble the following structure:
@@ -200,7 +200,7 @@ The _*.ServiceDefaults_ project is a shared project that's used to manage config
 
 :::code language="xml" source="snippets/quickstart/AspireSample/AspireSample.ServiceDefaults/AspireSample.ServiceDefaults.csproj" highlight="7":::
 
-The service defaults project exposes an extension method on the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> type, named `AddServiceDefaults`. The service defaults project from the template is a starting point, and you can customize it to meet your needs. For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
+The service defaults project exposes an extension method on the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> type, named `AddServiceDefaults`. The service defaults project from the template is a starting point, and you can customize it to meet your needs. For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).
 
 ## Orchestrate service communication
 
@@ -231,9 +231,9 @@ For more information, see [Aspire CLI Overview](../cli/overview.md) and [Install
 ## See also
 
 - [Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [Service discovery in Aspire](../service-discovery/overview.md)
-- [Aspire service defaults](../fundamentals/service-defaults.md)
-- [Health checks in Aspire](../fundamentals/health-checks.md)
+- [Service discovery in Aspire](https://aspire.dev/fundamentals/service-discovery/)
+- [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/)
+- [Health checks in Aspire](https://aspire.dev/fundamentals/health-checks/)
 - [Aspire telemetry](../fundamentals/telemetry.md)
 - [Troubleshoot untrusted localhost certificate in Aspire](../troubleshooting/untrusted-localhost-certificate.md)
 

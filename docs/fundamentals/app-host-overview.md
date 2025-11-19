@@ -194,7 +194,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
        .WithReference(cache);
 ```
 
-The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](../service-discovery/overview.md) information. In the preceding example, an environment variable is _injected_ into the "webfrontend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the `webfrontend` uses to connect to Redis via the [Aspire Redis integration](https://aspire.dev/integrations/caching/redis/), for example, `ConnectionStrings__cache="localhost:62354"`.
+The "webfrontend" project resource uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> to add a dependency on the "cache" container resource. These dependencies can represent connection strings or [service discovery](https://aspire.dev/fundamentals/service-discovery/) information. In the preceding example, an environment variable is _injected_ into the "webfrontend" resource with the name `ConnectionStrings__cache`. This environment variable contains a connection string that the `webfrontend` uses to connect to Redis via the [Aspire Redis integration](https://aspire.dev/integrations/caching/redis/), for example, `ConnectionStrings__cache="localhost:62354"`.
 
 ### Connection string and endpoint references
 
@@ -226,7 +226,7 @@ Aspire injects two types of environment variables for service references:
 - **Simplified format** (e.g., `APISERVICE_HTTP`): Uses the pattern `{RESOURCENAME}_{ENDPOINTNAME}` in uppercase. This format is simpler and more suitable for non-.NET languages and polyglot scenarios.
 - **.NET service discovery format** (e.g., `services__apiservice__http__0`): Uses the pattern `services__{servicename}__{endpointname}__{index}` in lowercase. This format is used by .NET's configuration-based service discovery.
 
-For more information, see [Aspire service discovery](../service-discovery/overview.md).
+For more information, see [Aspire service discovery](https://aspire.dev/fundamentals/service-discovery/).
 
 To get specific endpoints from a <xref:Aspire.Hosting.ApplicationModel.ContainerResource> or an <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, use one of the following endpoint APIs:
 
@@ -252,7 +252,7 @@ var apiservice = builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
 |---------------------------|-------------------------------------------------------|
 | `WithReference(endpoint)` | `MYAPP_ENDPOINT="https://localhost:9043"` <br /> `services__myapp__endpoint__0="https://localhost:9043"` |
 
-The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [Aspire service discovery](../service-discovery/overview.md).
+The `port` parameter is the port that the container is listening on. For more information on container ports, see [Container ports](networking-overview.md#container-ports). For more information on service discovery, see [Aspire service discovery](https://aspire.dev/fundamentals/service-discovery/).
 
 ### Service endpoint environment variable format
 
@@ -377,7 +377,7 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 - [Aspire integrations overview](integrations-overview.md)
 - [Aspire SDK](dotnet-aspire-sdk.md)
 - [Eventing in Aspire](../app-host/eventing.md)
-- [Service discovery in Aspire](../service-discovery/overview.md)
-- [Aspire service defaults](service-defaults.md)
+- [Service discovery in Aspire](https://aspire.dev/fundamentals/service-discovery/)
+- [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/)
 - [Expressing external parameters](external-parameters.md)
 - [Aspire inner-loop networking overview](networking-overview.md)

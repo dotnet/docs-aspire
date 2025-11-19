@@ -27,7 +27,7 @@ The following Aspire solution templates are available, assume the solution is na
 - **Aspire Empty App**: A minimal Aspire project that includes the following:
 
   - [**AspireSample.AppHost**](#app-host): An orchestrator project designed to connect and configure the different projects and services of your app.
-  - [**AspireSample.ServiceDefaults**](#service-defaults): A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](telemetry.md).
+  - [**AspireSample.ServiceDefaults**](#service-defaults): A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](https://aspire.dev/fundamentals/service-discovery/), and [telemetry](telemetry.md).
 
 <a name="starter-app"></a>
 
@@ -59,10 +59,10 @@ The following Aspire project templates are available:
 
 <a name="service-defaults"></a>
 
-- **Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](./telemetry.md).
+- **Aspire Service Defaults**: A standalone **.ServiceDefaults** project that can be used to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](https://aspire.dev/fundamentals/service-discovery/), and [telemetry](./telemetry.md).
 
   > [!IMPORTANT]
-  > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [Aspire service defaults](service-defaults.md).
+  > The service defaults project template takes a `FrameworkReference` dependency on `Microsoft.AspNetCore.App`. This may not be ideal for some project types. For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).
 
 ## Install the Aspire templates
 

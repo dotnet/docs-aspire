@@ -146,19 +146,19 @@ items:
   items:
   - name: Service discovery
     displayName: service discovery,service to service communication,Kubernetes,k8s
-    href: service-discovery/overview.md
+    href: https://aspire.dev/fundamentals/service-discovery/
   - name: Service defaults
-    href: fundamentals/service-defaults.md
+    href: https://aspire.dev/fundamentals/service-defaults/
   - name: Resource annotations
     displayName: annotations,metadata,custom annotations,resource annotations
     href: fundamentals/annotations-overview.md
   - name: Launch profiles
-    href: fundamentals/launch-profiles.md
+    href: https://aspire.dev/fundamentals/launch-profiles/
   - name: Telemetry
     displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
     href: fundamentals/telemetry.md
   - name: Health checks
-    href: fundamentals/health-checks.md
+    href: https://aspire.dev/fundamentals/health-checks/
 
 - name: Integrations
   href: https://aspire.dev/integrations/gallery/

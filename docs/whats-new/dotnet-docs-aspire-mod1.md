@@ -27,9 +27,9 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Aspire and launch profiles](../fundamentals/launch-profiles.md) - Rename configs-replace prefix
+- [Aspire and launch profiles](https://aspire.dev/fundamentals/launch-profiles/) - Rename configs-replace prefix
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md) - Split content
-- [Aspire service defaults](../fundamentals/service-defaults.md) - Update service defaults and add filtering details
+- [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/) - Update service defaults and add filtering details
 - [Aspire setup and tooling](../fundamentals/setup-tooling.md) - Rename configs-replace prefix
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md) - Add dev-cert details to templates content
 - [Custom HTTP commands in Aspire](../fundamentals/http-commands.md) - Split content

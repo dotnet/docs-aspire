@@ -67,7 +67,7 @@ For detailed migration guidance, see:
 
 ## Additional considerations
 
-- **Service discovery**: Aspire integrations automatically configure service discovery. If you were using HostingStartup for service-to-service communication, consider using Aspire's [service discovery features](../service-discovery/overview.md).
+- **Service discovery**: Aspire integrations automatically configure service discovery. If you were using HostingStartup for service-to-service communication, consider using Aspire's [service discovery features](https://aspire.dev/fundamentals/service-discovery/).
 
 - **Configuration management**: Instead of hard-coding connection strings in HostingStartup, use Aspire's configuration patterns with connection string names that map to resources in your app host.
 

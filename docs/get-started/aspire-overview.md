@@ -108,7 +108,7 @@ When added to your C# code, this method configures:
 - **Health checks**: Default endpoints that tools can query to monitor your app.
 - **Service discovery**: Enables service discovery and configures <xref:System.Net.Http.HttpClient> accordingly.
 
-For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
+For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).
 
 Consider how the three-tier architecture example can be deployed across different environments:
 

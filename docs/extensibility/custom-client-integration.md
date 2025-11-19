@@ -87,7 +87,7 @@ The registration of health checks, and telemetry are described in a bit more det
 
 ### Add health checks
 
-[Health checks](../fundamentals/health-checks.md) are a way to monitor the health of an integration. With MailKit, you can check if the connection to the SMTP server is healthy. Add the following code to the `MailKit.Client` project in a file named _MailKitHealthCheck.cs_:
+[Health checks](https://aspire.dev/fundamentals/health-checks/) are a way to monitor the health of an integration. With MailKit, you can check if the connection to the SMTP server is healthy. Add the following code to the `MailKit.Client` project in a file named _MailKitHealthCheck.cs_:
 
 :::code source="snippets/MailDevResourceAndComponent/MailKit.Client/MailKitHealthCheck.cs":::
 
