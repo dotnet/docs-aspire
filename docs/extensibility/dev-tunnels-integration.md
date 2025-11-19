@@ -98,7 +98,7 @@ The preceding code:
 
 ### Service discovery integration
 
-When another resource references a dev tunnel, environment variables are injected using the [Aspire service discovery](../service-discovery/overview.md) configuration format. Use the `WithReference` overloads that accept the `IResourceBuilder<DevTunnelResource>` parameter to reference a dev tunnel. This injects environment variables like:
+When another resource references a dev tunnel, environment variables are injected using the [Aspire service discovery](https://aspire.dev/fundamentals/service-discovery/) configuration format. Use the `WithReference` overloads that accept the `IResourceBuilder<DevTunnelResource>` parameter to reference a dev tunnel. This injects environment variables like:
 
 ```env
 WEB_HTTPS=https://myweb-1234.westeurope.devtunnels.ms/
@@ -180,5 +180,5 @@ Verify that:
 
 - [Dev tunnels service documentation](/azure/developer/dev-tunnels/overview)
 - [Dev tunnels FAQ](/azure/developer/dev-tunnels/faq)
-- [Aspire service discovery](../service-discovery/overview.md)
+- [Aspire service discovery](https://aspire.dev/fundamentals/service-discovery/)
 - [Aspire networking overview](../fundamentals/networking-overview.md)

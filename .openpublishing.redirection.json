@@ -843,6 +843,22 @@
     {
       "source_path_from_root": "/docs/diagnostics/aspireazure002.md",
       "redirect_url": "https://aspire.dev/diagnostics/aspireazure002/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/health-checks.md",
+      "redirect_url": "https://aspire.dev/fundamentals/health-checks/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/service-defaults.md",
+      "redirect_url": "https://aspire.dev/fundamentals/service-defaults/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/launch-profiles.md",
+      "redirect_url": "https://aspire.dev/fundamentals/launch-profiles/"
+    },
+    {
+      "source_path_from_root": "/docs/service-discovery/overview.md",
+      "redirect_url": "https://aspire.dev/fundamentals/service-discovery/"
     }
   ]
 }

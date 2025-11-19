@@ -32,7 +32,7 @@ For information on creating a custom _hosting integration_, see [Create custom A
 
 ### Client integrations
 
-Client integrations wire up client libraries to [dependency injection (DI)](/dotnet/core/extensions/dependency-injection), define configuration schema, and add [health checks](health-checks.md), [resiliency](/dotnet/core/resilience), and [telemetry](telemetry.md) where applicable. Aspire client integration libraries are prefixed with `Aspire.` and then include the full package name that they integrate with, such as `Aspire.StackExchange.Redis`.
+Client integrations wire up client libraries to [dependency injection (DI)](/dotnet/core/extensions/dependency-injection), define configuration schema, and add [health checks](https://aspire.dev/fundamentals/health-checks/), [resiliency](/dotnet/core/resilience), and [telemetry](telemetry.md) where applicable. Aspire client integration libraries are prefixed with `Aspire.` and then include the full package name that they integrate with, such as `Aspire.StackExchange.Redis`.
 
 These packages configure existing client libraries to connect to hosting integrations. They extend the <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> interface allowing client-consuming projects, such as your web app or API, to use the connected resource. The official [client integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+client+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `client`. In addition to the official client integrations, the [community has created client integrations](https://aspire.dev/integrations/) for various services and platforms as part of the Community Toolkit.
 
@@ -55,7 +55,7 @@ The AppHost project is where hosting integrations are used. Configuration, speci
 
 ## Integration features
 
-When you add a client integration to a project within your Aspire solution, [service defaults](service-defaults.md) are automatically applied to that project; meaning the Service Defaults project is referenced and the `AddServiceDefaults` extension method is called. These defaults are designed to work well in most scenarios and can be customized as needed. The following service defaults are applied:
+When you add a client integration to a project within your Aspire solution, [service defaults](https://aspire.dev/fundamentals/service-defaults/) are automatically applied to that project; meaning the Service Defaults project is referenced and the `AddServiceDefaults` extension method is called. These defaults are designed to work well in most scenarios and can be customized as needed. The following service defaults are applied:
 
 - **Observability and telemetry**: Automatically sets up logging, tracing, and metrics configurations:
 
@@ -63,7 +63,7 @@ When you add a client integration to a project within your Aspire solution, [ser
   - **[Tracing](/dotnet/core/diagnostics/distributed-tracing)**: A specialized form of logging that helps you localize failures and performance issues within applications distributed across multiple machines or processes.
   - **[Metrics](/dotnet/core/diagnostics/metrics)**: Numerical measurements recorded over time to monitor application performance and health. Metrics are often used to generate alerts when potential problems are detected.
 
-- **[Health checks](health-checks.md)**: Exposes HTTP endpoints to provide basic availability and state information about an app. Health checks are used to influence decisions made by container orchestrators, load balancers, API gateways, and other management services.
+- **[Health checks](https://aspire.dev/fundamentals/health-checks/)**: Exposes HTTP endpoints to provide basic availability and state information about an app. Health checks are used to influence decisions made by container orchestrators, load balancers, API gateways, and other management services.
 - **[Resiliency](/dotnet/core/resilience/http-resilience)**: The ability of your system to react to failure and still remain functional. Resiliency extends beyond preventing failures to include recovering and reconstructing your cloud-native environment back to a healthy state.
 
 ## Understand host integration extension methods

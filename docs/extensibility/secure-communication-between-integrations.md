@@ -24,7 +24,7 @@ The resulting solution from these previous articles contains the following proje
 - _MailDev.Hosting_: Contains the custom resource type for the MailDev container.
 - _MailDevResource.AppHost_: The [AppHost](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
 - _MailDevResource.NewsletterService_: An ASP.NET Core Web API project that sends emails using the MailDev container.
-- _MailDevResource.ServiceDefaults_: Contains the [default service configurations](../fundamentals/service-defaults.md) intended for sharing.
+- _MailDevResource.ServiceDefaults_: Contains the [default service configurations](https://aspire.dev/fundamentals/service-defaults/) intended for sharing.
 - _MailKit.Client_: Contains the custom client integration that exposes the MailKit `SmtpClient` through a factory.
 
 ## Update the MailDev resource

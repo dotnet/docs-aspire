@@ -44,7 +44,7 @@ The preceding launch settings file:
   - The `applicationUrl` property configures the dashboard launch address (`ASPNETCORE_URLS`).
   - Environment variables such as `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` are set on the AppHost.
 
-For more information, see [Aspire and launch profiles](../fundamentals/launch-profiles.md).
+For more information, see [Aspire and launch profiles](https://aspire.dev/fundamentals/launch-profiles/).
 
 > [!NOTE]
 > Configuration described on this page is for Aspire AppHost project. To configure the standalone dashboard, see [dashboard configuration](https://aspire.dev/dashboard/configuration/).

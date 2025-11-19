@@ -51,7 +51,7 @@ Each AppHost instance gets its own network resources. The only differences are t
 Containers register themselves on the network using their resource name. Aspire uses this name for service discovery between containers. For example, a `pgadmin` container can connect to a database resource named `postgres` using `postgres:5432`.
 
 > [!NOTE]
-> Host services, such as projects or other executables, don't use container networks. They rely on exposed container ports for service discovery and communication with containers. For more details on service discovery, see [service discovery overview](../service-discovery/overview.md).
+> Host services, such as projects or other executables, don't use container networks. They rely on exposed container ports for service discovery and communication with containers. For more details on service discovery, see [service discovery overview](https://aspire.dev/fundamentals/service-discovery/).
 
 ## Launch profiles
 
@@ -78,7 +78,7 @@ To specify the **http** and **https** launch profiles, configure the `applicatio
 > [!IMPORTANT]
 > If there's no _launchSettings.json_ (or launch profile), there are no bindings by default.
 
-For more information, see [Aspire and launch profiles](launch-profiles.md).
+For more information, see [Aspire and launch profiles](https://aspire.dev/fundamentals/launch-profiles/).
 
 ## Kestrel configured endpoints
 
@@ -202,7 +202,7 @@ builder.Services.AddHttpClient<WeatherApiClient>(
     client => client.BaseAddress = new Uri("http://_admin.apiservice"));
 ```
 
-The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` sentinel. This is a convention to indicate that the `admin` segment is the endpoint name belonging to the `apiservice` service. For more information, see [Aspire service discovery](../service-discovery/overview.md).
+The `Uri` is constructed using the `admin` endpoint name prefixed with the `_` sentinel. This is a convention to indicate that the `admin` segment is the endpoint name belonging to the `apiservice` service. For more information, see [Aspire service discovery](https://aspire.dev/fundamentals/service-discovery/).
 
 ### Additional considerations
 

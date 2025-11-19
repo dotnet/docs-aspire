@@ -29,7 +29,7 @@ highlightedContent:
     url: fundamentals/integrations-overview.md
   - itemType: concept
     title: Service discovery
-    url: service-discovery/overview.md
+    url: https://aspire.dev/fundamentals/service-discovery/
   - itemType: deploy
     title: Deploy a Aspire projects
     url: deployment/overview.md
@@ -60,13 +60,13 @@ conceptualContent:
       url: fundamentals/setup-tooling.md
     - itemType: concept
       text: Aspire service discovery
-      url: service-discovery/overview.md
+      url: https://aspire.dev/fundamentals/service-discovery/
     - itemType: concept
       text: Aspire and launch profiles
-      url: fundamentals/launch-profiles.md
+      url: https://aspire.dev/fundamentals/launch-profiles/
     - itemType: reference
       text: Aspire service defaults
-      url: fundamentals/service-defaults.md
+      url: https://aspire.dev/fundamentals/service-defaults/
     - itemType: reference
       text: Aspire dashboard
       url: https://aspire.dev/dashboard/overview/

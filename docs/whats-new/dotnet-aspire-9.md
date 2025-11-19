@@ -129,7 +129,7 @@ For more information, see [Aspire AppHost: Waiting for resources](../fundamental
 
 #### Resource health checks
 
-The `WaitFor` API uses standard [.NET health checks](../fundamentals/health-checks.md) to determine if a resource is ready. But what does "a resource being ready" mean? The best part is, that's configurable by the consumer beyond their default values.
+The `WaitFor` API uses standard [.NET health checks](https://aspire.dev/fundamentals/health-checks/) to determine if a resource is ready. But what does "a resource being ready" mean? The best part is, that's configurable by the consumer beyond their default values.
 
 When a resource doesn't expose any health checks (no health checks registered in the app), the AppHost waits for the resource to be in the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running> state before starting the dependent resource.
 

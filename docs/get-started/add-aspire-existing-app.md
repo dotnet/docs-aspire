@@ -228,7 +228,7 @@ Now, let's enroll the **Store** project, which implements the web user interface
 You should now have two new projects, both added to the solution:
 
 - **eShopLite.AppHost**: An orchestrator project designed to connect and configure the different projects and services of your app. The orchestrator is set as the _Startup project_, and it depends on the **eShopLite.Store** project.
-- **eShopLite.ServiceDefaults**: A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](../service-discovery/overview.md), and [telemetry](../fundamentals/telemetry.md).
+- **eShopLite.ServiceDefaults**: A Aspire shared project to manage configurations that are reused across the projects in your solution related to [resilience](/dotnet/core/resilience/http-resilience), [service discovery](https://aspire.dev/fundamentals/service-discovery/), and [telemetry](../fundamentals/telemetry.md).
 
 In the **eShopLite.AppHost** project, open the _:::no-loc text="AppHost.cs":::_ file. Notice this line of code, which registers the **Store** project in the Aspire orchestration:
 
@@ -300,7 +300,7 @@ For more information on the available templates, see [Aspire templates](../funda
 
 ### Create a service defaults project
 
-After the AppHost project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](../fundamentals/service-defaults.md) from the available Aspire templates, use the following .NET CLI command:
+After the AppHost project is created, you need to create a new _service defaults_ project. To create a new [_service defaults_ project](https://aspire.dev/fundamentals/service-defaults/) from the available Aspire templates, use the following .NET CLI command:
 
 ```dotnetcli
 dotnet new aspire-servicedefaults -o eShopLite.ServiceDefaults
@@ -338,7 +338,7 @@ dotnet add .\eShopLite.AppHost\eShopLite.AppHost.csproj reference .\Products\Pro
 
 ---
 
-Both the **Store** and **Products** projects need to reference the _service defaults_ project so that they can easily include [service discovery](../service-discovery/overview.md). To add a reference to the _service defaults_ project in the **Store** project, use the following .NET CLI command:
+Both the **Store** and **Products** projects need to reference the _service defaults_ project so that they can easily include [service discovery](https://aspire.dev/fundamentals/service-discovery/). To add a reference to the _service defaults_ project in the **Store** project, use the following .NET CLI command:
 
 ## [Unix](#tab/unix)
 
@@ -401,7 +401,7 @@ The preceding code:
 
 ## Service Discovery
 
-At this point, both projects are part of Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [Aspire's service discovery](../service-discovery/overview.md). To enable service discovery, open the _:::no-loc text="AppHost.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
+At this point, both projects are part of Aspire orchestration, but the **Store** project needs to rely on the **Products** backend address through [Aspire's service discovery](https://aspire.dev/fundamentals/service-discovery/). To enable service discovery, open the _:::no-loc text="AppHost.cs":::_ file in **eShopLite.AppHost** project and update the code so that the `builder` adds a reference to the _Products_ project:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

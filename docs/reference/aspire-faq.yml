@@ -121,7 +121,7 @@ sections:
       - question: |
           How to fix integrations and Service Discovery issues when deploying Aspire apps to IIS?
         answer: |
-          Aspire integrations require specific configuration that must be provided manually. The same is true for [Service Discovery](../service-discovery/overview.md), ideally, you should deploy to something other than IIS.
+          Aspire integrations require specific configuration that must be provided manually. The same is true for [Service Discovery](https://aspire.dev/fundamentals/service-discovery/), ideally, you should deploy to something other than IIS.
 
       - question: |
           What is the purpose of the Community Toolkit project?
