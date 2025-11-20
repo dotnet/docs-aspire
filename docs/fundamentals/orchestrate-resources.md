@@ -63,7 +63,7 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
        .WaitFor(postgresdb);
 ```
 
-In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [Aspire PostgreSQL integration](../database/postgresql-integration.md), but the same pattern can be applied to other resources.
+In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [Aspire PostgreSQL integration](https://aspire.dev/integrations/databases/postgres/), but the same pattern can be applied to other resources.
 
 Other cases might warrant waiting for a resource to run to completion, either <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Exited?displayProperty=nameWithType> or <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Finished?displayProperty=nameWithType> before the dependent resource starts. To wait for a resource to run to completion, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*> method:
 
@@ -134,7 +134,7 @@ The preceding code adds a container resource named "ollama" with the image `olla
 
 All <xref:Aspire.Hosting.ApplicationModel.ContainerResource> subclasses can be customized to meet your specific requirements. This can be useful when using a [hosting integration](integrations-overview.md#hosting-integrations) that models a container resource, but requires modifications. When you have an `IResourceBuilder<ContainerResource>` you can chain calls to any of the available APIs to modify the container resource. Aspire container resources typically point to pinned tags, but you might want to use the `latest` tag instead.
 
-To help exemplify this, imagine a scenario where you're using the [Aspire Redis integration](../caching/stackexchange-redis-integration.md). If the Redis integration relies on the `7.4` tag and you want to use the `latest` tag instead, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
+To help exemplify this, imagine a scenario where you're using the [Aspire Redis integration](https://aspire.dev/integrations/caching/redis/). If the Redis integration relies on the `7.4` tag and you want to use the `latest` tag instead, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

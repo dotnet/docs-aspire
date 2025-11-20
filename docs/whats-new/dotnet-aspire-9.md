@@ -129,7 +129,7 @@ For more information, see [Aspire AppHost: Waiting for resources](../fundamental
 
 #### Resource health checks
 
-The `WaitFor` API uses standard [.NET health checks](../fundamentals/health-checks.md) to determine if a resource is ready. But what does "a resource being ready" mean? The best part is, that's configurable by the consumer beyond their default values.
+The `WaitFor` API uses standard [.NET health checks](https://aspire.dev/fundamentals/health-checks/) to determine if a resource is ready. But what does "a resource being ready" mean? The best part is, that's configurable by the consumer beyond their default values.
 
 When a resource doesn't expose any health checks (no health checks registered in the app), the AppHost waits for the resource to be in the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running> state before starting the dependent resource.
 
@@ -223,7 +223,7 @@ The container persistence mechanism attempts to identify when you might wish to 
 
 ### Resource commands
 
-The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the AppHost. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [Aspire Community Toolkit](../community-toolkit/overview.md) might be a good place to share these extensions.
+The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the AppHost. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [Aspire Community Toolkit](https://aspire.dev/integrations/) might be a good place to share these extensions.
 
 When you define a custom command, it's available in the dashboard as a user experience feature.
 
@@ -277,7 +277,7 @@ The <xref:Aspire.Hosting.RedisBuilderExtensions.WithRedisInsight*> extension met
 
 :::image type="content" source="media/redis-insight.png" lightbox="media/redis-insight.png" alt-text="Redis Insight dashboard showing multiple Redis instances":::
 
-For more information, see [Add Redis resource with Redis Insights](../caching/stackexchange-redis-integration.md?pivots=redis#add-redis-resource-with-redis-insights).
+For more information, see [Add Redis resource with Redis Insights](https://aspire.dev/integrations/caching/redis/?pivots=redis#add-redis-resource-with-redis-insights).
 
 ### OpenAI (Preview)
 
@@ -285,7 +285,7 @@ Starting with Aspire 9, an additional OpenAI integration is available which allo
 
 - [📦 Aspire.OpenAI (Preview)](https://www.nuget.org/packages/Aspire.OpenAI/9.0.0)
 
-Moreover, the already available [Aspire Azure OpenAI integration](../azureai/azureai-openai-integration.md) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new <xref:Microsoft.Extensions.Hosting.AspireConfigurableOpenAIExtensions.AddOpenAIClientFromConfiguration(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String)> builder method. The following example detects if the connection string is for an Azure AI OpenAI service and registers the most appropriate `OpenAIClient` instance automatically.
+Moreover, the already available [Aspire Azure OpenAI integration](https://aspire.dev/integrations/cloud/azure/azure-openai/) was improved to provide a flexible way to configure an `OpenAIClient` for either an Azure AI OpenAI service or a dedicated OpenAI REST API one with the new <xref:Microsoft.Extensions.Hosting.AspireConfigurableOpenAIExtensions.AddOpenAIClientFromConfiguration(Microsoft.Extensions.Hosting.IHostApplicationBuilder,System.String)> builder method. The following example detects if the connection string is for an Azure AI OpenAI service and registers the most appropriate `OpenAIClient` instance automatically.
 
 ```csharp
 builder.AddOpenAIClientFromConfiguration("openai");
@@ -372,8 +372,8 @@ In order to make Aspire applications more secure, Azure Database for PostgreSQL 
 
 The following examples demonstrate how to configure your application to connect to the Azure resources using Microsoft Entra ID:
 
-- [Aspire: Azure PostgreSQL hosting integration](../database/azure-postgresql-integration.md).
-- [Aspire: Azure Redis hosting integration](../caching/azure-cache-for-redis-integration.md#hosting-integration).
+- [Aspire: Azure PostgreSQL hosting integration](https://aspire.dev/integrations/cloud/azure/azure-postgresql/).
+- [Aspire: Azure Redis hosting integration](https://aspire.dev/integrations/cloud/azure/azure-cache-redis/#hosting-integration).
 
 If you need to use password or access key authentication (not recommended), you can opt-in with the following code:
 
@@ -646,7 +646,7 @@ Support for Azure Functions in Aspire is still in preview with support for a lim
 - [Azure Service Bus triggers](/azure/azure-functions/functions-bindings-service-bus?pivots=programming-language-csharp)
 - [Azure Event Hubs triggers](/azure/azure-functions/functions-bindings-event-hubs?pivots=programming-language-csharp)
 
-For more information, see the official [Aspire Azure Functions integration (Preview)](../serverless/functions.md).
+For more information, see the official [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/compute/azure-functions/).
 
 #### Customization of Azure Container Apps
 

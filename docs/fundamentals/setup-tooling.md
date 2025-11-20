@@ -234,7 +234,7 @@ When you're using Visual Studio, and you select the **Aspire Start Application**
 
 :::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
 
-For more information, see [Write your first Aspire test](../testing/write-your-first-test.md).
+For more information, see [Write your first Aspire test](https://aspire.dev/testing/write-your-first-test/).
 
 :::zone-end
 :::zone pivot="vscode"

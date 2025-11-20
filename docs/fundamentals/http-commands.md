@@ -44,7 +44,7 @@ In your _AppHost.cs_ file, you add a custom HTTP command using the `WithHttpComm
 The preceding code:
 
 - Creates a new distributed application builder.
-- Adds a [Redis cache](../caching/stackexchange-redis-integration.md) named `cache` to the application.
+- Adds a [Redis cache](https://aspire.dev/integrations/caching/redis/) named `cache` to the application.
 - Adds a parameter named `ApiCacheInvalidationKey` to the application. This parameter is marked as a secret, meaning its value is treated securely.
 - Adds a project named `AspireApp_Api` to the application.
 - Adds a reference to the Redis cache and [waits for it to be ready before proceeding](orchestrate-resources.md#waiting-for-resources).

@@ -44,8 +44,8 @@ If you're using a SAS token or other connection string with an access key, you m
 1. In the corresponding Azure resource, chain a call to `ConfigureInfrastructure`.
 1. Get the instance of the provisioning resource type in question, for example:
 
-    - Azure Event Hubs: <xref:Azure.Provisioning.EventHubs.EventHubsNamespace.DisableLocalAuth?displayProperty=fullName>. For more information on configuring infra, see [Customize provisioning infrastructure](../../messaging/azure-event-hubs-integration.md#customize-provisioning-infrastructure).
-    - Azure Web PubSub: <xref:Azure.Provisioning.WebPubSub.WebPubSubService.IsLocalAuthDisabled?displayProperty=fullName>. For more information on configuring infra, see [Customize provisioning infrastructure](../../messaging/azure-web-pubsub-integration.md#customize-provisioning-infrastructure).
+    - Azure Event Hubs: <xref:Azure.Provisioning.EventHubs.EventHubsNamespace.DisableLocalAuth?displayProperty=fullName>. For more information on configuring infra, see [Customize provisioning infrastructure](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/).
+    - Azure Web PubSub: <xref:Azure.Provisioning.WebPubSub.WebPubSubService.IsLocalAuthDisabled?displayProperty=fullName>. For more information on configuring infra, see [Customize provisioning infrastructure](https://aspire.dev/integrations/cloud/azure/azure-web-pubsub/).
 
 ## Affected APIs
 

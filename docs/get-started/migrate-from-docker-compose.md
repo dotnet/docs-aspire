@@ -326,7 +326,7 @@ For persistent data:
 
 - [Docker Compose migration checklist](https://docs.docker.com/compose/migrate/)
 - [Build your first Aspire app](build-your-first-aspire-app.md)
-- [Aspire testing overview](../testing/overview.md)
+- [Aspire testing overview](https://aspire.dev/testing/overview/)
 
 ## Migration troubleshooting
 
@@ -375,10 +375,10 @@ When migrating from Docker Compose to Aspire, you might encounter some common ch
 After migrating to Aspire:
 
 - Explore [Aspire integrations](../fundamentals/integrations-overview.md) to replace custom container configurations.
-- Set up [health checks](../fundamentals/health-checks.md) for better monitoring.
+- Set up [health checks](https://aspire.dev/fundamentals/health-checks/) for better monitoring.
 - Configure [telemetry](../fundamentals/telemetry.md) for observability.
 - Learn about [deployment options](../deployment/overview.md) for production environments.
-- Consider [testing](../testing/overview.md) your distributed application.
+- Consider [testing](https://aspire.dev/testing/overview/) your distributed application.
 
 ## See also
 

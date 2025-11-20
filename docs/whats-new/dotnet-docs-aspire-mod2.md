@@ -30,15 +30,15 @@ Welcome to what's new in the Aspire docs for May 2025. This article lists some o
 
 ### New articles
 
-- [Aspire Azure SQL Entity Framework Core integration](../database/azure-sql-entity-framework-integration.md)
-- [Aspire Azure SQL integration](../database/azure-sql-integration.md)
+- [Aspire Azure SQL Entity Framework Core integration](https://aspire.dev/integrations/cloud/azure/azure-sql-database/)
+- [Aspire Azure SQL integration](https://aspire.dev/integrations/azure-sql/)
 
 ### Updated articles
 
-- [Aspire SQL Server Entity Framework Core integration](../database/sql-server-entity-framework-integration.md) - Add Azure SQL integration articles
-- [Aspire SQL Server integration](../database/sql-server-integration.md) - Add Azure SQL integration articles
-- [Apply Entity Framework Core migrations in Aspire](../database/ef-core-migrations.md) - Add explanatory notes to the EF Core Migrations tutorial.
-- [Seed data in a database using Aspire](../database/seed-database-data.md)
+- [Aspire SQL Server Entity Framework Core integration](https://aspire.dev/integrations/databases/sql-server/) - Add Azure SQL integration articles
+- [Aspire SQL Server integration](https://aspire.dev/integrations/databases/sql-server/) - Add Azure SQL integration articles
+- [Apply Entity Framework Core migrations in Aspire](https://aspire.dev/integrations/databases/ef-core-migrations/) - Add explanatory notes to the EF Core Migrations tutorial.
+- [Seed data in a database using Aspire](https://aspire.dev/integrations/databases/seed-database/)
   - Fix errors in seed-database-data.md
   - Update Seed data in database article to 9.2
 

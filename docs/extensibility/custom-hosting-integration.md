@@ -60,7 +60,7 @@ dir
 Once the project is created, you should see a listing containing the following:
 
 - `MailDevResource.AppHost`: The [AppHost](../fundamentals/app-host-overview.md) used to test out the custom resource.
-- `MailDevResource.ServiceDefaults`: The [service defaults](../fundamentals/service-defaults.md) project for use in service-related projects.
+- `MailDevResource.ServiceDefaults`: The [service defaults](https://aspire.dev/fundamentals/service-defaults/) project for use in service-related projects.
 - `MailDevResource.sln`: The solution file referencing both projects.
 
 Verify that the project can build and run successfully by executing the following command:

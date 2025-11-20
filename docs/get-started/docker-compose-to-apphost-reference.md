@@ -116,7 +116,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 **Related links:**
 
 - [Docker Compose networks reference](https://docs.docker.com/compose/compose-file/05-services/#networks)
-- [Aspire service discovery](../service-discovery/overview.md)
+- [Aspire service discovery](https://aspire.dev/fundamentals/service-discovery/)
 
 ## Resource limits
 
@@ -139,7 +139,7 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 **Related links:**
 
 - [Docker Compose healthcheck reference](https://docs.docker.com/compose/compose-file/05-services/#healthcheck)
-- [Aspire health checks](../fundamentals/health-checks.md)
+- [Aspire health checks](https://aspire.dev/fundamentals/health-checks/)
 
 ## Restart policies
 

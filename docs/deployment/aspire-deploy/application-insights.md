@@ -153,7 +153,7 @@ builder.Build().Run();
 
 To make exporting to Azure Monitor simpler, this example uses the Azure Monitor Exporter Repo. This is a wrapper package around the Azure Monitor OpenTelemetry Exporter package that makes it easier to export to Azure Monitor with a set of common defaults.
 
-Add the following package to the `ServiceDefaults` project, so that it will be included in each of the Aspire services. For more information, see [Aspire service defaults](../../fundamentals/service-defaults.md).
+Add the following package to the `ServiceDefaults` project, so that it will be included in each of the Aspire services. For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).
 
 ``` xml
 <PackageReference Include="Azure.Monitor.OpenTelemetry.AspNetCore" 

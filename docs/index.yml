@@ -29,7 +29,7 @@ highlightedContent:
     url: fundamentals/integrations-overview.md
   - itemType: concept
     title: Service discovery
-    url: service-discovery/overview.md
+    url: https://aspire.dev/fundamentals/service-discovery/
   - itemType: deploy
     title: Deploy a Aspire projects
     url: deployment/overview.md
@@ -60,13 +60,13 @@ conceptualContent:
       url: fundamentals/setup-tooling.md
     - itemType: concept
       text: Aspire service discovery
-      url: service-discovery/overview.md
+      url: https://aspire.dev/fundamentals/service-discovery/
     - itemType: concept
       text: Aspire and launch profiles
-      url: fundamentals/launch-profiles.md
+      url: https://aspire.dev/fundamentals/launch-profiles/
     - itemType: reference
       text: Aspire service defaults
-      url: fundamentals/service-defaults.md
+      url: https://aspire.dev/fundamentals/service-defaults/
     - itemType: reference
       text: Aspire dashboard
       url: https://aspire.dev/dashboard/overview/
@@ -81,16 +81,16 @@ conceptualContent:
     links:
     - itemType: tutorial
       text: Connect to storage with Aspire
-      url: storage/azure-storage-integrations.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-storage/
     - itemType: how-to-guide
       text: Azure Blob Storage
-      url: storage/azure-storage-blobs-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/
     - itemType: how-to-guide
       text: Azure Storage Queues
-      url: storage/azure-storage-queues-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-storage-queues/
     - itemType: how-to-guide
       text: Azure Table Storage
-      url: storage/azure-storage-tables-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-storage-tables/
     - itemType: sample
       text: Persist volume mount sample
       url: /samples/dotnet/aspire-samples/aspire-volume-mount/
@@ -99,88 +99,88 @@ conceptualContent:
     links:
     - itemType: tutorial
       text: Connect to SQL Server with EF Core
-      url: database/sql-server-integrations.md
+      url: https://aspire.dev/integrations/databases/sql-server/
     - itemType: how-to-guide
       text: PostgreSQL database
-      url: database/postgresql-integration.md
+      url: https://aspire.dev/integrations/databases/postgres/
     - itemType: how-to-guide
       text: PostgreSQL with EF Core
-      url: database/postgresql-entity-framework-integration.md
+      url: https://aspire.dev/integrations/databases/postgres-ef/
     - itemType: how-to-guide
       text: Azure Cosmos DB
-      url: database/azure-cosmos-db-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/
     - itemType: how-to-guide
       text: Azure Cosmos DB with EF Core
-      url: database/azure-cosmos-db-entity-framework-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/
     - itemType: how-to-guide
       text: SQL Database
-      url: database/sql-server-integration.md
+      url: https://aspire.dev/integrations/databases/sql-server/
     - itemType: how-to-guide
       text: SQL Database with EF Core
-      url: database/sql-server-entity-framework-integration.md
+      url: https://aspire.dev/integrations/databases/sql-server/
     - itemType: how-to-guide
       text: Entity Framework Core migrations
-      url: database/ef-core-migrations.md
+      url: https://aspire.dev/integrations/databases/ef-core-migrations/
     - itemType: how-to-guide
       text: MySqlConnector Database
-      url: database/mysql-integration.md
+      url: https://aspire.dev/integrations/databases/mysql/
     - itemType: how-to-guide
       text: MongoDB Database
-      url: database/mongodb-integration.md
+      url: https://aspire.dev/integrations/databases/mongodb/
 
   - title: Messaging integrations
     links:
     - itemType: tutorial
       text: Implement Messaging with Aspire
-      url: messaging/messaging-integrations.md
+      url: https://aspire.dev/integrations/messaging/
     - itemType: overview
       text: Azure Event Hubs
-      url: messaging/azure-event-hubs-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-event-hubs/
     - itemType: overview
       text: Azure Service Bus
-      url: messaging/azure-service-bus-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-service-bus/
     - itemType: overview
       text: Azure Web PubSub
-      url: messaging/azure-web-pubsub-integration.md
+      url: https://aspire.dev/integrations/cloud/azure/azure-web-pubsub/
     - itemType: how-to-guide
       text: RabbitMQ
-      url: messaging/rabbitmq-integration.md
+      url: https://aspire.dev/integrations/messaging/rabbitmq/
     - itemType: how-to-guide
       text: Apache Kafka
-      url: messaging/kafka-integration.md
+      url: https://aspire.dev/integrations/messaging/apache-kafka/
     - itemType: how-to-guide
       text: NATs
-      url: messaging/nats-integration.md
+      url: https://aspire.dev/integrations/messaging/nats/
 
   - title: Caching integrations
     links:
     - itemType: tutorial
       text: Improve app caching with Aspire
-      url: caching/caching-integrations.md
+      url: https://aspire.dev/integrations/caching/
     - itemType: overview
       text: Stack Exchange Redis caching overview
-      url: caching/stackexchange-redis-caching-overview.md
+      url: https://aspire.dev/integrations/caching/redis/
     - itemType: how-to-guide
       text: Redis caching
-      url: caching/stackexchange-redis-integration.md
+      url: https://aspire.dev/integrations/caching/redis/
     - itemType: how-to-guide
       text: Redis output caching
-      url: caching/stackexchange-redis-output-caching-integration.md
+      url: https://aspire.dev/integrations/caching/redis-output/
     - itemType: how-to-guide
       text: Redis distributed caching
-      url: caching/stackexchange-redis-distributed-caching-integration.md
+      url: https://aspire.dev/integrations/caching/redis-distributed/
 
   - title: Framework integrations
     links:
     - itemType: overview
       text: Use Orleans with Aspire
-      url: frameworks/orleans.md
+      url: https://aspire.dev/integrations/frameworks/orleans/
     - itemType: sample
       text: Orleans voting sample
       url: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
     - itemType: overview
       text: Use Dapr with Aspire
-      url: community-toolkit/dapr.md
+      url: https://aspire.dev/integrations/frameworks/dapr/
     - itemType: sample
       text: Dapr integration sample
       url: https://github.com/CommunityToolkit/Aspire/tree/main/examples/dapr
@@ -358,7 +358,7 @@ additionalContent:
     items:
     - title: "Aspire API reference"
       summary: API reference documentation for Aspire
-      url: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
+      url: /dotnet/api?view=dotnet-aspire-13.0&preserve-view=true
     - title: ".NET API reference"
       summary: API reference documentation for .NET
       url: /dotnet/api?view=net-9.0&preserve-view=true

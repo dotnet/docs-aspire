@@ -96,7 +96,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 builder.Build().Run();
 ```
 
-For more information, see [Configure Azure Container Apps environments](../../azure/configure-aca-environments.md).
+For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/cloud/azure/configure-container-apps/).
 
 ### Resource naming
 
