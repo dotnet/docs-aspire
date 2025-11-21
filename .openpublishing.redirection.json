@@ -574,7 +574,7 @@
     },
     {
       "source_path_from_root": "/docs/azure/customize-azure-resources.md",
-      "redirect_url": "https://aspire.dev/integrations/cloud/azure-customize/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/customize-resources/"
     },
     {
       "source_path_from_root": "/docs/azure/local-provisioning.md",
