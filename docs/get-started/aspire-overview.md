@@ -113,7 +113,7 @@ For more information, see [Aspire service defaults](https://aspire.dev/fundament
 Consider how the three-tier architecture example can be deployed across different environments:
 
 | **Resource** | **Local development** | **Azure** | **AWS** |
-|----------|-------------------|-------|-----|---------|
+|----------|-------------------|-------|---------------|
 | Frontend | `npm run` | Azure Container Apps | Amazon Elastic Container Service |
 | API service | `dotnet run` | Azure Container Apps | AWS Lambda |
 | Database | `docker.io/library/postgres` | Azure Database for PostgreSQL | Amazon Relational Database Service |
