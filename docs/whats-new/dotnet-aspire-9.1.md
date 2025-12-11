@@ -62,7 +62,7 @@ The onboarding experience for Aspire is improved with 9.1. The team worked on cr
 
 ## 🔧 Dashboard UX and customization
 
-With every release of Aspire, the [dashboard](../fundamentals/dashboard/overview.md) gets more powerful and customizable, this release is no exception. The following features were added to the dashboard in Aspire 9.1:
+With every release of Aspire, the [dashboard](https://aspire.dev/dashboard/overview/) gets more powerful and customizable, this release is no exception. The following features were added to the dashboard in Aspire 9.1:
 
 ### 🧩 Resource relationships
 
@@ -70,7 +70,7 @@ The dashboard now supports "parent" and "child" resource relationships. For inst
 
 :::image type="content" source="media/dashboard-parentchild.png" lightbox="media/dashboard-parentchild.png" alt-text="A screenshot of the Aspire dashboard showing the Postgres resource with a database nested underneath it.":::
 
-For more information, see [Explore the Aspire dashboard](../fundamentals/dashboard/explore.md).
+For more information, see [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/).
 
 ### 🔤 Localization overrides
 
@@ -103,7 +103,7 @@ When you select a resource in the dashboard, the details pane now displays new d
 
 :::image type="content" source="media/dashboard-resourcedetails.png" lightbox="media/dashboard-resourcedetails.png" alt-text="A screenshot of the Aspire dashboard with references and back references showing.":::
 
-For more information, see [Aspire dashboard: Resources page](../fundamentals/dashboard/explore.md#resources-page).
+For more information, see [Aspire dashboard: Resources page](https://aspire.dev/dashboard/explore/#resources-page).
 
 ### 🛡️ CORS support for custom local domains
 
@@ -117,7 +117,7 @@ The console log page has two new options. You're now able to download your logs 
 
 :::image type="content" source="media/consolelogs-download.png" lightbox="media/consolelogs-download.png" alt-text="A screenshot of the console logs page with the download button, turn off timestamps button, and logs that don't show timestamps.":::
 
-For more information, see [Aspire dashboard: Console logs page](../fundamentals/dashboard/explore.md#console-logs-page).
+For more information, see [Aspire dashboard: Console logs page](https://aspire.dev/dashboard/explore/#console-logs-page).
 
 ### 🎨 Various UX improvements
 
@@ -163,14 +163,14 @@ Aspire continues to excel through its [integrations](../fundamentals/integration
 
 ### ☁️ Azure updates
 
-This release also focused on improving various [Azure integrations](../azure/integrations-overview.md):
+This release also focused on improving various [Azure integrations](https://aspire.dev/integrations/cloud/azure/):
 
 #### 🆕 New emulators
 
 We're excited to bring new emulators for making local development easier. The following integrations got new emulators in this release:
 
-- [Azure Service Bus](../messaging/azure-service-bus-integration.md#add-azure-service-bus-emulator-resource)
-- [Azure Cosmos DB Linux-based (preview)](../database/azure-cosmos-db-integration.md#use-linux-based-emulator-preview)
+- [Azure Service Bus](https://aspire.dev/integrations/cloud/azure/azure-service-bus/#add-azure-service-bus-emulator-resource)
+- [Azure Cosmos DB Linux-based (preview)](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#use-linux-based-emulator-preview)
 - [Azure SignalR](/azure/azure-signalr/signalr-howto-emulator)
 
 ```csharp
@@ -187,9 +187,9 @@ var signalr = builder.AddAzureSignalR("signalr", AzureSignalRServiceMode.Serverl
 
 These new emulators work side-by-side with the existing emulators for:
 
-- [Azure Storage](../storage/azure-storage-integrations.md)
-- [Azure Event Hubs](../messaging/azure-event-hubs-integration.md#add-azure-event-hubs-emulator-resource)
-- [Azure Cosmos DB](../database/azure-cosmos-db-integration.md#add-azure-cosmos-db-emulator-resource)
+- [Azure Storage](https://aspire.dev/integrations/cloud/azure/azure-storage/)
+- [Azure Event Hubs](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/#add-azure-event-hubs-emulator-resource)
+- [Azure Cosmos DB](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#add-azure-cosmos-db-emulator-resource)
 
 #### 🌌 Cosmos DB
 
@@ -205,8 +205,8 @@ You can define a Cosmos DB database and containers in the AppHost and these reso
 
 For example API usage to add database and containers, see the following related articles:
 
-- [Aspire Azure Cosmos DB integration](../database/azure-cosmos-db-integration.md#add-azure-cosmos-db-database-and-container-resources)
-- [Aspire Cosmos DB Entity Framework Core integration](../database/azure-cosmos-db-entity-framework-integration.md#add-azure-cosmos-db-database-and-container-resources)
+- [Aspire Azure Cosmos DB integration](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#add-azure-cosmos-db-database-and-container-resources)
+- [Aspire Cosmos DB Entity Framework Core integration](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#add-azure-cosmos-db-database-and-container-resources)
 
 ##### ⚡ Support for Cosmos DB-based triggers in Azure Functions
 
@@ -242,7 +242,7 @@ public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
 }
 ```
 
-For more information using Azure Functions with Aspire, see [Aspire Azure Functions integration (Preview)](../serverless/functions.md).
+For more information using Azure Functions with Aspire, see [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/compute/azure-functions/).
 
 #### 🚚 Service Bus and Event Hubs
 
@@ -250,8 +250,8 @@ Similar to Cosmos DB, the Service Bus and Event Hubs integrations now allow you 
 
 For more information, see the following updated articles:
 
-- [Aspire Azure Service Bus integration](../messaging/azure-service-bus-integration.md)
-- [Aspire Azure Event Hubs integration](../messaging/azure-event-hubs-integration.md)
+- [Aspire Azure Service Bus integration](https://aspire.dev/integrations/cloud/azure/azure-service-bus/)
+- [Aspire Azure Event Hubs integration](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/)
 
 #### ♻️ Working with existing resources
 
@@ -265,7 +265,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
                         .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 ```
 
-The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](../azure/integrations-overview.md#use-existing-azure-resources).
+The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](https://aspire.dev/integrations/cloud/azure/#use-existing-azure-resources).
 
 #### 🌍 Azure Container Apps
 
@@ -285,14 +285,14 @@ builder.AddProject<Projects.AzureContainerApps_ApiService>("api")
        });
 ```
 
-For more information, see [Aspire diagnostics overview](../diagnostics/overview.md).
+For more information, see [Aspire diagnostics overview](https://aspire.dev/diagnostics/overview/).
 
 ### ➕ Even more integration updates
 
 - OpenAI now supports the [📦 Microsoft.Extensions.AI](https://www.nuget.org/packages/Microsoft.Extensions.AI) NuGet package.
 - RabbitMQ updated to version 7, and MongoDB to version 3. These updates introduced breaking changes, leading to the release of new packages with version-specific suffixes. The original packages continue to use the previous versions, while the new packages are as follows:
-  - [📦 Aspire.RabbitMQ.Client.v7](https://www.nuget.org/packages/Aspire.RabbitMQ.Client.v7) NuGet package. For more information, see the [Aspire RabbitMQ client integration](../messaging/rabbitmq-integration.md#client-integration) documentation.
-  - [📦 Aspire.MongoDB.Driver.v3](https://www.nuget.org/packages/Aspire.MongoDB.Driver.v3) NuGet package. For more information, see the [Aspire MongoDB client integration](../database/mongodb-integration.md#client-integration) documentation.
+  - [📦 Aspire.RabbitMQ.Client.v7](https://www.nuget.org/packages/Aspire.RabbitMQ.Client.v7) NuGet package. For more information, see the [Aspire RabbitMQ client integration](https://aspire.dev/integrations/messaging/rabbitmq/#client-integration) documentation.
+  - [📦 Aspire.MongoDB.Driver.v3](https://www.nuget.org/packages/Aspire.MongoDB.Driver.v3) NuGet package. For more information, see the [Aspire MongoDB client integration](https://aspire.dev/integrations/databases/mongodb/#client-integration) documentation.
 - Dapr migrated to the [CommunityToolkit](https://github.com/CommunityToolkit/Aspire/tree/main/src/CommunityToolkit.Aspire.Hosting.Dapr) to facilitate faster innovation.
 - Numerous other integrations received updates, fixes, and new features. For detailed information, refer to our [GitHub release notes](https://github.com/dotnet/aspire/releases).
 
@@ -302,7 +302,7 @@ The [📦 Aspire.Hosting.AWS](https://www.nuget.org/packages/Aspire.Hosting.AWS)
 
 Aspire 9.1 simplifies writing cross-functional integration tests with a robust approach. The AppHost allows you to create, evaluate, and manage containerized environments seamlessly within a test run. This functionality supports popular testing frameworks like xUnit, NUnit, and MSTest, enhancing your testing capabilities and efficiency.
 
-Now, you're able to disable port randomization or enable the [dashboard](../fundamentals/dashboard/overview.md). For more information, see [Aspire testing overview](../testing/overview.md). Additionally, you can now [Pass arguments to your AppHost](../testing/manage-app-host.md#pass-arguments-to-your-apphost).
+Now, you're able to disable port randomization or enable the [dashboard](https://aspire.dev/dashboard/overview/). For more information, see [Aspire testing overview](https://aspire.dev/testing/overview/). Additionally, you can now [Pass arguments to your AppHost](https://aspire.dev/testing/manage-app-host/#pass-arguments-to-your-apphost).
 
 Some of these enhancements were introduced as a result of stability issues that were reported, such as [Aspire GitHub issue #6678](https://github.com/dotnet/aspire/issues/6678)—where some resources failed to start do to "address in use" errors.
 

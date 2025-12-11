@@ -12,7 +12,7 @@ The AppHost project configures and starts your distributed application (<xref:As
 Configuration includes:
 
 - Settings for hosting the resource service, such as the address and authentication options.
-- Settings used to start the [Aspire dashboard](../fundamentals/dashboard/overview.md), such the dashboard's frontend and OpenTelemetry Protocol (OTLP) addresses.
+- Settings used to start the [Aspire dashboard](https://aspire.dev/dashboard/overview/), such the dashboard's frontend and OpenTelemetry Protocol (OTLP) addresses.
 - Internal settings that Aspire uses to run the AppHost. These are set internally but can be accessed by integrations that extend Aspire.
 
 AppHost configuration is provided by the AppHost launch profile. The AppHost has a launch settings file call _launchSettings.json_ which has a list of launch profiles. Each launch profile is a collection of related options which defines how you would like `dotnet` to start your application.
@@ -44,10 +44,10 @@ The preceding launch settings file:
   - The `applicationUrl` property configures the dashboard launch address (`ASPNETCORE_URLS`).
   - Environment variables such as `ASPIRE_DASHBOARD_OTLP_ENDPOINT_URL` and `ASPIRE_RESOURCE_SERVICE_ENDPOINT_URL` are set on the AppHost.
 
-For more information, see [Aspire and launch profiles](../fundamentals/launch-profiles.md).
+For more information, see [Aspire and launch profiles](https://aspire.dev/fundamentals/launch-profiles/).
 
 > [!NOTE]
-> Configuration described on this page is for Aspire AppHost project. To configure the standalone dashboard, see [dashboard configuration](../fundamentals/dashboard/configuration.md).
+> Configuration described on this page is for Aspire AppHost project. To configure the standalone dashboard, see [dashboard configuration](https://aspire.dev/dashboard/configuration/).
 
 ## Common configuration
 
@@ -83,7 +83,7 @@ A resource service is hosted by the AppHost. The resource service is used by the
 
 ## Dashboard
 
-By default, the dashboard is automatically started by the AppHost. The dashboard supports [its own set of configuration](../fundamentals/dashboard/configuration.md), and some settings can be configured from the AppHost.
+By default, the dashboard is automatically started by the AppHost. The dashboard supports [its own set of configuration](https://aspire.dev/dashboard/configuration/), and some settings can be configured from the AppHost.
 
 | Option | Default value | Description |
 |--|--|--|
@@ -93,8 +93,8 @@ By default, the dashboard is automatically started by the AppHost. The dashboard
 | `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` | `null` | Configures the dashboard OTLP HTTP address. Used by the dashboard to receive telemetry over OTLP. If only `ASPIRE_DASHBOARD_OTLP_HTTP_ENDPOINT_URL` is configured then it is set on resources as the `OTEL_EXPORTER_OTLP_ENDPOINT` env var. The `OTEL_EXPORTER_OTLP_PROTOCOL` env var is `http/protobuf`. |
 | `ASPIRE_DASHBOARD_CORS_ALLOWED_ORIGINS` | `null` | Overrides the CORS allowed origins configured in the dashboard. This setting replaces the default behavior of calculating allowed origins based on resource endpoints. |
 | `ASPIRE_DASHBOARD_FRONTEND_BROWSERTOKEN` | Automatically generated 128-bit entropy token. | Configures the frontend browser token. This is the value that must be entered to access the dashboard when the auth mode is BrowserToken. If no browser token is specified then a new token is generated each time the AppHost is launched. |
-| `ASPIRE_DASHBOARD_TELEMETRY_OPTOUT` | `false` | Configures the dashboard to never send [usage telemetry](../fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md). |
-| `ASPIRE_DASHBOARD_AI_DISABLED` | `false` | [GitHub Copilot in the dashboard](../fundamentals/dashboard/copilot.md) is available when the AppHost is launched by a supported IDE. When set to `true` Copilot is disabled in the dashboard and no Copilot UI is visible. |
+| `ASPIRE_DASHBOARD_TELEMETRY_OPTOUT` | `false` | Configures the dashboard to never send [usage telemetry](https://aspire.dev/dashboard/microsoft-collected-dashboard-telemetry/). |
+| `ASPIRE_DASHBOARD_AI_DISABLED` | `false` | [GitHub Copilot in the dashboard](https://aspire.dev/dashboard/copilot/) is available when the AppHost is launched by a supported IDE. When set to `true` Copilot is disabled in the dashboard and no Copilot UI is visible. |
 | `ASPIRE_DASHBOARD_FORWARDEDHEADERS_ENABLED` | `false` | Enables the Forwarded headers middleware that replaces the scheme and host values on the Request context with the values coming from the `X-Forwarded-Proto` and `X-Forwarded-Host` headers. |
 
 ## Internal

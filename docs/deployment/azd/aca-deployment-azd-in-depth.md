@@ -370,9 +370,13 @@ properties:
         value: "true"
       - name: OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES
         value: "true"
-      - name: services__apiservice__0
+      - name: APISERVICE_HTTP
         value: http://apiservice.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
-      - name: services__apiservice__1
+      - name: APISERVICE_HTTPS
+        value: https://apiservice.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
+      - name: services__apiservice__http__0
+        value: http://apiservice.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
+      - name: services__apiservice__https__0
         value: https://apiservice.internal.{{ .Env.AZURE_CONTAINER_APPS_ENVIRONMENT_DEFAULT_DOMAIN }}
 tags:
   azd-service-name: webfrontend

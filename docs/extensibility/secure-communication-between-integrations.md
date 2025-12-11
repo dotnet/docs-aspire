@@ -24,7 +24,7 @@ The resulting solution from these previous articles contains the following proje
 - _MailDev.Hosting_: Contains the custom resource type for the MailDev container.
 - _MailDevResource.AppHost_: The [AppHost](../fundamentals/app-host-overview.md) that uses the custom resource and defines it as a dependency for a Newsletter service.
 - _MailDevResource.NewsletterService_: An ASP.NET Core Web API project that sends emails using the MailDev container.
-- _MailDevResource.ServiceDefaults_: Contains the [default service configurations](../fundamentals/service-defaults.md) intended for sharing.
+- _MailDevResource.ServiceDefaults_: Contains the [default service configurations](https://aspire.dev/fundamentals/service-defaults/) intended for sharing.
 - _MailKit.Client_: Contains the custom client integration that exposes the MailKit `SmtpClient` through a factory.
 
 ## Update the MailDev resource
@@ -77,7 +77,7 @@ When the factory determines that credentials have been configured, it authentica
 
 ## Run the sample
 
-Now that you've updated the resource, corresponding integration projects, and the AppHost, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [Aspire dashboard](../fundamentals/dashboard/overview.md). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
+Now that you've updated the resource, corresponding integration projects, and the AppHost, you're ready to run the sample app. To run the sample from your IDE, select <kbd>F5</kbd> or use `dotnet run` from the root directory of the solution to start the application—you should see the [Aspire dashboard](https://aspire.dev/dashboard/overview/). Navigate to the `maildev` container resource and view the details. You should see the username and password parameters in the resource details, under the **Environment Variables** section:
 
 :::image type="content" source="media/maildev-details.png" lightbox="media/maildev-details.png" alt-text="Aspire Dashboard: MailDev container resource details.":::
 

@@ -44,7 +44,7 @@ The following options are available:
 
 - **`-g, --global`**
 
-  Set the configuration value globally in `$HOME/.aspire/settings.json` instead of the local settings file.
+  Set the configuration value globally in `$HOME/.aspire/globalsettings.json` instead of the local settings file.
 
 - [!INCLUDE [option-help](includes/option-help.md)]
 

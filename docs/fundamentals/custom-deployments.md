@@ -14,12 +14,12 @@ Aspire provides powerful APIs for building container images from your resources 
 During publishing and deployment, the container image builder is available to create images for resources that need them. Aspire uses this builder when a resource requires a container image, such as when publishing with Docker Compose. The process involves two main components:
 
 - <xref:Aspire.Hosting.Publishing.IResourceContainerImageBuilder>: The service that turns resource definitions into runnable container images.
-- <xref:Aspire.Hosting.Publishing.IPublishingActivityReporter>: The API that provides structured progress reporting during long-running operations.
+- `IPipelineActivityReporter`: The API that provides structured progress reporting during long-running operations.
 
 These APIs give you fine-grained control over the image building process and provide real-time feedback to users during lengthy build operations.
 
 > [!IMPORTANT]
-> These APIs are currently in preview and subject to change. They are designed for advanced scenarios where you need custom control over container image building and progress reporting. To suppress warnings for these APIs, see [Compiler Error ASPIREPUBLISHERS001](../diagnostics/aspirepublishers001.md).
+> These APIs are currently in preview and subject to change. They are designed for advanced scenarios where you need custom control over container image building and progress reporting. To suppress warnings for these APIs, see [Compiler Error ASPIREPUBLISHERS001](https://aspire.dev/diagnostics/aspirepublishers001/).
 
 ## When to use these APIs
 
@@ -53,9 +53,9 @@ The <xref:Aspire.Hosting.Publishing.ContainerBuildOptions> class provides strong
 
 The builder performs container runtime health checks (Docker/Podman) only when at least one resource requires a Dockerfile build. This change eliminates false-positive errors in projects that publish directly from .NET assemblies. If the container runtime is required but unhealthy, the builder throws an explicit `InvalidOperationException` to surface the problem early.
 
-## Publishing activity reporter API
+## Pipeline activity reporter API
 
-The `PublishingActivityProgressReporter` API enables structured progress reporting during [`aspire publish`](../cli-reference/aspire-publish.md) and [`aspire deploy`](../cli-reference/aspire-deploy.md) commands. This reduces uncertainty during long-running operations and surfaces failures early.
+The `PipelineActivityReporter` API enables structured progress reporting during [`aspire publish`](../cli-reference/aspire-publish.md) and [`aspire deploy`](../cli-reference/aspire-deploy.md) commands. This reduces uncertainty during long-running operations and surfaces failures early.
 
 ### API overview and behavior
 
@@ -63,7 +63,7 @@ The progress reporter uses a hierarchical model with guaranteed ordering and thr
 
 | Concept | Description | CLI Rendering | Behavior |
 |---------|-------------|---------------|----------|
-| **Step** | Top-level phase, such as "Build images" or "Deploy workloads". | Step message with status glyph and elapsed time. | Forms a strict tree structure; nested steps are unsupported. |
+| **Step** | Top-level phase, such as "Build images" or "Deploy workloads". | Step message with status glyph and elapsed time. | Forms a strict tree structure; nested steps are unsupported. Steps are created automatically during pipeline execution. |
 | **Task** | Discrete unit of work nested under a step. | Task message with indentation. | Belongs to a single step; supports parallel creation with deterministic completion ordering. |
 | **Completion state** | Final status: `Completed`, `Warning`, or `Error`. | ✅ (Completed), ⚠️ (Warning), ❌ (Error) | Each step/task transitions exactly once to a final state. |
 
@@ -71,9 +71,9 @@ The progress reporter uses a hierarchical model with guaranteed ordering and thr
 
 The reporter API provides structured access to progress reporting with the following characteristics:
 
-- **Acquisition**: Retrieved from `PublishingContext.ActivityReporter` or `DeployingContext.ActivityReporter`.
-- **Step creation**: `CreateStepAsync(title, ct)` returns an `IPublishingActivityStep`.
-- **Task creation**: `IPublishingActivityStep.CreateTaskAsync(title, ct)` returns an `IPublishingActivityTask`.
+- **Acquisition**: Retrieved from `PublishingContext.ActivityReporter` or through the `PipelineStepContext.ReportingStep` property in pipeline steps.
+- **Step creation**: Steps are now created automatically during pipeline execution. The `CreateStepAsync(title, ct)` method returns an `IReportingStep`.
+- **Task creation**: `IReportingStep.CreateTaskAsync(title, ct)` returns an `IReportingTask`.
 - **State transitions**: `SucceedAsync`, `WarnAsync`, `FailAsync` methods accept a summary message.
 - **Completion**: `CompletePublishAsync(message, state, isDeploy, ct)` marks the entire operation.
 - **Ordering**: Creation and completion events preserve call order; updates are serialized.
@@ -130,7 +130,7 @@ The preceding code:
 
 - Implements a publishing pipeline that builds container images and generates deployment manifests.
 - Uses the `IResourceContainerImageBuilder` API to build container images.
-- Reports progress and completion status using the `PublishingActivityProgressReporter` API.
+- Reports progress and completion status using the `PipelineActivityReporter` API.
 
 Your publishing callback might use `IResourceContainerImageBuilder` to build container images, while your deployment callback might use the built images and push them to a registry or deployment target.
 
@@ -143,7 +143,7 @@ Like the publishing callback, the deploying callback is registered using the `De
 The preceding code:
 
 - Simulates deploying workloads to a Kubernetes cluster.
-- Uses the `PublishingActivityProgressReporter` API to create and manage deployment steps and tasks.
+- Uses the `PipelineActivityReporter` API to create and manage deployment steps and tasks.
 - Reports progress and marks each deployment phase as completed.
 - Completes the deployment operation with a final status update.
 - Handles cancellation through the provided `CancellationToken`.

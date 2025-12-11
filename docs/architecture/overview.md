@@ -171,7 +171,7 @@ For more information on container networking, see [How container networks are ma
 
 ## Developer dashboard
 
-The [Aspire developer dashboard](../fundamentals/dashboard/overview.md) is a powerful tool designed to simplify local development and resource management. It also supports a [standalone mode](../fundamentals/dashboard/standalone.md) and integrates seamlessly when publishing to Azure Container Apps. With its intuitive interface, the dashboard empowers developers to monitor, manage, and interact with application resources effortlessly.
+The [Aspire developer dashboard](https://aspire.dev/dashboard/overview/) is a powerful tool designed to simplify local development and resource management. It also supports a [standalone mode](https://aspire.dev/dashboard/standalone/) and integrates seamlessly when publishing to Azure Container Apps. With its intuitive interface, the dashboard empowers developers to monitor, manage, and interact with application resources effortlessly.
 
 ### Monitor and manage resources
 
@@ -179,17 +179,17 @@ The dashboard provides a user-friendly interface for inspecting resource states,
 
 ### Built-in and custom commands
 
-The dashboard provides a set of commands for managing resources, such as start, stop, and restart. While commands appear as intuitive actions in the dashboard UI, under the hood, they operate by manipulating DCP objects. For more information, see [Stop or Start a resource](../fundamentals/dashboard/explore.md#stop-or-start-a-resource).
+The dashboard provides a set of commands for managing resources, such as start, stop, and restart. While commands appear as intuitive actions in the dashboard UI, under the hood, they operate by manipulating DCP objects. For more information, see [Stop or Start a resource](https://aspire.dev/dashboard/explore/#stop-or-start-a-resource).
 
 In addition to these built-in commands, you can define custom commands tailored to your application's needs. These custom commands are registered in the app model and seamlessly integrated into the dashboard, providing enhanced flexibility and control. Learn more about custom commands in [Custom resource commands in Aspire](../fundamentals/custom-resource-commands.md).
 
 ### Real-time log streaming
 
-Stay informed with the dashboard's [real-time log streaming](../fundamentals/dashboard/explore.md#console-logs-page) feature. Logs from all resources in your app model are streamed from DCP to the AppHost and displayed in the dashboard. With advanced filtering options—by resource type, severity, and more—you can quickly pinpoint relevant information and troubleshoot effectively.
+Stay informed with the dashboard's [real-time log streaming](https://aspire.dev/dashboard/explore/#console-logs-page) feature. Logs from all resources in your app model are streamed from DCP to the AppHost and displayed in the dashboard. With advanced filtering options—by resource type, severity, and more—you can quickly pinpoint relevant information and troubleshoot effectively.
 
 The developer dashboard is more than just a tool—it's your command center for building, debugging, and managing Aspire applications with confidence and ease.
 
 ## See also
 
 - [Orchestration overview](../fundamentals/app-host-overview.md)
-- [Explore the Aspire dashboard](../fundamentals/dashboard/explore.md)
+- [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/)

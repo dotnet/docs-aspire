@@ -54,7 +54,7 @@ From this directory, there are six child directories described in the following 
 - **AspireJavaScript.AppHost**: A Aspire project that orchestrates the other apps in this sample. For more information, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).
 - **AspireJavaScript.MinimalApi**: An HTTP API that returns randomly generated weather forecast data.
 - **AspireJavaScript.React**: A React app that consumes the weather forecast API and displays the data in a table.
-- **AspireJavaScript.ServiceDefaults**: The default shared project for Aspire projects. For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
+- **AspireJavaScript.ServiceDefaults**: The default shared project for Aspire projects. For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).
 - **AspireJavaScript.Vue**: A Vue app that consumes the weather forecast API and displays the data in a table.
 
 ## Install client dependencies
@@ -104,7 +104,7 @@ To run the sample app, call the [dotnet run](/dotnet/core/tools/dotnet-run) comm
 dotnet run --project ./AspireJavaScript.AppHost/AspireJavaScript.AppHost.csproj
 ```
 
-The [Aspire dashboard](../fundamentals/dashboard/overview.md) launches in your default browser, and each client app endpoint displays under the **Endpoints** column of the **Resources** page. The following image depicts the dashboard for this sample app:
+The [Aspire dashboard](https://aspire.dev/dashboard/overview/) launches in your default browser, and each client app endpoint displays under the **Endpoints** column of the **Resources** page. The following image depicts the dashboard for this sample app:
 
 :::image type="content" source="media/aspire-dashboard-with-nodejs.png" lightbox="media/aspire-dashboard-with-nodejs.png" alt-text="Aspire dashboard with multiple JavaScript client apps.":::
 
@@ -147,10 +147,10 @@ There are several key modifications from the original Angular template. The firs
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/proxy.conf.js":::
 
-The Aspire AppHost sets the `services__weatherapi__http__0` environment variable, which is used to resolve the "weatherapi" service endpoint. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
+The Aspire AppHost sets the `WEATHERAPI_HTTPS` and `WEATHERAPI_HTTP` environment variables, which are used to resolve the "weatherapi" service endpoints. The preceding configuration proxies HTTP requests that start with `/api` to the target URL specified in the environment variable.
 
-Then include the proxy file to in the _angular.json_ file.
-Update the `serve` target to include the `proxyConfig` option, referencing to the created _proxy.conf.js_ file.
+Then include the proxy file in the _angular.json_ file.
+Update the `serve` target to include the `proxyConfig` option, referencing the created _proxy.conf.js_ file.
 The Angular CLI will now use the proxy configuration while serving the Angular client app.
 
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Angular/angular.json" range="59-73" highlight="13":::
@@ -217,7 +217,7 @@ As the `TheWelcome` integration is `mounted`, it calls the `/api/weatherforecast
 
 :::code language="typescript" source="~/aspire-samples/samples/AspireWithJavaScript/AspireJavaScript.Vue/vite.config.ts":::
 
-Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `services__weatherapi__http__0` environment variable, which is set by the Aspire AppHost.
+Additionally, the Vite config specifies the `server.proxy` property to forward requests to the "weatherapi" service. This is achieved by using the `WEATHERAPI_HTTPS` and `WEATHERAPI_HTTP` environment variables, which are set by the Aspire AppHost.
 
 The final update from the template is made to the _TheWelcome.vue_ file. This file calls the `/api/WeatherForecast` endpoint to retrieve the weather forecast data, and displays the data in a table. It includes [CSS, HTML, and TypeScript updates](https://github.com/dotnet/aspire-samples/blob/ef6868b0999c6eea3d42a10f2b20433c5ea93720/samples/AspireWithJavaScript/AspireJavaScript.Vue/src/components/TheWelcome.vue).
 
@@ -252,7 +252,7 @@ For a complete example of a Node.js server app using the OpenTelemetry JavaScrip
 :::code language="javascript" source="~/aspire-samples/samples/AspireWithNode/NodeFrontend/instrumentation.js":::
 
 > [!TIP]
-> To configure the Aspire dashboard OTEL CORS settings, see the [Aspire dashboard OTEL CORS settings](../fundamentals/dashboard/configuration.md#otlp-cors) page.
+> To configure the Aspire dashboard OTEL CORS settings, see the [Aspire dashboard OTEL CORS settings](https://aspire.dev/dashboard/configuration/#otlp-cors) page.
 
 ## Summary
 

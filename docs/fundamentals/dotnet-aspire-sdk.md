@@ -16,7 +16,7 @@ The [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk)
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.2" />
     
     <PropertyGroup>
         <OutputType>Exe</OutputType>
@@ -25,7 +25,7 @@ The [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk)
     </PropertyGroup>
     
     <ItemGroup>
-        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.1" />
+        <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.2" />
     </ItemGroup>
 
     <!-- Omitted for brevity -->
@@ -53,7 +53,7 @@ Each `ProjectReference` in the [Aspire AppHost][app-host] project isn't treated 
 
 ### Orchestrator dependencies
 
-The Aspire SDK dynamically adds references to the [Aspire dashboard](dashboard/overview.md) and other AppHost dependencies, such as the developer control plane (DCP) packages. These dependencies are specific to the platform that the AppHost is built on.
+The Aspire SDK dynamically adds references to the [Aspire dashboard](https://aspire.dev/dashboard/overview/) and other AppHost dependencies, such as the developer control plane (DCP) packages. These dependencies are specific to the platform that the AppHost is built on.
 
 When the AppHost project runs, the orchestrator relies on these dependencies to provide the necessary functionality to the AppHost. For more information, see [Aspire orchestration overview][app-host].
 

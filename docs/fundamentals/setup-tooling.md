@@ -160,17 +160,15 @@ Both commands should succeed and return valid results before running your Aspire
 
 ## Aspire dashboard
 
-Aspire templates that expose the [AppHost](app-host-overview.md) project also include a useful developer [dashboard](dashboard/overview.md) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+Aspire templates that expose the [AppHost](app-host-overview.md) project also include a useful developer [dashboard](https://aspire.dev/dashboard/overview/) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The Aspire dashboard is only visible while the app is running and starts automatically when you start the _*.AppHost_ project. Visual Studio and Visual Studio Code launch both your app and the Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
-
-:::image type="content" source="dashboard/media/explore/dotnet-run-login-url.png" lightbox="dashboard/media/explore/dotnet-run-login-url.png" alt-text="A screenshot showing how to launch the dashboard using the CLI.":::
 
 The left navigation provides links to the different parts of the dashboard, each of which you explore in the following sections.
 
 :::image type="content" source="../get-started/media/aspire-dashboard.png" lightbox="../get-started/media/aspire-dashboard.png" alt-text="A screenshot of the Aspire dashboard Projects page.":::
 
-The Aspire dashboard is also available in a standalone mode. For more information, see [Standalone Aspire dashboard](dashboard/standalone.md).
+The Aspire dashboard is also available in a standalone mode. For more information, see [Standalone Aspire dashboard](https://aspire.dev/dashboard/standalone/).
 
 :::zone pivot="visual-studio"
 
@@ -236,7 +234,7 @@ When you're using Visual Studio, and you select the **Aspire Start Application**
 
 :::image type="content" source="media/setup-tooling/create-test-projects-template.png" lightbox="media/setup-tooling/create-test-projects-template.png" alt-text="A screenshot of Visual Studio displaying the option to create a test project.":::
 
-For more information, see [Write your first Aspire test](../testing/write-your-first-test.md).
+For more information, see [Write your first Aspire test](https://aspire.dev/testing/write-your-first-test/).
 
 :::zone-end
 :::zone pivot="vscode"
@@ -250,6 +248,8 @@ You can use Visual Studio Code, with the [C# Dev Kit extension](https://marketpl
 Once you create a new Aspire project, you run and debug the app, stepping through breakpoints, and inspecting variables using the Visual Studio Code debugger:
 
 :::image type="content" source="media/setup-tooling/vscode-debugging.png" lightbox="media/setup-tooling/vscode-debugging.png" alt-text="A screenshot showing how to debug an Aspire project in Visual Studio Code.":::
+
+The [Aspire Visual Studio Code extension](aspire-vscode-extension.md) provides additional commands and tooling to streamline working with Aspire projects, including commands to add integrations, configure launch settings, publish deployment artifacts, and deploy applications.
 
 :::zone-end
 

@@ -88,9 +88,9 @@ When you run your Aspire app, the dashboard launches automatically. You can:
 - Start, stop, or restart resources directly from the dashboard.
 - Visualize dependencies and troubleshoot issues faster.
 
-The dashboard is available both as part of an Aspire solution or as a [standalone tool](../fundamentals/dashboard/standalone.md) for any app that emits OpenTelemetry data.
+The dashboard is available both as part of an Aspire solution or as a [standalone tool](https://aspire.dev/dashboard/standalone/) for any app that emits OpenTelemetry data.
 
-Learn more in the [dashboard overview](../fundamentals/dashboard/overview.md), or dive deeper into [dashboard features and usage](../fundamentals/dashboard/explore.md).
+Learn more in the [dashboard overview](https://aspire.dev/dashboard/overview/), or dive deeper into [dashboard features and usage](https://aspire.dev/dashboard/explore/).
 
 ## From development to deployment
 
@@ -108,7 +108,7 @@ When added to your C# code, this method configures:
 - **Health checks**: Default endpoints that tools can query to monitor your app.
 - **Service discovery**: Enables service discovery and configures <xref:System.Net.Http.HttpClient> accordingly.
 
-For more information, see [Aspire service defaults](../fundamentals/service-defaults.md).
+For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).
 
 Consider how the three-tier architecture example can be deployed across different environments:
 

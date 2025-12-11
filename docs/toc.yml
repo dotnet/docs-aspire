@@ -27,14 +27,17 @@ items:
       href: fundamentals/dotnet-aspire-sdk.md
     - name: Aspire templates
       href: fundamentals/aspire-sdk-templates.md
+    - name: Aspire Visual Studio Code extension
+      href: fundamentals/aspire-vscode-extension.md
+      displayName: vscode,visual studio code,extension,vs code
     - name: GitHub Codespaces
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in Aspire 9.5
-    href: whats-new/dotnet-aspire-9.5.md
-  - name: Upgrade to Aspire 9.5.0
-    href: get-started/upgrade-to-aspire-9.md
+  - name: What's new in Aspire 13
+    href: https://aspire.dev/whats-new/aspire-13/
+  - name: Upgrade to Aspire 13.0
+    href: get-started/upgrade-to-aspire-13.md
 
 - name: AppHost
   items:
@@ -57,6 +60,9 @@ items:
       href: get-started/build-aspire-apps-with-python.md
   - name: AppHost configuration
     href: app-host/configuration.md
+  - name: Certificate trust customization
+    href: app-host/certificate-trust.md
+    displayName: certificate trust,TLS,HTTPS,development certificate,certificate authority
   - name: Customize resources
     items:
     - name: Persistent container services
@@ -90,33 +96,6 @@ items:
   - name: Persist data using volumes
     displayName: volumes,persist data
     href: fundamentals/persist-data-volumes.md
-
-- name: Dashboard
-  items:
-  - name: Overview
-    displayName: aspire dashboard,dashboard
-    href: fundamentals/dashboard/overview.md
-  - name: Explore features
-    href: fundamentals/dashboard/explore.md
-  - name: GitHub Copilot
-    href: fundamentals/dashboard/copilot.md
-  - name: Standalone mode
-    items:
-    - name: Overview
-      href: fundamentals/dashboard/standalone.md
-    - name: Tutorial — Use with Python
-      href: fundamentals/dashboard/standalone-for-python.md
-    - name: Tutorial — Use with Node.js
-      href: fundamentals/dashboard/standalone-for-nodejs.md
-  - name: Configuration
-    href: fundamentals/dashboard/configuration.md
-  - name: Enable browser telemetry
-    displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
-    href: fundamentals/dashboard/enable-browser-telemetry.md
-  - name: Security considerations
-    href: fundamentals/dashboard/security-considerations.md
-  - name: Microsoft-collected dashboard telemetry
-    href: fundamentals/dashboard/microsoft-collected-dashboard-telemetry.md
 
 - name: Aspire CLI
   displayName: aspire cli,aspire command line interface,aspire commands,cli
@@ -161,34 +140,25 @@ items:
       href: cli-reference/aspire-update.md
 
 - name: Testing
-  items:
-  - name: Overview
-    displayName: aspire testing,testing
-    href: testing/overview.md
-  - name: Write your first Aspire test
-    href: testing/write-your-first-test.md
-  - name: Managing the AppHost
-    href: testing/manage-app-host.md
-  - name: Accessing resources in tests
-    href: testing/accessing-resources.md
+  href: https://aspire.dev/testing/overview/
 
 - name: Fundamentals
   items:
   - name: Service discovery
     displayName: service discovery,service to service communication,Kubernetes,k8s
-    href: service-discovery/overview.md
+    href: https://aspire.dev/fundamentals/service-discovery/
   - name: Service defaults
-    href: fundamentals/service-defaults.md
+    href: https://aspire.dev/fundamentals/service-defaults/
   - name: Resource annotations
     displayName: annotations,metadata,custom annotations,resource annotations
     href: fundamentals/annotations-overview.md
   - name: Launch profiles
-    href: fundamentals/launch-profiles.md
+    href: https://aspire.dev/fundamentals/launch-profiles/
   - name: Telemetry
     displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
     href: fundamentals/telemetry.md
   - name: Health checks
-    href: fundamentals/health-checks.md
+    href: https://aspire.dev/fundamentals/health-checks/
 
 - name: Integrations
   items:
@@ -470,6 +440,8 @@ items:
       href: community-toolkit/hosting-mysql-extensions.md
     - name: RavenDB
       href: community-toolkit/ravendb.md
+    - name: flagd
+      href: community-toolkit/hosting-flagd.md
   - name: Aspire.Hosting API reference
     href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.0&preserve-view=true
 
@@ -491,6 +463,9 @@ items:
     href: deployment/overview.md
   - name: Building custom deployment pipelines
     href: fundamentals/custom-deployments.md
+  - name: Deployment state caching
+    href: deployment/deployment-state-caching.md
+    displayName: deployment state,deployment cache,clear-cache,deployment settings,aspire deploy
   - name: Azure deployment with Aspire
     items:
     - name: Deploy to Azure Container Apps using Aspire CLI
@@ -559,79 +534,9 @@ items:
   - name: Breaking changes
     href: compatibility/breaking-changes.md
   - name: Diagnostics
-    items:
-    - name: Overview
-      href: diagnostics/overview.md
-    - name: Warnings
-      items:
-      - name: ASPIRE001
-        href: diagnostics/aspire001.md
-      - name: ASPIRE002
-        href: diagnostics/aspire002.md
-      - name: ASPIRE003
-        href: diagnostics/aspire003.md
-      - name: ASPIRE004
-        href: diagnostics/aspire004.md
-    - name: Errors
-      items:
-      - name: ASPIRE006
-        href: diagnostics/aspire006.md
-      - name: ASPIRE007
-        href: diagnostics/aspire007.md
-      - name: ASPIRE008
-        href: diagnostics/aspire008.md
-      - name: ASPIREACADOMAINS001
-        href: diagnostics/aspireacadomains001.md
-      - name: ASPIRECOMPUTE001
-        href: diagnostics/aspirecompute001.md
-      - name: ASPIRECOSMOSDB001
-        href: diagnostics/aspirecosmosdb001.md
-      - name: ASPIREHOSTINGPYTHON001
-        href: diagnostics/aspirehostingpython001.md
-      - name: ASPIREPROXYENDPOINTS001
-        href: diagnostics/aspireproxyendpoints001.md
-      - name: ASPIREPUBLISHERS001
-        href: diagnostics/aspirepublishers001.md
-      - name: ASPIREAZURE001
-        href: diagnostics/aspireazure001.md
-    - name: By category
-      items:
-      - name: Project
-        items:
-        - name: Code language not fully supported
-          href: diagnostics/aspire001.md
-        - name: Aspire.Hosting.AppHost is missing
-          href: diagnostics/aspire002.md
-        - name: Version of Visual Studio not supported
-          href: diagnostics/aspire003.md
-        - name: Referenced project isn't an executable
-          href: diagnostics/aspire004.md
-        - name: Aspire SDK reference is out of date or missing
-          href: diagnostics/aspire007.md
-        - name: Aspire workload is deprecated
-          href: diagnostics/aspire008.md
-      - name: Resources
-        items:
-        - name: Items must have valid names
-          href: diagnostics/aspire006.md
-      - name: Experimental
-        items:
-        - name: Azure custom domains
-          href: diagnostics/aspireacadomains001.md
-        - name: Cosmos DB preview emulator and data explorer
-          href: diagnostics/aspirecosmosdb001.md
-        - name: Various compute APIs are experimental
-          href: diagnostics/aspirecompute001.md
-        - name: Container proxy endpoint APIs are experimental
-          href: diagnostics/aspireproxyendpoints001.md
-        - name: Hosting Python apps
-          href: diagnostics/aspirehostingpython001.md
-        - name: Publishing APIs are experimental
-          href: diagnostics/aspirepublishers001.md
-        - name: Publishing to Azure APIs are experimental
-          href: diagnostics/aspireazure001.md
+    href: https://aspire.dev/diagnostics/overview/
   - name: Aspire API reference
-    href: /dotnet/api?view=dotnet-aspire-9.0&preserve-view=true
+    href: /dotnet/api?view=dotnet-aspire-13.0&preserve-view=true
   - name: Aspire FAQ
     displayName: iis,functions,deploy,azure,kubernetes
     href: reference/aspire-faq.yml

@@ -60,7 +60,7 @@ dir
 Once the project is created, you should see a listing containing the following:
 
 - `MailDevResource.AppHost`: The [AppHost](../fundamentals/app-host-overview.md) used to test out the custom resource.
-- `MailDevResource.ServiceDefaults`: The [service defaults](../fundamentals/service-defaults.md) project for use in service-related projects.
+- `MailDevResource.ServiceDefaults`: The [service defaults](https://aspire.dev/fundamentals/service-defaults/) project for use in service-related projects.
 - `MailDevResource.sln`: The solution file referencing both projects.
 
 Verify that the project can build and run successfully by executing the following command:
@@ -88,7 +88,7 @@ info: Aspire.Hosting.DistributedApplication[0]
       Distributed application started. Press Ctrl+C to shut down.
 ```
 
-Select the [dashboard link in the browser](../fundamentals/dashboard/explore.md#dashboard-authentication) to see the Aspire dashboard:
+Select the [dashboard link in the browser](https://aspire.dev/dashboard/explore/#dashboard-authentication) to see the Aspire dashboard:
 
 :::image type="content" source="media/maildevresource-empty-dashboard.png" lightbox="media/maildevresource-empty-dashboard.png" alt-text="A screenshot of the empty Aspire dashboard for test project.":::
 

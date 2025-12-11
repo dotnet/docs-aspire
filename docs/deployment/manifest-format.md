@@ -110,6 +110,8 @@ Publishing the manifest from the default starter template for Aspire produces th
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
         "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
         "ConnectionStrings__cache": "{cache.connectionString}",
+        "APISERVICE_HTTP": "{apiservice.bindings.http.url}",
+        "APISERVICE_HTTPS": "{apiservice.bindings.https.url}",
         "services__apiservice__http__0": "{apiservice.bindings.http.url}",
         "services__apiservice__https__0": "{apiservice.bindings.https.url}"
       },
@@ -142,6 +144,8 @@ This dependency is known because the environment variables for the _webfrontend_
 "env": {
   // ... other environment variables omitted for clarity
   "ConnectionStrings__cache": "{cache.connectionString}",
+  "APISERVICE_HTTP": "{apiservice.bindings.http.url}",
+  "APISERVICE_HTTPS": "{apiservice.bindings.https.url}",
   "services__apiservice__http__0": "{apiservice.bindings.http.url}",
   "services__apiservice__https__0": "{apiservice.bindings.https.url}"
 },
@@ -163,7 +167,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 builder.Build().Run();
 ```
 
-References between project resource types result in [service discovery](../service-discovery/overview.md) variables being injected into the referencing project. References to well known reference types such as Redis result in connection strings being injected.
+References between project resource types result in [service discovery](https://aspire.dev/fundamentals/service-discovery/) variables being injected into the referencing project. References to well known reference types such as Redis result in connection strings being injected.
 
 :::image type="content" source="media/manifest-placeholder-strings.png" lightbox="media/manifest-placeholder-strings.png" alt-text="A diagram showing which resources contribute to which corresponding placeholder strings.":::
 
@@ -935,4 +939,4 @@ When resources as configured as Azure resources, the `azure.bicep.v0` resource t
 - [Aspire overview](../get-started/aspire-overview.md)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Aspire integrations overview](../fundamentals/integrations-overview.md)
-- [Service discovery in Aspire](../service-discovery/overview.md)
+- [Service discovery in Aspire](https://aspire.dev/fundamentals/service-discovery/)

@@ -130,6 +130,6 @@ The `AddParameter` method is used to create a parameter named `sql-password` tha
 
 You can apply the volume concepts in the preceding code to a variety of services, including seeding a database with data that will persist across app launches. Try combining these techniques with the resource implementations demonstrated in the following tutorials:
 
-- [Tutorial: Connect an ASP.NET Core app to Aspire storage integrations](../storage/azure-storage-integrations.md)
-- [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](../database/sql-server-integrations.md)
+- [Tutorial: Connect an ASP.NET Core app to Aspire storage integrations](https://aspire.dev/integrations/cloud/azure/azure-storage/)
+- [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](https://aspire.dev/integrations/databases/sql-server/)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)

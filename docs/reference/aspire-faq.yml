@@ -69,7 +69,7 @@ sections:
 
           [Orleans](/dotnet/orleans) is a distributed actor-based framework. Aspire is a cloud-ready stack for building observable, production-ready, distributed applications. It includes local orchestration capabilities to simplify the developer inner loop and reusable opinionated components for integrating with commonly used application dependencies. An Orleans-based solution will still have external dependencies such as data stores and caches for which Aspire can be used for orchestration purposes.
 
-          For more information, see [Use Orleans with Aspire](../frameworks/orleans.md) and the corresponding [Orleans voting app sample](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/).
+          For more information, see [Use Orleans with Aspire](https://aspire.dev/integrations/frameworks/orleans/) and the corresponding [Orleans voting app sample](/samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/).
 
       - question: |
           How does Aspire differ from Dapr?
@@ -78,7 +78,7 @@ sections:
 
           Where Dapr abstracts some of the underlying cloud platform, Aspire provides opinionated configuration around the underlying cloud technologies without abstracting them. A .NET-based application that uses Dapr can use Aspire to orchestrate the local developer inner loop and streamline deployment. Aspire includes extensions that support the launching of Dapr side-car processes during the inner loop.
 
-          For more information, see [Use Dapr with Aspire](../community-toolkit/dapr.md).
+          For more information, see [Use Dapr with Aspire](https://aspire.dev/integrations/frameworks/dapr/).
 
       - question: |
           How does Aspire differ from Project Tye?
@@ -91,7 +91,7 @@ sections:
       - question: |
           How are Aspire and Azure SDK for .NET related?
         answer: |
-          Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blob Storage](../storage/azure-storage-blobs-component.md), [Azure Storage Queues](../storage/azure-storage-queues-component.md), and [Azure Table Storage](../storage/azure-storage-tables-component.md)), databases ([Azure Cosmos DB](../database/azure-cosmos-db-component.md) and [Azure Cosmos DB with Entity Framework Core](../database/azure-cosmos-db-entity-framework-component.md)), [messaging](../messaging/azure-service-bus-component.md), and [security](../security/azure-security-key-vault-component.md).
+          Aspire provides components that rely on the [Azure SDK for .NET](/dotnet/azure/intro), to expose common functionality for storage ([Azure Blob Storage](https://aspire.dev/integrations/azure-blob-storage/), [Azure Storage Queues](https://aspire.dev/integrations/azure-queue-storage/), and [Azure Table Storage](https://aspire.dev/integrations/azure-table-storage/)), databases ([Azure Cosmos DB](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/) and [Azure Cosmos DB with Entity Framework Core](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/)), [messaging](https://aspire.dev/integrations/cloud/azure/azure-service-bus/), and [security](https://aspire.dev/integrations/azure-key-vault/).
 
       - question: |
           How are Aspire and Kubernetes related?
@@ -106,7 +106,7 @@ sections:
       - question: |
           Are Azure Functions supported in Aspire?
         answer: |
-          Yes, Aspire has [preview support for integrating Azure Functions into your app](../serverless/functions.md).
+          Yes, Aspire has [preview support for integrating Azure Functions into your app](https://aspire.dev/integrations/compute/azure-functions/).
 
       - question: |
           Does Aspire support running web apps locally on IIS or IIS Express?
@@ -121,7 +121,7 @@ sections:
       - question: |
           How to fix integrations and Service Discovery issues when deploying Aspire apps to IIS?
         answer: |
-          Aspire integrations require specific configuration that must be provided manually. The same is true for [Service Discovery](../service-discovery/overview.md), ideally, you should deploy to something other than IIS.
+          Aspire integrations require specific configuration that must be provided manually. The same is true for [Service Discovery](https://aspire.dev/fundamentals/service-discovery/), ideally, you should deploy to something other than IIS.
 
       - question: |
           What is the purpose of the Community Toolkit project?

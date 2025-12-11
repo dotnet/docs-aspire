@@ -37,10 +37,10 @@ Moving between minor releases of Aspire is simple:
     iex "& { $(irm https://aspire.dev/install.ps1) }"
     ```
 
-1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) package to version `9.5.1`:
+1. In your AppHost project file (that is, _MyApp.AppHost.csproj_), update the [📦 Aspire.AppHost.Sdk](https://www.nuget.org/packages/Aspire.AppHost.Sdk) package to version `9.5.2`:
 
     ```xml
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.2" />
     ```
 
     For more information, see [Aspire SDK](xref:dotnet/aspire/sdk).
@@ -114,7 +114,7 @@ For more information, see [aspire config set command](../cli-reference/aspire-co
 You can use `aspire new` to create a new, blank file-based AppHost. Select the _Single-file AppHost (experimental)_ option from the project template list:
 
 ```csharp
-#:sdk Aspire.AppHost.Sdk@9.5.1
+#:sdk Aspire.AppHost.Sdk@9.5.2
 
 var builder = DistributedApplication.CreateBuilder(args);
 
@@ -282,7 +282,7 @@ The trace detail page includes several quality-of-life improvements:
 
 ### OpenAI hosting integration
 
-The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application model. For more information, see [Aspire OpenAI integration (Preview)](../openai/openai-integration.md).
+The new `AddOpenAI` integration provides first-class support for modeling OpenAI endpoints and their associated models within your Aspire application model. For more information, see [Aspire OpenAI integration (Preview)](https://aspire.dev/integrations/ai/openai/).
 
 **Features:**
 
@@ -332,8 +332,8 @@ var embeddingModel = builder.AddGitHubModel("embeddings", GitHubModel.OpenAI.Ope
 
 For more information, see:
 
-- [Aspire GitHub Models integration (Preview)](../github/github-models-integration.md).
-- [Aspire Azure AI Foundry integration (Preview)](../azureai/azureai-foundry-integration.md).
+- [Aspire GitHub Models integration (Preview)](https://aspire.dev/integrations/github-models/).
+- [Aspire Azure AI Foundry integration (Preview)](https://aspire.dev/integrations/azure-ai-foundry/).
 
 ### Dev Tunnels hosting integration
 
@@ -397,7 +397,7 @@ var frontend = builder.AddYarp("frontend")
 builder.Build().Run();
 ```
 
-For more information, see [Multi-stage Docker builds](../proxies/yarp-integration.md#multi-stage-docker-builds).
+For more information, see [Multi-stage Docker builds](https://aspire.dev/integrations/reverse-proxies/yarp/#multi-stage-docker-builds).
 
 **Hybrid static + API gateway:**
 
@@ -428,7 +428,7 @@ builder.Build().Run();
 
 This feature enables modern web application architectures where YARP acts as both a reverse proxy for backend services and a static file server for frontend assets, providing a unified entry point for your distributed application.
 
-For more information, see [Aspire YARP integration](../proxies/yarp-integration.md).
+For more information, see [Aspire YARP integration](https://aspire.dev/integrations/reverse-proxies/yarp/).
 
 ### Azure Kusto / Azure Data Explorer
 
@@ -537,7 +537,7 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
     .WithAccessKeyAuthentication(keyVault);
 ```
 
-For more information, see [Aspire Azure Managed Redis integration](../caching/azure-redis-enterprise-integration.md).
+For more information, see [Aspire Azure Managed Redis integration](https://aspire.dev/integrations/azure-redis-enterprise/).
 
 ### Azure App Configuration emulator (preview)
 
@@ -856,7 +856,7 @@ These resources no longer implement `IResourceWithoutLifetime`; they surface as 
 
 ### Azure Container App Jobs support
 
-Aspire 9.5 introduces comprehensive support for Azure Container App Jobs, allowing you to deploy both project and container resources as background job workloads that can run on schedules, in response to events, or be triggered manually. For more information, see [Azure Container App Jobs](../azure/container-app-jobs.md)
+Aspire 9.5 introduces comprehensive support for Azure Container App Jobs, allowing you to deploy both project and container resources as background job workloads that can run on schedules, in response to events, or be triggered manually. For more information, see [Azure Container App Jobs](https://aspire.dev/integrations/azure-container-app-jobs/)
 
 Container App Jobs complement the existing Container Apps functionality by providing a dedicated way to run finite workloads like data processing, ETL operations, batch jobs, and scheduled maintenance tasks.
 

@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Npgsql" Version="9.5.1" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.9" />
+    <PackageReference Include="Aspire.Npgsql" Version="13.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0" />
   </ItemGroup>
 
   <ItemGroup>

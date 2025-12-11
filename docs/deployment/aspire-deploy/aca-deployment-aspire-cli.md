@@ -56,7 +56,7 @@ To configure your project for Azure Container Apps deployment, add a package ref
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+    <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.2" />
 
     <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -67,8 +67,8 @@ To configure your project for Azure Container Apps deployment, add a package ref
     </PropertyGroup>
 
     <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.1" />
-    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.1" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.5.2" />
+    <PackageReference Include="Aspire.Hosting.Azure.AppContainers" Version="9.5.2" />
     </ItemGroup>
 
 </Project>
@@ -96,7 +96,7 @@ builder.AddProject<Projects.AspireApp_Web>("webfrontend")
 builder.Build().Run();
 ```
 
-For more information, see [Configure Azure Container Apps environments](../../azure/configure-aca-environments.md).
+For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/cloud/azure/configure-container-apps/).
 
 ### Resource naming
 
@@ -139,7 +139,7 @@ Save to user secrets: [y/n] (n): n
 ```
 
 > [!NOTE]
-> The CLI will continuously prompt until all unresolved parameters are provided with values. While Azure deployment is in preview, the CLI will prompt to save values in user secrets but not use them, as [deployment state is not supported](https://github.com/dotnet/aspire/issues/11444).
+> The CLI continuously prompts until all unresolved parameters are provided with values. The `aspire deploy` command caches deployment state locally to streamline subsequent deployments. For more information, see [Deployment state caching](../deployment-state-caching.md).
 
 Once parameters are collected, Azure infrastructure is provisioned using Bicep templates. This step creates the necessary Azure resources including the Container Apps environment, Container Registry, and any backing services like Redis caches:
 

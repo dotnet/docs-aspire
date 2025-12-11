@@ -192,7 +192,7 @@ public async Task Resource_Should_Have_Expected_Annotations()
 }
 ```
 
-For more information, see [Testing with Aspire](../testing/overview.md).
+For more information, see [Testing with Aspire](https://aspire.dev/testing/overview/).
 
 ## Best practices
 
