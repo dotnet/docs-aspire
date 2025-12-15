@@ -80,7 +80,7 @@ The code renders this control in the dashboard:
 
 ### Parameter representation in the manifest
 
-Aspire uses a [deployment manifest](../deployment/manifest-format.md) to represent the app's resources and their relationships. Parameters are represented in the manifest as a new primitive called `parameter.v0`:
+Aspire uses a [deployment manifest](https://aspire.dev/deployment/manifest-format/) to represent the app's resources and their relationships. Parameters are represented in the manifest as a new primitive called `parameter.v0`:
 
 ```json
 {
@@ -178,7 +178,7 @@ Now consider the following AppHost configuration file _:::no-loc text="appsettin
 }
 ```
 
-For more information pertaining to connection strings and their representation in the deployment manifest, see [Connection string and binding references](../deployment/manifest-format.md#connection-string-and-binding-references).
+For more information pertaining to connection strings and their representation in the deployment manifest, see [Connection string and binding references](https://aspire.dev/deployment/manifest-format/#connection-string-and-binding-references).
 
 ### Build connection strings with reference expressions
 
@@ -217,5 +217,5 @@ The `Parameters_ApiService` project consumes the `insertionRows` parameter. Cons
 
 ## See also
 
-- [Aspire manifest format for deployment tool builders](../deployment/manifest-format.md)
+- [Aspire manifest format for deployment tool builders](https://aspire.dev/deployment/manifest-format/)
 - [Tutorial: Connect an ASP.NET Core app to SQL Server using Aspire and Entity Framework Core](https://aspire.dev/integrations/databases/sql-server/)

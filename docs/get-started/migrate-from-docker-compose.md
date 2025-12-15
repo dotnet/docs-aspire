@@ -377,7 +377,7 @@ After migrating to Aspire:
 - Explore [Aspire integrations](../fundamentals/integrations-overview.md) to replace custom container configurations.
 - Set up [health checks](https://aspire.dev/fundamentals/health-checks/) for better monitoring.
 - Configure [telemetry](../fundamentals/telemetry.md) for observability.
-- Learn about [deployment options](../deployment/overview.md) for production environments.
+- Learn about [deployment options](https://aspire.dev/deployment/overview/) for production environments.
 - Consider [testing](https://aspire.dev/testing/overview/) your distributed application.
 
 ## See also

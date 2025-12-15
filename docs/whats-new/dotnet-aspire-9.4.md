@@ -870,7 +870,7 @@ This eliminates the need for complex YARP configuration files while providing co
 
 ### 🔒 Enhanced Docker Compose deployment security
 
-Aspire 9.4 improves [Docker Compose publish](../deployment/overview.md) security with smart port mapping - only external endpoints are exposed to the host while internal services use Docker's internal networking.
+Aspire 9.4 improves [Docker Compose publish](https://aspire.dev/deployment/overview/) security with smart port mapping - only external endpoints are exposed to the host while internal services use Docker's internal networking.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
