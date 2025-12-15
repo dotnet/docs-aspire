@@ -163,17 +163,6 @@ items:
 - name: Integrations
   href: https://aspire.dev/integrations/gallery/
 
-- name: Custom integrations
-  items:
-  - name: Create hosting integrations
-    displayName: resources,extensibility,hosting,integrations
-    href: extensibility/custom-hosting-integration.md
-  - name: Create client integrations
-    displayName: custom,extensibility,client,library,integrations
-    href: extensibility/custom-client-integration.md
-  - name: Secure communication between integrations
-    href: extensibility/secure-communication-between-integrations.md
-
 - name: Publish and Deploy
   items:
   - name: Overview

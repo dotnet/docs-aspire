@@ -262,5 +262,5 @@ public sealed class ConfigAnnotation : IResourceAnnotation
 
 - Learn about [custom resource commands](custom-resource-commands.md)
 - Explore [custom resource URLs](custom-resource-urls.md)
-- See [create custom hosting integrations](../extensibility/custom-hosting-integration.md)
+- See [create custom hosting integrations](https://aspire.dev/integrations/custom-integrations/hosting-integrations/)
 - Review the [Aspire app model API reference](/dotnet/api/aspire.hosting.applicationmodel)
