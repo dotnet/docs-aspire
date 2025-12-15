@@ -290,4 +290,4 @@ Publishing comes first, followed by deployment, which separates the structure fr
 
 - [Hosting integrations overview](../fundamentals/integrations-overview.md)
 - [Azure deployment with Container Apps](azure/aca-deployment.md)
-- [Aspire CLI reference](../cli/overview.md)
+- [Aspire CLI reference](https://aspire.dev/reference/cli/overview/)

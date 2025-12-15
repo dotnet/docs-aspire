@@ -73,4 +73,4 @@ URL customization callbacks run during the application model lifecycle, specific
 ## See also
 
 - [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
-- [Aspire AppHost](app-host-overview.md)
+- [Aspire AppHost](https://aspire.dev/get-started/app-host/)

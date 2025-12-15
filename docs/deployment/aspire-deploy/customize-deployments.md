@@ -101,4 +101,4 @@ serviceBus.ConfigureInfrastructure(infrastructure =>
 ## Related content
 
 - [Deploy to Azure Container Apps using aspire deploy](aca-deployment-aspire-cli.md)
-- [App host overview](../../fundamentals/app-host-overview.md)
+- [App host overview](https://aspire.dev/get-started/app-host/)

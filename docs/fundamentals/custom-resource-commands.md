@@ -8,14 +8,14 @@ ms.custom: sfi-ropc-nochange
 
 # Custom resource commands in Aspire
 
-Each resource in the Aspire [app model](app-host-overview.md#define-the-app-model) is represented as an <xref:Aspire.Hosting.ApplicationModel.IResource> and when added to the [distributed application builder](xref:Aspire.Hosting.IDistributedApplicationBuilder), it's the generic-type parameter of the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> interface. You use the _resource builder_ API to chain calls, configuring the underlying resource, and in some situations, you might want to add custom commands to the resource. Some common scenario for creating a custom command might be running database migrations or seeding/resetting a database. In this article, you learn how to add a custom command to a Redis resource that clears the cache.
+Each resource in the Aspire [app model](https://aspire.dev/get-started/app-host/#define-the-app-model) is represented as an <xref:Aspire.Hosting.ApplicationModel.IResource> and when added to the [distributed application builder](xref:Aspire.Hosting.IDistributedApplicationBuilder), it's the generic-type parameter of the <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> interface. You use the _resource builder_ API to chain calls, configuring the underlying resource, and in some situations, you might want to add custom commands to the resource. Some common scenario for creating a custom command might be running database migrations or seeding/resetting a database. In this article, you learn how to add a custom command to a Redis resource that clears the cache.
 
 > [!IMPORTANT]
 > These [Aspire dashboard](https://aspire.dev/dashboard/overview/) commands are only available when running the dashboard locally. They're not available when running the dashboard in Azure Container Apps.
 
 ## Add custom commands to a resource
 
-Start by creating a new Aspire Starter App from the [available templates](aspire-sdk-templates.md). To create the solution from this template, follow the [Quickstart: Build your first Aspire solution](https://aspire.dev/get-started/first-app/). After creating this solution, add a new class named _RedisResourceBuilderExtensions.cs_ to the [AppHost project](app-host-overview.md#apphost-project). Replace the contents of the file with the following code:
+Start by creating a new Aspire Starter App from the [available templates](aspire-sdk-templates.md). To create the solution from this template, follow the [Quickstart: Build your first Aspire solution](https://aspire.dev/get-started/first-app/). After creating this solution, add a new class named _RedisResourceBuilderExtensions.cs_ to the [AppHost project](https://aspire.dev/get-started/app-host/#apphost-project). Replace the contents of the file with the following code:
 
 :::code source="snippets/custom-commands/AspireApp/AspireApp.AppHost/RedisResourceBuilderExtensions.cs":::
 
@@ -127,4 +127,4 @@ Select the **Clear cache** command to clear the cache of the Redis resource. The
 
 - [Custom HTTP commands in Aspire](http-commands.md)
 - [Aspire dashboard: Resource submenu actions](https://aspire.dev/dashboard/explore/#resource-submenu-actions)
-- [Aspire orchestration overview](app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)

@@ -13,7 +13,7 @@ The Aspire Visual Studio Code extension provides a set of commands and tools to 
 
 [!INCLUDE [aspire-prereqs](../includes/aspire-prereqs.md)]
 
-In addition, before you can use the Aspire Visual Studio Code extension, you must have the [Aspire CLI](../cli/install.md) installed and available on your PATH.
+In addition, before you can use the Aspire Visual Studio Code extension, you must have the [Aspire CLI](https://aspire.dev/reference/cli/overview/) installed and available on your PATH.
 
 ## Install the Aspire extension
 
@@ -188,6 +188,6 @@ To report issues or request features for the Aspire VS Code extension:
 ## See also
 
 - [Aspire setup and tooling](setup-tooling.md)
-- [Aspire CLI Overview](../cli/overview.md)
+- [Aspire CLI Overview](https://aspire.dev/reference/cli/overview/)
 - [Aspire templates](aspire-sdk-templates.md)
 - [Aspire VS Code extension on the marketplace](https://marketplace.visualstudio.com/items?itemName=microsoft-aspire.aspire-vscode)

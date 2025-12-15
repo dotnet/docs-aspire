@@ -51,7 +51,7 @@ cd samples/AspireWithJavaScript
 From this directory, there are six child directories described in the following list:
 
 - **AspireJavaScript.Angular**: An Angular app that consumes the weather forecast API and displays the data in a table.
-- **AspireJavaScript.AppHost**: A Aspire project that orchestrates the other apps in this sample. For more information, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).
+- **AspireJavaScript.AppHost**: A Aspire project that orchestrates the other apps in this sample. For more information, see [Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 - **AspireJavaScript.MinimalApi**: An HTTP API that returns randomly generated weather forecast data.
 - **AspireJavaScript.React**: A React app that consumes the weather forecast API and displays the data in a table.
 - **AspireJavaScript.ServiceDefaults**: The default shared project for Aspire projects. For more information, see [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/).

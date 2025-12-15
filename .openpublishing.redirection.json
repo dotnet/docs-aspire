@@ -26,7 +26,7 @@
     },
     {
       "source_path_from_root": "/docs/app-host-overview.md",
-      "redirect_url": "/dotnet/aspire/fundamentals/app-host-overview"
+      "redirect_url": "https://aspire.dev/get-started/app-host/"
     },
     {
       "source_path_from_root": "/docs/components-overview.md",
@@ -911,6 +911,78 @@
     {
       "source_path_from_root": "/docs/get-started/build-your-first-aspire-app.md",
       "redirect_url": "https://aspire.dev/get-started/first-app/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/app-host-overview.md",
+      "redirect_url": "https://aspire.dev/get-started/app-host/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-add.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-add/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-config.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-config/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-config-list.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-config-list/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-config-get.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-config-get/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-config-set.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-config-set/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-config-delete.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-config-delete/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-deploy.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-deploy/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-exec.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-exec/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-new.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-new/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-publish.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-publish/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-run.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-run/"
+    },
+    {
+      "source_path_from_root": "/docs/cli-reference/aspire-update.md",
+      "redirect_url": "https://aspire.dev/reference/cli/commands/aspire-update/"
+    },
+    {
+      "source_path_from_root": "/docs/cli/overview.md",
+      "redirect_url": "https://aspire.dev/reference/cli/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/cli/install.md",
+      "redirect_url": "https://aspire.dev/reference/cli/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/cli/config-settings.md",
+      "redirect_url": "https://aspire.dev/reference/cli/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/cli/install-script-reference.md",
+      "redirect_url": "https://aspire.dev/reference/cli/overview/"
     }
   ]
 }

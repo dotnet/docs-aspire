@@ -42,7 +42,7 @@ For a comprehensive reference mapping Docker Compose YAML syntax to Aspire C# AP
 
 - [Docker Compose overview](https://docs.docker.com/compose/)
 - [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 
 ## Common migration patterns
 
@@ -272,7 +272,7 @@ builder.Build().Run();
 **Related links:**
 
 - [Docker Compose specification](https://docs.docker.com/compose/compose-file/)
-- [Aspire AppHost overview](../fundamentals/app-host-overview.md)
+- [Aspire AppHost overview](https://aspire.dev/get-started/app-host/)
 - [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)
 
 ## Migration strategy
@@ -384,6 +384,6 @@ After migrating to Aspire:
 
 - [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
 - [AspiriFridays stream](https://www.youtube.com/@aspiredotdev)
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Docker Compose enhancements in Aspire 9.3](../whats-new/dotnet-aspire-9.3.md#-docker-compose-enhancements)
 - [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)

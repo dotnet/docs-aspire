@@ -15,7 +15,7 @@ In this article, you learn how to customize the behavior of resources further by
 - **Integration resources**: Integrations often add resources such as databases, caches, and messaging services to your application.
 - **External service**: Represents a third-party API or service that your application depends on but isn't managed by Aspire. Use this for resources like public APIs or SaaS endpoints.
 
-For the fundamentals of Aspire orchestration and how it manages resources, see [Aspire orchestration overview](app-host-overview.md).
+For the fundamentals of Aspire orchestration and how it manages resources, see [Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 
 ## Resource naming conventions
 
@@ -324,5 +324,5 @@ The preceding example uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithPa
 
 ## See also
 
-- [Aspire orchestration overview](app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Eventing in Aspire](https://aspire.dev/app-host/eventing/)

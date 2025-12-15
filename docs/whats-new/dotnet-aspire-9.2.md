@@ -66,7 +66,7 @@ If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, yo
 
 ## 🖥️ AppHost enhancements
 
-The [AppHost](../fundamentals/app-host-overview.md) is the core of Aspire, providing the local hosting environment for your distributed applications. In Aspire 9.2, we've made several improvements to the AppHost:
+The [AppHost](https://aspire.dev/get-started/app-host/) is the core of Aspire, providing the local hosting environment for your distributed applications. In Aspire 9.2, we've made several improvements to the AppHost:
 
 ### 🚧 Project file changes
 
