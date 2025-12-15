@@ -108,7 +108,7 @@ Resource names in Kubernetes must follow DNS naming conventions. The integration
 
 ### Environment-specific configuration
 
-Use [external parameters](../fundamentals/external-parameters.md) to configure environment-specific values that should be different between development and production environments.
+Use [external parameters](https://aspire.dev/fundamentals/external-parameters/) to configure environment-specific values that should be different between development and production environments.
 
 ## See also
 

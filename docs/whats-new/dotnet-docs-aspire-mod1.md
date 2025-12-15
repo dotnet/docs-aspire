@@ -32,15 +32,15 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 - [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/) - Update service defaults and add filtering details
 - [Aspire setup and tooling](../fundamentals/setup-tooling.md) - Rename configs-replace prefix
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md) - Add dev-cert details to templates content
-- [Custom HTTP commands in Aspire](../fundamentals/http-commands.md) - Split content
+- [Custom HTTP commands in Aspire](https://aspire.dev/fundamentals/http-commands/) - Split content
 - [Dashboard configuration](https://aspire.dev/dashboard/configuration/) - Rename configs-replace prefix
 - [Enable browser telemetry](https://aspire.dev/dashboard/enable-browser-telemetry/) - Rename configs-replace prefix
 - [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/) - Update the Explore the Aspire Dashboard article for v9.2.0
-- [External parameters](../fundamentals/external-parameters.md) - #3063 - Rename parameter name to not be 'value'
+- [External parameters](https://aspire.dev/fundamentals/external-parameters/) - #3063 - Rename parameter name to not be 'value'
 - [Orchestrate resources in Aspire](../fundamentals/orchestrate-resources.md)
   - Initial draft of diagnostic redesign
   - Split content
-- [Persist Aspire project data using volumes or bind mounts](../fundamentals/persist-data-volumes.md) - Update the "Persist Aspire project data using volumes" article
+- [Persist Aspire project data using volumes or bind mounts](https://aspire.dev/fundamentals/persist-data-volumes/) - Update the "Persist Aspire project data using volumes" article
 - [Security considerations for running the Aspire dashboard](https://aspire.dev/dashboard/security-considerations/) - Rename configs-replace prefix
 - [Standalone Aspire dashboard](https://aspire.dev/dashboard/standalone/) - Rename configs-replace prefix
 

@@ -255,7 +255,7 @@ For more information, see the following updated articles:
 
 #### ♻️ Working with existing resources
 
-There's consistent feedback about making it easier to connect to existing Azure resources in Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly by `string` name, or with [app model parameters](../fundamentals/external-parameters.md) which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
+There's consistent feedback about making it easier to connect to existing Azure resources in Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly by `string` name, or with [app model parameters](https://aspire.dev/fundamentals/external-parameters/) which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
 
 ```csharp
 var existingServiceBusName = builder.AddParameter("serviceBusName");

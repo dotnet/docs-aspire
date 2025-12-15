@@ -230,7 +230,7 @@ When you define a custom command, it's available in the dashboard as a user expe
 > [!IMPORTANT]
 > These Aspire dashboard commands are only available when running the dashboard locally. They're not available when running the dashboard in Azure Container Apps.
 
-For more information on creating custom resource commands, see [How-to: Create custom resource commands in Aspire](../fundamentals/custom-resource-commands.md).
+For more information on creating custom resource commands, see [How-to: Create custom resource commands in Aspire](https://aspire.dev/fundamentals/custom-resource-commands/).
 
 ### Container networking
 

@@ -181,4 +181,4 @@ Verify that:
 - [Dev tunnels service documentation](/azure/developer/dev-tunnels/overview)
 - [Dev tunnels FAQ](/azure/developer/dev-tunnels/faq)
 - [Aspire service discovery](https://aspire.dev/fundamentals/service-discovery/)
-- [Aspire networking overview](../fundamentals/networking-overview.md)
+- [Aspire networking overview](https://aspire.dev/fundamentals/networking-overview/)

@@ -60,7 +60,7 @@ conceptualContent:
       url: https://aspire.dev/dashboard/copilot/
     - itemType: overview
       text: Aspire local networking
-      url: fundamentals/networking-overview.md
+      url: https://aspire.dev/fundamentals/networking-overview/
 
   - title: Storage integrations
     links:

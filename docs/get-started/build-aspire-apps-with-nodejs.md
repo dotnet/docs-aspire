@@ -131,7 +131,7 @@ The preceding code:
   - Each client app is configured to run on a different container port, and uses the `PORT` environment variable to determine the port.
   - All client apps also rely on a _Dockerfile_ to build their container image and are configured to express themselves in the publishing manifest as a container from the <xref:Aspire.Hosting.ExecutableResourceBuilderExtensions.PublishAsDockerFile*> API.
 
-For more information on inner-loop networking, see [Aspire inner-loop networking overview](../fundamentals/networking-overview.md). For more information on deploying apps, see [Aspire manifest format for deployment tool builders](https://aspire.dev/deployment/manifest-format/).
+For more information on inner-loop networking, see [Aspire inner-loop networking overview](https://aspire.dev/fundamentals/networking-overview/). For more information on deploying apps, see [Aspire manifest format for deployment tool builders](https://aspire.dev/deployment/manifest-format/).
 
 When the AppHost orchestrates the launch of each client app, it uses the `npm run start` command. This command is defined in the `scripts` section of the _package.json_ file for each client app. The `start` script is used to start the client app on the specified port. Each client app relies on a proxy to request the "weatherapi" service.
 
@@ -241,7 +241,7 @@ The client apps are currently configured to run as true SPA apps, and aren't con
 
 While this article focuses on client apps, you might have scenarios where you need to host a Node.js server app. The same semantics are required to host a Node.js server app as a SPA client app. The Aspire AppHost requires a package reference to the [Aspire.Hosting.NodeJS](https://nuget.org/packages/Aspire.Hosting.NodeJS) NuGet package and the code needs to call either `AddNodeApp` or `AddNpmApp`. These APIs are useful for adding existing JavaScript apps to the Aspire AppHost.
 
-When configuring secrets and passing environment variables to JavaScript-based apps, whether they are client or server apps, use parameters. For more information, see [Aspire: External parameters—secrets](../fundamentals/external-parameters.md#secret-values).
+When configuring secrets and passing environment variables to JavaScript-based apps, whether they are client or server apps, use parameters. For more information, see [Aspire: External parameters—secrets](https://aspire.dev/fundamentals/external-parameters/#secret-values).
 
 ### Use the OpenTelemetry JavaScript SDK
 
