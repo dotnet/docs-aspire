@@ -2,11 +2,11 @@
   "redirections": [
     {
       "source_path_from_root": "/docs/storage/quickstart-azure-storage.md",
-      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/"
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage.md",
-      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/"
     },
     {
       "source_path_from_root": "/docs/database/quickstart-sql-server.md",
@@ -18,11 +18,11 @@
     },
     {
       "source_path_from_root": "/docs/messaging/quickstart-messaging.md",
-      "redirect_url": "https://aspire.dev/integrations/messaging/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-service-bus/"
     },
     {
       "source_path_from_root": "/docs/caching/quickstart-caching.md",
-      "redirect_url": "https://aspire.dev/integrations/caching/"
+      "redirect_url": "https://aspire.dev/integrations/caching/redis/"
     },
     {
       "source_path_from_root": "/docs/app-host-overview.md",
@@ -102,11 +102,11 @@
     },
     {
       "source_path_from_root": "/docs/caching/caching-components-deployment.md",
-      "redirect_url": "https://aspire.dev/integrations/caching/"
+      "redirect_url": "https://aspire.dev/integrations/caching/redis/"
     },
     {
       "source_path_from_root": "/docs/caching/caching-components.md",
-      "redirect_url": "https://aspire.dev/integrations/caching/"
+      "redirect_url": "https://aspire.dev/integrations/caching/redis/"
     },
     {
       "source_path_from_root": "/docs/caching/stackexchange-redis-component.md",
@@ -218,7 +218,7 @@
     },
     {
       "source_path_from_root": "/docs/messaging/messaging-components.md",
-      "redirect_url": "https://aspire.dev/integrations/messaging/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-service-bus/"
     },
     {
       "source_path_from_root": "/docs/messaging/nats-component.md",
@@ -238,7 +238,7 @@
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage-components.md",
-      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/"
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage-blobs-component.md",
@@ -418,7 +418,7 @@
     },
     {
       "source_path_from_root": "/docs/caching/caching-integrations.md",
-      "redirect_url": "https://aspire.dev/integrations/caching/"
+      "redirect_url": "https://aspire.dev/integrations/caching/redis/"
     },
     {
       "source_path_from_root": "/docs/caching/stackexchange-redis-caching-overview.md",
@@ -538,7 +538,7 @@
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage-integrations.md",
-      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/https://aspire.dev/integrations/cloud/azure/azure-storage/"
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage-blobs-integration.md",
