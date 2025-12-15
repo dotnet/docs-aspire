@@ -233,7 +233,7 @@ For more information about publishing and deploying Aspire apps, see [aspire dep
 
 ### 🎛️ Interaction service
 
-Aspire 9.4 introduces the [interaction service](../extensibility/interaction-service.md), a general service that allows developers to build rich experiences at runtime by extending the dashboard UX and at publish and deploy time using the Aspire CLI. It allows you to build complex interactions where input is required from the user.
+Aspire 9.4 introduces the [interaction service](https://aspire.dev/extensibility/interaction-service/), a general service that allows developers to build rich experiences at runtime by extending the dashboard UX and at publish and deploy time using the Aspire CLI. It allows you to build complex interactions where input is required from the user.
 
 > [!IMPORTANT]
 > 🧪 This feature is experimental and may change in future releases.
@@ -440,7 +440,7 @@ var api = builder.AddProject<Projects.Api>("api")
 builder.Build().Run();
 ```
 
-For more information, including supported input types, see the [Interaction Service section](#-interaction-service) below or the full [interaction service docs](../extensibility/interaction-service.md).
+For more information, including supported input types, see the [Interaction Service section](#-interaction-service) below or the full [interaction service docs](https://aspire.dev/extensibility/interaction-service/).
 
 ### 🌐 External service modeling
 
@@ -468,7 +468,7 @@ External services appear in the Aspire dashboard with health status, can be refe
 
 ### 🔗 Enhanced endpoint URL support
 
-Aspire 9.4 introduces support for [non-localhost URLs](../fundamentals/networking-overview.md), making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
+Aspire 9.4 introduces support for [non-localhost URLs](https://aspire.dev/fundamentals/networking-overview/), making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -768,7 +768,7 @@ var dynamicContainer = builder.AddContainer("worker", "worker:latest")
 builder.Build().Run();
 ```
 
-The [enhanced APIs](../fundamentals/persist-data-volumes.md) handle file permissions, ownership, and provide both static and dynamic file mounting capabilities while maintaining the flexibility to customize when needed.
+The [enhanced APIs](https://aspire.dev/fundamentals/persist-data-volumes/) handle file permissions, ownership, and provide both static and dynamic file mounting capabilities while maintaining the flexibility to customize when needed.
 
 ### ✨ Advanced YARP routing with transform APIs (Preview)
 

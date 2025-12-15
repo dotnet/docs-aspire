@@ -167,7 +167,7 @@ Continuing from the [diagram in the previous](#app-host-dcp-flow) section, consi
 
 DCP logs are streamed back to the AppHost, which then forwards them to the developer dashboard. While the developer dashboard exposes commands such as start, stop, and restart, these commands are not part of DCP itself. Instead, they are implemented by the app model runtime, specifically within its "dashboard service" component. These commands operate by manipulating DCP objects—creating new ones, deleting old ones, or updating their properties. For example, restarting a .NET project involves stopping and deleting the existing <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> representing the project and creating a new one with the same specifications.
 
-For more information on container networking, see [How container networks are managed](../fundamentals/networking-overview.md#how-container-networks-are-managed).
+For more information on container networking, see [How container networks are managed](https://aspire.dev/fundamentals/networking-overview/#how-container-networks-are-managed).
 
 ## Developer dashboard
 
@@ -181,7 +181,7 @@ The dashboard provides a user-friendly interface for inspecting resource states,
 
 The dashboard provides a set of commands for managing resources, such as start, stop, and restart. While commands appear as intuitive actions in the dashboard UI, under the hood, they operate by manipulating DCP objects. For more information, see [Stop or Start a resource](https://aspire.dev/dashboard/explore/#stop-or-start-a-resource).
 
-In addition to these built-in commands, you can define custom commands tailored to your application's needs. These custom commands are registered in the app model and seamlessly integrated into the dashboard, providing enhanced flexibility and control. Learn more about custom commands in [Custom resource commands in Aspire](../fundamentals/custom-resource-commands.md).
+In addition to these built-in commands, you can define custom commands tailored to your application's needs. These custom commands are registered in the app model and seamlessly integrated into the dashboard, providing enhanced flexibility and control. Learn more about custom commands in [Custom resource commands in Aspire](https://aspire.dev/fundamentals/custom-resource-commands/).
 
 ### Real-time log streaming
 

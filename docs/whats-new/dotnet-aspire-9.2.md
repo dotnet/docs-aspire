@@ -92,7 +92,7 @@ var catalogDb = builder.AddPostgres("postgres")
 
 The preceding code sets the display text for the `PG Admin` URL to `PG Admin`. This makes it easier to access the management console directly from the dashboard.
 
-For more information, see [Define custom resource URLs](../fundamentals/custom-resource-urls.md).
+For more information, see [Define custom resource URLs](https://aspire.dev/fundamentals/custom-resource-urls/).
 
 ## 🔧 Dashboard user experience improvements
 
@@ -136,7 +136,7 @@ We've added a search text box to trace details. Now you can quickly filter large
 
 ### 🌐 HTTP-based resource command functionality
 
-[Custom resource commands](../fundamentals/custom-resource-commands.md) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be run directly from the Aspire dashboard.
+[Custom resource commands](https://aspire.dev/fundamentals/custom-resource-commands/) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be run directly from the Aspire dashboard.
 
 Adds WithHttpCommand(), which lets you define a resource command that sends an HTTP request to your app during development. Useful for triggering endpoints like seed or reset from the dashboard.
 
@@ -161,7 +161,7 @@ if (builder.Environment.IsDevelopment())
 }
 ```
 
-For more information, see [Custom HTTP commands in Aspire](../fundamentals/http-commands.md).
+For more information, see [Custom HTTP commands in Aspire](https://aspire.dev/fundamentals/http-commands/).
 
 ### 🗂️ Connection string resource type
 

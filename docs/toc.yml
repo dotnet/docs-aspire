@@ -48,27 +48,15 @@ items:
       displayName: python,flask,fastapi
       href: get-started/build-aspire-apps-with-python.md
   - name: Customize resources
-    items:
-    - name: Custom resource commands
-      href: fundamentals/custom-resource-commands.md
-      displayName: withcommand
-    - name: Custom HTTP commands
-      href: fundamentals/http-commands.md
-      displayName: withhttpcommand,
-    - name: Custom resource URLs
-      displayName: withurl,withurlforendpoint,withurls
-      href: fundamentals/custom-resource-urls.md
+    href: https://aspire.dev/fundamentals/custom-resource-commands/
   - name: Networking overview
-    displayName: inner loop,local networking,networking
-    href: fundamentals/networking-overview.md
+    href: https://aspire.dev/fundamentals/networking-overview/
   - name: Prompt user from CLI or Dashboard
-    href: extensibility/interaction-service.md
+    href: https://aspire.dev/extensibility/interaction-service/
   - name: Use external parameters
-    displayName: external parameters,configuration
-    href: fundamentals/external-parameters.md
+    href: https://aspire.dev/fundamentals/external-parameters/
   - name: Persist data using volumes
-    displayName: volumes,persist data
-    href: fundamentals/persist-data-volumes.md
+    href: https://aspire.dev/fundamentals/persist-data-volumes/
 
 - name: Testing
   href: https://aspire.dev/testing/overview/
