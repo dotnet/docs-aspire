@@ -49,7 +49,7 @@ This command opens a web browser for you to sign in with your Azure credentials.
 
 ## Create an Aspire project
 
-As a starting point, this article assumes you've created an Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes you've created an Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](https://aspire.dev/get-started/first-app/).
 
 To configure your project for Azure Container Apps deployment, add a package reference to your AppHost project that includes the [`📦Aspire.Hosting.Azure.AppContainers](https://www.nuget.org/packages/Aspire.Hosting.Azure.AppContainers) NuGet package:
 

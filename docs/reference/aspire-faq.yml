@@ -6,7 +6,7 @@ metadata:
   ms.date: 03/03/2025
 title: Frequently asked questions about Aspire
 summary: |
-  This article lists frequently asked questions about Aspire. For a more comprehensive overview, see [Aspire overview](../get-started/aspire-overview.md).
+  This article lists frequently asked questions about Aspire. For a more comprehensive overview, see [Aspire overview](https://aspire.dev/get-started/what-is-aspire/).
 
 sections:
   - name: Frequently asked questions
@@ -155,6 +155,6 @@ additionalContent: |
   ## Next steps
   To learn more about networking and functions:
 
-  * [Aspire overview](../get-started/aspire-overview.md)
-  * [Build your first Aspire project](../get-started/build-your-first-aspire-app.md)
+  * [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
+  * [Build your first Aspire project](https://aspire.dev/get-started/first-app/)
   * [Aspire components](../fundamentals/components-overview.md)

@@ -21,7 +21,7 @@ Aspire projects are designed to run in containerized environments. Azure Contain
 
 ## Create an Aspire project
 
-As a starting point, this article assumes that you've created an Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](../../get-started/build-your-first-aspire-app.md).
+As a starting point, this article assumes that you've created an Aspire project from the **Aspire Starter Application** template. For more information, see [Quickstart: Build your first Aspire project](https://aspire.dev/get-started/first-app/).
 
 ### Resource naming
 

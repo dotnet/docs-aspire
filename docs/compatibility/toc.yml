@@ -2,7 +2,7 @@ items:
 - name: Aspire
   href: ../index.yml
 - name: Aspire overview
-  href: ../get-started/aspire-overview.md
+  href: https://aspire.dev/get-started/what-is-aspire/
 - name: Breaking changes
   href: breaking-changes.md
 - name: Aspire 13.0

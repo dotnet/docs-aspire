@@ -4,12 +4,6 @@ items:
 
 - name: Get Started
   items:
-  - name: Aspire overview
-    displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
-    href: get-started/aspire-overview.md
-  - name: Build your first Aspire solution
-    displayName: quickstart,first app,aspire app
-    href: get-started/build-your-first-aspire-app.md
   - name: Migrate to Aspire
     items:
     - name: From Docker Compose

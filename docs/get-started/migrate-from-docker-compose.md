@@ -41,7 +41,7 @@ For a comprehensive reference mapping Docker Compose YAML syntax to Aspire C# AP
 **Related links:**
 
 - [Docker Compose overview](https://docs.docker.com/compose/)
-- [Aspire overview](aspire-overview.md)
+- [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
 
 ## Common migration patterns
@@ -325,7 +325,7 @@ For persistent data:
 **Related links:**
 
 - [Docker Compose migration checklist](https://docs.docker.com/compose/migrate/)
-- [Build your first Aspire app](build-your-first-aspire-app.md)
+- [Build your first Aspire app](https://aspire.dev/get-started/first-app/)
 - [Aspire testing overview](https://aspire.dev/testing/overview/)
 
 ## Migration troubleshooting
@@ -382,7 +382,7 @@ After migrating to Aspire:
 
 ## See also
 
-- [Aspire overview](aspire-overview.md)
+- [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
 - [AspiriFridays stream](https://www.youtube.com/@aspiredotdev)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Docker Compose enhancements in Aspire 9.3](../whats-new/dotnet-aspire-9.3.md#-docker-compose-enhancements)
