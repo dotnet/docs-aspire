@@ -15,12 +15,6 @@ metadata:
 
 highlightedContent:
   items:
-  - itemType: overview
-    title: Aspire overview
-    url: get-started/aspire-overview.md
-  - itemType: quickstart
-    title: Build your first Aspire solution
-    url: get-started/build-your-first-aspire-app.md
   - itemType: concept
     title: AppHost orchestration
     url: fundamentals/app-host-overview.md
@@ -46,12 +40,6 @@ conceptualContent:
   items:
   - title: Get Started
     links:
-    - itemType: concept
-      text: Aspire overview
-      url: get-started/aspire-overview.md
-    - itemType: quickstart
-      text: Build your first Aspire solution
-      url: get-started/build-your-first-aspire-app.md
     - itemType: sample
       text: Add a Node.js app to a Aspire project
       url: get-started/build-aspire-apps-with-nodejs.md

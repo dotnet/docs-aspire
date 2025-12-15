@@ -917,7 +917,7 @@ When resources as configured as Azure resources, the `azure.bicep.v0` resource t
 
 ## See also
 
-- [Aspire overview](../get-started/aspire-overview.md)
+- [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [Service discovery in Aspire](https://aspire.dev/fundamentals/service-discovery/)

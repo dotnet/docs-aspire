@@ -14,7 +14,7 @@
     },
     {
       "source_path_from_root": "/docs/get-started/quickstart-build-your-first-aspire-app.md",
-      "redirect_url": "/dotnet/aspire/get-started/build-your-first-aspire-app"
+      "redirect_url": "https://aspire.dev/get-started/first-app/"
     },
     {
       "source_path_from_root": "/docs/messaging/quickstart-messaging.md",
@@ -903,6 +903,14 @@
     {
       "source_path_from_root": "/docs/get-started/add-aspire-existing-app.md",
       "redirect_url": "https://aspire.dev/get-started/add-aspire-existing-app/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/aspire-overview.md",
+      "redirect_url": "https://aspire.dev/get-started/what-is-aspire/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/build-your-first-aspire-app.md",
+      "redirect_url": "https://aspire.dev/get-started/first-app/"
     }
   ]
 }

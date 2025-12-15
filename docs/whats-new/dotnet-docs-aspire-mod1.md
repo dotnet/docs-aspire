@@ -16,7 +16,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 - [Orchestrate Python apps in Aspire](../get-started/build-aspire-apps-with-python.md)
   - Initial draft of diagnostic redesign
   - Fix the Python article
-- [Quickstart: Build your first Aspire solution](../get-started/build-your-first-aspire-app.md) - Split content
+- [Quickstart: Build your first Aspire solution](https://aspire.dev/get-started/first-app/) - Split content
 - [Tutorial: Add Aspire to an existing .NET app](https://aspire.dev/get-started/add-aspire-existing-app/) - Update the add aspire to existing tutorial
 
 ## Fundamentals
