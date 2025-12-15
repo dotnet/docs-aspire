@@ -10,8 +10,6 @@ items:
   - name: Build your first Aspire solution
     displayName: quickstart,first app,aspire app
     href: get-started/build-your-first-aspire-app.md
-  - name: Add Aspire to an existing solution
-    href: get-started/add-aspire-existing-app.md
   - name: Migrate to Aspire
     items:
     - name: From Docker Compose
@@ -58,16 +56,8 @@ items:
     - name: Python apps in Aspire
       displayName: python,flask,fastapi
       href: get-started/build-aspire-apps-with-python.md
-  - name: AppHost configuration
-    href: app-host/configuration.md
-  - name: Certificate trust customization
-    href: app-host/certificate-trust.md
-    displayName: certificate trust,TLS,HTTPS,development certificate,certificate authority
   - name: Customize resources
     items:
-    - name: Persistent container services
-      href: app-host/persistent-containers.md
-      displayName: persistent containers,container lifetime,withlifetime
     - name: Custom resource commands
       href: fundamentals/custom-resource-commands.md
       displayName: withcommand
@@ -77,17 +67,9 @@ items:
     - name: Custom resource URLs
       displayName: withurl,withurlforendpoint,withurls
       href: fundamentals/custom-resource-urls.md
-  - name: Host external executables
-    href: app-host/executable-resources.md
-    displayName: executable,addexecutable,external apps,cli tools
-  - name: Add Dockerfiles to the app model
-    href: app-host/withdockerfile.md
-    displayName: dockerfile,docker
   - name: Networking overview
     displayName: inner loop,local networking,networking
     href: fundamentals/networking-overview.md
-  - name: Eventing in Aspire
-    href: app-host/eventing.md
   - name: Prompt user from CLI or Dashboard
     href: extensibility/interaction-service.md
   - name: Use external parameters
@@ -149,9 +131,6 @@ items:
     href: https://aspire.dev/fundamentals/service-discovery/
   - name: Service defaults
     href: https://aspire.dev/fundamentals/service-defaults/
-  - name: Resource annotations
-    displayName: annotations,metadata,custom annotations,resource annotations
-    href: fundamentals/annotations-overview.md
   - name: Launch profiles
     href: https://aspire.dev/fundamentals/launch-profiles/
   - name: Telemetry

@@ -252,7 +252,7 @@ internal static class DataSeedJobResourceBuilderExtensions
 }
 ```
 
-This custom deployment logic integrates seamlessly with the `aspire deploy` command, providing interactive prompts and progress reporting. For more information, see [Resource annotations in Aspire](../fundamentals/annotations-overview.md).
+This custom deployment logic integrates seamlessly with the `aspire deploy` command, providing interactive prompts and progress reporting. For more information, see [Resource annotations in Aspire](https://aspire.dev/fundamentals/annotations-overview/).
 
 ## Diagnostics and auditing
 

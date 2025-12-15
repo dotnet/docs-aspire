@@ -186,4 +186,4 @@ This reference provides systematic mappings from Docker Compose YAML syntax to e
 
 - [Migrate from Docker Compose to Aspire](migrate-from-docker-compose.md)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
-- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
+- [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)

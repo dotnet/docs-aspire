@@ -325,4 +325,4 @@ The preceding example uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithPa
 ## See also
 
 - [Aspire orchestration overview](app-host-overview.md)
-- [Eventing in Aspire](../app-host/eventing.md)
+- [Eventing in Aspire](https://aspire.dev/app-host/eventing/)

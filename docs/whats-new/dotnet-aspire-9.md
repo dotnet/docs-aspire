@@ -246,7 +246,7 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 - <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: An event that is triggered after the resources are created. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
-The global events are analogous to the AppHost life cycle events. For more information, see [AppHost life cycles](../app-host/eventing.md#apphost-life-cycle-events).
+The global events are analogous to the AppHost life cycle events. For more information, see [AppHost life cycles](https://aspire.dev/app-host/eventing/#apphost-life-cycle-events).
 
 **Per-resource events:**
 
@@ -254,7 +254,7 @@ The global events are analogous to the AppHost life cycle events. For more infor
 - <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent>: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
 
-For more information, see [Eventing in Aspire](../app-host/eventing.md).
+For more information, see [Eventing in Aspire](https://aspire.dev/app-host/eventing/).
 
 ## Integrations
 
@@ -694,6 +694,6 @@ The preceding code example defers generation of the Azure Container App definiti
 - [Aspire SDK](../fundamentals/dotnet-aspire-sdk.md)
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
-- [Eventing in Aspire](../app-host/eventing.md)
+- [Eventing in Aspire](https://aspire.dev/app-host/eventing/)
 - [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 - [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/)

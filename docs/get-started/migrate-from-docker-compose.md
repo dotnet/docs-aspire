@@ -273,7 +273,7 @@ builder.Build().Run();
 
 - [Docker Compose specification](https://docs.docker.com/compose/compose-file/)
 - [Aspire AppHost overview](../fundamentals/app-host-overview.md)
-- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
+- [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)
 
 ## Migration strategy
 
@@ -386,4 +386,4 @@ After migrating to Aspire:
 - [AspiriFridays stream](https://www.youtube.com/@aspiredotdev)
 - [Aspire orchestration overview](../fundamentals/app-host-overview.md)
 - [Docker Compose enhancements in Aspire 9.3](../whats-new/dotnet-aspire-9.3.md#-docker-compose-enhancements)
-- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
+- [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)
