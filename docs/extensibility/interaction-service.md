@@ -58,7 +58,7 @@ Any of the available callback-based extension methods of `IResourceBuilder<T>` c
 
 - **Custom resource types**: Gather input from users or confirm actions when you create custom resource types.
 
-    Resource types are free to define dashboard interactions, such as prompting for user input or displaying messages. The interaction service allows you to create a more interactive experience for users when they manage resources in the Aspire dashboard or CLI. For more information, see [Create custom Aspire hosting integrations](custom-hosting-integration.md).
+    Resource types are free to define dashboard interactions, such as prompting for user input or displaying messages. The interaction service allows you to create a more interactive experience for users when they manage resources in the Aspire dashboard or CLI. For more information, see [Create custom Aspire hosting integrations](https://aspire.dev/integrations/custom-integrations/hosting-integrations/).
 
 - **Custom resource commands**: Add commands to resources in the Aspire dashboard or CLI. Use the interaction service to prompt users for input or confirmation when these commands run.
 
@@ -346,4 +346,4 @@ When you run `aspire publish` or `aspire deploy`, interactions are prompted thro
 ## See also
 
 - <xref:Aspire.Hosting.IInteractionService>
-- [Aspire extensibility overview](../extensibility/custom-hosting-integration.md)
+- [Aspire extensibility overview](https://aspire.dev/integrations/custom-integrations/hosting-integrations/)

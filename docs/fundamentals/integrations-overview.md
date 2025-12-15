@@ -28,7 +28,7 @@ Hosting integrations extend the <xref:Aspire.Hosting.IDistributedApplicationBuil
 
 The official [hosting integration NuGet packages](https://www.nuget.org/packages?q=owner%3A+aspire+tags%3A+aspire+hosting+integration&includeComputedFrameworks=true&prerel=true&sortby=relevance) are tagged with `aspire`, `integration`, and `hosting`. In addition to the official hosting integrations, the [community has created hosting integrations](https://aspire.dev/integrations/) for various services and platforms as part of the Community Toolkit.
 
-For information on creating a custom _hosting integration_, see [Create custom Aspire hosting integration](../extensibility/custom-hosting-integration.md).
+For information on creating a custom _hosting integration_, see [Create custom Aspire hosting integration](https://aspire.dev/integrations/custom-integrations/hosting-integrations/).
 
 ### Client integrations
 
@@ -39,7 +39,7 @@ These packages configure existing client libraries to connect to hosting integra
 > [!IMPORTANT]
 > Aspire integrations require <xref:Microsoft.Extensions.Hosting.IHostApplicationBuilder> and are **not compatible** with `HostingStartup` implementations, which only provide access to <xref:Microsoft.AspNetCore.Hosting.IWebHostBuilder>. If you're using `HostingStartup` for modular configuration, see [HostingStartup is not supported with Aspire integrations](../troubleshooting/hosting-startup-not-supported.md) for migration guidance.
 
-For more information on creating a custom client integration, see [Create custom Aspire client integrations](../extensibility/custom-client-integration.md).
+For more information on creating a custom client integration, see [Create custom Aspire client integrations](https://aspire.dev/integrations/custom-integrations/client-integrations/).
 
 ### Relationship between hosting and client integrations
 
