@@ -155,7 +155,7 @@ The command invokes registered publishing callback annotations to generate artif
 - Docker Compose YAML files.
 - Kubernetes Helm charts.
 
-For more information about Aspire publishing, see [Aspire publishing and deployment overview](../deployment/overview.md).
+For more information about Aspire publishing, see [Aspire publishing and deployment overview](https://aspire.dev/deployment/overview/).
 
 ## Deploy an Aspire solution
 
@@ -172,7 +172,7 @@ To deploy an Aspire solution:
 
 The command publishes deployment artifacts and then invokes deployment callback annotations to deploy resources to the specified targets.
 
-For more information about Aspire deployment, see [Aspire publishing and deployment overview](../deployment/overview.md).
+For more information about Aspire deployment, see [Aspire publishing and deployment overview](https://aspire.dev/deployment/overview/).
 
 ## Open Aspire terminal
 

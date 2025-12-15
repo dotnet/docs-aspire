@@ -346,11 +346,11 @@
     },
     {
       "source_path_from_root": "/docs/fundamentals/build-container-images.md",
-      "redirect_url": "/dotnet/aspire/fundamentals/custom-deployments"
+      "redirect_url": "https://aspire.dev/deployment/custom-deployments/"
     },
     {
       "source_path_from_root": "/docs/deployment/aspire-deploy/local-deployment-state.md",
-      "redirect_url": "/dotnet/aspire/deployment/deployment-state-caching"
+      "redirect_url": "https://aspire.dev/deployment/deployment-state-caching/"
     },
     {
       "source_path_from_root": "/docs/get-started/upgrade-to-aspire-9.md",
@@ -983,6 +983,30 @@
     {
       "source_path_from_root": "/docs/cli/install-script-reference.md",
       "redirect_url": "https://aspire.dev/reference/cli/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/overview.md",
+      "redirect_url": "https://aspire.dev/deployment/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/custom-deployments.md",
+      "redirect_url": "https://aspire.dev/deployment/custom-deployments/"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/deployment-state-caching.md",
+      "redirect_url": "https://aspire.dev/deployment/deployment-state-caching/"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/manifest-format.md",
+      "redirect_url": "https://aspire.dev/deployment/manifest-format/"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/aspire-deploy/aca-deployment-aspire-cli.md",
+      "redirect_url": "https://aspire.dev/deployment/azure/aca-deployment-aspire-cli/"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/aspire-deploy/azure-security-best-practices.md",
+      "redirect_url": "https://aspire.dev/deployment/azure/azure-security-best-practices/"
     }
   ]
 }

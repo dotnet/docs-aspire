@@ -26,7 +26,7 @@ sections:
       - question: |
           How to deploy Aspire without target cloud-provider tooling?
         answer: |
-          Aspire doesn't constrain deployment of any existing project or solution. Aspire exposes a [deployment manifest](../deployment/manifest-format.md) that's used by tool authors to produce artifacts for deployment to any cloud provider. However, unfortunately, not all cloud providers offer tooling for deployments based on this manifest. The manifest is a simple JSON file that describes the resources of your app and the dependencies between them. The manifest is used by the Azure Developer CLI to deploy to Azure. Likewise, Aspir8 uses the manifest to deploy to Kubernetes. You can use the manifest to deploy to any cloud provider that supports the resources you're using.
+          Aspire doesn't constrain deployment of any existing project or solution. Aspire exposes a [deployment manifest](https://aspire.dev/deployment/manifest-format/) that's used by tool authors to produce artifacts for deployment to any cloud provider. However, unfortunately, not all cloud providers offer tooling for deployments based on this manifest. The manifest is a simple JSON file that describes the resources of your app and the dependencies between them. The manifest is used by the Azure Developer CLI to deploy to Azure. Likewise, Aspir8 uses the manifest to deploy to Kubernetes. You can use the manifest to deploy to any cloud provider that supports the resources you're using.
 
       - question: |
           If Aspire is mainly for local development, why are client integrations in my project?
@@ -96,7 +96,7 @@ sections:
       - question: |
           How are Aspire and Kubernetes related?
         answer: |
-          Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. Aspire projects can produce a [manifest](../deployment/manifest-format.md) that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for Aspire projects.
+          Aspire makes it easy to develop distributed applications that can be orchestrated on your local development environment as executables and containers. Kubernetes is a technology that orchestrates and manages containers across multiple machines. Aspire projects can produce a [manifest](https://aspire.dev/deployment/manifest-format/) that tool authors can use to produce artifacts for deployment to Kubernetes. In essence, Kubernetes is a deployment target for Aspire projects.
 
       - question: |
           Are worker services supported in Aspire?

@@ -61,4 +61,4 @@ Aspire deployment environments should configure OpenTelemetry environment variab
 
 Aspire telemetry works best in environments that support OTLP. OTLP exporting is disabled if `OTEL_EXPORTER_OTLP_ENDPOINT` isn't configured.
 
-For more information, see [Aspire deployments](../deployment/overview.md).
+For more information, see [Aspire deployments](https://aspire.dev/deployment/overview/).

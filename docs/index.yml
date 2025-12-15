@@ -23,7 +23,7 @@ highlightedContent:
     url: https://aspire.dev/fundamentals/service-discovery/
   - itemType: deploy
     title: Deploy a Aspire projects
-    url: deployment/overview.md
+    url: https://aspire.dev/deployment/overview/
   - itemType: overview
     title: Aspire dashboard
     url: https://aspire.dev/dashboard/overview/
@@ -174,19 +174,19 @@ conceptualContent:
     links:
     - itemType: overview
       text: Overview
-      url: deployment/overview.md
+      url: https://aspire.dev/deployment/overview/
     - itemType: deploy
       text: Deploy to Azure Container Apps
-      url: deployment/azure/aca-deployment.md
+      url: deployment/azd/aca-deployment.md
     - itemType: deploy
       text: Deploy using the Azure Developer CLI
-      url: deployment/azure/aca-deployment-azd-in-depth.md
+      url: deployment/azd/aca-deployment-azd-in-depth.md
     - itemType: how-to-guide
       text: Integrate with Application Insights
-      url: deployment/azure/application-insights.md
+      url: deployment/aspire-deploy/application-insights.md
     - itemType: reference
       text: Aspire deployment manifest format
-      url: deployment/manifest-format.md
+      url: https://aspire.dev/deployment/manifest-format/
 
   - title: Troubleshooting
     links:
