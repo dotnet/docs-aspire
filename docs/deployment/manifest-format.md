@@ -171,7 +171,7 @@ References between project resource types result in [service discovery](https://
 
 :::image type="content" source="media/manifest-placeholder-strings.png" lightbox="media/manifest-placeholder-strings.png" alt-text="A diagram showing which resources contribute to which corresponding placeholder strings.":::
 
-For more information on how resources in the app model and references between them work, see, [Aspire orchestration overview](../fundamentals/app-host-overview.md).
+For more information on how resources in the app model and references between them work, see, [Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 
 ### Placeholder string structure
 
@@ -918,6 +918,6 @@ When resources as configured as Azure resources, the `azure.bicep.v0` resource t
 ## See also
 
 - [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Aspire integrations overview](../fundamentals/integrations-overview.md)
 - [Service discovery in Aspire](https://aspire.dev/fundamentals/service-discovery/)

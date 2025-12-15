@@ -16,9 +16,6 @@ metadata:
 highlightedContent:
   items:
   - itemType: concept
-    title: AppHost orchestration
-    url: fundamentals/app-host-overview.md
-  - itemType: concept
     title: Aspire integrations
     url: fundamentals/integrations-overview.md
   - itemType: concept

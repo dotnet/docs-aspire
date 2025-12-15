@@ -96,6 +96,6 @@ When the command completes, the dashboard updates the status and provides feedba
 
 ## See also
 
-- [Aspire orchestration overview](app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Custom resource commands in Aspire](custom-resource-commands.md)
 - [Aspire GitHub repository: Playground sample](https://github.com/dotnet/aspire/tree/4fdfdbf57d35265913a3bbac38b92d98ed255a5d/playground/TestShop)

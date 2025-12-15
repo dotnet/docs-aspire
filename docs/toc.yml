@@ -33,9 +33,6 @@ items:
 
 - name: AppHost
   items:
-  - name: Overview
-    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
-    href: fundamentals/app-host-overview.md
   - name: Architecture overview
     displayName: aspire architecture,aspire app,aspire apphost,aspire app model
     href: architecture/overview.md
@@ -72,48 +69,6 @@ items:
   - name: Persist data using volumes
     displayName: volumes,persist data
     href: fundamentals/persist-data-volumes.md
-
-- name: Aspire CLI
-  displayName: aspire cli,aspire command line interface,aspire commands,cli
-  items:
-  - name: Overview
-    href: cli/overview.md
-  - name: Install
-    href: cli/install.md
-  - name: Configuration
-    href: cli/config-settings.md
-  - name: aspire-install script reference
-    href: cli/install-script-reference.md
-  - name: aspire command reference
-    items:
-    - name: aspire
-      href: cli-reference/aspire.md
-    - name: aspire add
-      href: cli-reference/aspire-add.md
-    - name: aspire config [command]
-      items:
-      - name: aspire config
-        href: cli-reference/aspire-config.md
-      - name: aspire config list
-        href: cli-reference/aspire-config-list.md
-      - name: aspire config get
-        href: cli-reference/aspire-config-get.md
-      - name: aspire config set
-        href: cli-reference/aspire-config-set.md
-      - name: aspire config delete
-        href: cli-reference/aspire-config-delete.md
-    - name: aspire deploy (Preview)
-      href: cli-reference/aspire-deploy.md
-    - name: aspire exec (Preview)
-      href: cli-reference/aspire-exec.md
-    - name: aspire new
-      href: cli-reference/aspire-new.md
-    - name: aspire publish (Preview)
-      href: cli-reference/aspire-publish.md
-    - name: aspire run
-      href: cli-reference/aspire-run.md
-    - name: aspire update (Preview)
-      href: cli-reference/aspire-update.md
 
 - name: Testing
   href: https://aspire.dev/testing/overview/

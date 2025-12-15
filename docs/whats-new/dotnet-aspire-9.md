@@ -100,7 +100,7 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ## AppHost (Orchestration)
 
-The [Aspire AppHost](../fundamentals/app-host-overview.md) is one of the **most important** features of Aspire. In Aspire 9, several new features were added specific to the AppHost.
+The [Aspire AppHost](https://aspire.dev/get-started/app-host/) is one of the **most important** features of Aspire. In Aspire 9, several new features were added specific to the AppHost.
 
 ### Waiting for dependencies
 
@@ -693,7 +693,7 @@ The preceding code example defers generation of the Azure Container App definiti
 - [Aspire setup and tooling](../fundamentals/setup-tooling.md)
 - [Aspire SDK](../fundamentals/dotnet-aspire-sdk.md)
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md)
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Eventing in Aspire](https://aspire.dev/app-host/eventing/)
 - [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 - [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/)
