@@ -106,7 +106,7 @@ aspire exec --start-resource my-worker -- npm run build
 
 #### `aspire deploy`
 
-The `aspire deploy` command supports extensible deployment workflows through the new [`DeployingCallbackAnnotation`](../fundamentals/annotations-overview.md), enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
+The `aspire deploy` command supports extensible deployment workflows through the new [`DeployingCallbackAnnotation`](https://aspire.dev/fundamentals/annotations-overview/), enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
 
 **Key capabilities:**
 
@@ -512,7 +512,7 @@ This simplifies development workflows where custom domains or external network a
 
 ### 🐳 Enhanced persistent container support
 
-Aspire 9.4 improves support for [persistent containers](../app-host/persistent-containers.md) with better lifecycle management and networking capabilities, ensuring containers can persist across application restarts while maintaining proper connectivity.
+Aspire 9.4 improves support for [persistent containers](https://aspire.dev/app-host/persistent-containers/) with better lifecycle management and networking capabilities, ensuring containers can persist across application restarts while maintaining proper connectivity.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -640,7 +640,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#apphost-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
+Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](https://aspire.dev/app-host/eventing/#apphost-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -914,7 +914,7 @@ When a newer version is detected, a friendly notification appears in the Aspire 
 
 :::image type="content" source="media/dashboard-update-notification.png" lightbox="media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing an update notification.":::
 
-Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disabled by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [Aspire version update notifications](/dotnet/aspire/app-host/configuration#aspire-version-update-notifications).
+Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disabled by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [Aspire version update notifications](https://aspire.dev/app-host/configuration/#aspire-version-update-notifications).
 
 ### 📋 Parameters and connection strings visible in dashboard
 

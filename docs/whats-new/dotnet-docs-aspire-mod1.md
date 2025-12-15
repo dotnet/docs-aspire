@@ -17,7 +17,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
   - Initial draft of diagnostic redesign
   - Fix the Python article
 - [Quickstart: Build your first Aspire solution](../get-started/build-your-first-aspire-app.md) - Split content
-- [Tutorial: Add Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md) - Update the add aspire to existing tutorial
+- [Tutorial: Add Aspire to an existing .NET app](https://aspire.dev/get-started/add-aspire-existing-app/) - Update the add aspire to existing tutorial
 
 ## Fundamentals
 

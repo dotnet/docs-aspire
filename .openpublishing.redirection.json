@@ -871,6 +871,38 @@
     {
       "source_path_from_root": "/docs/service-discovery/overview.md",
       "redirect_url": "https://aspire.dev/fundamentals/service-discovery/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/annotations-overview.md",
+      "redirect_url": "https://aspire.dev/fundamentals/annotations-overview/"
+    },
+    {
+      "source_path_from_root": "/docs/app-host/configuration.md",
+      "redirect_url": "https://aspire.dev/app-host/configuration/"
+    },
+    {
+      "source_path_from_root": "/docs/app-host/certificate-trust.md",
+      "redirect_url": "https://aspire.dev/app-host/certificate-trust/"
+    },
+    {
+      "source_path_from_root": "/docs/app-host/eventing.md",
+      "redirect_url": "https://aspire.dev/app-host/eventing/"
+    },
+    {
+      "source_path_from_root": "/docs/app-host/persistent-containers.md",
+      "redirect_url": "https://aspire.dev/app-host/persistent-containers/"
+    },
+    {
+      "source_path_from_root": "/docs/app-host/withdockerfile.md",
+      "redirect_url": "https://aspire.dev/app-host/withdockerfile/"
+    },
+    {
+      "source_path_from_root": "/docs/app-host/executable-resources.md",
+      "redirect_url": "https://aspire.dev/app-host/executable-resources/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/add-aspire-existing-app.md",
+      "redirect_url": "https://aspire.dev/get-started/add-aspire-existing-app/"
     }
   ]
 }

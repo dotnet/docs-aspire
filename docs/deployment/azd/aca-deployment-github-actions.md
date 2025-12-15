@@ -110,7 +110,7 @@ When you add GitHub Actions to an existing multi-project Aspire solution where t
 
 ### When working-directory configuration is needed
 
-The `azd pipeline config` command generates a GitHub Actions workflow that assumes your Aspire AppHost project is in the root directory of your repository. However, in many real-world scenarios, especially when [adding Aspire to existing applications](../../get-started/add-aspire-existing-app.md), the AppHost project might be in a subdirectory.
+The `azd pipeline config` command generates a GitHub Actions workflow that assumes your Aspire AppHost project is in the root directory of your repository. However, in many real-world scenarios, especially when [adding Aspire to existing applications](https://aspire.dev/get-started/add-aspire-existing-app/), the AppHost project might be in a subdirectory.
 
 For example, if your repository structure looks like this:
 

@@ -156,7 +156,7 @@ DCP performs the following tasks:
   - Creates and starts containers.
   - Runs executables with the required arguments and environment variables.
 - Monitors resources:
-  - Provides change notifications about objects managed within DCP, including process IDs, running status, and exit codes (the AppHost subscribes to these changes to manage the [application's lifecycle](../app-host/eventing.md) effectively).
+  - Provides change notifications about objects managed within DCP, including process IDs, running status, and exit codes (the AppHost subscribes to these changes to manage the [application's lifecycle](https://aspire.dev/app-host/eventing/) effectively).
 - Starts the developer dashboard.
 
 Continuing from the [diagram in the previous](#app-host-dcp-flow) section, consider the following diagram that helps to visualize the responsibilities of DCP:

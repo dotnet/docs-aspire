@@ -109,7 +109,7 @@ For more information, see [Aspire dashboard: Resources page](https://aspire.dev/
 
 You can now set the `ASPIRE_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
-For more information, see [Aspire AppHost: Dashboard configuration](../app-host/configuration.md#dashboard).
+For more information, see [Aspire AppHost: Dashboard configuration](https://aspire.dev/app-host/configuration/#dashboard).
 
 ### 🪵 Flexibility with console logs
 

@@ -317,7 +317,7 @@ This generates a single environment variable `PROJECTA_URL` with the HTTPS endpo
 
 Some situations warrant that you reference an existing resource, perhaps one that is deployed to a cloud provider. For example, you might want to reference an Azure database. In this case, you'd rely on the [Execution context](#execution-context) to dynamically determine whether the AppHost is running in "run" mode or "publish" mode. If you're running locally and want to rely on a cloud resource, you can use the `IsRunMode` property to conditionally add the reference. You might choose to instead create the resource in publish mode. Some [hosting integrations](integrations-overview.md#hosting-integrations) support providing a connection string directly, which can be used to reference an existing resource.
 
-Likewise, there might be use cases where you want to integrate Aspire into an existing solution. One common approach is to add the Aspire AppHost project to an existing solution. Within your AppHost, you express dependencies by adding project references to the AppHost and [building out the app model](#define-the-app-model). For example, one project might depend on another. These dependencies are expressed using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method. For more information, see [Add Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md).
+Likewise, there might be use cases where you want to integrate Aspire into an existing solution. One common approach is to add the Aspire AppHost project to an existing solution. Within your AppHost, you express dependencies by adding project references to the AppHost and [building out the app model](#define-the-app-model). For example, one project might depend on another. These dependencies are expressed using the <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference%2A> method. For more information, see [Add Aspire to an existing .NET app](https://aspire.dev/get-started/add-aspire-existing-app/).
 
 ## Execution context
 
@@ -376,7 +376,7 @@ This logic can easily be inverted to connect to an existing Redis resource when 
 - [Orchestrate resources in Aspire](orchestrate-resources.md)
 - [Aspire integrations overview](integrations-overview.md)
 - [Aspire SDK](dotnet-aspire-sdk.md)
-- [Eventing in Aspire](../app-host/eventing.md)
+- [Eventing in Aspire](https://aspire.dev/app-host/eventing/)
 - [Service discovery in Aspire](https://aspire.dev/fundamentals/service-discovery/)
 - [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/)
 - [Expressing external parameters](external-parameters.md)

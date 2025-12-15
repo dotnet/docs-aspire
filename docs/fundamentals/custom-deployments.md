@@ -178,5 +178,5 @@ When using these APIs, follow these guidelines:
 ## See also
 
 - [Publishing and deployment overview](../deployment/overview.md)
-- [Container configuration](../app-host/configuration.md)
-- [Dockerfile integration](../app-host/withdockerfile.md)
+- [Container configuration](https://aspire.dev/app-host/configuration/)
+- [Dockerfile integration](https://aspire.dev/app-host/withdockerfile/)

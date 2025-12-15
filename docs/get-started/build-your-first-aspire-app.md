@@ -240,4 +240,4 @@ For more information, see [Aspire CLI Overview](../cli/overview.md) and [Install
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Tutorial: Add Aspire to an existing .NET app](add-aspire-existing-app.md)
+> [Tutorial: Add Aspire to an existing .NET app](https://aspire.dev/get-started/add-aspire-existing-app/)
