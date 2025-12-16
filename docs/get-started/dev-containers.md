@@ -311,5 +311,5 @@ When using Dev Containers with Aspire, keep the following considerations in mind
 - [Aspire and GitHub Codespaces](github-codespaces.md)
 - [Aspire Dapr integration](https://aspire.dev/integrations/frameworks/dapr/)
 - [Visual Studio Dev Containers](https://aka.ms/vs/devcontainers)
-- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
+- [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)
 - [Dev Containers specification](https://containers.dev/implementors/spec/)

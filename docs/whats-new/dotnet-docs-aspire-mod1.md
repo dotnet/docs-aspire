@@ -13,11 +13,11 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Orchestrate Python apps in Aspire](../get-started/build-aspire-apps-with-python.md)
+- [Orchestrate Python apps in Aspire](https://aspire.dev/get-started/first-app/?lang=python)
   - Initial draft of diagnostic redesign
   - Fix the Python article
-- [Quickstart: Build your first Aspire solution](../get-started/build-your-first-aspire-app.md) - Split content
-- [Tutorial: Add Aspire to an existing .NET app](../get-started/add-aspire-existing-app.md) - Update the add aspire to existing tutorial
+- [Quickstart: Build your first Aspire solution](https://aspire.dev/get-started/first-app/) - Split content
+- [Tutorial: Add Aspire to an existing .NET app](https://aspire.dev/get-started/add-aspire-existing-app/) - Update the add aspire to existing tutorial
 
 ## Fundamentals
 
@@ -28,19 +28,19 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 ### Updated articles
 
 - [Aspire and launch profiles](https://aspire.dev/fundamentals/launch-profiles/) - Rename configs-replace prefix
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md) - Split content
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/) - Split content
 - [Aspire service defaults](https://aspire.dev/fundamentals/service-defaults/) - Update service defaults and add filtering details
 - [Aspire setup and tooling](../fundamentals/setup-tooling.md) - Rename configs-replace prefix
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md) - Add dev-cert details to templates content
-- [Custom HTTP commands in Aspire](../fundamentals/http-commands.md) - Split content
+- [Custom HTTP commands in Aspire](https://aspire.dev/fundamentals/http-commands/) - Split content
 - [Dashboard configuration](https://aspire.dev/dashboard/configuration/) - Rename configs-replace prefix
 - [Enable browser telemetry](https://aspire.dev/dashboard/enable-browser-telemetry/) - Rename configs-replace prefix
 - [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/) - Update the Explore the Aspire Dashboard article for v9.2.0
-- [External parameters](../fundamentals/external-parameters.md) - #3063 - Rename parameter name to not be 'value'
+- [External parameters](https://aspire.dev/fundamentals/external-parameters/) - #3063 - Rename parameter name to not be 'value'
 - [Orchestrate resources in Aspire](../fundamentals/orchestrate-resources.md)
   - Initial draft of diagnostic redesign
   - Split content
-- [Persist Aspire project data using volumes or bind mounts](../fundamentals/persist-data-volumes.md) - Update the "Persist Aspire project data using volumes" article
+- [Persist Aspire project data using volumes or bind mounts](https://aspire.dev/fundamentals/persist-data-volumes/) - Update the "Persist Aspire project data using volumes" article
 - [Security considerations for running the Aspire dashboard](https://aspire.dev/dashboard/security-considerations/) - Rename configs-replace prefix
 - [Standalone Aspire dashboard](https://aspire.dev/dashboard/standalone/) - Rename configs-replace prefix
 
@@ -63,7 +63,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 - [Aspire Azure Service Bus integration](https://aspire.dev/integrations/cloud/azure/azure-service-bus/)
   - Split content
   - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
-- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/azure-web-pubsub/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
+- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/cloud/azure/azure-web-pubsub/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
 - [Aspire NATS integration](https://aspire.dev/integrations/messaging/nats/) - Split content
 - [Aspire RabbitMQ integration](https://aspire.dev/integrations/messaging/rabbitmq/)
   - Split content
@@ -79,7 +79,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
+- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/cloud/azure/azure-key-vault/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
 
 ## Deployment
 

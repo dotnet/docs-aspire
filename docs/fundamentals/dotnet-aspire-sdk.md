@@ -7,7 +7,7 @@ uid: dotnet/aspire/sdk
 
 # Aspire SDK
 
-The Aspire SDK is intended for [_*.AppHost_ projects](app-host-overview.md#apphost-project), which serve as the Aspire orchestrator. These projects are designated by their usage of the `Aspire.AppHost.Sdk` in the project file. The SDK provides a set of features that simplify the development of Aspire apps.
+The Aspire SDK is intended for [_*.AppHost_ projects](https://aspire.dev/get-started/app-host/#apphost-project), which serve as the Aspire orchestrator. These projects are designated by their usage of the `Aspire.AppHost.Sdk` in the project file. The SDK provides a set of features that simplify the development of Aspire apps.
 
 ## Overview
 
@@ -57,4 +57,4 @@ The Aspire SDK dynamically adds references to the [Aspire dashboard](https://asp
 
 When the AppHost project runs, the orchestrator relies on these dependencies to provide the necessary functionality to the AppHost. For more information, see [Aspire orchestration overview][app-host].
 
-[app-host]: xref:dotnet/aspire/app-host
+[app-host]: https://aspire.dev/get-started/app-host/

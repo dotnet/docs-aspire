@@ -160,7 +160,7 @@ Both commands should succeed and return valid results before running your Aspire
 
 ## Aspire dashboard
 
-Aspire templates that expose the [AppHost](app-host-overview.md) project also include a useful developer [dashboard](https://aspire.dev/dashboard/overview/) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
+Aspire templates that expose the [AppHost](https://aspire.dev/get-started/app-host/) project also include a useful developer [dashboard](https://aspire.dev/dashboard/overview/) that's used to monitor and inspect various aspects of your app, such as logs, traces, and environment configurations. This dashboard is designed to improve the local development experience and provides an overview of the overall state and structure of your app.
 
 The Aspire dashboard is only visible while the app is running and starts automatically when you start the _*.AppHost_ project. Visual Studio and Visual Studio Code launch both your app and the Aspire dashboard for you automatically in your browser. If you start the app using the .NET CLI, copy and paste the dashboard URL from the output into your browser, or hold <kbd>Ctrl</kbd> and select the link (if your terminal supports hyperlinks).
 
@@ -188,7 +188,7 @@ You add Aspire integrations to your app like any other NuGet package using Visua
 
     :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add Aspire integration options.":::
 
-For more information on Aspire integrations, see [Aspire integrations overview](integrations-overview.md).
+For more information on Aspire integrations, see [Aspire integrations overview](https://aspire.dev/integrations/overview/).
 
 ### Add hosting packages
 
@@ -220,7 +220,7 @@ You can add Aspire orchestration projects to an existing app using the following
     - A call to `builder.AddServiceDefaults` will be added to the _:::no-loc text="Program.cs":::_ file of your original project.
     - A reference to your original project will be added to the _:::no-loc text="AppHost.cs":::_ file of the _*.AppHost_ project.
 
-For more information on Aspire orchestration, see [Aspire orchestration overview](app-host-overview.md).
+For more information on Aspire orchestration, see [Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 
 ### Enlist in orchestration
 
@@ -257,9 +257,9 @@ The [Aspire Visual Studio Code extension](aspire-vscode-extension.md) provides a
 
 The Aspire CLI (`aspire` command) is a cross-platform tool that provides command-line functionality to create, manage, run, and publish polyglot Aspire projects. Use the Aspire CLI to streamline development workflows and coordinate services for distributed applications.
 
-For more information, see [Aspire CLI Overview](../cli/overview.md) and [Install Aspire CLI](../cli/install.md).
+For more information, see [Aspire CLI Overview](https://aspire.dev/reference/cli/overview/) and [Install Aspire CLI](https://aspire.dev/reference/cli/overview/).
 
 ## See also
 
 - [Use Dev Proxy with Aspire project](/microsoft-cloud/dev/dev-proxy/how-to/use-dev-proxy-with-dotnet-aspire)
-- [Aspire CLI Overview](../cli/overview.md)
+- [Aspire CLI Overview](https://aspire.dev/reference/cli/overview/)

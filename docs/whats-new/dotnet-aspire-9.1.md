@@ -109,7 +109,7 @@ For more information, see [Aspire dashboard: Resources page](https://aspire.dev/
 
 You can now set the `ASPIRE_DASHBOARD_CORS_ALLOWED_ORIGINS` environment variable to allow the dashboard to receive telemetry from other browser apps, such as if you have resources running on custom localhost domains.
 
-For more information, see [Aspire AppHost: Dashboard configuration](../app-host/configuration.md#dashboard).
+For more information, see [Aspire AppHost: Dashboard configuration](https://aspire.dev/app-host/configuration/#dashboard).
 
 ### 🪵 Flexibility with console logs
 
@@ -159,11 +159,11 @@ This release introduces a more robust approach to managing socket addresses, ens
 
 ## 🔌 Integration updates
 
-Aspire continues to excel through its [integrations](../fundamentals/integrations-overview.md) with various platforms. This release includes numerous updates to existing integrations and details about ownership migrations, enhancing the overall functionality and user experience.
+Aspire continues to excel through its [integrations](https://aspire.dev/integrations/overview/) with various platforms. This release includes numerous updates to existing integrations and details about ownership migrations, enhancing the overall functionality and user experience.
 
 ### ☁️ Azure updates
 
-This release also focused on improving various [Azure integrations](https://aspire.dev/integrations/cloud/azure/):
+This release also focused on improving various [Azure integrations](https://aspire.dev/integrations/cloud/azure/overview/):
 
 #### 🆕 New emulators
 
@@ -171,7 +171,7 @@ We're excited to bring new emulators for making local development easier. The fo
 
 - [Azure Service Bus](https://aspire.dev/integrations/cloud/azure/azure-service-bus/#add-azure-service-bus-emulator-resource)
 - [Azure Cosmos DB Linux-based (preview)](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#use-linux-based-emulator-preview)
-- [Azure SignalR](/azure/azure-signalr/signalr-howto-emulator)
+- [Azure SignalR](https://aspire.dev/integrations/cloud/azure/azure-signalr/#add-an-azure-signalr-service-emulator-resource)
 
 ```csharp
 var serviceBus = builder.AddAzureServiceBus("servicebus")
@@ -187,7 +187,7 @@ var signalr = builder.AddAzureSignalR("signalr", AzureSignalRServiceMode.Serverl
 
 These new emulators work side-by-side with the existing emulators for:
 
-- [Azure Storage](https://aspire.dev/integrations/cloud/azure/azure-storage/)
+- [Azure Storage](https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/)
 - [Azure Event Hubs](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/#add-azure-event-hubs-emulator-resource)
 - [Azure Cosmos DB](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#add-azure-cosmos-db-emulator-resource)
 
@@ -242,7 +242,7 @@ public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
 }
 ```
 
-For more information using Azure Functions with Aspire, see [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/compute/azure-functions/).
+For more information using Azure Functions with Aspire, see [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/cloud/azure/azure-functions/).
 
 #### 🚚 Service Bus and Event Hubs
 
@@ -255,7 +255,7 @@ For more information, see the following updated articles:
 
 #### ♻️ Working with existing resources
 
-There's consistent feedback about making it easier to connect to existing Azure resources in Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly by `string` name, or with [app model parameters](../fundamentals/external-parameters.md) which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
+There's consistent feedback about making it easier to connect to existing Azure resources in Aspire. With 9.1, you can now easily connect to an existing Azure resource either directly by `string` name, or with [app model parameters](https://aspire.dev/fundamentals/external-parameters/) which can be changed at deployment time. For example to connect to an Azure Service Bus account, we can use the following code:
 
 ```csharp
 var existingServiceBusName = builder.AddParameter("serviceBusName");
@@ -265,7 +265,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
                         .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 ```
 
-The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](https://aspire.dev/integrations/cloud/azure/#use-existing-azure-resources).
+The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](https://aspire.dev/integrations/cloud/azure/overview/#use-existing-azure-resources).
 
 #### 🌍 Azure Container Apps
 

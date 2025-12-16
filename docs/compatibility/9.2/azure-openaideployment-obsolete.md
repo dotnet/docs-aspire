@@ -8,7 +8,7 @@ ms.custom: https://github.com/dotnet/docs-aspire/issues/3059
 
 # AzureOpenAIDeployment obsolete
 
-In Aspire 9.2, Azure OpenAI deployments are modeled as Aspire child resources instead of simple objects. This change aligns with the design of other [hosting integrations](../../fundamentals/integrations-overview.md#hosting-integrations) and enables referencing deployments using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*>. As a result, the previous APIs for adding deployments are now obsolete.
+In Aspire 9.2, Azure OpenAI deployments are modeled as Aspire child resources instead of simple objects. This change aligns with the design of other [hosting integrations](https://aspire.dev/integrations/overview/#hosting-integrations) and enables referencing deployments using <xref:Aspire.Hosting.ResourceBuilderExtensions.WithReference*>. As a result, the previous APIs for adding deployments are now obsolete.
 
 ## Version introduced
 

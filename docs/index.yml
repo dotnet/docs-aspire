@@ -15,24 +15,15 @@ metadata:
 
 highlightedContent:
   items:
-  - itemType: overview
-    title: Aspire overview
-    url: get-started/aspire-overview.md
-  - itemType: quickstart
-    title: Build your first Aspire solution
-    url: get-started/build-your-first-aspire-app.md
-  - itemType: concept
-    title: AppHost orchestration
-    url: fundamentals/app-host-overview.md
   - itemType: concept
     title: Aspire integrations
-    url: fundamentals/integrations-overview.md
+    url: https://aspire.dev/integrations/overview/
   - itemType: concept
     title: Service discovery
     url: https://aspire.dev/fundamentals/service-discovery/
   - itemType: deploy
     title: Deploy a Aspire projects
-    url: deployment/overview.md
+    url: https://aspire.dev/deployment/overview/
   - itemType: overview
     title: Aspire dashboard
     url: https://aspire.dev/dashboard/overview/
@@ -46,15 +37,9 @@ conceptualContent:
   items:
   - title: Get Started
     links:
-    - itemType: concept
-      text: Aspire overview
-      url: get-started/aspire-overview.md
-    - itemType: quickstart
-      text: Build your first Aspire solution
-      url: get-started/build-your-first-aspire-app.md
     - itemType: sample
       text: Add a Node.js app to a Aspire project
-      url: get-started/build-aspire-apps-with-nodejs.md
+      url: https://aspire.dev/integrations/frameworks/javascript/
     - itemType: how-to-guide
       text: Aspire setup and tooling
       url: fundamentals/setup-tooling.md
@@ -75,13 +60,10 @@ conceptualContent:
       url: https://aspire.dev/dashboard/copilot/
     - itemType: overview
       text: Aspire local networking
-      url: fundamentals/networking-overview.md
+      url: https://aspire.dev/fundamentals/networking-overview/
 
   - title: Storage integrations
     links:
-    - itemType: tutorial
-      text: Connect to storage with Aspire
-      url: https://aspire.dev/integrations/cloud/azure/azure-storage/
     - itemType: how-to-guide
       text: Azure Blob Storage
       url: https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/
@@ -93,7 +75,7 @@ conceptualContent:
       url: https://aspire.dev/integrations/cloud/azure/azure-storage-tables/
     - itemType: sample
       text: Persist volume mount sample
-      url: /samples/dotnet/aspire-samples/aspire-volume-mount/
+      url: https://aspire.dev/fundamentals/persist-data-volumes/
 
   - title: Database integrations
     links:
@@ -102,25 +84,25 @@ conceptualContent:
       url: https://aspire.dev/integrations/databases/sql-server/
     - itemType: how-to-guide
       text: PostgreSQL database
-      url: https://aspire.dev/integrations/databases/postgres/
+      url: https://aspire.dev/integrations/databases/postgres/postgres-get-started/
     - itemType: how-to-guide
       text: PostgreSQL with EF Core
-      url: https://aspire.dev/integrations/databases/postgres-ef/
+      url: https://aspire.dev/integrations/databases/efcore/postgresql/
     - itemType: how-to-guide
       text: Azure Cosmos DB
       url: https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/
     - itemType: how-to-guide
       text: Azure Cosmos DB with EF Core
-      url: https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/
+      url: https://aspire.dev/integrations/databases/efcore/azure-cosmos-db/
     - itemType: how-to-guide
       text: SQL Database
       url: https://aspire.dev/integrations/databases/sql-server/
     - itemType: how-to-guide
       text: SQL Database with EF Core
-      url: https://aspire.dev/integrations/databases/sql-server/
+      url: https://aspire.dev/integrations/databases/efcore/sql-server/
     - itemType: how-to-guide
       text: Entity Framework Core migrations
-      url: https://aspire.dev/integrations/databases/ef-core-migrations/
+      url: https://aspire.dev/integrations/databases/efcore/migrations/
     - itemType: how-to-guide
       text: MySqlConnector Database
       url: https://aspire.dev/integrations/databases/mysql/
@@ -130,9 +112,6 @@ conceptualContent:
 
   - title: Messaging integrations
     links:
-    - itemType: tutorial
-      text: Implement Messaging with Aspire
-      url: https://aspire.dev/integrations/messaging/
     - itemType: overview
       text: Azure Event Hubs
       url: https://aspire.dev/integrations/cloud/azure/azure-event-hubs/
@@ -154,12 +133,6 @@ conceptualContent:
 
   - title: Caching integrations
     links:
-    - itemType: tutorial
-      text: Improve app caching with Aspire
-      url: https://aspire.dev/integrations/caching/
-    - itemType: overview
-      text: Stack Exchange Redis caching overview
-      url: https://aspire.dev/integrations/caching/redis/
     - itemType: how-to-guide
       text: Redis caching
       url: https://aspire.dev/integrations/caching/redis/
@@ -175,9 +148,6 @@ conceptualContent:
     - itemType: overview
       text: Use Orleans with Aspire
       url: https://aspire.dev/integrations/frameworks/orleans/
-    - itemType: sample
-      text: Orleans voting sample
-      url: /samples/dotnet/aspire-samples/orleans-voting-sample-app-on-aspire/
     - itemType: overview
       text: Use Dapr with Aspire
       url: https://aspire.dev/integrations/frameworks/dapr/
@@ -189,26 +159,25 @@ conceptualContent:
     links:
     - itemType: overview
       text: Overview
-      url: deployment/overview.md
+      url: https://aspire.dev/deployment/overview/
     - itemType: deploy
       text: Deploy to Azure Container Apps
-      url: deployment/azure/aca-deployment.md
+      url: https://aspire.dev/deployment/azure/aca-deployment-aspire-cli/
     - itemType: deploy
-      text: Deploy using the Azure Developer CLI
-      url: deployment/azure/aca-deployment-azd-in-depth.md
+      text: Building custom deployment pipelines
+      url: https://aspire.dev/deployment/custom-deployments/
     - itemType: how-to-guide
-      text: Integrate with Application Insights
-      url: deployment/azure/application-insights.md
+      text: Deployment state caching
+      url: https://aspire.dev/deployment/deployment-state-caching/
     - itemType: reference
       text: Aspire deployment manifest format
-      url: deployment/manifest-format.md
+      url: https://aspire.dev/deployment/manifest-format/
 
   - title: Troubleshooting
     links:
     - itemType: how-to-guide
       text: Allow unsecure transport
       url: troubleshooting/allow-unsecure-transport.md
-
     - itemType: how-to-guide
       text: Untrusted localhost certificate
       url: troubleshooting/untrusted-localhost-certificate.md
@@ -227,27 +196,6 @@ conceptualContent:
     - itemType: reference
       text: Stack Overflow — Aspire
       url: https://stackoverflow.com/questions/tagged/dotnet-aspire
-
-  - title: Training
-    links:
-    - itemType: training
-      text: Introduction to Aspire
-      url: /training/modules/introduction-dotnet-aspire
-    - itemType: training
-      text: Create a Aspire project
-      url: /training/modules/create-aspire-applications
-    - itemType: training
-      text: Use telemetry in a Aspire project
-      url: /training/modules/use-telemetry-dotnet-aspire
-    - itemType: training
-      text: Use databases in a Aspire project
-      url: /training/modules/use-databases-dotnet-aspire-app/
-    - itemType: training
-      text: Improve performance with a cache in a Aspire project
-      url: /training/modules/improve-performance-cache-aspire/
-    - itemType: training
-      text: Send messages with RabbitMQ in a Aspire project
-      url: /training/modules/send-messages-rabbitmq-dotnet-aspire-app/
 
 additionalContent:
   sections:

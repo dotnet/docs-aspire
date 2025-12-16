@@ -128,8 +128,8 @@ The Docker hosting integration captures environment variables from your app mode
 
 ## Next steps
 
-- [Deploy Aspire projects to Azure Container Apps using the Aspire CLI](aspire-deploy/aca-deployment-aspire-cli.md)
-- [Building custom deployment pipelines](../fundamentals/custom-deployments.md)
+- [Deploy Aspire projects to Azure Container Apps using the Aspire CLI](https://aspire.dev/deployment/azure/aca-deployment-aspire-cli/)
+- [Building custom deployment pipelines](https://aspire.dev/deployment/custom-deployments/)
 - [Docker Compose to AppHost API reference](../get-started/docker-compose-to-apphost-reference.md)
-- [Aspire integrations](../fundamentals/integrations-overview.md)
+- [Aspire integrations](https://aspire.dev/integrations/overview/)
 - [Aspire GitHub repo](https://github.com/dotnet/aspire)

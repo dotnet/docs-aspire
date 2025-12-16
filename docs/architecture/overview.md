@@ -37,7 +37,7 @@ Most importantly, the translation process itself is highly extensible. You can d
 
 ### Modality and extensibility
 
-Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](../fundamentals/integrations-overview.md). Each integration simplifies working with a common service, framework, or platform, such as Redis, PostgreSQL, Azure services, or Orleans, for example. These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
+Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](https://aspire.dev/integrations/overview/). Each integration simplifies working with a common service, framework, or platform, such as Redis, PostgreSQL, Azure services, or Orleans, for example. These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
 
 Why is modality important when it comes to the AppHost's execution context? This is because it allows you to define your app model once and with the appropriate APIs, specify how resources operate in each mode. Consider the following collection of resources:
 
@@ -79,11 +79,11 @@ https://mermaid.live/edit#pako:eNptUl1vozAQ_CvWPrUSTQkQQlBViYRWRbrecQWp0tV92IAbr
 
 :::image type="content" source="media/publish-app-topology-thumb.png" alt-text="Published app topology" lightbox="media/publish-app-topology.png":::
 
-For more information on how to use publish mode, see [Aspire deployments](../deployment/overview.md).
+For more information on how to use publish mode, see [Aspire deployments](https://aspire.dev/deployment/overview/).
 
 ## Dev-time orchestration
 
-In run mode, [the AppHost orchestrates](../fundamentals/app-host-overview.md) all resources defined in your app model. But how does it achieve this?
+In run mode, [the AppHost orchestrates](https://aspire.dev/get-started/app-host/) all resources defined in your app model. But how does it achieve this?
 
 > [!IMPORTANT]
 > The AppHost isn't a production runtime. It's a development-time orchestration tool that simplifies the process of running and debugging your application locally.
@@ -120,7 +120,7 @@ In this section, several key questions are answered to help you understand how t
 
 The orchestration process follows a layered architecture. At its core, the AppHost represents the developer's desired view of the distributed application's resources. DCP ensures that this desired state is realized by orchestrating the resources and maintaining consistency.
 
-The [app model](../fundamentals/app-host-overview.md#define-the-app-model) serves as a blueprint for DCP to orchestrate your application. Under the hood, the AppHost is a .NET console application powered by the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. This package includes build targets that register orchestration dependencies, enabling seamless dev-time orchestration.
+The [app model](https://aspire.dev/get-started/app-host/#define-the-app-model) serves as a blueprint for DCP to orchestrate your application. Under the hood, the AppHost is a .NET console application powered by the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. This package includes build targets that register orchestration dependencies, enabling seamless dev-time orchestration.
 
 DCP is a Kubernetes-compatible API server, meaning it uses the same network protocols and conventions as Kubernetes. This compatibility allows the Aspire AppHost to leverage existing Kubernetes libraries for communication. Specifically, the AppHost contains an implementation of the `k8s.KubernetesClient` (from the [📦 KubernetesClient](https://www.nuget.org/packages/KubernetesClient) NuGet package), which is a .NET client for Kubernetes. This client is used to communicate with the DCP API server, enabling the AppHost to delegate orchestration tasks to DCP.
 
@@ -130,7 +130,7 @@ When you run the AppHost, it performs the first step of "lowering" by translatin
 
 :::image type="content" source="media/app-host-dcp-flow-thumb.png" alt-text="A flow diagram depicting how the AppHost delegates to DCP." lightbox="media/app-host-dcp-flow.png":::
 
-For more information on the AppHost and APIs for building the app model, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).
+For more information on the AppHost and APIs for building the app model, see [Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 
 ### Developer Control Plane
 
@@ -156,7 +156,7 @@ DCP performs the following tasks:
   - Creates and starts containers.
   - Runs executables with the required arguments and environment variables.
 - Monitors resources:
-  - Provides change notifications about objects managed within DCP, including process IDs, running status, and exit codes (the AppHost subscribes to these changes to manage the [application's lifecycle](../app-host/eventing.md) effectively).
+  - Provides change notifications about objects managed within DCP, including process IDs, running status, and exit codes (the AppHost subscribes to these changes to manage the [application's lifecycle](https://aspire.dev/app-host/eventing/) effectively).
 - Starts the developer dashboard.
 
 Continuing from the [diagram in the previous](#app-host-dcp-flow) section, consider the following diagram that helps to visualize the responsibilities of DCP:
@@ -167,7 +167,7 @@ Continuing from the [diagram in the previous](#app-host-dcp-flow) section, consi
 
 DCP logs are streamed back to the AppHost, which then forwards them to the developer dashboard. While the developer dashboard exposes commands such as start, stop, and restart, these commands are not part of DCP itself. Instead, they are implemented by the app model runtime, specifically within its "dashboard service" component. These commands operate by manipulating DCP objects—creating new ones, deleting old ones, or updating their properties. For example, restarting a .NET project involves stopping and deleting the existing <xref:Aspire.Hosting.ApplicationModel.ExecutableResource> representing the project and creating a new one with the same specifications.
 
-For more information on container networking, see [How container networks are managed](../fundamentals/networking-overview.md#how-container-networks-are-managed).
+For more information on container networking, see [How container networks are managed](https://aspire.dev/fundamentals/networking-overview/#how-container-networks-are-managed).
 
 ## Developer dashboard
 
@@ -181,7 +181,7 @@ The dashboard provides a user-friendly interface for inspecting resource states,
 
 The dashboard provides a set of commands for managing resources, such as start, stop, and restart. While commands appear as intuitive actions in the dashboard UI, under the hood, they operate by manipulating DCP objects. For more information, see [Stop or Start a resource](https://aspire.dev/dashboard/explore/#stop-or-start-a-resource).
 
-In addition to these built-in commands, you can define custom commands tailored to your application's needs. These custom commands are registered in the app model and seamlessly integrated into the dashboard, providing enhanced flexibility and control. Learn more about custom commands in [Custom resource commands in Aspire](../fundamentals/custom-resource-commands.md).
+In addition to these built-in commands, you can define custom commands tailored to your application's needs. These custom commands are registered in the app model and seamlessly integrated into the dashboard, providing enhanced flexibility and control. Learn more about custom commands in [Custom resource commands in Aspire](https://aspire.dev/fundamentals/custom-resource-commands/).
 
 ### Real-time log streaming
 
@@ -191,5 +191,5 @@ The developer dashboard is more than just a tool—it's your command center for 
 
 ## See also
 
-- [Orchestration overview](../fundamentals/app-host-overview.md)
+- [Orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/)

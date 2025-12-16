@@ -134,7 +134,7 @@ Just like in local development, the configuration of connection strings has been
 :::image type="content" loc-scope="azure" source="../media/azd-aca-variables.png" lightbox="../media/azd-aca-variables.png" alt-text="A screenshot of environment variables in the webfrontend container app.":::
 
 For more information on how Aspire projects handle connection strings and service discovery, see
-[Aspire orchestration overview](../../fundamentals/app-host-overview.md).
+[Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 
 ### Deploy application updates
 

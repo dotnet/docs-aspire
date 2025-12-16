@@ -73,4 +73,4 @@ For detailed migration guidance, see:
 
 - **Testing**: Aspire provides [testing capabilities](https://aspire.dev/testing/overview/) that work with the new hosting model.
 
-For more information about Aspire integrations and the hosting model, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
+For more information about Aspire integrations and the hosting model, see [Aspire integrations overview](https://aspire.dev/integrations/overview/).

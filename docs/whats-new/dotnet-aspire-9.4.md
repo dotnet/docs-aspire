@@ -60,7 +60,7 @@ This will install the CLI and put it on your PATH (the binaries are placed in th
 dotnet tool install -g Aspire.Cli
 ```
 
-For more information, see [Install Aspire CLI](../cli/install.md) and [aspire-install script reference](../cli/install-script-reference.md).
+For more information, see [Install Aspire CLI](https://aspire.dev/reference/cli/overview/) and [aspire-install script reference](https://aspire.dev/reference/cli/overview/).
 
 > [!NOTE]
 > ⚠️ **The Aspire 9.4 CLI is not compatible with Aspire 9.3 projects.**
@@ -106,7 +106,7 @@ aspire exec --start-resource my-worker -- npm run build
 
 #### `aspire deploy`
 
-The `aspire deploy` command supports extensible deployment workflows through the new [`DeployingCallbackAnnotation`](../fundamentals/annotations-overview.md), enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
+The `aspire deploy` command supports extensible deployment workflows through the new [`DeployingCallbackAnnotation`](https://aspire.dev/fundamentals/annotations-overview/), enabling custom pre/post-deploy logic and richer integration with external systems during deployment operations.
 
 **Key capabilities:**
 
@@ -233,7 +233,7 @@ For more information about publishing and deploying Aspire apps, see [aspire dep
 
 ### 🎛️ Interaction service
 
-Aspire 9.4 introduces the [interaction service](../extensibility/interaction-service.md), a general service that allows developers to build rich experiences at runtime by extending the dashboard UX and at publish and deploy time using the Aspire CLI. It allows you to build complex interactions where input is required from the user.
+Aspire 9.4 introduces the [interaction service](https://aspire.dev/extensibility/interaction-service/), a general service that allows developers to build rich experiences at runtime by extending the dashboard UX and at publish and deploy time using the Aspire CLI. It allows you to build complex interactions where input is required from the user.
 
 > [!IMPORTANT]
 > 🧪 This feature is experimental and may change in future releases.
@@ -440,7 +440,7 @@ var api = builder.AddProject<Projects.Api>("api")
 builder.Build().Run();
 ```
 
-For more information, including supported input types, see the [Interaction Service section](#-interaction-service) below or the full [interaction service docs](../extensibility/interaction-service.md).
+For more information, including supported input types, see the [Interaction Service section](#-interaction-service) below or the full [interaction service docs](https://aspire.dev/extensibility/interaction-service/).
 
 ### 🌐 External service modeling
 
@@ -468,7 +468,7 @@ External services appear in the Aspire dashboard with health status, can be refe
 
 ### 🔗 Enhanced endpoint URL support
 
-Aspire 9.4 introduces support for [non-localhost URLs](../fundamentals/networking-overview.md), making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
+Aspire 9.4 introduces support for [non-localhost URLs](https://aspire.dev/fundamentals/networking-overview/), making it easier to work with custom domains and network configurations. This includes support for `*.localhost` subdomains and automatic generation of multiple URL variants for endpoints listening on multiple addresses.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -512,7 +512,7 @@ This simplifies development workflows where custom domains or external network a
 
 ### 🐳 Enhanced persistent container support
 
-Aspire 9.4 improves support for [persistent containers](../app-host/persistent-containers.md) with better lifecycle management and networking capabilities, ensuring containers can persist across application restarts while maintaining proper connectivity.
+Aspire 9.4 improves support for [persistent containers](https://aspire.dev/app-host/persistent-containers/) with better lifecycle management and networking capabilities, ensuring containers can persist across application restarts while maintaining proper connectivity.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -640,7 +640,7 @@ public async Task Should_ResetCache_WhenTestStarts()
 
 ### 🔄 Resource lifecycle events
 
-Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](../app-host/eventing.md#apphost-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
+Aspire 9.4 introduces convenient extension methods on <xref:Aspire.Hosting.ApplicationModel.IResourceBuilder`1> that make it much easier to subscribe to [lifecycle events](https://aspire.dev/app-host/eventing/#apphost-life-cycle-events) directly on resources, providing a cleaner and more intuitive API.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -768,7 +768,7 @@ var dynamicContainer = builder.AddContainer("worker", "worker:latest")
 builder.Build().Run();
 ```
 
-The [enhanced APIs](../fundamentals/persist-data-volumes.md) handle file permissions, ownership, and provide both static and dynamic file mounting capabilities while maintaining the flexibility to customize when needed.
+The [enhanced APIs](https://aspire.dev/fundamentals/persist-data-volumes/) handle file permissions, ownership, and provide both static and dynamic file mounting capabilities while maintaining the flexibility to customize when needed.
 
 ### ✨ Advanced YARP routing with transform APIs (Preview)
 
@@ -870,7 +870,7 @@ This eliminates the need for complex YARP configuration files while providing co
 
 ### 🔒 Enhanced Docker Compose deployment security
 
-Aspire 9.4 improves [Docker Compose publish](../deployment/overview.md) security with smart port mapping - only external endpoints are exposed to the host while internal services use Docker's internal networking.
+Aspire 9.4 improves [Docker Compose publish](https://aspire.dev/deployment/overview/) security with smart port mapping - only external endpoints are exposed to the host while internal services use Docker's internal networking.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -914,7 +914,7 @@ When a newer version is detected, a friendly notification appears in the Aspire 
 
 :::image type="content" source="media/dashboard-update-notification.png" lightbox="media/dashboard-update-notification.png" alt-text="Screenshot of dashboard showing an update notification.":::
 
-Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disabled by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [Aspire version update notifications](/dotnet/aspire/app-host/configuration#aspire-version-update-notifications).
+Aspire only shows notifications when a newer version is available, and the checks happen in the background without impacting application startup or performance. The upgrade check system can be disabled by setting the `ASPIRE_VERSION_CHECK_DISABLED` environment variable to `true`. For more information, see [Aspire version update notifications](https://aspire.dev/app-host/configuration/#aspire-version-update-notifications).
 
 ### 📋 Parameters and connection strings visible in dashboard
 
@@ -1010,7 +1010,7 @@ var chatService = builder.AddProject<Projects.ChatService>("chat")
 builder.Build().Run();
 ```
 
-The [GitHub Models integration](https://aspire.dev/integrations/github-models/) provides:
+The [GitHub Models integration](https://aspire.dev/integrations/ai/github-models/) provides:
 
 - **Simple model integration** with GitHub's hosted AI models
 - **Automatic API key parameter creation** with the pattern `{name}-gh-apikey`
@@ -1063,7 +1063,7 @@ builder.Build().Run();
 
 #### Client integration
 
-Once you've configured the [Azure AI Foundry resource](https://aspire.dev/integrations/azure-ai-foundry/) in your AppHost, consume it in your services using the [Azure AI Inference SDK](https://aspire.dev/integrations/azure-ai-inference/) or [OpenAI SDK](https://aspire.dev/integrations/cloud/azure/azure-openai/) for compatible models:
+Once you've configured the [Azure AI Foundry resource](https://aspire.dev/integrations/cloud/azure/azure-ai-foundry/) in your AppHost, consume it in your services using the [Azure AI Inference SDK](https://aspire.dev/integrations/cloud/azure/azure-ai-inference/) or [OpenAI SDK](https://aspire.dev/integrations/cloud/azure/azure-openai/) for compatible models:
 
 **Using Azure AI Inference SDK:**
 
@@ -1244,7 +1244,7 @@ This approach provides:
 
 #### 🔐 Disabled local authentication to enforce managed identity
 
-Aspire 9.4 automatically disables local authentication for [Azure EventHubs](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/) and [Azure Web PubSub](https://aspire.dev/integrations/azure-web-pubsub/) resources, enforcing managed identity authentication by default.
+Aspire 9.4 automatically disables local authentication for [Azure EventHubs](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/) and [Azure Web PubSub](https://aspire.dev/integrations/cloud/azure/azure-web-pubsub/) resources, enforcing managed identity authentication by default.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1268,7 +1268,7 @@ This change automatically applies to all Azure EventHubs and Web PubSub resource
 
 ### 🔐 Azure Key Vault enhancements
 
-Aspire 9.4 introduces significant improvements to the [Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/) with new secret management APIs that provide strongly typed access to secrets:
+Aspire 9.4 introduces significant improvements to the [Azure Key Vault integration](https://aspire.dev/integrations/cloud/azure/azure-key-vault/) with new secret management APIs that provide strongly typed access to secrets:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1356,7 +1356,7 @@ This approach provides clean separation of concerns, secure container scoping, a
 
 ### 📡 OpenTelemetry tracing support for Azure App Configuration
 
-Aspire 9.4 introduces **OpenTelemetry tracing support** for [Azure App Configuration](https://aspire.dev/integrations/azure-app-configuration/), completing the observability story for this integration. The Azure App Configuration integration now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
+Aspire 9.4 introduces **OpenTelemetry tracing support** for [Azure App Configuration](https://aspire.dev/integrations/cloud/azure/azure-app-configuration/), completing the observability story for this integration. The Azure App Configuration integration now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -1425,7 +1425,7 @@ This feature bridges the gap between container development and Azure App Service
 
 ### 🏗️ Improvements to the Azure Container Apps integration
 
-Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. Aspire 9.4 enhances the [Container Apps integration](https://aspire.dev/integrations/azure-container-apps/) with support for existing Azure resources and improved configuration.
+Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. Aspire 9.4 enhances the [Container Apps integration](https://aspire.dev/integrations/cloud/azure/configure-container-apps/) with support for existing Azure resources and improved configuration.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

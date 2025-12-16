@@ -4,14 +4,6 @@ items:
 
 - name: Get Started
   items:
-  - name: Aspire overview
-    displayName: aspire overview,architecture,key concepts,Kubernetes,k8s
-    href: get-started/aspire-overview.md
-  - name: Build your first Aspire solution
-    displayName: quickstart,first app,aspire app
-    href: get-started/build-your-first-aspire-app.md
-  - name: Add Aspire to an existing solution
-    href: get-started/add-aspire-existing-app.md
   - name: Migrate to Aspire
     items:
     - name: From Docker Compose
@@ -41,9 +33,6 @@ items:
 
 - name: AppHost
   items:
-  - name: Overview
-    displayName: orchestration,aspire apphost,aspire app,dev-time,inner-loop
-    href: fundamentals/app-host-overview.md
   - name: Architecture overview
     displayName: aspire architecture,aspire app,aspire apphost,aspire app model
     href: architecture/overview.md
@@ -52,92 +41,16 @@ items:
     - name: Resources in Aspire
       displayName: orchestration,aspire apphost,aspire app
       href: fundamentals/orchestrate-resources.md
-    - name: Node.js apps in Aspire
-      href: get-started/build-aspire-apps-with-nodejs.md
-      displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
-    - name: Python apps in Aspire
-      displayName: python,flask,fastapi
-      href: get-started/build-aspire-apps-with-python.md
-  - name: AppHost configuration
-    href: app-host/configuration.md
-  - name: Certificate trust customization
-    href: app-host/certificate-trust.md
-    displayName: certificate trust,TLS,HTTPS,development certificate,certificate authority
   - name: Customize resources
-    items:
-    - name: Persistent container services
-      href: app-host/persistent-containers.md
-      displayName: persistent containers,container lifetime,withlifetime
-    - name: Custom resource commands
-      href: fundamentals/custom-resource-commands.md
-      displayName: withcommand
-    - name: Custom HTTP commands
-      href: fundamentals/http-commands.md
-      displayName: withhttpcommand,
-    - name: Custom resource URLs
-      displayName: withurl,withurlforendpoint,withurls
-      href: fundamentals/custom-resource-urls.md
-  - name: Host external executables
-    href: app-host/executable-resources.md
-    displayName: executable,addexecutable,external apps,cli tools
-  - name: Add Dockerfiles to the app model
-    href: app-host/withdockerfile.md
-    displayName: dockerfile,docker
+    href: https://aspire.dev/fundamentals/custom-resource-commands/
   - name: Networking overview
-    displayName: inner loop,local networking,networking
-    href: fundamentals/networking-overview.md
-  - name: Eventing in Aspire
-    href: app-host/eventing.md
+    href: https://aspire.dev/fundamentals/networking-overview/
   - name: Prompt user from CLI or Dashboard
-    href: extensibility/interaction-service.md
+    href: https://aspire.dev/extensibility/interaction-service/
   - name: Use external parameters
-    displayName: external parameters,configuration
-    href: fundamentals/external-parameters.md
+    href: https://aspire.dev/fundamentals/external-parameters/
   - name: Persist data using volumes
-    displayName: volumes,persist data
-    href: fundamentals/persist-data-volumes.md
-
-- name: Aspire CLI
-  displayName: aspire cli,aspire command line interface,aspire commands,cli
-  items:
-  - name: Overview
-    href: cli/overview.md
-  - name: Install
-    href: cli/install.md
-  - name: Configuration
-    href: cli/config-settings.md
-  - name: aspire-install script reference
-    href: cli/install-script-reference.md
-  - name: aspire command reference
-    items:
-    - name: aspire
-      href: cli-reference/aspire.md
-    - name: aspire add
-      href: cli-reference/aspire-add.md
-    - name: aspire config [command]
-      items:
-      - name: aspire config
-        href: cli-reference/aspire-config.md
-      - name: aspire config list
-        href: cli-reference/aspire-config-list.md
-      - name: aspire config get
-        href: cli-reference/aspire-config-get.md
-      - name: aspire config set
-        href: cli-reference/aspire-config-set.md
-      - name: aspire config delete
-        href: cli-reference/aspire-config-delete.md
-    - name: aspire deploy (Preview)
-      href: cli-reference/aspire-deploy.md
-    - name: aspire exec (Preview)
-      href: cli-reference/aspire-exec.md
-    - name: aspire new
-      href: cli-reference/aspire-new.md
-    - name: aspire publish (Preview)
-      href: cli-reference/aspire-publish.md
-    - name: aspire run
-      href: cli-reference/aspire-run.md
-    - name: aspire update (Preview)
-      href: cli-reference/aspire-update.md
+    href: https://aspire.dev/fundamentals/persist-data-volumes/
 
 - name: Testing
   href: https://aspire.dev/testing/overview/
@@ -149,9 +62,6 @@ items:
     href: https://aspire.dev/fundamentals/service-discovery/
   - name: Service defaults
     href: https://aspire.dev/fundamentals/service-defaults/
-  - name: Resource annotations
-    displayName: annotations,metadata,custom annotations,resource annotations
-    href: fundamentals/annotations-overview.md
   - name: Launch profiles
     href: https://aspire.dev/fundamentals/launch-profiles/
   - name: Telemetry
@@ -164,7 +74,7 @@ items:
   items:
   - name: Overview
     displayName: aspire integrations,integrations,nuget packages,packages
-    href: fundamentals/integrations-overview.md
+    href: https://aspire.dev/integrations/overview/
   - name: Tutorials
     items:
     - name: Caching using Redis integrations
@@ -445,37 +355,14 @@ items:
   - name: Aspire.Hosting API reference
     href: /dotnet/api/?term=Aspire.Hosting&view=dotnet-aspire-9.0&preserve-view=true
 
-- name: Custom integrations
-  items:
-  - name: Create hosting integrations
-    displayName: resources,extensibility,hosting,integrations
-    href: extensibility/custom-hosting-integration.md
-  - name: Create client integrations
-    displayName: custom,extensibility,client,library,integrations
-    href: extensibility/custom-client-integration.md
-  - name: Secure communication between integrations
-    href: extensibility/secure-communication-between-integrations.md
-
 - name: Publish and Deploy
+  href: https://aspire.dev/deployment/overview/
   items:
-  - name: Overview
-    displayName: azure deployment,deployment,Kubernetes,k8s
-    href: deployment/overview.md
-  - name: Building custom deployment pipelines
-    href: fundamentals/custom-deployments.md
-  - name: Deployment state caching
-    href: deployment/deployment-state-caching.md
-    displayName: deployment state,deployment cache,clear-cache,deployment settings,aspire deploy
   - name: Azure deployment with Aspire
     items:
-    - name: Deploy to Azure Container Apps using Aspire CLI
-      href: deployment/aspire-deploy/aca-deployment-aspire-cli.md
     - name: Deploy to Azure Container Apps using Visual Studio
       href: deployment/aspire-deploy/aca-deployment-visual-studio.md
       displayName: azure container apps,vs
-    - name: Azure security best practices
-      href: deployment/aspire-deploy/azure-security-best-practices.md
-      displayName: azure security,security best practices,container security,managed identity
     - name: Use Aspire with Application Insights
       href: deployment/aspire-deploy/application-insights.md
       displayName: app insights
@@ -499,8 +386,6 @@ items:
     - name: Customize Aspire Azure deployments using azd
       href: deployment/azd/customize-deployments.md
       displayName: azd infra synth,azd infra gen,bicep,infrastructure,production
-  - name: Tool-builder manifest schemas
-    href: deployment/manifest-format.md
 
 - name: Troubleshoot
   displayName: troubleshooting
@@ -537,9 +422,6 @@ items:
     href: https://aspire.dev/diagnostics/overview/
   - name: Aspire API reference
     href: /dotnet/api?view=dotnet-aspire-13.0&preserve-view=true
-  - name: Aspire FAQ
-    displayName: iis,functions,deploy,azure,kubernetes
-    href: reference/aspire-faq.yml
   - name: Aspire NuGet profile
     href: https://www.nuget.org/profiles/aspire
 

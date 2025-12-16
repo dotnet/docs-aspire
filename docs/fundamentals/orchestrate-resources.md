@@ -15,7 +15,7 @@ In this article, you learn how to customize the behavior of resources further by
 - **Integration resources**: Integrations often add resources such as databases, caches, and messaging services to your application.
 - **External service**: Represents a third-party API or service that your application depends on but isn't managed by Aspire. Use this for resources like public APIs or SaaS endpoints.
 
-For the fundamentals of Aspire orchestration and how it manages resources, see [Aspire orchestration overview](app-host-overview.md).
+For the fundamentals of Aspire orchestration and how it manages resources, see [Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 
 ## Resource naming conventions
 
@@ -63,7 +63,7 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
        .WaitFor(postgresdb);
 ```
 
-In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [Aspire PostgreSQL integration](https://aspire.dev/integrations/databases/postgres/), but the same pattern can be applied to other resources.
+In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [Aspire PostgreSQL integration](https://aspire.dev/integrations/databases/postgres/postgres-get-started/), but the same pattern can be applied to other resources.
 
 Other cases might warrant waiting for a resource to run to completion, either <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Exited?displayProperty=nameWithType> or <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Finished?displayProperty=nameWithType> before the dependent resource starts. To wait for a resource to run to completion, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*> method:
 
@@ -90,7 +90,7 @@ Waiting for a resource can be bypassed using the **Start** command in the dashbo
 
 ## APIs for adding and expressing resources
 
-Aspire [hosting integrations](integrations-overview.md#hosting-integrations) and [client integrations](integrations-overview.md#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the AppHost, _hosting integrations_ provide APIs for expressing resources and dependencies within the AppHost. For more information, see [Aspire integrations overview: Integration responsibilities](integrations-overview.md#integration-responsibilities).
+Aspire [hosting integrations](https://aspire.dev/integrations/overview/#hosting-integrations) and [client integrations](https://aspire.dev/integrations/overview/#client-integrations) are both delivered as NuGet packages, but they serve different purposes. While _client integrations_ provide client library configuration for consuming apps outside the scope of the AppHost, _hosting integrations_ provide APIs for expressing resources and dependencies within the AppHost. For more information, see [Aspire integrations overview: Integration responsibilities](https://aspire.dev/integrations/overview/#integration-responsibilities).
 
 ## Express container resources
 
@@ -132,7 +132,7 @@ The preceding code adds a container resource named "ollama" with the image `olla
 
 ### Customize container resources
 
-All <xref:Aspire.Hosting.ApplicationModel.ContainerResource> subclasses can be customized to meet your specific requirements. This can be useful when using a [hosting integration](integrations-overview.md#hosting-integrations) that models a container resource, but requires modifications. When you have an `IResourceBuilder<ContainerResource>` you can chain calls to any of the available APIs to modify the container resource. Aspire container resources typically point to pinned tags, but you might want to use the `latest` tag instead.
+All <xref:Aspire.Hosting.ApplicationModel.ContainerResource> subclasses can be customized to meet your specific requirements. This can be useful when using a [hosting integration](https://aspire.dev/integrations/overview/#hosting-integrations) that models a container resource, but requires modifications. When you have an `IResourceBuilder<ContainerResource>` you can chain calls to any of the available APIs to modify the container resource. Aspire container resources typically point to pinned tags, but you might want to use the `latest` tag instead.
 
 To help exemplify this, imagine a scenario where you're using the [Aspire Redis integration](https://aspire.dev/integrations/caching/redis/). If the Redis integration relies on the `7.4` tag and you want to use the `latest` tag instead, you can chain a call to the <xref:Aspire.Hosting.ContainerResourceBuilderExtensions.WithImageTag*> API:
 
@@ -172,7 +172,7 @@ These commands are used instead of `podman run` to manage attached container net
 
 ---
 
-Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](integrations-overview.md#hosting-integrations).
+Beyond the base resource types, <xref:Aspire.Hosting.ApplicationModel.ProjectResource>, <xref:Aspire.Hosting.ApplicationModel.ContainerResource>, and <xref:Aspire.Hosting.ApplicationModel.ExecutableResource>, Aspire provides extension methods to add common resources to your app model. For more information, see [Hosting integrations](https://aspire.dev/integrations/overview/#hosting-integrations).
 
 ### Container resource lifetime
 
@@ -234,7 +234,7 @@ var frontend = builder.AddProject<Projects.Frontend>("frontend")
     .WithReference(externalService);
 ```
 
-When using parameter-based configuration, the URL value can be set through configuration, environment variables, or user secrets. During development, Aspire might prompt you to provide the URL value. For more information, see [External parameters](external-parameters.md).
+When using parameter-based configuration, the URL value can be set through configuration, environment variables, or user secrets. During development, Aspire might prompt you to provide the URL value. For more information, see [External parameters](https://aspire.dev/fundamentals/external-parameters/).
 
 ### External service URL requirements
 
@@ -324,5 +324,5 @@ The preceding example uses <xref:Aspire.Hosting.ResourceBuilderExtensions.WithPa
 
 ## See also
 
-- [Aspire orchestration overview](app-host-overview.md)
-- [Eventing in Aspire](../app-host/eventing.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
+- [Eventing in Aspire](https://aspire.dev/app-host/eventing/)
