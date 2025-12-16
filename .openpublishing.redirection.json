@@ -154,7 +154,7 @@
     },
     {
       "source_path_from_root": "/docs/database/postgresql-entity-framework-component.md",
-      "redirect_url": "https://aspire.dev/integrations/databases/postgres-ef/"
+      "redirect_url": "https://aspire.dev/integrations/databases/efcore/postgresql/"
     },
     {
       "source_path_from_root": "/docs/database/qdrant-component.md",
@@ -522,7 +522,7 @@
     },
     {
       "source_path_from_root": "/docs/database/postgresql-entity-framework-integration.md",
-      "redirect_url": "https://aspire.dev/integrations/databases/postgres-ef/"
+      "redirect_url": "https://aspire.dev/integrations/databases/efcore/postgresql/"
     },
     {
       "source_path_from_root": "/docs/database/milvus-integration.md",
@@ -1047,6 +1047,10 @@
     {
       "source_path_from_root": "/docs/fundamentals/integrations-overview.md",
       "redirect_url": "https://aspire.dev/integrations/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/reference/aspire-faq.yml",
+      "redirect_url": "https://discord.com/invite/h87kDAHQgJ"
     }
   ]
 }

@@ -422,9 +422,6 @@ items:
     href: https://aspire.dev/diagnostics/overview/
   - name: Aspire API reference
     href: /dotnet/api?view=dotnet-aspire-13.0&preserve-view=true
-  - name: Aspire FAQ
-    displayName: iis,functions,deploy,azure,kubernetes
-    href: reference/aspire-faq.yml
   - name: Aspire NuGet profile
     href: https://www.nuget.org/profiles/aspire
 

@@ -63,7 +63,7 @@ builder.AddProject<Projects.AspireApp_ApiService>("apiservice")
        .WaitFor(postgresdb);
 ```
 
-In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [Aspire PostgreSQL integration](https://aspire.dev/integrations/databases/postgres/), but the same pattern can be applied to other resources.
+In the preceding code, the "apiservice" project resource waits for the "postgresdb" database resource to enter the <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Running?displayProperty=nameWithType> state. The example code shows the [Aspire PostgreSQL integration](https://aspire.dev/integrations/databases/postgres/postgres-get-started/), but the same pattern can be applied to other resources.
 
 Other cases might warrant waiting for a resource to run to completion, either <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Exited?displayProperty=nameWithType> or <xref:Aspire.Hosting.ApplicationModel.KnownResourceStates.Finished?displayProperty=nameWithType> before the dependent resource starts. To wait for a resource to run to completion, use the <xref:Aspire.Hosting.ResourceBuilderExtensions.WaitForCompletion*> method:
 

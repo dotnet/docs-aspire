@@ -26,7 +26,7 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 ### Updated articles
 
 - [Aspire MongoDB database integration](https://aspire.dev/integrations/databases/mongodb/) - Documents the issue with deploying data volumes to ACA.
-- [Apply Entity Framework Core migrations in Aspire](https://aspire.dev/integrations/databases/ef-core-migrations/)
+- [Apply Entity Framework Core migrations in Aspire](https://aspire.dev/integrations/databases/efcore/migrations/)
   - Altered EF Core Migrations tutorial to ensure that API waits for the migrations to complete
   - Add Microsoft.EntityFrameworkCore.Tools package guidance to EF Core migrations documentation
 - [Seed data in a database using Aspire](https://aspire.dev/integrations/databases/seed-database/) - Update seeding data article to Aspire 9.3
