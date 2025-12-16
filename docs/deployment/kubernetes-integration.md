@@ -113,7 +113,7 @@ Use [external parameters](https://aspire.dev/fundamentals/external-parameters/) 
 ## See also
 
 - [Deploy to Kubernetes](overview.md#deploy-to-kubernetes)
-- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire integrations overview](https://aspire.dev/integrations/overview/)
 - [Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [Kubernetes documentation](https://kubernetes.io/docs/)
 - [Helm documentation](https://helm.sh/docs/)

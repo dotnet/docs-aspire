@@ -13,13 +13,13 @@ Welcome to what's new in the Aspire docs for May 2025. This article lists some o
 
 ### Updated articles
 
-- [Orchestrate Node.js apps in Aspire](../get-started/build-aspire-apps-with-nodejs.md) - Fix errors in seed-database-data.md
+- [Orchestrate Node.js apps in Aspire](https://aspire.dev/integrations/frameworks/javascript/) - Fix errors in seed-database-data.md
 
 ## Fundamentals
 
 ### Updated articles
 
-- [Aspire integrations overview](../fundamentals/integrations-overview.md) - Documentation for Aspire RavenDB Integration
+- [Aspire integrations overview](https://aspire.dev/integrations/overview/) - Documentation for Aspire RavenDB Integration
 - [Aspire setup and tooling](../fundamentals/setup-tooling.md)
   - Add Rancher Desktop details
   - Update setup-tooling.md to latest Aspire version

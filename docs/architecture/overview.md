@@ -37,7 +37,7 @@ Most importantly, the translation process itself is highly extensible. You can d
 
 ### Modality and extensibility
 
-Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](../fundamentals/integrations-overview.md). Each integration simplifies working with a common service, framework, or platform, such as Redis, PostgreSQL, Azure services, or Orleans, for example. These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
+Aspire operates in two primary modes, each tailored to streamline your specific needs—detailed in the following section. Both modes use a robust set of familiar APIs and a rich ecosystem of [integrations](https://aspire.dev/integrations/overview/). Each integration simplifies working with a common service, framework, or platform, such as Redis, PostgreSQL, Azure services, or Orleans, for example. These integrations work together like puzzle pieces, enabling you to define resources, express dependencies, and configure behavior effortlessly—whether you're running locally or deploying to production.
 
 Why is modality important when it comes to the AppHost's execution context? This is because it allows you to define your app model once and with the appropriate APIs, specify how resources operate in each mode. Consider the following collection of resources:
 

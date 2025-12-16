@@ -159,7 +159,7 @@ This release introduces a more robust approach to managing socket addresses, ens
 
 ## 🔌 Integration updates
 
-Aspire continues to excel through its [integrations](../fundamentals/integrations-overview.md) with various platforms. This release includes numerous updates to existing integrations and details about ownership migrations, enhancing the overall functionality and user experience.
+Aspire continues to excel through its [integrations](https://aspire.dev/integrations/overview/) with various platforms. This release includes numerous updates to existing integrations and details about ownership migrations, enhancing the overall functionality and user experience.
 
 ### ☁️ Azure updates
 

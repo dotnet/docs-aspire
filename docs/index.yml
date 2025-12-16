@@ -17,7 +17,7 @@ highlightedContent:
   items:
   - itemType: concept
     title: Aspire integrations
-    url: fundamentals/integrations-overview.md
+    url: https://aspire.dev/integrations/overview/
   - itemType: concept
     title: Service discovery
     url: https://aspire.dev/fundamentals/service-discovery/
@@ -39,7 +39,7 @@ conceptualContent:
     links:
     - itemType: sample
       text: Add a Node.js app to a Aspire project
-      url: get-started/build-aspire-apps-with-nodejs.md
+      url: https://aspire.dev/integrations/frameworks/javascript/
     - itemType: how-to-guide
       text: Aspire setup and tooling
       url: fundamentals/setup-tooling.md

@@ -258,7 +258,7 @@ For more information, see [Eventing in Aspire](https://aspire.dev/app-host/event
 
 ## Integrations
 
-Aspire continues to add integrations that make it easy to get started with your favorite services and tools. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
+Aspire continues to add integrations that make it easy to get started with your favorite services and tools. For more information, see [Aspire integrations overview](https://aspire.dev/integrations/overview/).
 
 ### Redis Insight
 

@@ -188,7 +188,7 @@ You add Aspire integrations to your app like any other NuGet package using Visua
 
     :::image type="content" loc-scope="visual-studio" source="../media/visual-studio-add-aspire-comp-nuget.png" lightbox="../media/visual-studio-add-aspire-comp-nuget.png" alt-text="The Visual Studio context menu displaying the Add Aspire integration options.":::
 
-For more information on Aspire integrations, see [Aspire integrations overview](integrations-overview.md).
+For more information on Aspire integrations, see [Aspire integrations overview](https://aspire.dev/integrations/overview/).
 
 ### Add hosting packages
 

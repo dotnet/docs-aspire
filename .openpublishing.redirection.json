@@ -214,7 +214,7 @@
     },
     {
       "source_path_from_root": "/docs/messaging/kafka-component.md",
-      "redirect_url": "https://aspire.dev/integrations/messaging/kafka/"
+      "redirect_url": "https://aspire.dev/integrations/messaging/apache-kafka/"
     },
     {
       "source_path_from_root": "/docs/messaging/messaging-components.md",
@@ -558,7 +558,7 @@
     },
     {
       "source_path_from_root": "/docs/messaging/kafka-integration.md",
-      "redirect_url": "https://aspire.dev/integrations/messaging/kafka/"
+      "redirect_url": "https://aspire.dev/integrations/messaging/apache-kafka/"
     },
     {
       "source_path_from_root": "/docs/messaging/azure-event-hubs-integration.md",
@@ -1035,6 +1035,18 @@
     {
       "source_path_from_root": "/docs/fundamentals/custom-resource-urls.md",
       "redirect_url": "https://aspire.dev/fundamentals/custom-resource-urls/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/build-aspire-apps-with-python.md",
+      "redirect_url": "https://aspire.dev/get-started/first-app/?lang=python"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/build-aspire-apps-with-nodejs.md",
+      "redirect_url": "https://aspire.dev/integrations/frameworks/javascript/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/integrations-overview.md",
+      "redirect_url": "https://aspire.dev/integrations/overview/"
     }
   ]
 }

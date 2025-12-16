@@ -41,12 +41,6 @@ items:
     - name: Resources in Aspire
       displayName: orchestration,aspire apphost,aspire app
       href: fundamentals/orchestrate-resources.md
-    - name: Node.js apps in Aspire
-      href: get-started/build-aspire-apps-with-nodejs.md
-      displayName: node.js,node,express,typescript,javascript,spa,client-side,server-side
-    - name: Python apps in Aspire
-      displayName: python,flask,fastapi
-      href: get-started/build-aspire-apps-with-python.md
   - name: Customize resources
     href: https://aspire.dev/fundamentals/custom-resource-commands/
   - name: Networking overview
@@ -80,7 +74,7 @@ items:
   items:
   - name: Overview
     displayName: aspire integrations,integrations,nuget packages,packages
-    href: fundamentals/integrations-overview.md
+    href: https://aspire.dev/integrations/overview/
   - name: Tutorials
     items:
     - name: Caching using Redis integrations

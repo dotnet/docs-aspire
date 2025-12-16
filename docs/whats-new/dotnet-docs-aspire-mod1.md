@@ -13,7 +13,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Orchestrate Python apps in Aspire](../get-started/build-aspire-apps-with-python.md)
+- [Orchestrate Python apps in Aspire](https://aspire.dev/get-started/first-app/?lang=python)
   - Initial draft of diagnostic redesign
   - Fix the Python article
 - [Quickstart: Build your first Aspire solution](https://aspire.dev/get-started/first-app/) - Split content
