@@ -594,7 +594,7 @@
     },
     {
       "source_path_from_root": "/docs/azure/configure-aca-environments.md",
-      "redirect_url": "https://aspire.dev/integrations/compute/azure-container-apps/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/configure-container-apps/"
     },
     {
       "source_path_from_root": "/docs/azure/container-app-jobs.md",

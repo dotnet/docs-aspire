@@ -1425,7 +1425,7 @@ This feature bridges the gap between container development and Azure App Service
 
 ### 🏗️ Improvements to the Azure Container Apps integration
 
-Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. Aspire 9.4 enhances the [Container Apps integration](https://aspire.dev/integrations/compute/azure-container-apps/) with support for existing Azure resources and improved configuration.
+Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. Aspire 9.4 enhances the [Container Apps integration](https://aspire.dev/integrations/cloud/azure/configure-container-apps/) with support for existing Azure resources and improved configuration.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

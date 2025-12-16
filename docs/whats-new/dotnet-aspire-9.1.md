@@ -163,7 +163,7 @@ Aspire continues to excel through its [integrations](https://aspire.dev/integrat
 
 ### ☁️ Azure updates
 
-This release also focused on improving various [Azure integrations](https://aspire.dev/integrations/cloud/azure/):
+This release also focused on improving various [Azure integrations](https://aspire.dev/integrations/cloud/azure/overview/):
 
 #### 🆕 New emulators
 

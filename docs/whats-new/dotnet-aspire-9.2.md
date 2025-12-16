@@ -265,7 +265,7 @@ builder.AddAzureContainerAppEnvironment("my-env")
        .WithAzdResourceNaming();
 ```
 
-For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/compute/azure-container-apps/).
+For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/cloud/azure/configure-container-apps/).
 
 ### 🆕 New Client integrations: Azure PostgreSQL (Npgsql & EF Core)
 
