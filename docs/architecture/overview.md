@@ -83,7 +83,7 @@ For more information on how to use publish mode, see [Aspire deployments](https:
 
 ## Dev-time orchestration
 
-In run mode, [the AppHost orchestrates](../fundamentals/app-host-overview.md) all resources defined in your app model. But how does it achieve this?
+In run mode, [the AppHost orchestrates](https://aspire.dev/get-started/app-host/) all resources defined in your app model. But how does it achieve this?
 
 > [!IMPORTANT]
 > The AppHost isn't a production runtime. It's a development-time orchestration tool that simplifies the process of running and debugging your application locally.
@@ -120,7 +120,7 @@ In this section, several key questions are answered to help you understand how t
 
 The orchestration process follows a layered architecture. At its core, the AppHost represents the developer's desired view of the distributed application's resources. DCP ensures that this desired state is realized by orchestrating the resources and maintaining consistency.
 
-The [app model](../fundamentals/app-host-overview.md#define-the-app-model) serves as a blueprint for DCP to orchestrate your application. Under the hood, the AppHost is a .NET console application powered by the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. This package includes build targets that register orchestration dependencies, enabling seamless dev-time orchestration.
+The [app model](https://aspire.dev/get-started/app-host/#define-the-app-model) serves as a blueprint for DCP to orchestrate your application. Under the hood, the AppHost is a .NET console application powered by the [📦 Aspire.Hosting.AppHost](https://www.nuget.org/packages/Aspire.Hosting.AppHost) NuGet package. This package includes build targets that register orchestration dependencies, enabling seamless dev-time orchestration.
 
 DCP is a Kubernetes-compatible API server, meaning it uses the same network protocols and conventions as Kubernetes. This compatibility allows the Aspire AppHost to leverage existing Kubernetes libraries for communication. Specifically, the AppHost contains an implementation of the `k8s.KubernetesClient` (from the [📦 KubernetesClient](https://www.nuget.org/packages/KubernetesClient) NuGet package), which is a .NET client for Kubernetes. This client is used to communicate with the DCP API server, enabling the AppHost to delegate orchestration tasks to DCP.
 
@@ -130,7 +130,7 @@ When you run the AppHost, it performs the first step of "lowering" by translatin
 
 :::image type="content" source="media/app-host-dcp-flow-thumb.png" alt-text="A flow diagram depicting how the AppHost delegates to DCP." lightbox="media/app-host-dcp-flow.png":::
 
-For more information on the AppHost and APIs for building the app model, see [Aspire orchestration overview](../fundamentals/app-host-overview.md).
+For more information on the AppHost and APIs for building the app model, see [Aspire orchestration overview](https://aspire.dev/get-started/app-host/).
 
 ### Developer Control Plane
 
@@ -191,5 +191,5 @@ The developer dashboard is more than just a tool—it's your command center for 
 
 ## See also
 
-- [Orchestration overview](../fundamentals/app-host-overview.md)
+- [Orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/)

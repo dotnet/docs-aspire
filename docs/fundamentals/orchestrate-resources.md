@@ -234,7 +234,7 @@ var frontend = builder.AddProject<Projects.Frontend>("frontend")
     .WithReference(externalService);
 ```
 
-When using parameter-based configuration, the URL value can be set through configuration, environment variables, or user secrets. During development, Aspire might prompt you to provide the URL value. For more information, see [External parameters](external-parameters.md).
+When using parameter-based configuration, the URL value can be set through configuration, environment variables, or user secrets. During development, Aspire might prompt you to provide the URL value. For more information, see [External parameters](https://aspire.dev/fundamentals/external-parameters/).
 
 ### External service URL requirements
 
