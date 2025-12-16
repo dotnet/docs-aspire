@@ -29,7 +29,7 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 - [Apply Entity Framework Core migrations in Aspire](https://aspire.dev/integrations/databases/efcore/migrations/)
   - Altered EF Core Migrations tutorial to ensure that API waits for the migrations to complete
   - Add Microsoft.EntityFrameworkCore.Tools package guidance to EF Core migrations documentation
-- [Seed data in a database using Aspire](https://aspire.dev/integrations/databases/seed-database/) - Update seeding data article to Aspire 9.3
+- [Seed data in a database using Aspire](https://aspire.dev/integrations/databases/efcore/seed-database/) - Update seeding data article to Aspire 9.3
 
 ## Messaging
 
@@ -41,7 +41,7 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 - [Aspire Azure Service Bus integration](https://aspire.dev/integrations/cloud/azure/azure-service-bus/)
   - Move the "Infrastructure as code" section of the Azure Overview article into a separate article
   - Recommend AsExisting() for Azure Integrations
-- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/azure-web-pubsub/)
+- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/cloud/azure/azure-web-pubsub/)
   - Move the "Infrastructure as code" section of the Azure Overview article into a separate article
   - Recommend AsExisting() for Azure Integrations
 
@@ -49,7 +49,7 @@ Welcome to what's new in the Aspire docs for June 2025. This article lists some 
 
 ### Updated articles
 
-- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/)
+- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/cloud/azure/azure-key-vault/)
   - Move the "Infrastructure as code" section of the Azure Overview article into a separate article
   - Recommend AsExisting() for Azure Integrations
 

@@ -218,7 +218,7 @@ There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issu
 | [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> |
 | [📦 Aspire.Hosting.PostgreSql](https://www.nuget.org/packages/Aspire.Hosting.PostgreSql) | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> |
 
-The Azure SQL and Azure PostgreSQL hosting integrations also expose `AddDatabase` APIs which work with their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](https://aspire.dev/integrations/cloud/azure/#understand-azure-integration-apis).
+The Azure SQL and Azure PostgreSQL hosting integrations also expose `AddDatabase` APIs which work with their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](https://aspire.dev/integrations/cloud/azure/overview/#understand-azure-integration-apis).
 
 By default, Aspire will create an empty database if it doesn't exist. You can also optionally provide a custom script to run during creation for advanced setup or seeding.
 
@@ -238,7 +238,7 @@ postgres.AddDatabase("todoapp")
 
 For more information and examples of using the `AddDatabase` API, see:
 
-- [Add PostgreSQL resource with database scripts](https://aspire.dev/integrations/databases/postgres/#add-postgresql-resource-with-database-scripts)
+- [Add PostgreSQL resource with database scripts](https://aspire.dev/integrations/databases/postgres/postgres-host/#add-postgresql-resource-with-database-scripts)
 - [Add SQL Server resource with database scripts](https://aspire.dev/integrations/databases/sql-server/#add-sql-server-resource-with-database-scripts)
 
 The following hosting integrations don't currently support database creation:
@@ -265,7 +265,7 @@ builder.AddAzureContainerAppEnvironment("my-env")
        .WithAzdResourceNaming();
 ```
 
-For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/azure-container-apps/).
+For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/compute/azure-container-apps/).
 
 ### 🆕 New Client integrations: Azure PostgreSQL (Npgsql & EF Core)
 

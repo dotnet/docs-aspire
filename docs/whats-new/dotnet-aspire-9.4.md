@@ -1010,7 +1010,7 @@ var chatService = builder.AddProject<Projects.ChatService>("chat")
 builder.Build().Run();
 ```
 
-The [GitHub Models integration](https://aspire.dev/integrations/github-models/) provides:
+The [GitHub Models integration](https://aspire.dev/integrations/ai/github-models/) provides:
 
 - **Simple model integration** with GitHub's hosted AI models
 - **Automatic API key parameter creation** with the pattern `{name}-gh-apikey`
@@ -1063,7 +1063,7 @@ builder.Build().Run();
 
 #### Client integration
 
-Once you've configured the [Azure AI Foundry resource](https://aspire.dev/integrations/azure-ai-foundry/) in your AppHost, consume it in your services using the [Azure AI Inference SDK](https://aspire.dev/integrations/azure-ai-inference/) or [OpenAI SDK](https://aspire.dev/integrations/cloud/azure/azure-openai/) for compatible models:
+Once you've configured the [Azure AI Foundry resource](https://aspire.dev/integrations/cloud/azure/azure-ai-foundry/) in your AppHost, consume it in your services using the [Azure AI Inference SDK](https://aspire.dev/integrations/cloud/azure/azure-ai-inference/) or [OpenAI SDK](https://aspire.dev/integrations/cloud/azure/azure-openai/) for compatible models:
 
 **Using Azure AI Inference SDK:**
 
@@ -1244,7 +1244,7 @@ This approach provides:
 
 #### 🔐 Disabled local authentication to enforce managed identity
 
-Aspire 9.4 automatically disables local authentication for [Azure EventHubs](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/) and [Azure Web PubSub](https://aspire.dev/integrations/azure-web-pubsub/) resources, enforcing managed identity authentication by default.
+Aspire 9.4 automatically disables local authentication for [Azure EventHubs](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/) and [Azure Web PubSub](https://aspire.dev/integrations/cloud/azure/azure-web-pubsub/) resources, enforcing managed identity authentication by default.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1268,7 +1268,7 @@ This change automatically applies to all Azure EventHubs and Web PubSub resource
 
 ### 🔐 Azure Key Vault enhancements
 
-Aspire 9.4 introduces significant improvements to the [Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/) with new secret management APIs that provide strongly typed access to secrets:
+Aspire 9.4 introduces significant improvements to the [Azure Key Vault integration](https://aspire.dev/integrations/cloud/azure/azure-key-vault/) with new secret management APIs that provide strongly typed access to secrets:
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);
@@ -1356,7 +1356,7 @@ This approach provides clean separation of concerns, secure container scoping, a
 
 ### 📡 OpenTelemetry tracing support for Azure App Configuration
 
-Aspire 9.4 introduces **OpenTelemetry tracing support** for [Azure App Configuration](https://aspire.dev/integrations/azure-app-configuration/), completing the observability story for this integration. The Azure App Configuration integration now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
+Aspire 9.4 introduces **OpenTelemetry tracing support** for [Azure App Configuration](https://aspire.dev/integrations/cloud/azure/azure-app-configuration/), completing the observability story for this integration. The Azure App Configuration integration now automatically instruments configuration retrieval operations and refresh operations with distributed tracing.
 
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
@@ -1425,7 +1425,7 @@ This feature bridges the gap between container development and Azure App Service
 
 ### 🏗️ Improvements to the Azure Container Apps integration
 
-Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. Aspire 9.4 enhances the [Container Apps integration](https://aspire.dev/integrations/azure-container-apps/) with support for existing Azure resources and improved configuration.
+Managing complex Azure Container Apps environments often requires integrating with existing Azure resources like Log Analytics workspaces. Aspire 9.4 enhances the [Container Apps integration](https://aspire.dev/integrations/compute/azure-container-apps/) with support for existing Azure resources and improved configuration.
 
 ```csharp
 var builder = DistributedApplication.CreateBuilder(args);

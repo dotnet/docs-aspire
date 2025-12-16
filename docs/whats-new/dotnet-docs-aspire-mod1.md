@@ -63,7 +63,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 - [Aspire Azure Service Bus integration](https://aspire.dev/integrations/cloud/azure/azure-service-bus/)
   - Split content
   - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
-- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/azure-web-pubsub/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
+- [Aspire Azure Web PubSub integration](https://aspire.dev/integrations/cloud/azure/azure-web-pubsub/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
 - [Aspire NATS integration](https://aspire.dev/integrations/messaging/nats/) - Split content
 - [Aspire RabbitMQ integration](https://aspire.dev/integrations/messaging/rabbitmq/)
   - Split content
@@ -79,7 +79,7 @@ Welcome to what's new in the Aspire docs for April 2025. This article lists some
 
 ### Updated articles
 
-- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/azure-key-vault/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
+- [Aspire Azure Key Vault integration](https://aspire.dev/integrations/cloud/azure/azure-key-vault/) - Removes obsolete API: Add breaking changes for `AzureOpenAIDeployment` obsoletion
 
 ## Deployment
 

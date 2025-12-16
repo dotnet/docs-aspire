@@ -223,7 +223,7 @@ The container persistence mechanism attempts to identify when you might wish to 
 
 ### Resource commands
 
-The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the AppHost. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [Aspire Community Toolkit](https://aspire.dev/integrations/) might be a good place to share these extensions.
+The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the AppHost. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [Aspire Community Toolkit](https://aspire.dev/integrations/overview/) might be a good place to share these extensions.
 
 When you define a custom command, it's available in the dashboard as a user experience feature.
 
@@ -646,7 +646,7 @@ Support for Azure Functions in Aspire is still in preview with support for a lim
 - [Azure Service Bus triggers](/azure/azure-functions/functions-bindings-service-bus?pivots=programming-language-csharp)
 - [Azure Event Hubs triggers](/azure/azure-functions/functions-bindings-event-hubs?pivots=programming-language-csharp)
 
-For more information, see the official [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/compute/azure-functions/).
+For more information, see the official [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/cloud/azure/azure-functions/).
 
 #### Customization of Azure Container Apps
 

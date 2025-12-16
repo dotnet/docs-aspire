@@ -171,7 +171,7 @@ We're excited to bring new emulators for making local development easier. The fo
 
 - [Azure Service Bus](https://aspire.dev/integrations/cloud/azure/azure-service-bus/#add-azure-service-bus-emulator-resource)
 - [Azure Cosmos DB Linux-based (preview)](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#use-linux-based-emulator-preview)
-- [Azure SignalR](/azure/azure-signalr/signalr-howto-emulator)
+- [Azure SignalR](https://aspire.dev/integrations/cloud/azure/azure-signalr/#add-an-azure-signalr-service-emulator-resource)
 
 ```csharp
 var serviceBus = builder.AddAzureServiceBus("servicebus")
@@ -187,7 +187,7 @@ var signalr = builder.AddAzureSignalR("signalr", AzureSignalRServiceMode.Serverl
 
 These new emulators work side-by-side with the existing emulators for:
 
-- [Azure Storage](https://aspire.dev/integrations/cloud/azure/azure-storage/)
+- [Azure Storage](https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/)
 - [Azure Event Hubs](https://aspire.dev/integrations/cloud/azure/azure-event-hubs/#add-azure-event-hubs-emulator-resource)
 - [Azure Cosmos DB](https://aspire.dev/integrations/cloud/azure/azure-cosmos-db/#add-azure-cosmos-db-emulator-resource)
 
@@ -242,7 +242,7 @@ public class MyCosmosDbTrigger(ILogger<MyCosmosDbTrigger> logger)
 }
 ```
 
-For more information using Azure Functions with Aspire, see [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/compute/azure-functions/).
+For more information using Azure Functions with Aspire, see [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/cloud/azure/azure-functions/).
 
 #### 🚚 Service Bus and Event Hubs
 
@@ -265,7 +265,7 @@ var serviceBus = builder.AddAzureServiceBus("messaging")
                         .AsExisting(existingServiceBusName, existingServiceBusResourceGroup);
 ```
 
-The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](https://aspire.dev/integrations/cloud/azure/#use-existing-azure-resources).
+The preceding code reads the name and resource group from the parameters, and connects to the existing resource when the application is run or deployed. For more information, see [use existing Azure resources](https://aspire.dev/integrations/cloud/azure/overview/#use-existing-azure-resources).
 
 #### 🌍 Azure Container Apps
 
