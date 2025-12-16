@@ -150,7 +150,7 @@
     },
     {
       "source_path_from_root": "/docs/database/postgresql-component.md",
-      "redirect_url": "https://aspire.dev/integrations/databases/postgres/"
+      "redirect_url": "https://aspire.dev/integrations/databases/postgres/postgres-get-started/"
     },
     {
       "source_path_from_root": "/docs/database/postgresql-entity-framework-component.md",
@@ -470,15 +470,15 @@
     },
     {
       "source_path_from_root": "/docs/database/entity-framework-core-integration-overview.md",
-      "redirect_url": "https://aspire.dev/integrations/databases/ef-core/"
+      "redirect_url": "https://aspire.dev/integrations/databases/efcore/overview/"
     },
     {
       "source_path_from_root": "/docs/database/ef-core-migrations.md",
-      "redirect_url": "https://aspire.dev/integrations/databases/ef-core-migrations/"
+      "redirect_url": "https://aspire.dev/integrations/databases/efcore/migrations/"
     },
     {
       "source_path_from_root": "/docs/database/seed-database-data.md",
-      "redirect_url": "https://aspire.dev/integrations/databases/seed-database/"
+      "redirect_url": "https://aspire.dev/integrations/databases/efcore/seed-database/"
     },
     {
       "source_path_from_root": "/docs/database/azure-cosmos-db-integration.md",
@@ -518,7 +518,7 @@
     },
     {
       "source_path_from_root": "/docs/database/postgresql-integration.md",
-      "redirect_url": "https://aspire.dev/integrations/databases/postgres/"
+      "redirect_url": "https://aspire.dev/integrations/databases/postgres/postgres-get-started/"
     },
     {
       "source_path_from_root": "/docs/database/postgresql-entity-framework-integration.md",
@@ -538,7 +538,7 @@
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage-integrations.md",
-      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/https://aspire.dev/integrations/cloud/azure/azure-storage/"
+      "redirect_url": "https://aspire.dev/integrations/cloud/azure/azure-storage-blobs/"
     },
     {
       "source_path_from_root": "/docs/storage/azure-storage-blobs-integration.md",
@@ -554,7 +554,7 @@
     },
     {
       "source_path_from_root": "/docs/messaging/messaging-integrations.md",
-      "redirect_url": "https://aspire.dev/integrations/messaging/"
+      "redirect_url": "https://aspire.dev/integrations/overview/"
     },
     {
       "source_path_from_root": "/docs/messaging/kafka-integration.md",
