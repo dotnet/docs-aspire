@@ -1021,24 +1021,8 @@
       "redirect_url": "https://aspire.dev/extensibility/interaction-service/"
     },
     {
-      "source_path_from_root": "/docs/app-host/eventing.md",
-      "redirect_url": "https://aspire.dev/app-host/eventing/"
-    },
-    {
       "source_path_from_root": "/docs/fundamentals/networking-overview.md",
       "redirect_url": "https://aspire.dev/fundamentals/networking-overview/"
-    },
-    {
-      "source_path_from_root": "/docs/app-host/withdockerfile.md",
-      "redirect_url": "https://aspire.dev/app-host/withdockerfile/"
-    },
-    {
-      "source_path_from_root": "/docs/app-host/executable-resources.md",
-      "redirect_url": "https://aspire.dev/app-host/executable-resources/"
-    },
-    {
-      "source_path_from_root": "/docs/app-host/persistent-containers.md",
-      "redirect_url": "https://aspire.dev/app-host/persistent-containers/"
     },
     {
       "source_path_from_root": "/docs/fundamentals/custom-resource-commands.md",

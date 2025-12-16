@@ -57,4 +57,4 @@ The Aspire SDK dynamically adds references to the [Aspire dashboard](https://asp
 
 When the AppHost project runs, the orchestrator relies on these dependencies to provide the necessary functionality to the AppHost. For more information, see [Aspire orchestration overview][app-host].
 
-[app-host]: xref:dotnet/aspire/app-host
+[app-host]: https://aspire.dev/get-started/app-host/

@@ -13,7 +13,7 @@ The Aspire Kubernetes hosting integration enables you to generate Kubernetes dep
 
 ## Hosting integration
 
-To get started with the Aspire Kubernetes hosting integration, install the [📦 Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+To get started with the Aspire Kubernetes hosting integration, install the [📦 Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes) NuGet package in the [AppHost](https://aspire.dev/get-started/app-host/) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 

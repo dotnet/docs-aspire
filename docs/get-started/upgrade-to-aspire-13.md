@@ -171,7 +171,7 @@ No project file needed - just a single _.cs_ file with package references declar
 
 If you prefer to manually upgrade your projects, you can update your project files directly. The following steps guide you through the process:
 
-- Edit your [AppHost](xref:dotnet/aspire/app-host) project file to use the new Aspire 13.0 SDK (`Aspire.AppHost.Sdk`).
+- Edit your [AppHost](https://aspire.dev/get-started/app-host/) project file to use the new Aspire 13.0 SDK (`Aspire.AppHost.Sdk`).
 - Update the NuGet packages in your project files to the latest versions.
 - Adjust your code to address any breaking changes.
 
