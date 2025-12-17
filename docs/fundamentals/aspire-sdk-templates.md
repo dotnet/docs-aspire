@@ -94,7 +94,7 @@ Select the desired location, enter a name, and select **Create**.
 
 To create an Aspire solution or project using the .NET CLI, use the [dotnet new](/dotnet/core/tools/dotnet-new) command and specify which template you would like to create. Consider the following examples:
 
-To create a basic [Aspire AppHost](app-host-overview.md) project targeting the latest .NET version:
+To create a basic [Aspire AppHost](https://aspire.dev/get-started/app-host/) project targeting the latest .NET version:
 
 ```dotnetcli
 dotnet new aspire-apphost
@@ -107,7 +107,7 @@ dotnet new aspire-starter
 ```
 
 > [!TIP]
-> Aspire templates default to using the latest .NET version, even when using an earlier version of the .NET CLI. To manually specify the .NET version, use the `--framework <tfm>` option, e.g. to create a basic [Aspire AppHost](app-host-overview.md) project targeting .NET 8:
+> Aspire templates default to using the latest .NET version, even when using an earlier version of the .NET CLI. To manually specify the .NET version, use the `--framework <tfm>` option, e.g. to create a basic [Aspire AppHost](https://aspire.dev/get-started/app-host/) project targeting .NET 8:
 >
 > ```dotnetcli
 > dotnet new aspire-apphost --framework net8.0

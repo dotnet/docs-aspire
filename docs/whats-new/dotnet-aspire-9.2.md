@@ -66,7 +66,7 @@ If your AppHost project file doesn't have the `Aspire.AppHost.Sdk` reference, yo
 
 ## 🖥️ AppHost enhancements
 
-The [AppHost](../fundamentals/app-host-overview.md) is the core of Aspire, providing the local hosting environment for your distributed applications. In Aspire 9.2, we've made several improvements to the AppHost:
+The [AppHost](https://aspire.dev/get-started/app-host/) is the core of Aspire, providing the local hosting environment for your distributed applications. In Aspire 9.2, we've made several improvements to the AppHost:
 
 ### 🚧 Project file changes
 
@@ -92,7 +92,7 @@ var catalogDb = builder.AddPostgres("postgres")
 
 The preceding code sets the display text for the `PG Admin` URL to `PG Admin`. This makes it easier to access the management console directly from the dashboard.
 
-For more information, see [Define custom resource URLs](../fundamentals/custom-resource-urls.md).
+For more information, see [Define custom resource URLs](https://aspire.dev/fundamentals/custom-resource-urls/).
 
 ## 🔧 Dashboard user experience improvements
 
@@ -136,7 +136,7 @@ We've added a search text box to trace details. Now you can quickly filter large
 
 ### 🌐 HTTP-based resource command functionality
 
-[Custom resource commands](../fundamentals/custom-resource-commands.md) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be run directly from the Aspire dashboard.
+[Custom resource commands](https://aspire.dev/fundamentals/custom-resource-commands/) now support HTTP-based functionality with the addition of the `WithHttpCommand` API, enabling you to define endpoints for tasks like database migrations or resets. These commands can be run directly from the Aspire dashboard.
 
 Adds WithHttpCommand(), which lets you define a resource command that sends an HTTP request to your app during development. Useful for triggering endpoints like seed or reset from the dashboard.
 
@@ -161,7 +161,7 @@ if (builder.Environment.IsDevelopment())
 }
 ```
 
-For more information, see [Custom HTTP commands in Aspire](../fundamentals/http-commands.md).
+For more information, see [Custom HTTP commands in Aspire](https://aspire.dev/fundamentals/http-commands/).
 
 ### 🗂️ Connection string resource type
 
@@ -218,7 +218,7 @@ There's [plenty of feedback and confusion](https://github.com/dotnet/aspire/issu
 | [📦 Aspire.Hosting.SqlServer](https://www.nuget.org/packages/Aspire.Hosting.SqlServer) | <xref:Aspire.Hosting.SqlServerBuilderExtensions.AddDatabase*> |
 | [📦 Aspire.Hosting.PostgreSql](https://www.nuget.org/packages/Aspire.Hosting.PostgreSql) | <xref:Aspire.Hosting.PostgresBuilderExtensions.AddDatabase*> |
 
-The Azure SQL and Azure PostgreSQL hosting integrations also expose `AddDatabase` APIs which work with their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](https://aspire.dev/integrations/cloud/azure/#understand-azure-integration-apis).
+The Azure SQL and Azure PostgreSQL hosting integrations also expose `AddDatabase` APIs which work with their respective `RunAsContainer` methods. For more information, see [Understand Azure integration APIs](https://aspire.dev/integrations/cloud/azure/overview/#understand-azure-integration-apis).
 
 By default, Aspire will create an empty database if it doesn't exist. You can also optionally provide a custom script to run during creation for advanced setup or seeding.
 
@@ -238,7 +238,7 @@ postgres.AddDatabase("todoapp")
 
 For more information and examples of using the `AddDatabase` API, see:
 
-- [Add PostgreSQL resource with database scripts](https://aspire.dev/integrations/databases/postgres/#add-postgresql-resource-with-database-scripts)
+- [Add PostgreSQL resource with database scripts](https://aspire.dev/integrations/databases/postgres/postgres-host/#add-postgresql-resource-with-database-scripts)
 - [Add SQL Server resource with database scripts](https://aspire.dev/integrations/databases/sql-server/#add-sql-server-resource-with-database-scripts)
 
 The following hosting integrations don't currently support database creation:
@@ -265,7 +265,7 @@ builder.AddAzureContainerAppEnvironment("my-env")
        .WithAzdResourceNaming();
 ```
 
-For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/azure-container-apps/).
+For more information, see [Configure Azure Container Apps environments](https://aspire.dev/integrations/cloud/azure/configure-container-apps/).
 
 ### 🆕 New Client integrations: Azure PostgreSQL (Npgsql & EF Core)
 
@@ -433,7 +433,7 @@ We're excited to announce several new deployment features in Aspire 9.2, includi
 
 ### 📦 Publishers (Preview)
 
-Publishers are a new extensibility point in Aspire that allow you to define how your distributed application gets transformed into deployable assets. Rather than relying on an [intermediate manifest format](../deployment/manifest-format.md), publishers can now plug directly into the application model to generate Docker Compose files, Kubernetes manifests, Azure resources, or whatever else your environment needs.
+Publishers are a new extensibility point in Aspire that allow you to define how your distributed application gets transformed into deployable assets. Rather than relying on an [intermediate manifest format](https://aspire.dev/deployment/manifest-format/), publishers can now plug directly into the application model to generate Docker Compose files, Kubernetes manifests, Azure resources, or whatever else your environment needs.
 
 When Aspire launched, it introduced a deployment manifest format—a serialized snapshot of the application model. While useful it burdened deployment tools with interpreting the manifest and resource authors with ensuring accurate serialization. This approach also complicated schema evolution and target-specific behaviors.
 

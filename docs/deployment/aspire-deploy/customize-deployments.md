@@ -14,7 +14,7 @@ Aspire provides APIs to customize how your applications are deployed. This artic
 - Aspire 9.5 or later
 - An existing Aspire project
 
-For information about creating an Aspire project, see [Build your first Aspire app](../../get-started/build-your-first-aspire-app.md).
+For information about creating an Aspire project, see [Build your first Aspire app](https://aspire.dev/get-started/first-app/).
 
 ## Dynamic container image tagging
 
@@ -101,4 +101,4 @@ serviceBus.ConfigureInfrastructure(infrastructure =>
 ## Related content
 
 - [Deploy to Azure Container Apps using aspire deploy](aca-deployment-aspire-cli.md)
-- [App host overview](../../fundamentals/app-host-overview.md)
+- [App host overview](https://aspire.dev/get-started/app-host/)

@@ -100,7 +100,7 @@ For more information on configuring browser telemetry, see [Enable browser telem
 
 ## AppHost (Orchestration)
 
-The [Aspire AppHost](../fundamentals/app-host-overview.md) is one of the **most important** features of Aspire. In Aspire 9, several new features were added specific to the AppHost.
+The [Aspire AppHost](https://aspire.dev/get-started/app-host/) is one of the **most important** features of Aspire. In Aspire 9, several new features were added specific to the AppHost.
 
 ### Waiting for dependencies
 
@@ -223,14 +223,14 @@ The container persistence mechanism attempts to identify when you might wish to 
 
 ### Resource commands
 
-The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the AppHost. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [Aspire Community Toolkit](https://aspire.dev/integrations/) might be a good place to share these extensions.
+The AppHost supports adding custom commands to resources. This is useful when you want to add custom functionality that is not natively supported by the AppHost. There's likely many opportunities where exposing custom extension methods on resources will be useful. The [Aspire Community Toolkit](https://aspire.dev/integrations/overview/) might be a good place to share these extensions.
 
 When you define a custom command, it's available in the dashboard as a user experience feature.
 
 > [!IMPORTANT]
 > These Aspire dashboard commands are only available when running the dashboard locally. They're not available when running the dashboard in Azure Container Apps.
 
-For more information on creating custom resource commands, see [How-to: Create custom resource commands in Aspire](../fundamentals/custom-resource-commands.md).
+For more information on creating custom resource commands, see [How-to: Create custom resource commands in Aspire](https://aspire.dev/fundamentals/custom-resource-commands/).
 
 ### Container networking
 
@@ -246,7 +246,7 @@ The eventing model allows developers to hook into the lifecycle of the applicati
 - <xref:Aspire.Hosting.ApplicationModel.AfterResourcesCreatedEvent>: An event that is triggered after the resources are created. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.AfterEndpointsAllocatedEvent>: An event that is triggered after the endpoints are allocated for all resources. This runs in Run mode only.
 
-The global events are analogous to the AppHost life cycle events. For more information, see [AppHost life cycles](../app-host/eventing.md#apphost-life-cycle-events).
+The global events are analogous to the AppHost life cycle events. For more information, see [AppHost life cycles](https://aspire.dev/app-host/eventing/#apphost-life-cycle-events).
 
 **Per-resource events:**
 
@@ -254,11 +254,11 @@ The global events are analogous to the AppHost life cycle events. For more infor
 - <xref:Aspire.Hosting.ApplicationModel.ConnectionStringAvailableEvent>: An event that is triggered when a connection string is available for a resource. This runs in Run mode only.
 - <xref:Aspire.Hosting.ApplicationModel.ResourceReadyEvent>: An event that is triggered when a resource is ready to be used. This runs in Run mode only.
 
-For more information, see [Eventing in Aspire](../app-host/eventing.md).
+For more information, see [Eventing in Aspire](https://aspire.dev/app-host/eventing/).
 
 ## Integrations
 
-Aspire continues to add integrations that make it easy to get started with your favorite services and tools. For more information, see [Aspire integrations overview](../fundamentals/integrations-overview.md).
+Aspire continues to add integrations that make it easy to get started with your favorite services and tools. For more information, see [Aspire integrations overview](https://aspire.dev/integrations/overview/).
 
 ### Redis Insight
 
@@ -646,7 +646,7 @@ Support for Azure Functions in Aspire is still in preview with support for a lim
 - [Azure Service Bus triggers](/azure/azure-functions/functions-bindings-service-bus?pivots=programming-language-csharp)
 - [Azure Event Hubs triggers](/azure/azure-functions/functions-bindings-event-hubs?pivots=programming-language-csharp)
 
-For more information, see the official [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/compute/azure-functions/).
+For more information, see the official [Aspire Azure Functions integration (Preview)](https://aspire.dev/integrations/cloud/azure/azure-functions/).
 
 #### Customization of Azure Container Apps
 
@@ -693,7 +693,7 @@ The preceding code example defers generation of the Azure Container App definiti
 - [Aspire setup and tooling](../fundamentals/setup-tooling.md)
 - [Aspire SDK](../fundamentals/dotnet-aspire-sdk.md)
 - [Aspire templates](../fundamentals/aspire-sdk-templates.md)
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
-- [Eventing in Aspire](../app-host/eventing.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
+- [Eventing in Aspire](https://aspire.dev/app-host/eventing/)
 - [Aspire dashboard overview](https://aspire.dev/dashboard/overview/)
 - [Explore the Aspire dashboard](https://aspire.dev/dashboard/explore/)

@@ -332,8 +332,8 @@ var embeddingModel = builder.AddGitHubModel("embeddings", GitHubModel.OpenAI.Ope
 
 For more information, see:
 
-- [Aspire GitHub Models integration (Preview)](https://aspire.dev/integrations/github-models/).
-- [Aspire Azure AI Foundry integration (Preview)](https://aspire.dev/integrations/azure-ai-foundry/).
+- [Aspire GitHub Models integration (Preview)](https://aspire.dev/integrations/ai/github-models/).
+- [Aspire Azure AI Foundry integration (Preview)](https://aspire.dev/integrations/cloud/azure/azure-ai-foundry/).
 
 ### Dev Tunnels hosting integration
 
@@ -537,7 +537,7 @@ var redisEnterprise = builder.AddAzureRedisEnterprise("redis-enterprise")
     .WithAccessKeyAuthentication(keyVault);
 ```
 
-For more information, see [Aspire Azure Managed Redis integration](https://aspire.dev/integrations/azure-redis-enterprise/).
+For more information, see [Aspire Azure Managed Redis integration](https://aspire.dev/integrations/cloud/azure/azure-cache-redis/).
 
 ### Azure App Configuration emulator (preview)
 
@@ -856,7 +856,7 @@ These resources no longer implement `IResourceWithoutLifetime`; they surface as 
 
 ### Azure Container App Jobs support
 
-Aspire 9.5 introduces comprehensive support for Azure Container App Jobs, allowing you to deploy both project and container resources as background job workloads that can run on schedules, in response to events, or be triggered manually. For more information, see [Azure Container App Jobs](https://aspire.dev/integrations/azure-container-app-jobs/)
+Aspire 9.5 introduces comprehensive support for Azure Container App Jobs, allowing you to deploy both project and container resources as background job workloads that can run on schedules, in response to events, or be triggered manually. For more information, see [Azure Container App Jobs](https://aspire.dev/integrations/cloud/azure/container-app-jobs/)
 
 Container App Jobs complement the existing Container Apps functionality by providing a dedicated way to run finite workloads like data processing, ETL operations, batch jobs, and scheduled maintenance tasks.
 
@@ -906,7 +906,7 @@ builder.Build().Run();
 
 Aspire 9.5 delivers the first iteration of a unified Azure provisioning and deployment pipeline through the `aspire deploy` command. The deployment experience features graph-based dependency planning through `ResourceDeploymentGraph` for correct resource provisioning order and maximum parallelism, support for interactive prompting to gather values required for deployment, and enhanced error reporting for identifying issues during deployment. The AppHost integrates Azure provisioning prompts into the standard interaction system for consistent UX, providing deployment-time flexibility with automatic infrastructure provisioning, container image building and registry pushing, and compute resource deployment to Azure Container Apps—all orchestrated through a single command with real-time progress monitoring and comprehensive error reporting.
 
-For more information on deploying to Azure with the Aspire CLI, read [the official documentation](../deployment/aspire-deploy/aca-deployment-aspire-cli.md).
+For more information on deploying to Azure with the Aspire CLI, read [the official documentation](https://aspire.dev/deployment/azure/aca-deployment-aspire-cli/).
 
 ### Executable resource configuration APIs
 

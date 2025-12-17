@@ -41,8 +41,8 @@ For a comprehensive reference mapping Docker Compose YAML syntax to Aspire C# AP
 **Related links:**
 
 - [Docker Compose overview](https://docs.docker.com/compose/)
-- [Aspire overview](aspire-overview.md)
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 
 ## Common migration patterns
 
@@ -272,8 +272,8 @@ builder.Build().Run();
 **Related links:**
 
 - [Docker Compose specification](https://docs.docker.com/compose/compose-file/)
-- [Aspire AppHost overview](../fundamentals/app-host-overview.md)
-- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
+- [Aspire AppHost overview](https://aspire.dev/get-started/app-host/)
+- [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)
 
 ## Migration strategy
 
@@ -325,7 +325,7 @@ For persistent data:
 **Related links:**
 
 - [Docker Compose migration checklist](https://docs.docker.com/compose/migrate/)
-- [Build your first Aspire app](build-your-first-aspire-app.md)
+- [Build your first Aspire app](https://aspire.dev/get-started/first-app/)
 - [Aspire testing overview](https://aspire.dev/testing/overview/)
 
 ## Migration troubleshooting
@@ -374,16 +374,16 @@ When migrating from Docker Compose to Aspire, you might encounter some common ch
 
 After migrating to Aspire:
 
-- Explore [Aspire integrations](../fundamentals/integrations-overview.md) to replace custom container configurations.
+- Explore [Aspire integrations](https://aspire.dev/integrations/overview/) to replace custom container configurations.
 - Set up [health checks](https://aspire.dev/fundamentals/health-checks/) for better monitoring.
 - Configure [telemetry](../fundamentals/telemetry.md) for observability.
-- Learn about [deployment options](../deployment/overview.md) for production environments.
+- Learn about [deployment options](https://aspire.dev/deployment/overview/) for production environments.
 - Consider [testing](https://aspire.dev/testing/overview/) your distributed application.
 
 ## See also
 
-- [Aspire overview](aspire-overview.md)
+- [Aspire overview](https://aspire.dev/get-started/what-is-aspire/)
 - [AspiriFridays stream](https://www.youtube.com/@aspiredotdev)
-- [Aspire orchestration overview](../fundamentals/app-host-overview.md)
+- [Aspire orchestration overview](https://aspire.dev/get-started/app-host/)
 - [Docker Compose enhancements in Aspire 9.3](../whats-new/dotnet-aspire-9.3.md#-docker-compose-enhancements)
-- [Add Dockerfiles to your .NET app model](../app-host/withdockerfile.md)
+- [Add Dockerfiles to your .NET app model](https://aspire.dev/app-host/withdockerfile/)

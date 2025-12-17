@@ -13,7 +13,7 @@ The Aspire Kubernetes hosting integration enables you to generate Kubernetes dep
 
 ## Hosting integration
 
-To get started with the Aspire Kubernetes hosting integration, install the [📦 Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes) NuGet package in the [AppHost](xref:dotnet/aspire/app-host) project.
+To get started with the Aspire Kubernetes hosting integration, install the [📦 Aspire.Hosting.Kubernetes](https://www.nuget.org/packages/Aspire.Hosting.Kubernetes) NuGet package in the [AppHost](https://aspire.dev/get-started/app-host/) project.
 
 ### [.NET CLI](#tab/dotnet-cli)
 
@@ -108,12 +108,12 @@ Resource names in Kubernetes must follow DNS naming conventions. The integration
 
 ### Environment-specific configuration
 
-Use [external parameters](../fundamentals/external-parameters.md) to configure environment-specific values that should be different between development and production environments.
+Use [external parameters](https://aspire.dev/fundamentals/external-parameters/) to configure environment-specific values that should be different between development and production environments.
 
 ## See also
 
 - [Deploy to Kubernetes](overview.md#deploy-to-kubernetes)
-- [Aspire integrations overview](../fundamentals/integrations-overview.md)
+- [Aspire integrations overview](https://aspire.dev/integrations/overview/)
 - [Aspire GitHub repo](https://github.com/dotnet/aspire)
 - [Kubernetes documentation](https://kubernetes.io/docs/)
 - [Helm documentation](https://helm.sh/docs/)
