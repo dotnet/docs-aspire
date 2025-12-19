@@ -10,9 +10,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.0" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="13.0.2" />
     <PackageReference Include="Aspire.Hosting.Docker" Version="9.5.0-preview.1.25474.7" />
-    <PackageReference Include="Aspire.Hosting.Redis" Version="13.0.0" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="13.0.2" />
   </ItemGroup>
 
 </Project>
