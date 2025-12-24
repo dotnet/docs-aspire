@@ -4,13 +4,6 @@ items:
 
 - name: Get Started
   items:
-  - name: Migrate to Aspire
-    items:
-    - name: From Docker Compose
-      href: get-started/migrate-from-docker-compose.md
-      displayName: docker compose,migration,migrate
-    - name: Docker Compose to AppHost API reference
-      href: get-started/docker-compose-to-apphost-reference.md
   - name: Setup and tooling
     items:
     - name: Overview
@@ -33,9 +26,6 @@ items:
 
 - name: AppHost
   items:
-  - name: Architecture overview
-    displayName: aspire architecture,aspire app,aspire apphost,aspire app model
-    href: architecture/overview.md
   - name: Locally orchestrate
     items:
     - name: Resources in Aspire
@@ -64,9 +54,6 @@ items:
     href: https://aspire.dev/fundamentals/service-defaults/
   - name: Launch profiles
     href: https://aspire.dev/fundamentals/launch-profiles/
-  - name: Telemetry
-    displayName: otel,otlp,telemetry,grpc,opentelemetry,protobuf,traceparent
-    href: fundamentals/telemetry.md
   - name: Health checks
     href: https://aspire.dev/fundamentals/health-checks/
 

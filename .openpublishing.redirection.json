@@ -1051,6 +1051,58 @@
     {
       "source_path_from_root": "/docs/reference/aspire-faq.yml",
       "redirect_url": "https://discord.com/invite/h87kDAHQgJ"
+    },
+    {
+      "source_path_from_root": "/docs/architecture/overview.md",
+      "redirect_url": "https://aspire.dev/architecture/overview/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/telemetry.md",
+      "redirect_url": "https://aspire.dev/fundamentals/telemetry/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/migrate-from-docker-compose.md",
+      "redirect_url": "https://aspire.dev/app-host/migrate-from-docker-compose/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/docker-compose-to-apphost-reference.md",
+      "redirect_url": "https://aspire.dev/app-host/docker-compose-to-apphost-reference/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-aspire-9.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-aspire-9.1.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-aspire-9.2.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-aspire-9.3.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-aspire-9.4.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-aspire-9.5.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-docs-aspire-mod0.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-docs-aspire-mod1.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/dotnet-docs-aspire-mod2.md",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
     }
   ]
 }
