@@ -29,7 +29,7 @@ highlightedContent:
     url: https://aspire.dev/dashboard/overview/
   - itemType: whats-new
     title: What's new in Aspire
-    url: whats-new/index.yml
+    url: https://aspire.dev/whats-new/aspire-13-1/
 
 conceptualContent:
   # itemType: architecture | concept | deploy | download | get-started | how-to-guide | training | overview | quickstart | reference | sample | tutorial | video | whats-new
