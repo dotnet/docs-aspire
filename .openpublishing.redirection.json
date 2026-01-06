@@ -1133,14 +1133,6 @@
       "redirect_url": "https://aspire.dev/get-started/orchestrate-resources/"
     },
     {
-      "source_path_from_root": "/docs/whats-new/index.yml",
-      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
-    },
-    {
-      "source_path_from_root": "/docs/whats-new/toc.yml",
-      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
-    },
-    {
       "source_path_from_root": "/docs/extensibility/dev-tunnels-integration.md",
       "redirect_url": "https://aspire.dev/integrations/devtools/dev-tunnels/"
     },
