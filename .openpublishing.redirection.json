@@ -1103,6 +1103,54 @@
     {
       "source_path_from_root": "/docs/whats-new/dotnet-docs-aspire-mod2.md",
       "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/setup-tooling.md",
+      "redirect_url": "https://aspire.dev/get-started/prerequisites/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/dotnet-aspire-sdk.md",
+      "redirect_url": "https://aspire.dev/get-started/aspire-sdk/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/aspire-sdk-templates.md",
+      "redirect_url": "https://aspire.dev/get-started/aspire-sdk-templates/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/aspire-vscode-extension.md",
+      "redirect_url": "https://aspire.dev/get-started/aspire-vscode-extension/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/github-codespaces.md",
+      "redirect_url": "https://aspire.dev/get-started/github-codespaces/"
+    },
+    {
+      "source_path_from_root": "/docs/get-started/dev-containers.md",
+      "redirect_url": "https://aspire.dev/get-started/dev-containers/"
+    },
+    {
+      "source_path_from_root": "/docs/fundamentals/orchestrate-resources.md",
+      "redirect_url": "https://aspire.dev/get-started/orchestrate-resources/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/index.yml",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/whats-new/toc.yml",
+      "redirect_url": "https://aspire.dev/whats-new/aspire-13-1/"
+    },
+    {
+      "source_path_from_root": "/docs/extensibility/dev-tunnels-integration.md",
+      "redirect_url": "https://aspire.dev/integrations/devtools/dev-tunnels/"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/docker-integration.md",
+      "redirect_url": "https://aspire.dev/integrations/compute/docker/"
+    },
+    {
+      "source_path_from_root": "/docs/deployment/kubernetes-integration.md",
+      "redirect_url": "https://aspire.dev/integrations/compute/kubernetes/"
     }
   ]
 }
