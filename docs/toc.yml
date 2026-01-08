@@ -19,8 +19,8 @@ items:
       href: get-started/github-codespaces.md
     - name: Dev Containers
       href: get-started/dev-containers.md
-  - name: What's new in Aspire 13
-    href: https://aspire.dev/whats-new/aspire-13/
+  - name: What's new
+    href: whats-new/index.yml
   - name: Upgrade to Aspire 13.0
     href: get-started/upgrade-to-aspire-13.md
 
