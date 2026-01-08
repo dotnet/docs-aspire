@@ -697,7 +697,7 @@ This pattern ensures Aspire:
 - Emits references to the correct existing resources in publish mode
 - Still enables secret injection and secure scoping via environment variables
 
-📖 See also: [Use existing Azure resources](https://aspire.dev/integrations/cloud/azure/#use-existing-azure-resources).
+📖 See also: [Use existing Azure resources](https://aspire.dev/integrations/cloud/azure/overview/#use-existing-azure-resources).
 
 ### 🧠 Azure AI Inference client integration (Preview)
 
