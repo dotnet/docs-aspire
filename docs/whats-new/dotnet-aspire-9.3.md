@@ -804,7 +804,7 @@ This ensures every app that references the database gets **full access** without
 
 - Supports **multiple apps accessing the same SQL Server** securely
 - Preserves **least-privilege separation** across app identities
-- Avoids the brittle “last one wins” admin behavior from earlier releases
+- Avoids the brittle "last one wins" admin behavior from earlier releases
 - Enables richer deployment scenarios in cloud-native environments like Azure Container Apps
 
 #### ⚠️ Breaking change
