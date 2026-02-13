@@ -32,7 +32,7 @@ jobs:
           echo 'Reason: ${{ github.event.inputs.reason }}'
 
       - name: Check out code
-        uses: actions/checkout@1af3b93b6815bc44a9784bd300feb67ff0d1eeb3 # main
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # main
 
       - name: Check for existing PR
         id: exists
