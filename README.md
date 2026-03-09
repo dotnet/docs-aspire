@@ -19,4 +19,4 @@ The docs have moved to [microsoft/aspire.dev](https://github.com/microsoft/aspir
 - ✍️ **Want to contribute?** Read the [Contributor guide](https://aspire.dev/community/contributor-guide/)
 - 🌟 **See your impact:** Visit the [Contributors page](https://aspire.dev/community/contributors/)
 
-Thank you for being part of the Aspire journey. We're just getting started. 🚀
+Thank you for being part of the Aspire journey. Visit aspire.dev and the `microsoft/aspire.dev` repository to stay involved.
